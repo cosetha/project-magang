@@ -19,6 +19,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $guarded = ['id'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,6 +29,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function berita()
+    {
+      return $this->hasMany(Berita::class);
+    }
+
+    public function roles()
+    {
+      return $this->belongsTo(Roles::class);
+    }
 
     /**
      * The attributes that should be cast to native types.
