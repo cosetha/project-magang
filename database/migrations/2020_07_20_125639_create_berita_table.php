@@ -18,11 +18,11 @@ class CreateBeritaTable extends Migration
           $table->string('judul');
           $table->text('gambar');
           $table->text('deskripsi');
-          
+
           $table->bigInteger('id_penulis')->unsigned();
           $table->foreign('id_penulis')
                 ->references('id')
-                ->on('user')
+                ->on('users')
                 ->onDelete('cascade');
 
           $table->timestamps();
