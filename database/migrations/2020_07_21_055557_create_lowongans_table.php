@@ -13,12 +13,12 @@ class CreateLowongansTable extends Migration
      */
     public function up()
     {
-        Schema::create('lowongan', function (Blueprint $table) {
+        Schema::create('lowongans', function (Blueprint $table) {
             $table->id();
             $table->text('gambar');
             $table->string('nama_lowongan',255);
             $table->text('deskripsi');
-            $table->bigInteger('kode_jenis')->unsigned();
+            $table->enum('jenis', ['kerja', 'internship']);
             $table->foreign('kode_jenis')->references('id')->on('jenis_lowongan')->onDelete('cascade');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateLowongansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lowongan');
+        Schema::dropIfExists('lowongans');
     }
 }

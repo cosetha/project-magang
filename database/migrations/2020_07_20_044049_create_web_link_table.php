@@ -17,7 +17,7 @@ class CreateWebLinkTable extends Migration
             $table->increments('id',10);
             $table->string('nama_web');
             $table->text('link');
-            $table->string('jenis');
+            $table->string('menu');
             $table->timestamps();
         });
     }
