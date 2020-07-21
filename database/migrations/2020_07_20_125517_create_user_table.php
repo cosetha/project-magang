@@ -13,10 +13,10 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-      Schema::create('user', function (Blueprint $table) {
+      Schema::create('users', function (Blueprint $table) {
           $table->id();
           $table->string('gambar');
-          $table->string('nama');
+          $table->string('name');
           $table->string('email');
           $table->string('password');
           $table->bigInteger('id_role')->unsigned();
@@ -24,7 +24,7 @@ class CreateUserTable extends Migration
                 ->references('id')
                 ->on('roles')
                 ->onDelete('cascade');
-
+          $table->rememberToken();
           $table->timestamps();
       });
     }
@@ -36,6 +36,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }
