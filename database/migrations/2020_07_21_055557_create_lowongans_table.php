@@ -19,7 +19,7 @@ class CreateLowongansTable extends Migration
             $table->string('nama_lowongan',255);
             $table->text('deskripsi');
             $table->enum('jenis', ['kerja', 'internship']);
-            $table->foreign('kode_jenis')->references('id')->on('jenis_lowongan')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
