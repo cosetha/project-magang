@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PageController@Dashboard');
+Route::get('/social-media','PageController@SosialMedia');
 
 Auth::routes();
 

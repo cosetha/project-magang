@@ -71,7 +71,7 @@
         <div id="collapseMiniNavbar" class="collapse" aria-labelledby="headingMiniNavbar" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mini Navbar</h6>
-            <a class="collapse-item" href="buttons.html">Social Media</a>
+            <a class="collapse-item" href="/social-media">Social Media</a>
             <a class="collapse-item" href="cards.html">Quick Menu</a>
           </div>
         </div>
