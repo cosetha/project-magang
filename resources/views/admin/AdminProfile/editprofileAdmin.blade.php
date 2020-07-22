@@ -1,64 +1,78 @@
+
 @extends('layouts/adminLayout')
-@section('title', 'Social Media')
+@section('title', 'Edit Profile')
 
 @section('content')
-
-<script type="text/javascript">
-  document.getElementById('mininavbar').classList.add('active');
-</script>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Sosmed</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Profile</h1>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
           </div>
 
-          <div class="d-sm-flex align-items-center mb-4">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#sosmedModal">Add</a>
-          </div>
-          
-
           <!-- Content Row -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Sosmed</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Nama Web</th>
-                      <th>Link Web</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                    <th>Nama Web</th>
-                      <th>Link Web</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>Edinburgh</td>
-                      <td>
-                        <a href="#" data-toggle="modal" data-target="#editSosmedModal" class="badge badge-success">Edit</a>
-                        <a href="#" data-toggle="modal" data-target="#deleteSosmedModal" class="badge badge-danger">Delete</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div class="row">
+              <!-- left column -->
+              <div class="col-md-3">
+                <div class="text-center">
+                <!-- src="{{ url('img/a.png')}}" -->
+                  <img  class="avatar img-circle" alt="avatar">
+                  <h6>Upload a different photo...</h6>
+                  
+                  <input type="file" class="form-control">
+                </div>
               </div>
-            </div>
+              
+              <!-- edit form column -->
+              <div class="col-md-9 personal-info">
+                <div class="alert alert-info alert-dismissable">
+                  <a class="panel-close close" data-dismiss="alert">×</a> 
+                  <i class="fa fa-coffee"></i>
+                  This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                </div>
+                <h3>Personal info</h3>
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" value="janeuser">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                      <input class="form-control" type="text" value="janesemail@gmail.com">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" value="11111122333">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" value="11111122333">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                      <input type="button" class="btn btn-primary" value="Save Changes">
+                      <span></span>
+                      <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                  </div>
+                </form>
+              </div>
           </div>
-          </div>
-          </div>
+        </div>
+        </div>
       <!-- End of Main Content -->
 
 
@@ -149,3 +163,22 @@
       </div>
 
       @endsection
+
+
+
+<script>
+   function readURL(input, id) {
+     id = id || '#file-image';
+     if (input.files &amp;&amp; input.files[0]) {
+         var reader = new FileReader();
+ 
+         reader.onload = function (e) {
+             $(id).attr('src', e.target.result);
+         };
+ 
+         reader.readAsDataURL(input.files[0]);
+         $('#file-image').removeClass('hidden');
+         $('#start').hide();
+     }
+  }
+ </script> 
