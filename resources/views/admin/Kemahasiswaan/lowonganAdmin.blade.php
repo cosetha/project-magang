@@ -1,177 +1,179 @@
 @extends('layouts/adminLayout')
-@section('title', 'Kemahasiswaan')
+@section('title', 'Lowongan')
 
 @section('content')
 
 <script type="text/javascript">
-  document.getElementById('kemahasiswaan').classList.add('active');
+    document.getElementById('kemahasiswaan').classList.add('active');
 </script>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Lowongan</h1>
-            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
-          </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Lowongan</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+    </div>
 
-          <div class="d-sm-flex align-items-center mb-4">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#lowonganModal">Add</a>
-          </div>
-          
-
-          <!-- Content Row -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Lowongan</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Nama Lowongan</th>
-                      <th>Gambar</th>
-                      <th>Lokasi</th>
-                      <th>Tanggal</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Nama Lowongan</th>
-                      <th>Gambar</th>
-                      <th>Lokasi</th>
-                      <th>Tanggal</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>System Architect</td>
-                      <td>System Architect</td>
-                      <td>
-                        <a href="#" data-toggle="modal" data-target="#editlowonganModal" class="badge badge-success">Edit</a>
-                        <a href="#" data-toggle="modal" data-target="#deletelowonganModal" class="badge badge-danger">Delete</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <!-- Content Row -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Lowongan</h6>
         </div>
-       </div>
-      <!-- End of Main Content -->
+
+        <div class="d-sm-flex align-items-center m-3">
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#LowonganModal">+ Add Lowongan</a>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
+                            <th>Nama Lowongan</th>
+                            <th>Deskripsi</th>
+                            <th>Jenis Lowongan</th>
+                            <th>Gambar</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>System Architect</td>
+                            <td>System Architect</td>
+                            <td align="center">
+                                <a href="#" data-toggle="modal" data-target="#editLowonganModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                                <a href="#" data-toggle="modal" data-target="#deleteLowonganModal" style="font-size: 18pt; text-decoration: none; color:red;">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End of Main Content -->
 
 
-      <!-- Add Sosmed Modal-->
-      <div class="modal fade" id="lowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+<!-- Add Lowongan Modal-->
+<div class="modal fade" id="LowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah lowongan</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah lowongan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body">
 
 
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
-            @csrf
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    @csrf
 
                     <label for="namalowongan">Nama lowongan</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""> </textarea>
 
-                    <label for="jenis">jenis Lowongan</label>
-                    <input type="date" class="form-control" id="" name="">
-
+                    <div class="form-group">
+                    <label for="jenis" class="mt-2">Jenis Lowongan</label>
+                      <select class="form-control" id="" name="">
+                          <option value="" hidden> -- Pilih Jenis Lowongan -- </option>
+                      </select>
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-            
 
-            </form>
+
+                </form>
 
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#">Submit</a>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
 
-      <!-- Edit Sosmed Modal-->
-      <div class="modal fade" id="editlowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+<!-- Edit Lowongan Modal-->
+<div class="modal fade" id="editLowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit lowongan</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
+                <h5 class="modal-title" id="exampleModalLabel">Edit lowongan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body">
 
 
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
-            @csrf
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    @csrf
 
-            <label for="namalowongan">Nama lowongan</label>
+                    <label for="namalowongan">Nama lowongan</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""> </textarea>
 
-                    <label for="jenis">jenis Lowongan</label>
-                    <input type="date" class="form-control" id="" name="">
-
+                    <div class="form-group">
+                    <label for="jenis" class="mt-2">Jenis Lowongan</label>
+                      <select class="form-control" id="" name="">
+                          <option value="" hidden> -- Pilih Jenis Lowongan -- </option>
+                      </select>
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-            
 
-            </form>
+                </form>
 
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#">Submit</a>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
-      <!-- Delete Sosmed Modal-->
-      <div class="modal fade" id="deletelowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+<!-- Delete Lowongan Modal-->
+<div class="modal fade" id="deleteLowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus lowongan?</div>
+            <div class="modal-body">Apakah anda yakin ingin menghapus data lowongan?</div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-danger" href="#">Delete</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="#">Delete</a>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
-      @endsection
+@endsection

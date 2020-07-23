@@ -18,12 +18,10 @@
               <!-- left column -->
               <div class="col-md-3">
                 <div class="text-center">
-                <!-- src="{{ url('img/a.png')}}" -->
-                  <img  class="avatar img-circle" alt="avatar">
+                  <img src="{{ asset('img/Login-image.png') }}" class="w-100 p-3">
                   <h6>Upload a different photo...</h6>
-                  
-                  <input type="file" class="form-control">
                 </div>
+                <input type="file" class="form-control">
               </div>
               
               <!-- edit form column -->
@@ -72,95 +70,8 @@
               </div>
           </div>
         </div>
-        </div>
+      </div>
       <!-- End of Main Content -->
-
-
-      <!-- Add Sosmed Modal-->
-      <div class="modal fade" id="sosmedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Sosmed</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
-            @csrf
-
-                    <label for="namaweb">Nama Web</label>
-                    <input type="text" class="form-control" id="" name="">
-
-                    <label for="linkweb">Link Web</label>
-                    <input type="text" class="form-control" id="" name="">
-
-            </form>
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Edit Sosmed Modal-->
-      <div class="modal fade" id="editSosmedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Sosmed</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
-            @csrf
-
-                    <label for="namaweb">Nama Web</label>
-                    <input type="text" class="form-control" id="" name="">
-
-                    <label for="linkweb">Link Web</label>
-                    <input type="text" class="form-control" id="" name="">
-
-            </form>
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Delete Sosmed Modal-->
-      <div class="modal fade" id="deleteSosmedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-danger" href="#">Delete</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
       @endsection
 

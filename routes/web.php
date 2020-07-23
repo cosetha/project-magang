@@ -170,7 +170,7 @@ Route::get('/visimisi', function () {
 });
 
 Route::get('/tenaga', function () {
-    return view('admin/Profile/tenagaAdmin');
+    return view('admin/Profile/tenaga');
 });
 
 
