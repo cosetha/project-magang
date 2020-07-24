@@ -33,6 +33,10 @@ Route::get('/editprofile', function () {
     return view('admin/AdminProfile/editprofileAdmin');
 });
 
+Route::get('/editpassword', function () {
+    return view('admin/AdminProfile/editpasswordAdmin');
+});
+
 
 
 //Akademik
@@ -71,8 +75,8 @@ Route::get('/tugasakhir', function () {
 
 
 //Fasilitas
-Route::get('/berita', function () {
-    return view('admin/Home/beritaAdmin');
+Route::get('/fasilitas', function () {
+    return view('admin/Fasilitas/fasilitasAdmin');
 });
 
 

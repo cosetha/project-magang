@@ -138,7 +138,7 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Home Menu -->
+                    <!-- Nav Item - Kemahasiswaan Menu -->
                     <li class="nav-item" id="kemahasiswaan">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKemahasiswaan" aria-expanded="true" aria-controls="collapseKemahasiswaan">
                             <i class="fas fa-fw fa-user-graduate"></i>
@@ -156,7 +156,7 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Home Menu -->
+                    <!-- Nav Item - Riset Menu -->
                     <li class="nav-item" id="riset">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRiset" aria-expanded="true" aria-controls="collapseRiset">
                             <i class="fas fa-fw fa-journal-whills"></i>
@@ -172,13 +172,13 @@
                     </li>
 
                     <!-- Nav Item - Fasilitas -->
-                    <li class="nav-item" id="datapengguna">
-                        <a class="nav-link" href="index.html">
+                    <li class="nav-item" id="fasilitas">
+                        <a class="nav-link" href="{{ url('fasilitas') }}">
                             <i class="fab fa-chromecast"></i>
                             <span>Fasilitas</span></a>
                         </li>
 
-                        <!-- Nav Item - Home Menu -->
+                        <!-- Nav Item - Footer Menu -->
                         <li class="nav-item" id="footer">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFooter" aria-expanded="true" aria-controls="collapseFooter">
                                 <i class="fas fa-fw fa-shoe-prints"></i>
@@ -187,7 +187,7 @@
                             <div id="collapseFooter" class="collapse" aria-labelledby="headingFooter" data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Footer</h6>
-                                    <a class="collapse-item" href="https://bits.ub.ac.id/katalog-layanan/layanan-email/">Layanan UB</a>
+                                    <a class="collapse-item" href="{{ url('layanan') }}">Layanan UB</a>
                                     <a class="collapse-item" href="{{ url('faq') }}">FAQ</a>
                                     <a class="collapse-item" href="{{ url('blog') }}">Blog</a>
                                 </div>
@@ -313,6 +313,10 @@
                                             <a class="dropdown-item" href="{{ url('editprofile') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Edit Profile
+                                            </a>
+                                            <a class="dropdown-item" href="{{ url('editpassword') }}">
+                                                <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Edit Password
                                             </a>
 
                                             <div class="dropdown-divider"></div>
