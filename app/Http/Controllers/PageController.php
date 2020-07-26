@@ -13,4 +13,8 @@ class PageController extends Controller
     public function SosialMedia(){
         return view('admin.MiniNavbar.socialmediaAdmin');
     }
+
+    public function LoginForm(){
+        return view('auth.login');
+    }
 }

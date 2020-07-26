@@ -1,0 +1,7 @@
+SUPERADMIN
+email 	 : superadmin@gmail.com
+password : rahasia_superadmin
+
+ADMIN
+email 	 : admin@gmail.com
+password : rahasia_admin
