@@ -17,6 +17,7 @@ class CreateDosensTable extends Migration
             $table->id();
             $table->string('gambar',255);
             $table->string('nama',255);
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

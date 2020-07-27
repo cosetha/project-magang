@@ -8,11 +8,6 @@ class Bidang_keahlian extends Model
 {
     protected $table = "bidang_keahlian";
 
-    public function dosen()
-    {
-    	return $this->belongsToMany('App\Dosen', 'bidang_dosen', 'kode_bidang', 'kode_dosen');
-    }
-
     public function jadwal()
     {
         return $this->belongsToMany('App\Jadwal_kuliah', 'jadwal_bidang', 'kode_bidang', 'kode_jadwal');
