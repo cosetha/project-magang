@@ -18,6 +18,7 @@ class CreateMahasiswasTable extends Migration
             $table->string('nim',15);
             $table->string('nama',255);
             $table->string('kode_bk',10);
+            $table->smallInteger('angkatan');
             $table->timestamps();
         });
         Schema::table('mahasiswa', function($table) {
