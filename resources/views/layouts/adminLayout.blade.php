@@ -50,11 +50,14 @@
                 </li>
 
                 <!-- Nav Item - Data Pengguna -->
+                <!-- HANYA DAPAT DIAKSES OLEH SUPERADMIN -->
+                @if(auth()->user()->id_role == 1)
                 <li class="nav-item" id="datapengguna">
                     <a class="nav-link" href="{{ url('datapengguna') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Data Pengguna</span></a>
                     </li>
+                @endif()
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">

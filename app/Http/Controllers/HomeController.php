@@ -23,11 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboardAdmin');
+        // return view('admin.dashboardAdmin');
     }
 
-    public function logout(Request $request){
-        $request->session()->flush();
-        return redirect('/');
-    }
 }

@@ -25,31 +25,18 @@ Route::group(['middleware' => 'guest'],function(){
 //ROUTER KHUSUS SUPER-ADMIN
 Route::group(['middleware' => ['auth','checkRole:1']],function(){
 
-    Route::get('/penelitian', function () {
-        return view('admin/Riset/penelitianAdmin');
-    });
-
-});
-
-//ROUTER KHUSUS ADMIN
-Route::group(['middleware' => ['auth','checkRole:2']],function(){
-
-    Route::get('/pengabdian', function () {
-        return view('admin/Riset/pengabdianAdmin');
-    });
-
-});
-
-//ROUTER CAMPURAN (ADMIN DAN SUPER-ADMIN)
-Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
-
-    Route::get('/logout','HomeController@logout');
-
-    Route::get('/dashboard', 'HomeController@index')->name('home');
-
     Route::get('/datapengguna', function () {
         return view('admin/datapenggunaAdmin');
     });
+
+});
+
+//ROUTER CAMPURAN (BISA DIAKSES ADMIN DAN SUPER-ADMIN)
+Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
+
+    Route::get('/logout','PageController@logout');
+
+    Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
 
     //Admin Profile
@@ -201,13 +188,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Riset
-    // Route::get('/penelitian', function () {
-    //     return view('admin/Riset/penelitianAdmin');
-    // });
+    Route::get('/penelitian', function () {
+        return view('admin/Riset/penelitianAdmin');
+    });
 
-    // Route::get('/pengabdian', function () {
-    //     return view('admin/Riset/pengabdianAdmin');
-    // });
+    Route::get('/pengabdian', function () {
+        return view('admin/Riset/pengabdianAdmin');
+    });
 
 });
 
