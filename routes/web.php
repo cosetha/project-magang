@@ -18,14 +18,12 @@ use Illuminate\Support\Facades\Route;
 //ROUTER GUEST
 Route::group(['middleware' => 'guest'],function(){
 
-<<<<<<< HEAD
 Route::get('/forget', function () {
     return view('admin/forgetpassword');
 });
 
-=======
+
     Route::get('/','PageController@LoginForm');
->>>>>>> df2203884de2e9c7c02628ab5b22199af7fd262c
 
 });
 
