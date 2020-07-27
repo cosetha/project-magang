@@ -40,7 +40,7 @@
                   </form>
                   <hr>
                   <div class="text-right">
-                    <a class="small" href="#">Forgot Password?</a>
+                    <a class="small" href="{{ url('forget') }}">Forgot Password?</a>
                   </div>
                 </div>
               </div>

@@ -34,6 +34,7 @@
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                             <th>Nim</th>
                             <th>Nama</th>
+                            <th>Tahun Angkatan</th>
                             <th>Bidang Keahlian</th>
                             <th>Action</th>
                         </tr>
@@ -42,6 +43,7 @@
                         <tr>
                             <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
                             <td>Tiger Nixon</td>
+                            <td>System Architect</td>
                             <td>System Architect</td>
                             <td>Edinburgh</td>
                             <td align="center">
@@ -85,6 +87,9 @@
                     <label for="nama" class="mt-2">Nama</label>
                     <input type="text" class="form-control" id="" name="">
 
+                    <label for="nama" class="mt-2">Tahun Angkatan</label>
+                    <input type="date" class="form-control" id="" name="">
+
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
                         <select class="form-control" id="" name="">
@@ -127,6 +132,9 @@
 
                     <label for="nama" class="mt-2">Nama</label>
                     <input type="text" class="form-control" id="" name="">
+
+                    <label for="nama" class="mt-2">Tahun Angkatan</label>
+                    <input type="date" class="form-control" id="" name="">
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>

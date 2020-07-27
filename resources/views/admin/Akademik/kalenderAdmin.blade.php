@@ -23,7 +23,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#KalenderModal">+ Add Kalender Kegiatan</a>
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#KalenderModal">+ Add Kalender Akademik</a>
         </div>
 
         <div class="card-body">
@@ -34,8 +34,7 @@
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                             <th>Nama Kegiatan</th>
                             <th>Semester</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Selasai</th>
+                            <th>Deskripsi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,7 +44,6 @@
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
                             <td>1</td>
-                            <td>2</td>
                             <td align="center">
                                 <a href="#" data-toggle="modal" data-target="#editKalenderModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                                     <i class="fas fa-pen-square"></i>
@@ -93,11 +91,8 @@
                         </select>
                     </div>
 
-                    <label for="tanggalmulai" class="mt-2">Tanggal Mulai</label>
-                    <input type="date" class="form-control" id="" name="">
-
-                    <label for="tanggalselesai" class="mt-2">Tanggal Selesai</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <label for="tanggalmulai" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""></textarea>
 
 
 
@@ -141,11 +136,8 @@
                         </select>
                     </div>
 
-                    <label for="tanggalmulai" class="mt-2">Tanggal Mulai</label>
-                    <input type="date" class="form-control" id="" name="">
-
-                    <label for="tanggalselesai" class="mt-2">Tanggal Selesai</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <label for="tanggalmulai" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""></textarea>
 
 
                 </form>

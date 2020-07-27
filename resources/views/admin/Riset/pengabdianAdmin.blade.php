@@ -62,32 +62,6 @@
                         </tbody>
                     </table>
                 </div>
-
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Judul Pengabdian</th>
-                      <th>deskripsi</th>
-                      <th>Tahun</th>
-                      <th>Gambar</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>System Architect</td>
-                      <td>System Architect</td>
-                      <td>
-                        <a href="#" data-toggle="modal" data-target="#editpengabdianModal" class="badge badge-success">Edit</a>
-                        <a href="#" data-toggle="modal" data-target="#deletepengabdianModal" class="badge badge-danger">Delete</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
         </div>
     </div>
@@ -114,12 +88,10 @@
                     <label for="judulpengabdian">Judul Pengabdian</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="peneliti">Deskripsi</label>
-
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="peneliti" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="" name=""> </textarea>
 
-                    <label for="tahun">Tahun</label>
+                    <label for="tahun" class="mt-2">Tahun</label>
                     <input type="date" class="form-control" id="" name="">
 
                     <div class="form-group mt-3">
@@ -159,13 +131,10 @@
                     <label for="judulpengabdian">Judul Pengabdian</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="peneliti">Deskripsi</label>
-
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="peneliti" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="" name=""> </textarea>
-                    
 
-                    <label for="tahun">Tahun</label>
+                    <label for="tahun" class="mt-2">Tahun</label>
                     <input type="date" class="form-control" id="" name="">
 
                     <div class="form-group mt-3">

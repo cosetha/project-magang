@@ -15,15 +15,13 @@ class CreateKalenderAkademikTable extends Migration
     {
         Schema::create('kalender_akademik', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kegiatan');
+            $table->string('judul');
             $table->string('kode_semester', 10);
+            $table->text('deskripsi');
             $table->foreign('kode_semester')
             ->references('id')
             ->on('semester')
             ->onDelete('cascade');
-
-            $table->string('tanggal_mulai');
-            $table->string('tanggal_selesai');
             $table->timestamps();
         });
     }

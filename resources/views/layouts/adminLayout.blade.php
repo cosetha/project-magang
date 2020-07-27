@@ -33,8 +33,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div>
+                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;"> 
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
@@ -50,11 +50,14 @@
                 </li>
 
                 <!-- Nav Item - Data Pengguna -->
+                <!-- HANYA DAPAT DIAKSES OLEH SUPERADMIN -->
+                @if(auth()->user()->id_role == 1)
                 <li class="nav-item" id="datapengguna">
                     <a class="nav-link" href="{{ url('datapengguna') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Data Pengguna</span></a>
                     </li>
+                @endif()
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -305,8 +308,13 @@
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                            <img class="img-profile rounded-circle" src="{{ asset('img/Login-image.png') }}">
+=======
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                             <img class="img-profile rounded-circle" src="{{ asset('img/a.png') }}">
+>>>>>>> df2203884de2e9c7c02628ab5b22199af7fd262c
                                         </a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -338,7 +346,7 @@
                             <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; Your Website 2019</span>
+                                        <span>Copyright &copy; <a href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE">SBAdmin2</a></span>
                                     </div>
                                 </div>
                             </footer>
@@ -367,8 +375,11 @@
                                 </div>
                                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-primary" href="login.html">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                    </form>
                                 </div>
                             </div>
                         </div>
