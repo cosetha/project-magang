@@ -84,11 +84,13 @@
                     <label for="namaorganisasi">Nama Organisasi</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="logo" class="mt-2">Logo</label>
-                    <input type="text" class="form-control" id="" name="">
-
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="" name=""> </textarea>
+
+                    <div class="form-group mt-3">
+                        <label for="file" style="padding-right:21px;">Logo</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
@@ -127,11 +129,13 @@
                     <label for="namaorganisasi">Nama Organisasi</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="logo" class="mt-2">Logo</label>
-                    <input type="text" class="form-control" id="" name="">
-
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="" name=""> </textarea>
+
+                    <div class="form-group mt-3">
+                        <label for="file" style="padding-right:21px;">Logo</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>

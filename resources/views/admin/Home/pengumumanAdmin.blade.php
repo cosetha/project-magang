@@ -34,8 +34,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                        <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
+                      <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                       <th>Pengumuman</th>
+                      <th>Tanggal</th>
                       <th>Diskripsi</th>
                       <th>Lampiran</th>
                       <th>Action</th>
@@ -45,6 +46,7 @@
                     <tr>
                         <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
                       <td>Tiger Nixon</td>
+                      <td>System Architect</td>
                       <td>System Architect</td>
                       <td>System Architect</td>
                       <td align="center">

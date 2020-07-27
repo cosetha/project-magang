@@ -34,7 +34,7 @@
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                             <th>Kode Jadwal</th>
                             <th>Nama Jadwal</th>
-                            <th>Gambar</th>
+                            <th>File</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,8 +87,8 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <div class="form-group mt-3">
-                        <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <label for="file">File</label>
+                        <input input id="file-upload" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
                 </form>
@@ -126,8 +126,8 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <div class="form-group mt-3">
-                        <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <label for="file">File</label>
+                        <input input id="file-upload" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
                 </form>

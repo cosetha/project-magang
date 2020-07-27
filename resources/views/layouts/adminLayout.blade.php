@@ -33,8 +33,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div>
+                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;"> 
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
@@ -308,8 +308,10 @@
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                            <img class="img-profile rounded-circle" src="{{ asset('img/a.png') }}">
+                                            <img class="img-profile rounded-circle" src="{{ asset('img//Login-image.png') }}">
+
                                         </a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -341,7 +343,7 @@
                             <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; Your Website 2019</span>
+                                        <span>Copyright &copy; <a href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE">SBAdmin2</a></span>
                                     </div>
                                 </div>
                             </footer>
