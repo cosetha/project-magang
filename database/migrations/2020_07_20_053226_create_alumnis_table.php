@@ -17,7 +17,7 @@ class CreateAlumnisTable extends Migration
             $table->id();
             $table->integer('tahun_angkatan')->unsigned();
             $table->string('nama_alumni',255);
-            $table->string('kode_bk',10);
+            $table->unsignedBigInteger('kode_bk');
             $table->string('tgl_lulus',255);
             $table->timestamps();
         });

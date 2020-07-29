@@ -15,7 +15,7 @@ class CreateBidangPrestasi extends Migration
     {
         Schema::create('bidang_prestasi', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_bidang',10);
+            $table->unsignedBigInteger('kode_bidang');
             $table->bigInteger('kode_prestasi')->unsigned();
          });
          Schema::table('bidang_prestasi', function($table) {

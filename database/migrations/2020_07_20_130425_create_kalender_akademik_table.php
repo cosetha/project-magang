@@ -16,7 +16,7 @@ class CreateKalenderAkademikTable extends Migration
         Schema::create('kalender_akademik', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('kode_semester', 10);
+            $table->unsignedBigInteger('kode_semester')->unsigned();
             $table->text('deskripsi');
             $table->foreign('kode_semester')
             ->references('id')
