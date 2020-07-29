@@ -11,7 +11,12 @@ class Jadwal_kuliah extends Model
 
     public function bidangKeahlian()
     {
-        return $this->belongsToMany('App\Bidang_keahlian', 'jadwal_bidang', 'kode_bidang', 'kode_jadwal');
+        return $this->hasOne('App\Bidang_keahlian', 'kode_bk');
+    }
+
+    public function semester()
+    {
+        return $this->hasMany('App\Semester', 'kode_semester');
     }
     
 }
