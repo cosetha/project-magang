@@ -14,7 +14,7 @@ class CreateSemesterTable extends Migration
     public function up()
     {
         Schema::create('semester', function (Blueprint $table) {
-            $table->string('id', 10)->primary();
+            $table->id();
             $table->string('semester');
             $table->timestamps();
             $table->enum('status', ['aktif', 'nonaktif']);
