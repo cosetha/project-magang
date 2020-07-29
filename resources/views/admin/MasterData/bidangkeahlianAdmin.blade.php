@@ -4,7 +4,7 @@
 @section('content')
 
 <script type="text/javascript">
-    document.getElementById('home').classList.add('active');
+    document.getElementById('MasterData').classList.add('active');
 </script>
 
 <!-- Begin Page Content -->
@@ -35,7 +35,6 @@
                         <thead>
                             <tr>
                                 <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                                <th>Kode Bidang Keahlian</th>
                                 <th>Nama Bidang Keahlian</th>
                                 <th>Deskripsi</th>
                                 <th>Kode Jadwal</th>
@@ -51,7 +50,6 @@
                                 <td>System Architect</td>
                                 <td>System Architect</td>
                                 <td>1</td>
-                                <td>2</td>
                                 <td>System Architect</td>
                                 <td align="center">
                                     <a href="#" data-toggle="modal" data-target="#editBKModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
@@ -88,18 +86,12 @@
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                         @csrf
 
-                        <label for="namaBK">Nama Bidang Keahlian</label>
-                        <input type="text" class="form-control" id="" name="">
 
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
                         <input type="text" class="form-control" id="" name="">
           
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="" name=""> </textarea>
-
-                        <label for="idjadwal" class="mt-2">Id Jadwal</label>
-                        <input type="text" class="form-control" id="" name="">
-
 
                         <label for="kodejadwal" class="mt-2">Kode Jadwal</label>
                         <input type="text" class="form-control" id="" name="">
@@ -142,17 +134,11 @@
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                         @csrf
 
-                        <label for="namaBK">Nama Bidang Keahlian</label>
-                        <input type="text" class="form-control" id="" name="">
-
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
                         <input type="text" class="form-control" id="" name="">
           
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="" name=""> </textarea>
-
-                        <label for="idjadwal" class="mt-2">Id Jadwal</label>
-                        <input type="text" class="form-control" id="" name="">
 
 
                         <label for="kodejadwal" class="mt-2">Kode Jadwal</label>
