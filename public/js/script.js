@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+//------------------------------------------FITUR JABATAN------------------------------------------
+
   //DATATABLE JABATAN
   LoadTableJabatan()
   function LoadTableJabatan(){
@@ -141,5 +143,7 @@ $(document).ready(function() {
       })
     })
   })
+
+//------------------------------------------END FITUR JABATAN-----------------------------------------
 
 });
