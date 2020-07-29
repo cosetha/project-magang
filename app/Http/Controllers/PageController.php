@@ -18,6 +18,10 @@ class PageController extends Controller
         return view('auth.login');
     }
 
+    public function IndexJabatan(){
+        return view('admin.MasterData.jabatanAdmin');
+    }
+
     public function logout(Request $request){
         $request->session()->flush();
         return redirect('/');

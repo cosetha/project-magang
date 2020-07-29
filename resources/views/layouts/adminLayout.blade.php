@@ -22,6 +22,8 @@
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
+    <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
+
 </head>
 
 
@@ -50,13 +52,15 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
                 </li>
-
+                
+                @if(auth()->user()->id_role == 1)
                 <!-- Nav Item - Data Pengguna -->
                 <li class="nav-item" id="datapengguna">
                     <a class="nav-link" href="{{ url('datapengguna') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Data Pengguna</span></a>
                     </li>
+                @endif
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item" id="MasterData">
@@ -323,7 +327,7 @@
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                             <img class="img-profile rounded-circle" src="{{ asset('img/Login-image.png') }}">
                                         </a>
                                         <!-- Dropdown - User Information -->
@@ -413,6 +417,7 @@
                     <script src="js/demo/chart-area-demo.js"></script>
                     <script src="js/demo/chart-pie-demo.js"></script>
                     <script src="js/demo/datatables-demo.js"></script>
+                    <script src="{{ asset('js/script.js') }}"></script>
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script>

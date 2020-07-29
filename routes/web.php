@@ -44,6 +44,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
 
+    //Master Data
+    Route::get('/jabatan','JabatanController@index');
+    Route::get('/load/table-jabatan','JabatanController@LoadTableJabatan');
+    Route::get('/load/data-jabatan','JabatanController@LoadDataJabatan');
+    Route::get('/admin/delete-jabatan/{id}','JabatanController@destroy');
+    Route::post('/admin/tambah-jabatan','JabatanController@store');
+    Route::post('/admin/edit-jabatan/{id}','JabatanController@update');
+
     //Admin Profile
     Route::get('/editprofile', function () {
         return view('admin/AdminProfile/editprofileAdmin');
