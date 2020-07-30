@@ -41,10 +41,12 @@
                                 <th>Action</th>
                         </thead>
                         <tbody>
+                            @php( $no = 1 )
+                            @foreach($data as $data)
                             <tr>
-                                <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $data->semester }}</td>
+                                <td>{{ $data->status }}</td>
                                 <td align="center">
                                     <a href="#" data-toggle="modal" data-target="#editSemesterModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                                         <i class="fas fa-pen-square"></i>
@@ -54,6 +56,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

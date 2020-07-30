@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
-
+    Route::resource('semester','SemesterController');
     //Admin Profile
     Route::get('/editprofile', function () {
         return view('admin/AdminProfile/editprofileAdmin');
