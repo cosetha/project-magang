@@ -15,15 +15,15 @@
 
           <!-- Content Row -->
           <div class="row">
-              
+
               <!-- edit form column -->
               <div class="col-md-9 personal-info">
                 <div class="alert alert-info alert-dismissable">
-                  <a class="panel-close close" data-dismiss="alert">×</a> 
+                  <a class="panel-close close" data-dismiss="alert">×</a>
                   <i class="fa fa-coffee"></i>
                   This is an <strong>.alert</strong>. Use this to show important messages to the user.
                 </div>
-                
+
                 <form class="form-horizontal" role="form">
 
 
@@ -32,7 +32,7 @@
                       <div class="text-center">
                        <img src="{{ asset('img/Login-image.png') }}" class="w-50 p-3">
                        <h6>Upload a different photo...</h6>
-                       <div class="form-group" style="margin-left:80pt;"> 
+                       <div class="form-group" style="margin-left:80pt;">
                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                       </div>
                      </div>
@@ -53,7 +53,7 @@
                     <div class="form-group" style="margin-top:65pt;">
                       <label class="col-md-3 control-label"></label>
                       <div class="col-md-12">
-                        <input type="button" class="btn btn-primary" value="Save Changes">
+                        <input type="button" class="btn btn-primary" id="btn-save-change" value="Save Changes">
                         <span></span>
                         <input type="reset" class="btn btn-default" value="Cancel">
                       </div>
@@ -78,14 +78,14 @@
      id = id || '#file-image';
      if (input.files &amp;&amp; input.files[0]) {
          var reader = new FileReader();
- 
+
          reader.onload = function (e) {
              $(id).attr('src', e.target.result);
          };
- 
+
          reader.readAsDataURL(input.files[0]);
          $('#file-image').removeClass('hidden');
          $('#start').hide();
      }
   }
- </script> 
+ </script>

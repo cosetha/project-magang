@@ -29,7 +29,7 @@ $(document).ready(function() {
             searchable: false,
             orderable: false
           }
-                            
+
         ]
       })
     })
@@ -145,5 +145,72 @@ $(document).ready(function() {
   })
 
 //------------------------------------------END FITUR JABATAN-----------------------------------------
+
+
+//------------------------------------------FITUR PROFILE---------------------------------------------
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+//update profile
+$("body").on("click","#btn-save-change", function(e){
+  e.preventDefault();
+  alert('ok')
+})
+
+//ganti password
+$("body").on("click","#btn-edit-password", function(e){
+  e.preventDefault();
+  var password = $("#password").val();
+  var password_confirm = $("#password-confirm").val();
+  var id = $(this).data("id");
+  if(password == "" || password_confirm == "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Password tidak boleh kosong!',
+      timer: 1000,
+      showConfirmButton: false
+    })
+  } else {
+    $.ajax({
+      type: 'POST',
+      url:"editpassword/" + id,
+      data:{password:password,password_confirmation:password_confirm,id:id},
+      dataType: 'json',
+      success:function(data) {
+        if(data.status == '1') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: 'Sukses ganti password',
+            timer: 1000,
+            showConfirmButton: false
+          })
+        } else if(data.status == "0") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooopss...',
+            text: 'Gagal ganti password',
+            timer: 1000,
+            showConfirmButton: false
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooopss...',
+            text: 'Password harus sama!',
+            timer: 1200,
+            showConfirmButton: false
+          })
+        }
+      }
+    });
+  }
+
+})
 
 });
