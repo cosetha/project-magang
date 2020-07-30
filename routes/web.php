@@ -52,6 +52,23 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/tambah-jabatan','JabatanController@store');
     Route::post('/admin/edit-jabatan/{id}','JabatanController@update');
 
+    Route::get('/semester','SemesterController@index');
+    Route::get('/load/table-semester','SemesterController@LoadTableSemester');
+    Route::get('/load/data-semester','SemesterController@LoadDataSemester');
+    Route::get('/admin/delete-semester/{id}','SemesterController@destroy');
+    Route::post('/admin/tambah-semester','SemesterController@store');
+    Route::post('/admin/edit-semester/{id}','SemesterController@update');
+
+
+    Route::get('/bk','BidangKeahlianController@index');
+    Route::post('/admin/tambah-bk','BidangKeahlianController@store');
+    Route::get('/load/table-bk','BidangKeahlianController@LoadTableBK');
+    Route::get('/load/data-bk','BidangKeahlianController@LoadDataBK');
+    Route::get('/admin/delete-bk/{id}','BidangKeahlianController@destroy');
+    Route::get('/admin/edit-bk/{id}','BidangKeahlianController@edit');
+    Route::post('/admin/konfirmasi-edit-bk/{id}','BidangKeahlianController@update');
+    Route::post('/upload','BidangKeahlianController@storeImg');
+
     //Admin Profile
     Route::get('/editprofile', 'PageController@EditProfile');
 
@@ -93,9 +110,11 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/berita', 'PageController@Berita');
 
+
     Route::get('/bk', 'PageController@BK');
 
     Route::get('/agenda', 'PageController@Agenda');
+
 
     Route::get('/kerjasama', 'PageController@Kerjasama');
 

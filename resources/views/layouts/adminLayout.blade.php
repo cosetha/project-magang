@@ -420,12 +420,6 @@
                     <script src="{{ asset('js/script.js') }}"></script>
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-                    <script>
-                        tinymce.init({
-                            forced_root_block : "",
-                            selector:'textarea',
-                            branding: false
-                        });
-                    </script>
+                    <script src="{{ asset('js/tinymcs.js') }}"></script>
         </body>
 </html>
