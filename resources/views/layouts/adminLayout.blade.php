@@ -40,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
                 <div>
-                    <img src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}" style="width: 50px !important; height: 50px !important;">
+                    <img src="{{ asset('img/login-image.png') }}" style="width: 50px !important; height: 50px !important;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
