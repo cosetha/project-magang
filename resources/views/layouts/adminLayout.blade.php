@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/Login-image.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/login-image.png') }}">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
                 <div>
-                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;">
+                    <img src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}" style="width: 50px !important; height: 50px !important;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
@@ -330,7 +330,7 @@
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                            <img class="img-profile rounded-circle" src="{{ asset('img/Login-image.png') }}">
+                                            <img class="img-profile rounded-circle" src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}">
                                         </a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
