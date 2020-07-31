@@ -71,8 +71,10 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     //Admin Profile
     Route::get('/editprofile', 'PageController@EditProfile');
+    Route::post('/editprofile/{id}', 'ProfileController@updateProfile');
 
     Route::get('/editpassword', 'PageController@EditPassword');
+    Route::post('/editpassword/{id}', 'ProfileController@updatePassword');
 
 
     //Akademik
