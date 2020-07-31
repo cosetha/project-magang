@@ -41,19 +41,19 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label">Username:</label>
                       <div class="col-md-12">
-                        <input class="form-control" type="text" value="janeuser">
+                        <input class="form-control" type="text" value="{{ auth()->user()->name }}" name="name">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-lg-3 control-label">Email:</label>
                       <div class="col-lg-12">
-                        <input class="form-control" type="text" value="janesemail@gmail.com">
+                        <input class="form-control" type="text" value="{{ auth()->user()->email }}" name="email">
                       </div>
                     </div>
                     <div class="form-group" style="margin-top:65pt;">
                       <label class="col-md-3 control-label"></label>
                       <div class="col-md-12">
-                        <input type="button" class="btn btn-primary" id="btn-save-change" value="Save Changes">
+                        <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-profile" value="Save Changes">
                         <span></span>
                         <input type="reset" class="btn btn-default" value="Cancel">
                       </div>

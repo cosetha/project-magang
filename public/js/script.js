@@ -485,10 +485,54 @@ $(document).ready(function() {
 });
 
 //update profile
-$("body").on("click","#btn-save-change", function(e){
+$('body').on('click', '#btn-edit-profile', function(e) {
   e.preventDefault();
-  alert('ok')
-})
+  var formData = new FormData();
+  var name = $('input[name=name]').val();
+  var email = $('input[name=email]').val();
+  var files = $('#file-upload')[0].files[0];
+  var id = $(this).data("id");
+
+  formData.append('gambar',files);
+  formData.append('nama', name);
+  formData.append('email', email);
+
+  $.ajax({
+    type: 'POST',
+    url:"editprofile/" + id,
+    data:formData,
+    contentType: false,
+    processData: false,
+    success:function(data) {
+      if(data.status == '1') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukses',
+          text: 'Sukses edit profile',
+          timer: 1000,
+          showConfirmButton: false
+        })
+      } else if(data.status == "0") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ooopss...',
+          text: 'Gagal edit profile',
+          timer: 1000,
+          showConfirmButton: false
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ooopss...',
+          text: 'Email sudah ada!',
+          timer: 1200,
+          showConfirmButton: false
+        })
+      }
+    }
+  });
+
+});
 
 //ganti password
 $("body").on("click","#btn-edit-password", function(e){
