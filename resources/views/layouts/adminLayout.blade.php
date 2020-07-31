@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/Login-image.png') }}">
@@ -38,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
                 <div>
-                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;"> 
+                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
@@ -52,7 +54,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
                 </li>
-                
+
                 @if(auth()->user()->id_role == 1)
                 <!-- Nav Item - Data Pengguna -->
                 <li class="nav-item" id="datapengguna">
