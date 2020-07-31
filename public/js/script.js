@@ -427,7 +427,6 @@ $(document).ready(function() {
 				$('#editBKModal').modal('show');
 				$('#btn-save-bk').css('display', '');
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#deskripsi-edit').html(res.values.deskripsi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
 				$('body').on('submit', '#form-edit-bk', function(e) {
 					e.preventDefault();
@@ -439,7 +438,6 @@ $(document).ready(function() {
 					var deskripsi = tinymce.get('deskripsi-edit').getContent();
 					var token = $('input[name=token]').val();
 					var akreditasi = $('#AkreditasiEdit option:selected').text();
-					console.log(name);
 					formData.append('_token', token);
 					formData.append('nama', name);
 					formData.append('deskripsi', deskripsi);
