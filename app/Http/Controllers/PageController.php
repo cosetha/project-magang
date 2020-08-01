@@ -87,7 +87,7 @@ class PageController extends Controller
     }
 
     public function BK(){
-      return view('admin/Home/bidangkeahlianAdmin');
+      return view('admin/MasterData/bidangkeahlianAdmin');
     }
 
     public function Agenda(){
