@@ -50,13 +50,13 @@
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-bk">
                         @csrf
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
-                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah">
-          
+                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah" required>
+
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
+                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah" required> </textarea>
 
                         <label for="Akreditasi" class="mt-2">Akreditasi</label>
-                        <select class="form-control" id="AkreditasiTambah" name="tambahAkreditasi">
+                        <select class="form-control" id="AkreditasiTambah" name="tambahAkreditasi" required>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -66,9 +66,9 @@
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <div class="form-group mt-3">
                             <label for="file" class="mt-2">Gambar</label>
-                            <input input id="file-upload-tambah" type="file" name="gambar" accept="image/*" aria-describedby="inputGroupFileAddon01">
+                            <input input id="file-upload-tambah" type="file" name="gambar" accept="image/*" aria-describedby="inputGroupFileAddon01" required>
                         </div>
-                  
+
 
                 </div>
                 <div class="modal-footer">
@@ -103,7 +103,7 @@
 
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
                         <input type="text" class="form-control" id="nama-edit" name="nama-edit">
-          
+
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
 
@@ -127,7 +127,7 @@
                 <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Memproses...
-                </button>   
+                </button>
             </div>
             </form>
         </div>

@@ -554,6 +554,7 @@ $("body").on("click","#btn-edit-password", function(e){
       dataType: 'json',
       success:function(data) {
         if(data.status == '1') {
+            $(".form-edit-password")[0].reset();
           Swal.fire({
             icon: 'success',
             title: 'Sukses',
@@ -562,6 +563,7 @@ $("body").on("click","#btn-edit-password", function(e){
             showConfirmButton: false
           })
         } else if(data.status == "0") {
+            $(".form-edit-password")[0].reset();
           Swal.fire({
             icon: 'error',
             title: 'Ooopss...',
@@ -570,6 +572,7 @@ $("body").on("click","#btn-edit-password", function(e){
             showConfirmButton: false
           })
         } else if(data.status == "salah") {
+            $(".form-edit-password")[0].reset();
           Swal.fire({
             icon: 'error',
             title: 'Ooopss...',
@@ -578,6 +581,7 @@ $("body").on("click","#btn-edit-password", function(e){
             showConfirmButton: false
           })
         } else {
+            $(".form-edit-password")[0].reset();
           Swal.fire({
             icon: 'error',
             title: 'Ooopss...',

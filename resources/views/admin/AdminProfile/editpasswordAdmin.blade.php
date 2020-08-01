@@ -24,7 +24,7 @@
                   This is an <strong>.alert</strong>. Use this to show important messages to the user.
                 </div>
 
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal form-edit-password" role="form">
                   <div class="form-group">
                     <label class="col-md-3 control-label">Password lama:</label>
                     <div class="col-md-8">

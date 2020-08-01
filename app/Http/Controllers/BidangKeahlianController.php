@@ -147,7 +147,7 @@ class BidangKeahlianController extends Controller
 
             return Datatables::of($jabatan)->addIndexColumn()
             ->addColumn('aksi', function($row){
-                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_bk.'" class="btn-edit-bk" data-deskripsi="'.$row->deskripsi.'" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_bk.'" class="btn-edit-bk" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                 <i class="fas fa-pen-square"></i>
                 </a>';
                 $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_bk.'" class="btn-delete-bk" style="font-size: 18pt; text-decoration: none; color:red;">
