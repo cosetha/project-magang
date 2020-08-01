@@ -102,8 +102,8 @@ class BidangKeahlianController extends Controller
 
             $directory = 'assets/upload/thumbnail';
             $file = request()->file('gambar');
-            $nama = time().$file->getClientOriginalName();
-            $file->name = $nama;
+            $nama_file = time().$file->getClientOriginalName();
+            $file->name = $nama_file;
             $file->move($directory, $file->name);
 
 
@@ -114,7 +114,7 @@ class BidangKeahlianController extends Controller
             $bk->deskripsi = $request->deskripsi;
             $bk->akreditasi=$request->akreditasi;
        
-            $bk->gambar=$directory."/".$nama;;
+            $bk->gambar= $directory."/".$nama_file;
             $bk->save();
 
             return response()->json([
