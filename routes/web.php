@@ -112,9 +112,6 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/berita', 'PageController@Berita');
 
-
-    Route::get('/bk', 'PageController@BK');
-
     Route::get('/agenda', 'PageController@Agenda');
 
 
