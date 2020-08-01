@@ -35,7 +35,8 @@ tinymce.init({
 			var file = this.files[0];
 			var reader = new FileReader();
 			reader.onload = function() {
-				var id = 'blobid' + new Date().getTime();
+				var nama = file.name.split('.');
+				var id = new Date().getTime() + '_' + nama[0];
 				var blobCache = tinymce.activeEditor.editorUpload.blobCache;
 				var base64 = reader.result.split(',')[1];
 				var blobInfo = blobCache.create(id, file, base64);
