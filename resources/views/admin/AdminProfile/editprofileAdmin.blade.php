@@ -30,7 +30,7 @@
                   <div class="form-group row mt-2" >
                     <div class="col-sm-6 mb-3 mb-sm-2" sty>
                       <div class="text-center">
-                       <img src="{{ asset('img/Login-image.png') }}" class="w-50 p-3">
+                       <img src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}" class="w-50 p-3">
                        <h6>Upload a different photo...</h6>
                        <div class="form-group" style="margin-left:80pt;">
                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">

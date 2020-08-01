@@ -5,33 +5,41 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\User;
 use File;
+use Hash;
 
 class ProfileController extends Controller
 {
     public function updatePassword(Request $request, $id)
     {
-      $password = $request->password;
-      $passwordConfirm = $request->password_confirmation;
-      if($password == $passwordConfirm){
-        $user = User::find($id);
-        $user->password = bcrypt($passwordConfirm);
-        $user->save();
+      if(Hash::check($request->password_lama, auth()->user()->password)) {
+        $password = $request->password;
+        $passwordConfirm = $request->password_confirmation;
+        if($password == $passwordConfirm){
+          $user = User::find($id);
+          $user->password = bcrypt($passwordConfirm);
+          $user->save();
 
-        if($user) {
-          return response()->json([
-            'status' => '1'
-          ]);
+          if($user) {
+            return response()->json([
+              'status' => '1'
+            ]);
+          } else {
+            return response()->json([
+              'status' => '0'
+            ]);
+          }
+
         } else {
           return response()->json([
-            'status' => '0'
+            'status' => 'invalid_password'
           ]);
         }
-
       } else {
         return response()->json([
-          'status' => 'invalid_password'
+          'status' => 'salah'
         ]);
       }
+
 
     }
 

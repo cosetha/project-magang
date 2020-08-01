@@ -425,12 +425,9 @@ $(document).ready(function() {
 				console.log(res);
 				$('#editBKModal').modal({ backdrop: 'static', keyboard: false });
 				$('#editBKModal').modal('show');
-				$('#btn-submit-bk').css('display', 'none');
 				$('#btn-save-bk').css('display', '');
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#deskripsi-edit').html(res.values.deskripsi);
-				$('#AkreditasiEdit').val(res.values.akreditasi);
-
+				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
 				$('body').on('submit', '#form-edit-bk', function(e) {
 					e.preventDefault();
 					$('.btn-close-edit').css('display', 'none');
@@ -441,7 +438,6 @@ $(document).ready(function() {
 					var deskripsi = tinymce.get('deskripsi-edit').getContent();
 					var token = $('input[name=token]').val();
 					var akreditasi = $('#AkreditasiEdit option:selected').text();
-					console.log(name);
 					formData.append('_token', token);
 					formData.append('nama', name);
 					formData.append('deskripsi', deskripsi);
@@ -512,6 +508,7 @@ $('body').on('click', '#btn-edit-profile', function(e) {
           timer: 1000,
           showConfirmButton: false
         })
+        location.reload();
       } else if(data.status == "0") {
         Swal.fire({
           icon: 'error',
@@ -539,6 +536,7 @@ $("body").on("click","#btn-edit-password", function(e){
   e.preventDefault();
   var password = $("#password").val();
   var password_confirm = $("#password-confirm").val();
+  var password_lama = $("#password-lama").val();
   var id = $(this).data("id");
   if(password == "" || password_confirm == "") {
     Swal.fire({
@@ -552,7 +550,7 @@ $("body").on("click","#btn-edit-password", function(e){
     $.ajax({
       type: 'POST',
       url:"editpassword/" + id,
-      data:{password:password,password_confirmation:password_confirm,id:id},
+      data:{password:password,password_confirmation:password_confirm,id:id,password_lama:password_lama},
       dataType: 'json',
       success:function(data) {
         if(data.status == '1') {
@@ -568,6 +566,14 @@ $("body").on("click","#btn-edit-password", function(e){
             icon: 'error',
             title: 'Ooopss...',
             text: 'Gagal ganti password',
+            timer: 1000,
+            showConfirmButton: false
+          })
+        } else if(data.status == "salah") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooopss...',
+            text: 'Password anda salah!',
             timer: 1000,
             showConfirmButton: false
           })
