@@ -8,17 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/login-image.png') }}">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
 </head>
 
@@ -34,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
                 <div>
-                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;"> 
+                    <img src="{{ asset('img/login-image.png') }}" style="width: 50px !important; height: 50px !important;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
@@ -49,15 +55,30 @@
                     <span>Dashboard</span></a>
                 </li>
 
-                <!-- Nav Item - Data Pengguna -->
-                <!-- HANYA DAPAT DIAKSES OLEH SUPERADMIN -->
                 @if(auth()->user()->id_role == 1)
+                <!-- Nav Item - Data Pengguna -->
                 <li class="nav-item" id="datapengguna">
                     <a class="nav-link" href="{{ url('datapengguna') }}">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Data Pengguna</span></a>
                     </li>
-                @endif()
+                @endif
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item" id="MasterData">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMasterData" aria-expanded="true" aria-controls="collapseMasterData">
+                        <i class="fas fa-database"></i>
+                        <span>Master Data</span>
+                    </a>
+                    <div id="collapseMasterData" class="collapse" aria-labelledby="headingMasterData" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Master Data</h6>
+                            <a class="collapse-item" href="{{ url('semester') }}">Semester</a>
+                            <a class="collapse-item" href="{{ url('jabatan') }}">Jabatan</a>
+                            <a class="collapse-item" href="{{ url('bk') }}">Bidang Keahlian</a>
+                        </div>
+                    </div>
+                </li>
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -66,6 +87,7 @@
                     <div class="sidebar-heading text-gray-100">
                         Management Konten
                     </div>
+
 
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item" id="mininavbar">
@@ -95,7 +117,6 @@
                                 <a class="collapse-item" href="{{ url('berita') }}">Berita</a>
                                 <a class="collapse-item" href="{{ url('pengumuman') }}">Pengumuman</a>
                                 <a class="collapse-item" href="{{ url('agenda') }}">Agenda</a>
-                                <a class="collapse-item" href="{{ url('bk') }}">Bidang Keahlian</a>
                                 <a class="collapse-item" href="{{ url('kerjasama') }}">Kerja Sama</a>
                             </div>
                         </div>
@@ -308,10 +329,8 @@
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                            <img class="img-profile rounded-circle" src="{{ asset('img//Login-image.png') }}">
-
+                                            <img class="img-profile rounded-circle" src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}">
                                         </a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -372,11 +391,8 @@
                                 </div>
                                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                                 <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                    </form>
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-primary" href="/logout">Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -391,6 +407,7 @@
 
                     <!-- Custom scripts for all pages-->
                     <script src="js/sb-admin-2.min.js"></script>
+                    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
                     <!-- Page level plugins -->
                     <script src="vendor/chart.js/Chart.min.js"></script>
@@ -402,14 +419,9 @@
                     <script src="js/demo/chart-area-demo.js"></script>
                     <script src="js/demo/chart-pie-demo.js"></script>
                     <script src="js/demo/datatables-demo.js"></script>
+                    <script src="{{ asset('js/script.js') }}"></script>
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-                    <script>
-                        tinymce.init({
-                            forced_root_block : "",
-                            selector:'textarea',
-                            branding: false
-                        });
-                    </script>
+                    <script src="{{ asset('js/tinymcs.js') }}"></script>
         </body>
 </html>

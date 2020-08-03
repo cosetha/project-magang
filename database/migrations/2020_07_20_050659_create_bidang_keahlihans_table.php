@@ -14,7 +14,7 @@ class CreateBidangKeahlihansTable extends Migration
     public function up()
     {
         Schema::create('bidang_keahlian', function (Blueprint $table) {
-            $table->string('id',10)->primary();
+            $table->id();
             $table->string('nama_bk',255);
             $table->text('deskripsi');
             $table->text('gambar');

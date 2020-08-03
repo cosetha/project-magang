@@ -17,10 +17,11 @@ class CreateTenagaKependidikanTable extends Migration
             $table->id();
             $table->string('gambar');
             $table->string('nama');
-            $table->string('kode_jabatan', 10);
+            $table->bigInteger('kode_jabatan')->unsigned();
             $table->foreign('kode_jabatan')
             ->references('id')
             ->on('jabatan')
+            ->onUpdate('cascade')
             ->onDelete('cascade');
 
             $table->string('alamat');

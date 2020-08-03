@@ -17,7 +17,7 @@ class CreateMahasiswasTable extends Migration
             $table->id();
             $table->string('nim',15);
             $table->string('nama',255);
-            $table->string('kode_bk',10);
+            $table->unsignedBigInteger('kode_bk')->unsigned();
             $table->smallInteger('angkatan');
             $table->timestamps();
         });

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jabatan extends Model
 {
-  protected $table = ['berita'];
+  public $table = "jabatan";
   protected $guarded = ['id'];
 
   public function tenagaKependidikan()

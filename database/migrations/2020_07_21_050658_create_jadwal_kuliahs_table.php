@@ -18,6 +18,18 @@ class CreateJadwalKuliahsTable extends Migration
             $table->string('nama_jadwal',255);
             $table->string('gambar',255);
             $table->timestamps();
+            $table->unsignedBigInteger('kode_bk');
+            $table->unsignedBigInteger('kode_semester');
+
+            $table->foreign('kode_semester')
+            ->references('id')
+            ->on('semester')
+            ->onDelete('cascade');
+
+            $table->foreign('kode_bk')
+            ->references('id')
+            ->on('bidang_keahlian')
+            ->onDelete('cascade');
         });
     }
 
