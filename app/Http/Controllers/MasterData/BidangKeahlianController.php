@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MasterData;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Bidang_keahlian;
@@ -113,7 +114,7 @@ class BidangKeahlianController extends Controller
             $bk->nama_bk = $request->nama;
             $bk->deskripsi = $request->deskripsi;
             $bk->akreditasi=$request->akreditasi;
-       
+
             $bk->gambar= $directory."/".$nama_file;
             $bk->save();
 
@@ -178,6 +179,6 @@ class BidangKeahlianController extends Controller
         $file->name = $nama;
         $file->move($directory, $file->name);
         return response()->json(['location' => $directory."/".$nama]);
-    
+
     }
 }

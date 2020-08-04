@@ -45,36 +45,36 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Master Data
-    Route::get('/jabatan','JabatanController@index');
-    Route::get('/load/table-jabatan','JabatanController@LoadTableJabatan');
-    Route::get('/load/data-jabatan','JabatanController@LoadDataJabatan');
-    Route::get('/admin/delete-jabatan/{id}','JabatanController@destroy');
-    Route::post('/admin/tambah-jabatan','JabatanController@store');
-    Route::post('/admin/edit-jabatan/{id}','JabatanController@update');
+    Route::get('/jabatan','MasterData\JabatanController@index');
+    Route::get('/load/table-jabatan','MasterData\JabatanController@LoadTableJabatan');
+    Route::get('/load/data-jabatan','MasterData\JabatanController@LoadDataJabatan');
+    Route::get('/admin/delete-jabatan/{id}','MasterData\JabatanController@destroy');
+    Route::post('/admin/tambah-jabatan','MasterData\JabatanController@store');
+    Route::post('/admin/edit-jabatan/{id}','MasterData\JabatanController@update');
 
-    Route::get('/semester','SemesterController@index');
-    Route::get('/load/table-semester','SemesterController@LoadTableSemester');
-    Route::get('/load/data-semester','SemesterController@LoadDataSemester');
-    Route::get('/admin/delete-semester/{id}','SemesterController@destroy');
-    Route::post('/admin/tambah-semester','SemesterController@store');
-    Route::post('/admin/edit-semester/{id}','SemesterController@update');
+    Route::get('/semester','MasterData\SemesterController@index');
+    Route::get('/load/table-semester','MasterData\SemesterController@LoadTableSemester');
+    Route::get('/load/data-semester','MasterData\SemesterController@LoadDataSemester');
+    Route::get('/admin/delete-semester/{id}','MasterData\SemesterController@destroy');
+    Route::post('/admin/tambah-semester','MasterData\SemesterController@store');
+    Route::post('/admin/edit-semester/{id}','MasterData\SemesterController@update');
 
 
-    Route::get('/bk','BidangKeahlianController@index');
-    Route::post('/admin/tambah-bk','BidangKeahlianController@store');
-    Route::get('/load/table-bk','BidangKeahlianController@LoadTableBK');
-    Route::get('/load/data-bk','BidangKeahlianController@LoadDataBK');
-    Route::get('/admin/delete-bk/{id}','BidangKeahlianController@destroy');
-    Route::get('/admin/edit-bk/{id}','BidangKeahlianController@edit');
-    Route::post('/admin/konfirmasi-edit-bk/{id}','BidangKeahlianController@update');
-    Route::POST('/upload','BidangKeahlianController@storeImg');
+    Route::get('/bk','MasterData\BidangKeahlianController@index');
+    Route::post('/admin/tambah-bk','MasterData\BidangKeahlianController@store');
+    Route::get('/load/table-bk','MasterData\BidangKeahlianController@LoadTableBK');
+    Route::get('/load/data-bk','MasterData\BidangKeahlianController@LoadDataBK');
+    Route::get('/admin/delete-bk/{id}','MasterData\BidangKeahlianController@destroy');
+    Route::get('/admin/edit-bk/{id}','MasterData\BidangKeahlianController@edit');
+    Route::post('/admin/konfirmasi-edit-bk/{id}','MasterData\BidangKeahlianController@update');
+    Route::POST('/upload','MasterData\BidangKeahlianController@storeImg');
 
     //Admin Profile
-    Route::get('/editprofile', 'PageController@EditProfile');
-    Route::post('/editprofile/{id}', 'ProfileController@updateProfile');
+    Route::get('/editprofile', 'PengaturanAkun\ProfileController@EditProfile');
+    Route::post('/editprofile/{id}', 'PengaturanAkun\ProfileController@updateProfile');
 
-    Route::get('/editpassword', 'PageController@EditPassword');
-    Route::post('/editpassword/{id}', 'ProfileController@updatePassword');
+    Route::get('/editpassword', 'PengaturanAkun\ProfileController@EditPassword');
+    Route::post('/editpassword/{id}', 'PengaturanAkun\ProfileController@updatePassword');
 
 
     //Akademik

@@ -22,14 +22,6 @@ class PageController extends Controller
         return view('admin.MasterData.jabatanAdmin');
     }
 
-    public function EditProfile(){
-      return view('admin/AdminProfile/editprofileAdmin');
-    }
-
-    public function EditPassword(){
-      return view('admin/AdminProfile/editpasswordAdmin');
-    }
-
     public function Mahasiswa(){
       return view('admin/Akademik/mahasiswaAdmin');
     }

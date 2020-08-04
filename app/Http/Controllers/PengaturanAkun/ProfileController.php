@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PengaturanAkun;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use \App\User;
@@ -9,6 +10,15 @@ use Hash;
 
 class ProfileController extends Controller
 {
+
+    public function EditProfile(){
+        return view('admin/AdminProfile/editprofileAdmin');
+      }
+
+    public function EditPassword(){
+        return view('admin/AdminProfile/editpasswordAdmin');
+    }
+
     public function updatePassword(Request $request, $id)
     {
       if(Hash::check($request->password_lama, auth()->user()->password)) {

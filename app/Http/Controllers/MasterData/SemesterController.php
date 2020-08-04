@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MasterData;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use \App\Jabatan;
+use App\Semester;
 use DataTables;
-
-class JabatanController extends Controller
+class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        return view('admin.MasterData.jabatanAdmin');
+        return view('admin.MasterData.semesterAdmin');
     }
 
     /**
@@ -36,10 +36,11 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $jabatan = new Jabatan;
-        $jabatan->nama_jabatan = $request->nama_jabatan;
-        $jabatan->save();
-        
+        $semester = new Semester;
+        $semester->semester = $request->semester;
+        $semester->status = $request->status;
+        $semester->save();
+
         return response()->json([
             'message' => 'success'
         ]);
@@ -76,9 +77,10 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $jabatan = Jabatan::find($id);
-        $jabatan->nama_jabatan = $request->nama_jabatan_edit;
-        $jabatan->save();
+        $semester = Semester::find($id);
+        $semester->semester = $request->semester;
+        $semester->status = $request->status;
+        $semester->save();
 
         return response()->json([
             'message' => 'success'
@@ -93,27 +95,27 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        $jabatan = Jabatan::find($id);
-        $jabatan->delete();
+        $semester = Semester::find($id);
+        $semester->delete();
 
         return response()->json([
             "message" => "success"
         ]);
     }
 
-    public function LoadTableJabatan(){
-        return view('datatable.TableJabatan');
+    public function LoadTableSemester(){
+        return view('datatable.TableSemester');
     }
 
-    public function LoadDataJabatan(){
-        $jabatan = Jabatan::orderBy('id','desc')->get();
+    public function LoadDataSemester(){
+        $semester = Semester::orderBy('id','desc')->get();
 
-            return Datatables::of($jabatan)->addIndexColumn()
+            return Datatables::of($semester)->addIndexColumn()
             ->addColumn('aksi', function($row){
-                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_jabatan.'" class="btn-edit-jabatan" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-semester="'.$row->semester.'" data-status="'.$row->status.'"  class="btn-edit-semester" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                 <i class="fas fa-pen-square"></i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_jabatan.'" class="btn-delete-jabatan" style="font-size: 18pt; text-decoration: none; color:red;">
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-semester="'.$row->semester.'" data-status="'.$row->status.'" class="btn-delete-semester" style="font-size: 18pt; text-decoration: none; color:red;">
                 <i class="fas fa-trash"></i>
                 </a>';
                 return $btn;
