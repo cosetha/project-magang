@@ -422,55 +422,58 @@ $(document).ready(function() {
 			url: '/admin/edit-bk/' + id,
 			type: 'GET',
 			success: function(res) {
-				console.log(res);
 				$('#editBKModal').modal({ backdrop: 'static', keyboard: false });
 				$('#editBKModal').modal('show');
 				$('#btn-save-bk').css('display', '');
+				$('input[name=edit-id]').val(id);
 				$('#nama-edit').val(res.values.nama_bk);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
-				$('body').on('submit', '#form-edit-bk', function(e) {
-					e.preventDefault();
-					$('.btn-close-edit').css('display', 'none');
-					$('.btn-loading-edit').css('display', '');
-					$('#btn-save-bk').css('display', 'none');
-					var formData = new FormData();
-					var name = $('input[name=nama-edit]').val();
-					var deskripsi = tinymce.get('deskripsi-edit').getContent();
-					var token = $('input[name=token]').val();
-					var akreditasi = $('#AkreditasiEdit option:selected').text();
-					formData.append('_token', token);
-					formData.append('nama', name);
-					formData.append('deskripsi', deskripsi);
-					formData.append('akreditasi', akreditasi);
-					formData.append('gambar', $('input[type=file]')[1].files[0]);
-					$.ajax({
-						type: 'post',
-						url: '/admin/konfirmasi-edit-bk/' + id,
-						data: formData,
-						processData: false,
-						contentType: false,
-						success: function(response) {
-							$('#editBKModal').modal('hide');
-							$('#form-edit-bk').trigger('reset');
-							$('.btn-close-edit').css('display', '');
-							$('.btn-loading-edit').css('display', 'none');
-							$('#btn-save-bk').css('display', '');
-							LoadTableBK();
-							Swal.fire({
-								icon: 'success',
-								title: 'Sukses',
-								text: 'Berhasil Mengedit Bidang Keahlian',
-								timer: 1200,
-								showConfirmButton: false
-							});
-						},
-						error: function(err) {
-							console.log(err);
-						}
-					});
-				});
 			}
 		});
+		return false;
+	});
+	$('body').on('submit', '#form-edit-bk', function(e) {
+		e.preventDefault();
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-bk').css('display', 'none');
+		var formData = new FormData();
+		var name = $('input[name=nama-edit]').val();
+		var deskripsi = tinymce.get('deskripsi-edit').getContent();
+		var token = $('input[name=token]').val();
+		var id = $('input[name=edit-id]').val();
+		var akreditasi = $('#AkreditasiEdit option:selected').text();
+		formData.append('_token', token);
+		formData.append('nama', name);
+		formData.append('deskripsi', deskripsi);
+		formData.append('akreditasi', akreditasi);
+		formData.append('gambar', $('input[type=file]')[1].files[0]);
+		$.ajax({
+			type: 'post',
+			url: '/admin/konfirmasi-edit-bk/' + id,
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function(response) {
+				$('#editBKModal').modal('hide');
+				$('#form-edit-bk').trigger('reset');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-bk').css('display', '');
+				LoadTableBK();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Berhasil Mengedit Bidang Keahlian',
+					timer: 1200,
+					showConfirmButton: false
+				});
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		return false;
 	});
 
 	//---------FITUR PENGATURAN PROFILE  ----

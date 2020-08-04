@@ -91,7 +91,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Bidang Keahlian</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close close-modal-bk" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -100,7 +100,7 @@
 
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-bk">
                         @csrf
-
+                        <input type="hidden" name="edit-id" value="">
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
                         <input type="text" class="form-control" id="nama-edit" name="nama-edit">
 
@@ -122,7 +122,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary btn-close close-modal-bk" type="button" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="btn-save-bk">Save</button>
                 <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
