@@ -375,7 +375,7 @@ $(document).ready(function() {
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
-					text: 'Berhasil Menambahkan Semester',
+					text: 'Berhasil Menambahkan Bidang Keahlian',
 					timer: 1200,
 					showConfirmButton: false
 				});
@@ -459,7 +459,7 @@ $(document).ready(function() {
 							Swal.fire({
 								icon: 'success',
 								title: 'Sukses',
-								text: 'Berhasil Mengedit Semester',
+								text: 'Berhasil Mengedit Bidang Keahlian',
 								timer: 1200,
 								showConfirmButton: false
 							});
@@ -473,127 +473,130 @@ $(document).ready(function() {
 		});
 	});
 
-  //---------FITUR PENGATURAN PROFILE  ----
-  $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
+	//---------FITUR PENGATURAN PROFILE  ----
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
 
-//update profile
-$('body').on('click', '#btn-edit-profile', function(e) {
-  e.preventDefault();
-  var formData = new FormData();
-  var name = $('input[name=name]').val();
-  var email = $('input[name=email]').val();
-  var files = $('#file-upload')[0].files[0];
-  var id = $(this).data("id");
+	//update profile
+	$('body').on('click', '#btn-edit-profile', function(e) {
+		e.preventDefault();
+		var formData = new FormData();
+		var name = $('input[name=name]').val();
+		var email = $('input[name=email]').val();
+		var files = $('#file-upload')[0].files[0];
+		var id = $(this).data('id');
 
-  formData.append('gambar',files);
-  formData.append('nama', name);
-  formData.append('email', email);
+		formData.append('gambar', files);
+		formData.append('nama', name);
+		formData.append('email', email);
 
-  $.ajax({
-    type: 'POST',
-    url:"editprofile/" + id,
-    data:formData,
-    contentType: false,
-    processData: false,
-    success:function(data) {
-      if(data.status == '1') {
-        Swal.fire({
-          icon: 'success',
-          title: 'Sukses',
-          text: 'Sukses edit profile',
-          timer: 1000,
-          showConfirmButton: false
-        })
-        location.reload();
-      } else if(data.status == "0") {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ooopss...',
-          text: 'Gagal edit profile',
-          timer: 1000,
-          showConfirmButton: false
-        })
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ooopss...',
-          text: 'Email sudah ada!',
-          timer: 1200,
-          showConfirmButton: false
-        })
-      }
-    }
-  });
+		$.ajax({
+			type: 'POST',
+			url: 'editprofile/' + id,
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				if (data.status == '1') {
+					Swal.fire({
+						icon: 'success',
+						title: 'Sukses',
+						text: 'Sukses edit profile',
+						timer: 1000,
+						showConfirmButton: false
+					});
+					location.reload();
+				} else if (data.status == '0') {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: 'Gagal edit profile',
+						timer: 1000,
+						showConfirmButton: false
+					});
+				} else {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: 'Email sudah ada!',
+						timer: 1200,
+						showConfirmButton: false
+					});
+				}
+			}
+		});
+	});
 
-});
-
-//ganti password
-$("body").on("click","#btn-edit-password", function(e){
-  e.preventDefault();
-  var password = $("#password").val();
-  var password_confirm = $("#password-confirm").val();
-  var password_lama = $("#password-lama").val();
-  var id = $(this).data("id");
-  if(password == "" || password_confirm == "") {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Password tidak boleh kosong!',
-      timer: 1000,
-      showConfirmButton: false
-    })
-  } else {
-    $.ajax({
-      type: 'POST',
-      url:"editpassword/" + id,
-      data:{password:password,password_confirmation:password_confirm,id:id,password_lama:password_lama},
-      dataType: 'json',
-      success:function(data) {
-        if(data.status == '1') {
-            $(".form-edit-password")[0].reset();
-          Swal.fire({
-            icon: 'success',
-            title: 'Sukses',
-            text: 'Sukses ganti password',
-            timer: 1000,
-            showConfirmButton: false
-          })
-        } else if(data.status == "0") {
-            $(".form-edit-password")[0].reset();
-          Swal.fire({
-            icon: 'error',
-            title: 'Ooopss...',
-            text: 'Gagal ganti password',
-            timer: 1000,
-            showConfirmButton: false
-          })
-        } else if(data.status == "salah") {
-            $(".form-edit-password")[0].reset();
-          Swal.fire({
-            icon: 'error',
-            title: 'Ooopss...',
-            text: 'Password anda salah!',
-            timer: 1000,
-            showConfirmButton: false
-          })
-        } else {
-            $(".form-edit-password")[0].reset();
-          Swal.fire({
-            icon: 'error',
-            title: 'Ooopss...',
-            text: 'Password harus sama!',
-            timer: 1200,
-            showConfirmButton: false
-          })
-        }
-      }
-    });
-  }
-
-})
-  //--END PENGATURAN PROFILE ----
+	//ganti password
+	$('body').on('click', '#btn-edit-password', function(e) {
+		e.preventDefault();
+		var password = $('#password').val();
+		var password_confirm = $('#password-confirm').val();
+		var password_lama = $('#password-lama').val();
+		var id = $(this).data('id');
+		if (password == '' || password_confirm == '') {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Password tidak boleh kosong!',
+				timer: 1000,
+				showConfirmButton: false
+			});
+		} else {
+			$.ajax({
+				type: 'POST',
+				url: 'editpassword/' + id,
+				data: {
+					password: password,
+					password_confirmation: password_confirm,
+					id: id,
+					password_lama: password_lama
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.status == '1') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Sukses ganti password',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else if (data.status == '0') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Gagal ganti password',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else if (data.status == 'salah') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Password anda salah!',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Password harus sama!',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
+				}
+			});
+		}
+	});
+	//--END PENGATURAN PROFILE ----
 });

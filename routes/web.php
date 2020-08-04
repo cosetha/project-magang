@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/delete-bk/{id}','BidangKeahlianController@destroy');
     Route::get('/admin/edit-bk/{id}','BidangKeahlianController@edit');
     Route::post('/admin/konfirmasi-edit-bk/{id}','BidangKeahlianController@update');
-    Route::post('/upload','BidangKeahlianController@storeImg');
+    Route::POST('/upload','BidangKeahlianController@storeImg');
 
     //Admin Profile
     Route::get('/editprofile', 'PageController@EditProfile');
