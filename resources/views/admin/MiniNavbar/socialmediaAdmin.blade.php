@@ -140,3 +140,7 @@
 </div>
 
 @endsection
+
+@section('js-ajax')
+      <script src="{{ asset('js/home/Weblink.js') }}"></script>
+@endsection
