@@ -117,8 +117,15 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/kerjasama', 'PageController@Kerjasama');
 
-    Route::get('/pengumuman', 'PageController@Pengumuman');
-
+    Route::prefix('pengumuman')->group(function () {
+      Route::get('/', 'PageController@Pengumuman');
+      Route::post('/', 'Home\PengumumanController@store');
+      Route::get('data', 'Home\PengumumanController@index');
+      Route::get('datatable', 'Home\PengumumanController@loadTable');
+      Route::get('edit/{id}', 'Home\PengumumanController@edit');
+      Route::post('update/{id}', 'Home\PengumumanController@update');
+      Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+    });
 
     //Kemahasiswaan
     Route::get('/alumni', 'PageController@Alumni');
