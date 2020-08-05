@@ -70,7 +70,7 @@
 
       <!-- Add Sosmed Modal-->
       <div class="modal fade" id="PengumumanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Tambah Pengumuman</h5>
@@ -89,10 +89,10 @@
 
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
-                    
+                    <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
+
                     <div class="form-group mt-3">
-                        <label for="file">File</label>
+                        <label for="lampiran">Lampiran</label>
                         <input input id="file-upload" type="file" name="file" accept="file/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
@@ -102,7 +102,8 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
+              <!-- <a class="btn btn-primary" href="#">Submit</a> -->
+              <button class="btn btn-primary" type="button" id="tes">Submit</button>
             </div>
           </div>
         </div>
@@ -134,7 +135,7 @@
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>
-                        <input input id="file-upload" type="file" name="file" accept="file/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input id="file-upload" type="file" name="file" accept="file/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
             </form>
@@ -142,7 +143,8 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
+              <a class="btn btn-primary">Submit</a>
+              <!-- <input class="btn btn-primary" id="btn-tambah-pengumuman" type="submit" value="Submit"> -->
             </div>
           </div>
         </div>
@@ -167,4 +169,7 @@
         </div>
       </div>
 
+      @endsection
+      @section('js-ajax')
+      <script src="{{ asset('js/home/pengumuman.js') }}"></script>
       @endsection

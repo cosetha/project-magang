@@ -420,7 +420,9 @@
                     <script src="js/demo/chart-pie-demo.js"></script>
                     <script src="js/demo/datatables-demo.js"></script>
                     <script src="{{ asset('js/script.js') }}"></script>
-                    <script src="{{ asset('js/Home/Weblink.js') }}"></script>
+
+                    <!-- script ajax -->
+                    @yield('js-ajax')
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>
