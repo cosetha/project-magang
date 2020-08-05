@@ -114,10 +114,6 @@ class PageController extends Controller
       return view('admin/Kemahasiswaan/organisasiAdmin');
     }
 
-    public function Sosmed(){
-      return view('admin/MiniNavbar/socialmediaAdmin');
-    }
-
     public function Menu(){
       return view('admin/MiniNavbar/quickmenuAdmin');
     }
