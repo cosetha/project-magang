@@ -70,6 +70,7 @@ $(document).ready(function() {
 				$('.btn-close').css('display', '');
 				$('.btn-loading').css('display', 'none');
 				$('#btn-submit-headline').css('display', '');
+				$('#blah').attr('src', '');
 				LoadTableHeadLine();
 				if (response.hasOwnProperty('error')) {
 					Swal.fire({

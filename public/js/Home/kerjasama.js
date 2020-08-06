@@ -74,6 +74,7 @@ $(document).ready(function() {
 				$('.btn-close').css('display', '');
 				$('.btn-loading').css('display', 'none');
 				$('#btn-submit-kerjasama').css('display', '');
+				$('#blah').attr('src', '');
 				LoadTableKerjasama();
 				if (response.hasOwnProperty('error')) {
 					Swal.fire({
