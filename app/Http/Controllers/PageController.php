@@ -130,10 +130,6 @@ class PageController extends Controller
       return view('admin/Profile/sejarahAdmin');
     }
 
-    public function Struktur(){
-      return view('admin/Profile/strukturorganisasiAdmin');
-    }
-
     public function VisiMisi(){
       return view('admin/Profile/visimisiAdmin');
     }

@@ -86,11 +86,11 @@
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-jabatan">
                     @csrf
-
+                    <input type="hidden" value="" id="id-jabatan">
                     <label for="judulJabatan">Jabatan</label>
                     <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit" required>
 
-                
+
 
             </div>
             <div class="modal-footer">
