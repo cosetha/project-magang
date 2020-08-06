@@ -47,7 +47,6 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" id="FormAddSosmed" enctype="multipart/form-data" method="post">
                     @csrf
 
@@ -57,9 +56,7 @@
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="link_Web" name="link" required>
 
-                    <label for="jenis" class="mt-2">Jenis</label>
-                    <input type="text" class="form-control" id="jenis" name="menu" required>
-
+                    <input type="hidden" class="form-control" id="jenis" name="menu" value="sosmed">
 
             </div>
             <div class="modal-footer">
@@ -99,9 +96,6 @@
 
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="edit_link_web" name="link" required>
-
-                    <label for="jenis" class="mt-2">Jenis</label>
-                    <input type="text" class="form-control" id="edit_jenis" name="menu" required>
 
 
 

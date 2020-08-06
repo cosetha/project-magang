@@ -10,7 +10,7 @@ use DataTables;
 
 class WeblinkController extends Controller
 {
-    public function index(){
+    public function indexSosmed(){
         return view('admin/MiniNavbar/socialmediaAdmin');
     }
 
@@ -35,7 +35,6 @@ class WeblinkController extends Controller
         $weblink = WebLink::find($id);
         $weblink->nama_web = $request->nama_web;
         $weblink->link = $request->link;
-        $weblink->menu = $request->menu;
         $weblink->save();
 
         return response([
@@ -48,7 +47,7 @@ class WeblinkController extends Controller
     }
 
     public function LoadDataSosmed(){
-        $weblink = WebLink::orderBy('id','desc')->get();
+        $weblink = WebLink::where('menu','=','sosmed')->orderBy('id','desc')->get();
 
             return Datatables::of($weblink)->addIndexColumn()
             ->addColumn('aksi', function($row){

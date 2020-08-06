@@ -160,8 +160,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/organisasi', 'PageController@Organisasi');
 
 
-    //MiniNavba
-    Route::get('/sosmed', 'Home\WeblinkController@index');
+    //MiniNavbar
+    Route::get('/sosmed', 'Home\WeblinkController@indexSosmed');
     Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
     Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
     Route::get('/admin/delete-sosmed/{id}', 'Home\WeblinkController@destroy');
