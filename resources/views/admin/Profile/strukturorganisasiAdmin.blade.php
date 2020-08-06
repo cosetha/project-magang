@@ -24,41 +24,13 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#StrukturorganisasiModal">+
-                Add Struktur Organisasi</a>
+            <button type="button" class="btn btn-primary ml-2" id="btn-modal-so">+
+                Add Struktur Organisasi</button>
             </div>
 
 
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                                <th>Nama Struktur Organisasi</th>
-                                <th>Deskripsi</th>
-                                <th>Logo</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td align="center">
-                                    <a href="#" data-toggle="modal" data-target="#editStrukturorganisasiModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                        <i class="fas fa-pen-square"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#deleteStrukturorganisasiModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div id="datatable-struktur-organisasi"></div>
             </div>
         </div>
     </div>
@@ -72,36 +44,40 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Struktur Organisasi</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" id="FormAddSO" enctype="multipart/form-data" method="post">
                     @csrf
 
                     <label for="namastrukturorganisasi">Nama Struktur Organisasi</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-struktur-organisasi" name="nama">
 
 
                     <label for="Deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
 
                     <div class="form-group mt-3">
                         <label for="file">Logo</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/png" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
                     </div>
+                    <input type="hidden" name="token" value="{{ csrf_token() }}">
 
-
-                </form>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="btn-submit-so">Submit</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -113,35 +89,39 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Struktur Organisasi</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditSO">
                     @csrf
+                    <input type="hidden" value="" id="id-so">
+                    <input type="hidden" name="token" value="{{ csrf_token() }}">
+                    <label for="edit-nama-so">Nama Struktur Organisasi</label>
+                    <input type="text" class="form-control" id="edit-nama-so" name="nama">
 
-                    <label for="namastrukturorganisasi">Nama Struktur Organisasi</label>
-                    <input type="text" class="form-control" id="" name="">
 
-
-                    <label for="Deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <label for="edit-deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="edit-deskripsi" name="edit-deskripsi"> </textarea>
 
                     <div class="form-group mt-3">
                         <label for="file">Logo</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/png" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
                     </div>
-
-                </form>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-save-so">Save</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -165,4 +145,8 @@
     </div>
 </div>
 
+@endsection
+
+@section('js-ajax')
+      <script src="{{ asset('js/profile/StrukturOrganisasi.js') }}"></script>
 @endsection

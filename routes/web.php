@@ -178,7 +178,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/sejarah', 'PageController@Sejarah');
 
-    Route::get('/struktur', 'PageController@Struktur');
+    Route::get('/struktur', 'Profile\StrukturOrganisasiController@index');
+    Route::post('/admin/tambah-struktur-organisasi', 'Profile\StrukturOrganisasiController@store');
+    Route::post('/admin/edit-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@update');
+    Route::get('/admin/delete-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@destroy');
+    Route::get('/load/table-so','Profile\StrukturOrganisasiController@LoadTableSO');
+    Route::get('/load/data-so','Profile\StrukturOrganisasiController@LoadDataSO');
+    Route::get('/get-data-so/{id}','Profile\StrukturOrganisasiController@get');
 
     Route::get('/visimisi', 'PageController@VisiMisi');
 

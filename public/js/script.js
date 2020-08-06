@@ -103,40 +103,42 @@ $(document).ready(function() {
 		$('#EditJabatanModal').modal('show');
 		$('#btn-submit-jabatan').css('display', 'none');
 		$('#btn-save-jabatan').css('display', '');
-		$('#kolom-jabatan').val(nama);
+        $('#kolom-jabatan').val(nama);
+        $("#id-jabatan").val(id)
 
-		$('body').on('submit', '#form-edit-jabatan', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-jabatan').css('display', 'none');
-			var data = $('#form-edit-jabatan').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-jabatan/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditJabatanModal').modal('hide');
-					$('#form-edit-jabatan').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-jabatan').css('display', '');
-					LoadTableJabatan();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
 	});
 
+    $('body').on('submit', '#form-edit-jabatan', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-jabatan').css('display', 'none');
+        var data = $('#form-edit-jabatan').serialize();
+        var id = $("#id-jabatan").val();
+        $.ajax({
+            type: 'post',
+            url: '/admin/edit-jabatan/' + id,
+            data: data,
+            success: function(response) {
+                $('#EditJabatanModal').modal('hide');
+                $('#form-edit-jabatan').trigger('reset');
+                $('.btn-close-edit').css('display', '');
+                $('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-jabatan').css('display', '');
+                LoadTableJabatan();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Berhasil Mengedit Jabatan',
+                    timer: 1200,
+                    showConfirmButton: false
+                });
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
 	LoadTableSemester();
