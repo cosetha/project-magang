@@ -57,11 +57,8 @@
 
                     <!-- Rounded switch -->
                     <label for="judulSemester" class="mt-3">Semester</label>
-                    <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status-tambah" name="status-tambah">
+                    <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status" name="status-tambah">
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
-                        
-               
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>

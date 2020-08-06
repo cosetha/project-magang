@@ -14,37 +14,45 @@ tinymce.init({
 	autosave_retention: '2m',
 	image_advtab: true,
 	images_upload_url: '/upload',
-	content_css: '//www.tiny.cloud/css/codepen.min.css',
-	link_list: [
-		{ title: 'My page 1', value: 'http://www.tinymce.com' },
-		{ title: 'My page 2', value: 'http://www.moxiecode.com' }
-	],
-	image_list: [
-		{ title: 'My page 1', value: 'http://www.tinymce.com' },
-		{ title: 'My page 2', value: 'http://www.moxiecode.com' }
-	],
-	image_class_list: [ { title: 'None', value: '' }, { title: 'Some class', value: 'class-name' } ],
 	importcss_append: true,
+	file_picker_types: 'file, image',
 	file_picker_callback: function(cb, value, meta) {
 		var input = document.createElement('input');
 		input.setAttribute('type', 'file');
 		input.setAttribute('name', 'file');
-		input.setAttribute('accept', 'image/*');
 
 		input.onchange = function() {
 			var file = this.files[0];
-			var reader = new FileReader();
-			reader.onload = function() {
-				var nama = file.name.split('.');
-				var id = new Date().getTime() + '_' + nama[0];
-				var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-				var base64 = reader.result.split(',')[1];
-				var blobInfo = blobCache.create(id, file, base64);
-				blobCache.add(blobInfo);
+			var fileExtension = [ 'jpeg', 'jpg', 'png', 'gif', 'bmp' ];
+			if ($.inArray(file.name.split('.').pop().toLowerCase(), fileExtension) == -1) {
+				var formData = new FormData();
+				formData.append('file', file);
+				$.ajax({
+					type: 'post',
+					url: '/upload',
+					data: formData,
+					processData: false,
+					contentType: false,
+					accepts: 'application / json',
+					success: function(response) {
+						cb(response.location, { alt: response.alt, text: response.alt, title: response.alt });
+					}
+				});
+			} else {
+				var reader = new FileReader();
 
-				cb(blobInfo.blobUri(), { title: file.name });
-			};
-			reader.readAsDataURL(file);
+				reader.onload = function() {
+					var nama = file.name.split('.');
+					var id = new Date().getTime() + '_' + nama[0];
+					var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+					var base64 = reader.result.split(',')[1];
+					var blobInfo = blobCache.create(id, file, base64);
+					blobCache.add(blobInfo);
+
+					cb(blobInfo.blobUri(), { title: file.name });
+				};
+				reader.readAsDataURL(file);
+			}
 		};
 
 		input.click();
@@ -73,4 +81,10 @@ tinymce.init({
 	toolbar_mode: 'sliding',
 	contextmenu: 'link image imagetools table',
 	branding: false
+});
+// Prevent jQuery UI dialog from blocking focusin
+$(document).on('focusin', function(e) {
+	if ($(e.target).closest('.tox-tinymce-aux, .moxman-window, .tam-assetmanager-root').length) {
+		e.stopImmediatePropagation();
+	}
 });

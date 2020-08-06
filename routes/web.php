@@ -123,14 +123,35 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Home
-    Route::get('/headline', 'PageController@Headline');
+    Route::get('/headline', 'Home\HeadLineController@index');
+    Route::post('/admin/tambah-headline','Home\HeadLineController@store');
+    Route::get('/load/table-headline','Home\HeadLineController@LoadTableHeadLine');
+    Route::get('/load/data-headline','Home\HeadLineController@LoadDataHeadLine');
+    Route::get('/admin/delete-headline/{id}','Home\HeadLineController@destroy');
+    Route::get('/admin/edit-headline/{id}','Home\HeadLineController@edit');
+    Route::POST('/admin/konfirmasi-edit-headline/{id}','Home\HeadLineController@update');
+
+    Route::get('/konten', 'Home\KontenController@index');
+    Route::post('/admin/tambah-konten','Home\KontenController@store');
+    Route::get('/load/table-konten','Home\KontenController@LoadTableKonten');
+    Route::get('/load/data-konten','Home\KontenController@LoadDataKonten');
+    Route::get('/admin/delete-konten/{id}','Home\KontenController@destroy');
+    Route::get('/admin/edit-konten/{id}','Home\KontenController@edit');
+    Route::POST('/admin/konfirmasi-edit-konten/{id}','Home\KontenController@update');
 
     Route::get('/berita', 'PageController@Berita');
 
     Route::get('/agenda', 'PageController@Agenda');
 
 
-    Route::get('/kerjasama', 'PageController@Kerjasama');
+    Route::get('/kerjasama', 'Home\KerjaSamaController@index');
+    Route::post('/admin/tambah-kerjasama','Home\KerjaSamaController@store');
+    Route::get('/load/table-kerjasama','Home\KerjaSamaController@LoadTableKerjaSama');
+    Route::get('/load/data-kerjasama','Home\KerjaSamaController@LoadDataKerjaSama');
+    Route::get('/admin/delete-kerjasama/{id}','Home\KerjaSamaController@destroy');
+    Route::get('/admin/edit-kerjasama/{id}','Home\KerjaSamaController@edit');
+    Route::POST('/admin/konfirmasi-edit-kerjasama/{id}','Home\KerjaSamaController@update');
+
 
     Route::prefix('pengumuman')->group(function () {
       Route::get('/', 'PageController@Pengumuman');
@@ -176,7 +197,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/sejarah', 'PageController@Sejarah');
 
-    Route::get('/struktur', 'PageController@Struktur');
+    Route::get('/struktur', 'Profile\StrukturOrganisasiController@index');
+    Route::post('/admin/tambah-struktur-organisasi', 'Profile\StrukturOrganisasiController@store');
+    Route::post('/admin/edit-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@update');
+    Route::get('/admin/delete-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@destroy');
+    Route::get('/load/table-so','Profile\StrukturOrganisasiController@LoadTableSO');
+    Route::get('/load/data-so','Profile\StrukturOrganisasiController@LoadDataSO');
+    Route::get('/get-data-so/{id}','Profile\StrukturOrganisasiController@get');
 
     Route::get('/visimisi', 'PageController@VisiMisi');
 

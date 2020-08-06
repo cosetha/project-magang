@@ -109,7 +109,11 @@ class BidangKeahlianController extends Controller
 
 
             $bk = Bidang_keahlian::find($id);
-            unlink($bk->gambar);
+            try {
+                unlink($bk->gambar);
+            } catch (\Throwable $th) {
+                echo($th);
+            }
 
             $bk->nama_bk = $request->nama;
             $bk->deskripsi = $request->deskripsi;
@@ -142,7 +146,11 @@ class BidangKeahlianController extends Controller
     public function destroy($id)
     {
         $bk = Bidang_keahlian::find($id);
-        unlink($bk->gambar);
+        try {
+            unlink($bk->gambar);
+        } catch (\Throwable $th) {
+            echo($th);
+        }
         $bk->delete();
 
         return response()->json([
@@ -175,10 +183,11 @@ class BidangKeahlianController extends Controller
     {
         $directory = 'assets/upload/images';
         $file = request()->file('file');
+        $old = $file->getClientOriginalName();
         $nama = time().$file->getClientOriginalName();
         $file->name = $nama;
         $file->move($directory, $file->name);
-        return response()->json(['location' => $directory."/".$nama]);
+        return response()->json(['location' => $directory."/".$nama,'alt'=>$old]);
 
     }
 }
