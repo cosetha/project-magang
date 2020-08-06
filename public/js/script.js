@@ -250,6 +250,7 @@ $(document).ready(function() {
 		var id = $(this).attr('data-id');
 		var semester = $(this).attr('data-semester');
 		var status = $(this).attr('data-status');
+		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
@@ -259,47 +260,46 @@ $(document).ready(function() {
 		} else {
 			$('#status-edit').bootstrapToggle('off');
 		}
-
-		$('body').on('submit', '#form-edit-semester', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-semester').css('display', 'none');
-			var name = $('input[name=semester-edit]').val();
-			var toggle = $('input[name=status-edit]').val();
-			var token = $('input[name=token-edit]').val();
-			let status = 'ada';
-			if (toggle == 'on') {
-				status = 'aktif';
-			} else {
-				status = 'nonaktif';
+	});
+	$('body').on('submit', '#form-edit-semester', function(e) {
+		e.preventDefault();
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-semester').css('display', 'none');
+		var name = $('input[name=semester-edit]').val();
+		var toggle = $('input[name=status-edit]').val();
+		var token = $('input[name=token-edit]').val();
+		var id = $('input[name=id-edit]').val();
+		let status = 'ada';
+		if (toggle == 'on') {
+			status = 'aktif';
+		} else {
+			status = 'nonaktif';
+		}
+		$.ajax({
+			type: 'post',
+			url: '/admin/edit-semester/' + id,
+			data: { _token: token, semester: name, status: status },
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('#form-edit-semester').trigger('reset');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Berhasil Mengedit Semester',
+					timer: 1200,
+					showConfirmButton: false
+				});
+			},
+			error: function(err) {
+				console.log(err);
 			}
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-semester/' + id,
-				data: { _token: token, semester: name, status: status },
-				success: function(response) {
-					$('#editSemesterModal').modal('hide');
-					$('#form-edit-semester').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-semester').css('display', '');
-					LoadTableSemester();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Semester',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
 		});
 	});
-
 	LoadTableBK();
 
 	function LoadTableBK() {
