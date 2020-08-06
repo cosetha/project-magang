@@ -118,6 +118,7 @@
                                 <a class="collapse-item" href="{{ url('pengumuman') }}">Pengumuman</a>
                                 <a class="collapse-item" href="{{ url('agenda') }}">Agenda</a>
                                 <a class="collapse-item" href="{{ url('kerjasama') }}">Kerja Sama</a>
+                                <a class="collapse-item" href="{{ url('konten') }}">Manajemen Konten</a>
                             </div>
                         </div>
                     </li>
@@ -420,7 +421,6 @@
                     <script src="js/demo/chart-pie-demo.js"></script>
                     <script src="js/demo/datatables-demo.js"></script>
                     <script src="{{ asset('js/script.js') }}"></script>
-
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>
         </body>
