@@ -140,7 +140,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //MiniNavbar
-    Route::get('/sosmed', 'Home\WeblinkController@index');
+    Route::get('/sosmed', 'Home\WeblinkController@indexSosmed');
     Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
     Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
     Route::get('/admin/delete-sosmed/{id}', 'Home\WeblinkController@destroy');

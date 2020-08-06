@@ -10,7 +10,7 @@ use DataTables;
 
 class WeblinkController extends Controller
 {
-    public function index(){
+    public function indexSosmed(){
         return view('admin/MiniNavbar/socialmediaAdmin');
     }
 
