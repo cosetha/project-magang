@@ -1,5 +1,5 @@
 
-    <table class="table table-bordered" id="table-sosmed">
+    <table class="table table-bordered" id="table-weblink">
         <thead>
             <tr>
                 <th scope="col">No</th>
