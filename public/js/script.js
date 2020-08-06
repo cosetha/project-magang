@@ -665,7 +665,7 @@ $(document).ready(function() {
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
+					text: 'Berhasil Menambahkan FAQ',
 					timer: 1200,
 					showConfirmButton: false
 				});
@@ -736,7 +736,7 @@ $(document).ready(function() {
 					Swal.fire({
 						icon: 'success',
 						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
+						text: 'Berhasil Mengedit FAQ',
 						timer: 1200,
 						showConfirmButton: false
 					});
