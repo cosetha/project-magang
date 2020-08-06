@@ -100,11 +100,26 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Footer
-    Route::get('/blog', 'PageController@Blog');
+    Route::get('/blog', 'Home\WeblinkController@indexBlog');
+    Route::get('/load/table-blog', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-blog', 'Home\WeblinkController@LoadDataBlog');
+    Route::get('/admin/delete-blog/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/blog', 'Home\WeblinkController@store');
+    Route::post('admin/edit-blog/{id}', 'Home\WeblinkController@update');
 
-    Route::get('/faq', 'PageController@Faq');
+    Route::get('/faq','Footer\FaqController@index');
+    Route::get('/load/table-faq','Footer\FaqController@LoadTableFaq');
+    Route::get('/load/data-faq','Footer\FaqController@LoadDataFaq');
+    Route::get('/admin/delete-faq/{id}','Footer\FaqController@destroy');
+    Route::post('/admin/tambah-faq','Footer\FaqController@store');
+    Route::post('/admin/edit-faq/{id}','Footer\FaqController@update');
 
-    Route::get('/layanan', 'PageController@Layanan');
+    Route::get('/layanan', 'Home\WeblinkController@indexLayanan');
+    Route::get('/load/table-layanan', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-layanan', 'Home\WeblinkController@LoadDataLayanan');
+    Route::get('/admin/delete-layanan/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/layanan', 'Home\WeblinkController@store');
+    Route::post('admin/edit-layanan/{id}', 'Home\WeblinkController@update');
 
 
     //Home
@@ -162,14 +177,18 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     //MiniNavbar
     Route::get('/sosmed', 'Home\WeblinkController@indexSosmed');
-    Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
+    Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableWebLink');
     Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
     Route::get('/admin/delete-sosmed/{id}', 'Home\WeblinkController@destroy');
     Route::post('/tambah/sosmed', 'Home\WeblinkController@store');
     Route::post('admin/edit-sosmed/{id}', 'Home\WeblinkController@update');
 
-    Route::get('/menu', 'PageController@Menu');
-
+    Route::get('/quick-menu', 'Home\WeblinkController@IndexQuickMenu');
+    Route::get('/load/table-quick-menu', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-quick-menu', 'Home\WeblinkController@LoadDataQuickMenu');
+    Route::get('/admin/delete-quick-menu/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/quick-menu', 'Home\WeblinkController@store');
+    Route::post('admin/edit-quick-menu/{id}', 'Home\WeblinkController@update');
 
     //Profile
     Route::get('/dosen', 'PageController@Dosen');

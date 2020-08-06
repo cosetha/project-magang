@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Social Media</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -23,11 +22,11 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <button type="button" class="btn btn-primary ml-2" id="btn-modal-sosmed">+ Add Sosmed</a>
+            <button type="button" class="btn btn-primary ml-2" id="btn-modal-sosmed">+ Add Sosmed</button>
         </div>
 
         <div class="card-body">
-            <div id="datatable-sosmed"></div>
+            <div id="datatable-weblink"></div>
         </div>
     </div>
 </div>
@@ -136,5 +135,5 @@
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/home/Weblink.js') }}"></script>
+      <script src="{{ asset('js/MiniNavbar/Sosmed.js') }}"></script>
 @endsection

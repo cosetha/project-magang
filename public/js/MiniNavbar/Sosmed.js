@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-    //DATATABLE
+    //DATATABLE SOSMED
 	LoadTableWeblink();
 	function LoadTableWeblink() {
-		$('#datatable-sosmed').load('/load/table-sosmed', function() {
-			$('#table-sosmed').DataTable({
+		$('#datatable-weblink').load('/load/table-sosmed', function() {
+			$('#table-weblink').DataTable({
 				processing: true,
 				serverSide: true,
 				ajax: {
@@ -57,7 +57,7 @@ $(document).ready(function() {
             url: "/tambah/sosmed",
             data: data,
             success: function(response){
-                $("#table-sosmed").DataTable().page('last').draw('page');
+                $("#table-weblink").DataTable().page('last').draw('page');
                 $("#SosmedModal").modal("hide")
                 $("#FormAddSosmed").trigger("reset")
                 $(".btn-submit-sosmed").css("display","")
@@ -79,7 +79,7 @@ $(document).ready(function() {
     })
 
     //DELETE SOSMED
-    $("body").on("click",".btn-delete-weblink", function(e){
+    $("body").on("click",".btn-delete-sosmed", function(e){
         e.preventDefault()
         var id = $(this).attr("data-id")
         var nama = $(this).attr("data-nama")
@@ -99,7 +99,7 @@ $(document).ready(function() {
 					url: '/admin/delete-sosmed/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#table-sosmed").DataTable().page('last').draw('page');
+						$("#table-weblink").DataTable().page('last').draw('page');
 					},
 					error: function(err) {
 						console.log(err);
@@ -109,8 +109,8 @@ $(document).ready(function() {
 		});
     })
 
-    //OPEN MODAL EDIT SOMED
-    $("body").on("click",".btn-edit-weblink",function(e){
+    //OPEN MODAL EDIT SOSMED
+    $("body").on("click",".btn-edit-sosmed",function(e){
         e.preventDefault()
         $(".btn-close").css("display","")
         $(".btn-save-sosmed").css("display","")
@@ -119,12 +119,10 @@ $(document).ready(function() {
         var id = $(this).attr("data-id")
         var nama = $(this).attr("data-nama")
         var link = $(this).attr("data-link")
-        var jenis = $(this).attr("data-menu")
 
         $("#id-sosmed").val(id)
         $("#edit_nama_web").val(nama)
         $("#edit_link_web").val(link)
-        $("#edit_jenis").val(jenis)
     })
 
     //SAVE EDIT SOSMED
@@ -141,7 +139,7 @@ $(document).ready(function() {
             url: "admin/edit-sosmed/"+id,
             data: data,
             success: function(response){
-                $("#table-sosmed").DataTable().page('last').draw('page');
+                $("#table-weblink").DataTable().page('last').draw('page');
                 $(".btn-close").css("display","")
                 $(".btn-save-sosmed").css("display","none")
                 $(".btn-loading").css("display","")
