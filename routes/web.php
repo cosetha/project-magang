@@ -138,8 +138,15 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::POST('/admin/konfirmasi-edit-kerjasama/{id}','Home\KerjaSamaController@update');
 
 
-    Route::get('/pengumuman', 'PageController@Pengumuman');
-
+    Route::prefix('pengumuman')->group(function () {
+      Route::get('/', 'PageController@Pengumuman');
+      Route::post('/', 'Home\PengumumanController@store');
+      Route::get('data', 'Home\PengumumanController@index');
+      Route::get('datatable', 'Home\PengumumanController@loadTable');
+      Route::get('edit/{id}', 'Home\PengumumanController@edit');
+      Route::post('update/{id}', 'Home\PengumumanController@update');
+      Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+    });
 
     //Kemahasiswaan
     Route::get('/alumni', 'PageController@Alumni');
@@ -154,7 +161,12 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //MiniNavba
-    Route::get('/sosmed', 'PageController@Sosmed');
+    Route::get('/sosmed', 'Home\WeblinkController@index');
+    Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
+    Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
+    Route::get('/admin/delete-sosmed/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/sosmed', 'Home\WeblinkController@store');
+    Route::post('admin/edit-sosmed/{id}', 'Home\WeblinkController@update');
 
     Route::get('/menu', 'PageController@Menu');
 
