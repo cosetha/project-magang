@@ -95,7 +95,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-close-edit" id="btn-save-jabatan">Save</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-jabatan">Save</button>
                 <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Memproses...

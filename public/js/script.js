@@ -273,7 +273,7 @@ $(document).ready(function() {
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
 		let status = 'ada';
-		if (toggle == 'on') {
+		if ($('#status').is(':checked')) {
 			status = 'aktif';
 		} else {
 			status = 'nonaktif';
@@ -287,7 +287,8 @@ $(document).ready(function() {
 				$('#form-edit-semester').trigger('reset');
 				$('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
-				$('#btn-save-semester').css('display', '');
+                $('#btn-save-semester').css('display', '');
+                $('#btn-submit-semester').css('display', '');
 				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
