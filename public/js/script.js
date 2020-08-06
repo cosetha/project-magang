@@ -427,6 +427,7 @@ $(document).ready(function() {
 				$('#btn-save-bk').css('display', '');
 				$('input[name=edit-id]').val(id);
 				$('#nama-edit').val(res.values.nama_bk);
+				$('#AkreditasiEdit').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
 			}
 		});
@@ -602,4 +603,7 @@ $(document).ready(function() {
 		}
 	});
 	//--END PENGATURAN PROFILE ----
+	$.getScript('/js/Home/headline.js');
+	$.getScript('/js/Home/kerjasama.js');
+	$.getScript('/js/Home/konten.js');
 });
