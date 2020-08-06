@@ -97,9 +97,7 @@
                     <label for="judulSemester" class="mt-3">Semester</label>
                     <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status-edit" name="status-edit" style="padding: 7px 8px;" class="form-control">
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
-                        
-               
-
+                    <input type="hidden" name="id-edit" value="">                        
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
