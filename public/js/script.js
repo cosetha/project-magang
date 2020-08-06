@@ -184,14 +184,14 @@ $(document).ready(function() {
 		$('.btn-loading').css('display', '');
 		$('#btn-submit-semester').css('display', 'none');
 		var name = $('input[name=semester-tambah]').val();
-		var toggle = $('input[name=status-tambah]').val();
 		var token = $('input[name=token]').val();
 		let status = 'ada';
-		if (toggle == 'on') {
+		if ($('#status').is(':checked')) {
 			status = 'aktif';
 		} else {
 			status = 'nonaktif';
 		}
+		console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
@@ -325,7 +325,13 @@ $(document).ready(function() {
 					},
 					{
 						data: 'akreditasi',
-						name: 'akreditasi'
+						render: function(data, type, row) {
+							if (data == 0) {
+								return 'Tidak terakreditasi';
+							} else {
+								return data;
+							}
+						}
 					},
 					{
 						data: 'gambar',
@@ -354,7 +360,7 @@ $(document).ready(function() {
 		var name = $('input[name=nama-tambah]').val();
 		var deskripsi = tinymce.get('deskripsi-tambah').getContent();
 		var token = $('input[name=token]').val();
-		var akreditasi = $('#AkreditasiTambah option:selected').text();
+		var akreditasi = $('#AkreditasiTambah option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
@@ -445,7 +451,7 @@ $(document).ready(function() {
 		var deskripsi = tinymce.get('deskripsi-edit').getContent();
 		var token = $('input[name=token]').val();
 		var id = $('input[name=edit-id]').val();
-		var akreditasi = $('#AkreditasiEdit option:selected').text();
+		var akreditasi = $('#AkreditasiEdit option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);

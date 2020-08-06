@@ -59,11 +59,10 @@
 
                         <label for="Akreditasi" class="mt-2">Akreditasi</label>
                         <select class="form-control" id="AkreditasiTambah" name="tambahAkreditasi" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="0">Tidak terakreditasi</option>
                         </select>
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="edit-id" value="">
@@ -112,11 +111,10 @@
 
                         <label for="AkreditasiEdit" class="mt-2">Akreditasi</label>
                         <select class="form-control selector" id="AkreditasiEdit" name="editAkreditasi">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="0">Tidak terakreditasi</option>
                         </select>
 
                         <div class="form-group mt-3">
