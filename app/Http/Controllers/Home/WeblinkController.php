@@ -35,7 +35,6 @@ class WeblinkController extends Controller
         $weblink = WebLink::find($id);
         $weblink->nama_web = $request->nama_web;
         $weblink->link = $request->link;
-        $weblink->menu = $request->menu;
         $weblink->save();
 
         return response([

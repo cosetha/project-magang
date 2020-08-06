@@ -97,8 +97,6 @@
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="edit_link_web" name="link" required>
 
-                    <input type="hidden" class="form-control" id="edit_jenis" name="menu" value="sosmed">
-
 
 
             </div>
