@@ -48,7 +48,7 @@ class WeblinkController extends Controller
     }
 
     public function LoadDataSosmed(){
-        $weblink = WebLink::orderBy('id','desc')->get();
+        $weblink = WebLink::where('menu','=','sosmed')->orderBy('id','desc')->get();
 
             return Datatables::of($weblink)->addIndexColumn()
             ->addColumn('aksi', function($row){

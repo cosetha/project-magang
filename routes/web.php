@@ -139,7 +139,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/organisasi', 'PageController@Organisasi');
 
 
-    //MiniNavba
+    //MiniNavbar
     Route::get('/sosmed', 'Home\WeblinkController@index');
     Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
     Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
