@@ -118,7 +118,6 @@
                                 <a class="collapse-item" href="{{ url('pengumuman') }}">Pengumuman</a>
                                 <a class="collapse-item" href="{{ url('agenda') }}">Agenda</a>
                                 <a class="collapse-item" href="{{ url('kerjasama') }}">Kerja Sama</a>
-                                <a class="collapse-item" href="{{ url('konten') }}">Manajemen Konten</a>
                             </div>
                         </div>
                     </li>

@@ -16,7 +16,7 @@ class CreateDokumensTable extends Migration
         Schema::create('dokumens', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('nama_dokumen');
-            $table->string('file');
+            $table->mediumText('file');
             $table->timestamps();
         });
     }

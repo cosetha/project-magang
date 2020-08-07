@@ -17,8 +17,7 @@ class CreateOrganisasiMahasiswaTable extends Migration
             $table->increments('id',10);
             $table->string('logo');
             $table->string('judul');
-            $table->text('gambar');
-            $table->text('deskripsi');
+            $table->mediumText('deskripsi');
             $table->timestamps();
         });
     }

@@ -16,9 +16,10 @@ class CreatePenelitiansTable extends Migration
         Schema::create('penelitians', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('judul');
+            $table->mediumText('deskripsi');
             $table->string('peneliti');
-            $table->integer('tahun')->length(5)->unsigned();
-            $table->string('link');
+            $table->integer('tahun')->length(4)->unsigned();
+            $table->string('gambar');
             $table->timestamps();
         });
     }
