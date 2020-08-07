@@ -126,12 +126,12 @@
                         <input type="text" class="form-control" id="judul-agenda-edit" name="judul_agenda_edit">
 
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsi_agenda_edit" name="deskripsi_agenda_edit"></textarea>
+                        <textarea type="text" class="form-control" id="deskripsi-agenda-edit" name="deskripsi_agenda_edit"></textarea>
 
                         <div class="form-group row mt-2" >
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="jamaagenda">Jam Mulai</label>
-                                <input type="time" class="form-control" id="jam_mulai_edit" name="jam_mulai_edit">
+                                <input type="time" class="form-control" id="jam-mulai-edit" name="jam_mulai_edit">
                             </div>
                             <div class="col-sm-6">
                                 <label for="jamaagenda">Jam Selesai</label>
@@ -146,6 +146,13 @@
                         <label for="tanggalselesai" class="mt-2">Tanggal Selesai</label>
                         <input type="date" class="form-control" id="tanggal_selesai_edit" name="tanggal_selesai_edit">
 
+                        <label for="lokasi" class="mt-2">Lokasi</label>
+                        <input type="text" class="form-control" id="lokasi-edit" name="lokasi-edit">
+
+                        <div class="form-group mt-3">
+                          <img id="image-edit-agenda" src="" alt="">
+                        </div>
+
                         <div class="form-group mt-3">
                             <label for="file">Gambar</label>
                             <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
@@ -154,6 +161,7 @@
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <input type="submit" class="btn btn-primary" name="" value="Submit">
+                            <input type="hidden" name="edit-id" value="">
                         </div>
                     </form>
 
