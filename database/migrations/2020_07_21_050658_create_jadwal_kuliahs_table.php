@@ -14,7 +14,7 @@ class CreateJadwalKuliahsTable extends Migration
     public function up()
     {
         Schema::create('jadwal_kuliah', function (Blueprint $table) {
-            $table->string('id',10)->primary();
+            $table->increments('id',10);
             $table->string('nama_jadwal',255);
             $table->mediumText('file');
             $table->unsignedBigInteger('kode_bk');
