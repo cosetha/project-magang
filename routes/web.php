@@ -131,14 +131,6 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/edit-headline/{id}','Home\HeadLineController@edit');
     Route::POST('/admin/konfirmasi-edit-headline/{id}','Home\HeadLineController@update');
 
-    Route::get('/konten', 'Home\KontenController@index');
-    Route::post('/admin/tambah-konten','Home\KontenController@store');
-    Route::get('/load/table-konten','Home\KontenController@LoadTableKonten');
-    Route::get('/load/data-konten','Home\KontenController@LoadDataKonten');
-    Route::get('/admin/delete-konten/{id}','Home\KontenController@destroy');
-    Route::get('/admin/edit-konten/{id}','Home\KontenController@edit');
-    Route::POST('/admin/konfirmasi-edit-konten/{id}','Home\KontenController@update');
-
     Route::get('/berita', 'PageController@Berita');
 
     Route::get('/agenda', 'PageController@Agenda');
