@@ -100,15 +100,36 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Footer
-    Route::get('/blog', 'PageController@Blog');
+    Route::get('/blog', 'Home\WeblinkController@indexBlog');
+    Route::get('/load/table-blog', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-blog', 'Home\WeblinkController@LoadDataBlog');
+    Route::get('/admin/delete-blog/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/blog', 'Home\WeblinkController@store');
+    Route::post('admin/edit-blog/{id}', 'Home\WeblinkController@update');
 
-    Route::get('/faq', 'PageController@Faq');
+    Route::get('/faq','Footer\FaqController@index');
+    Route::get('/load/table-faq','Footer\FaqController@LoadTableFaq');
+    Route::get('/load/data-faq','Footer\FaqController@LoadDataFaq');
+    Route::get('/admin/delete-faq/{id}','Footer\FaqController@destroy');
+    Route::post('/admin/tambah-faq','Footer\FaqController@store');
+    Route::post('/admin/edit-faq/{id}','Footer\FaqController@update');
 
-    Route::get('/layanan', 'PageController@Layanan');
+    Route::get('/layanan', 'Home\WeblinkController@indexLayanan');
+    Route::get('/load/table-layanan', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-layanan', 'Home\WeblinkController@LoadDataLayanan');
+    Route::get('/admin/delete-layanan/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/layanan', 'Home\WeblinkController@store');
+    Route::post('admin/edit-layanan/{id}', 'Home\WeblinkController@update');
 
 
     //Home
-    Route::get('/headline', 'PageController@Headline');
+    Route::get('/headline', 'Home\HeadLineController@index');
+    Route::post('/admin/tambah-headline','Home\HeadLineController@store');
+    Route::get('/load/table-headline','Home\HeadLineController@LoadTableHeadLine');
+    Route::get('/load/data-headline','Home\HeadLineController@LoadDataHeadLine');
+    Route::get('/admin/delete-headline/{id}','Home\HeadLineController@destroy');
+    Route::get('/admin/edit-headline/{id}','Home\HeadLineController@edit');
+    Route::POST('/admin/konfirmasi-edit-headline/{id}','Home\HeadLineController@update');
 
     Route::prefix('berita')->group(function () {
       Route::get('/', 'PageController@Berita');
@@ -128,7 +149,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('edit/{id}', 'Home\AgendaController@edit');
     });
 
-    Route::get('/kerjasama', 'PageController@Kerjasama');
+    Route::get('/kerjasama', 'Home\KerjaSamaController@index');
+    Route::post('/admin/tambah-kerjasama','Home\KerjaSamaController@store');
+    Route::get('/load/table-kerjasama','Home\KerjaSamaController@LoadTableKerjaSama');
+    Route::get('/load/data-kerjasama','Home\KerjaSamaController@LoadDataKerjaSama');
+    Route::get('/admin/delete-kerjasama/{id}','Home\KerjaSamaController@destroy');
+    Route::get('/admin/edit-kerjasama/{id}','Home\KerjaSamaController@edit');
+    Route::POST('/admin/konfirmasi-edit-kerjasama/{id}','Home\KerjaSamaController@update');
+
 
     Route::prefix('pengumuman')->group(function () {
       Route::get('/', 'PageController@Pengumuman');
@@ -152,16 +180,20 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/organisasi', 'PageController@Organisasi');
 
 
-    //MiniNavba
-    Route::get('/sosmed', 'Home\WeblinkController@index');
-    Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableSosmed');
+    //MiniNavbar
+    Route::get('/sosmed', 'Home\WeblinkController@indexSosmed');
+    Route::get('/load/table-sosmed', 'Home\WeblinkController@LoadTableWebLink');
     Route::get('/load/data-sosmed', 'Home\WeblinkController@LoadDataSosmed');
     Route::get('/admin/delete-sosmed/{id}', 'Home\WeblinkController@destroy');
     Route::post('/tambah/sosmed', 'Home\WeblinkController@store');
     Route::post('admin/edit-sosmed/{id}', 'Home\WeblinkController@update');
 
-    Route::get('/menu', 'PageController@Menu');
-
+    Route::get('/quick-menu', 'Home\WeblinkController@IndexQuickMenu');
+    Route::get('/load/table-quick-menu', 'Home\WeblinkController@LoadTableWebLink');
+    Route::get('/load/data-quick-menu', 'Home\WeblinkController@LoadDataQuickMenu');
+    Route::get('/admin/delete-quick-menu/{id}', 'Home\WeblinkController@destroy');
+    Route::post('/tambah/quick-menu', 'Home\WeblinkController@store');
+    Route::post('admin/edit-quick-menu/{id}', 'Home\WeblinkController@update');
 
     //Profile
     Route::get('/dosen', 'PageController@Dosen');
@@ -170,7 +202,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/sejarah', 'PageController@Sejarah');
 
-    Route::get('/struktur', 'PageController@Struktur');
+    Route::get('/struktur', 'Profile\StrukturOrganisasiController@index');
+    Route::post('/admin/tambah-struktur-organisasi', 'Profile\StrukturOrganisasiController@store');
+    Route::post('/admin/edit-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@update');
+    Route::get('/admin/delete-struktur-organisasi/{id}', 'Profile\StrukturOrganisasiController@destroy');
+    Route::get('/load/table-so','Profile\StrukturOrganisasiController@LoadTableSO');
+    Route::get('/load/data-so','Profile\StrukturOrganisasiController@LoadDataSO');
+    Route::get('/get-data-so/{id}','Profile\StrukturOrganisasiController@get');
 
     Route::get('/visimisi', 'PageController@VisiMisi');
 

@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Social Media</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -23,11 +22,11 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <button type="button" class="btn btn-primary ml-2" id="btn-modal-sosmed">+ Add Sosmed</a>
+            <button type="button" class="btn btn-primary ml-2" id="btn-modal-sosmed">+ Add Sosmed</button>
         </div>
 
         <div class="card-body">
-            <div id="datatable-sosmed"></div>
+            <div id="datatable-weblink"></div>
         </div>
     </div>
 </div>
@@ -47,7 +46,6 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" id="FormAddSosmed" enctype="multipart/form-data" method="post">
                     @csrf
 
@@ -57,9 +55,7 @@
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="link_Web" name="link" required>
 
-                    <label for="jenis" class="mt-2">Jenis</label>
-                    <input type="text" class="form-control" id="jenis" name="menu" required>
-
+                    <input type="hidden" class="form-control" id="jenis" name="menu" value="sosmed">
 
             </div>
             <div class="modal-footer">
@@ -100,9 +96,6 @@
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="edit_link_web" name="link" required>
 
-                    <label for="jenis" class="mt-2">Jenis</label>
-                    <input type="text" class="form-control" id="edit_jenis" name="menu" required>
-
 
 
             </div>
@@ -142,5 +135,5 @@
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/home/Weblink.js') }}"></script>
+      <script src="{{ asset('js/MiniNavbar/Sosmed.js') }}"></script>
 @endsection

@@ -17,7 +17,7 @@ class CreateBeritaTable extends Migration
           $table->id();
           $table->string('judul');
           $table->text('gambar');
-          $table->text('deskripsi');
+          $table->mediumText('deskripsi');
 
           $table->bigInteger('id_penulis')->unsigned();
           $table->foreign('id_penulis')

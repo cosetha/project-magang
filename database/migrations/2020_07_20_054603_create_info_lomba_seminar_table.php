@@ -16,8 +16,7 @@ class CreateInfoLombaSeminarTable extends Migration
         Schema::create('info_lomba_seminar', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('judul');
-            $table->text('gambar');
-            $table->text('deskripsi');
+            $table->mediumText('deskripsi');
             $table->integer('lokasi')->length(5)->unsigned();
             $table->date('tanggal');
             $table->timestamps();

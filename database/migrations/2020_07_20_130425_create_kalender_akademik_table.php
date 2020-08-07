@@ -17,7 +17,7 @@ class CreateKalenderAkademikTable extends Migration
             $table->id();
             $table->string('judul');
             $table->unsignedBigInteger('kode_semester')->unsigned();
-            $table->text('deskripsi');
+            $table->mediumText('deskripsi');
             $table->foreign('kode_semester')
             ->references('id')
             ->on('semester')

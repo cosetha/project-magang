@@ -18,7 +18,7 @@ class CreatePengabdiansTable extends Migration
             $table->string('judul');
             $table->text('gambar');
             $table->integer('tahun')->length(5)->unsigned();
-            $table->text('deskripsi');
+            $table->mediumText('deskripsi');
             $table->timestamps();
         });
     }

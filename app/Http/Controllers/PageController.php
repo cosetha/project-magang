@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use \App\User;
 
 use Illuminate\Http\Request;
 
@@ -130,10 +131,6 @@ class PageController extends Controller
       return view('admin/Profile/sejarahAdmin');
     }
 
-    public function Struktur(){
-      return view('admin/Profile/strukturorganisasiAdmin');
-    }
-
     public function VisiMisi(){
       return view('admin/Profile/visimisiAdmin');
     }
@@ -152,6 +149,12 @@ class PageController extends Controller
 
 
     public function logout(Request $request){
+        $id = auth()->user()->id;
+
+        $user = User::find($id);
+        $user->remember_token = "";
+        $user->save();
+
         $request->session()->flush();
         return redirect('/');
     }
