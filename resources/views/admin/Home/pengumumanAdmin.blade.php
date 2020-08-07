@@ -53,7 +53,7 @@
             <div class="modal-body">
 
 
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-pengumuman">
             @csrf
 
                     <label for="pengumuman">Pengumuman</label>

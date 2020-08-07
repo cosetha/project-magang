@@ -110,10 +110,23 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Home
     Route::get('/headline', 'PageController@Headline');
 
-    Route::get('/berita', 'PageController@Berita');
+    Route::prefix('berita')->group(function () {
+      Route::get('/', 'PageController@Berita');
+      Route::post('/', 'Home\BeritaController@store');
+      Route::get('datatable', 'Home\BeritaController@loadTable');
+      Route::get('data', 'Home\BeritaController@index');
+      Route::get('edit/{id}', 'Home\BeritaController@edit');
+      Route::get('delete/{id}', 'Home\BeritaController@destroy');
+      Route::post('update/{id}', 'Home\BeritaController@update');
+    });
 
-    Route::get('/agenda', 'PageController@Agenda');
-
+    Route::prefix('agenda')->group(function () {
+      Route::get('/', 'PageController@Agenda');
+      Route::post('/', 'Home\AgendaController@store');
+      Route::get('datatable', 'Home\AgendaController@loadTable');
+      Route::get('data', 'Home\AgendaController@index');
+      Route::get('edit/{id}', 'Home\AgendaController@edit');
+    });
 
     Route::get('/kerjasama', 'PageController@Kerjasama');
 
