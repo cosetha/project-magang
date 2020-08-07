@@ -33,7 +33,7 @@ $(document).ready(function() {
 		});
 	}
 
-	//TAMBAH JAWABAN
+	//TAMBAH JABATAN
 	$('body').on('submit', '#form-tambah-jabatan', function(e) {
 		e.preventDefault();
 		$('.btn-close').css('display', 'none');
