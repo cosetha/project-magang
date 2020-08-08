@@ -147,6 +147,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('datatable', 'Home\AgendaController@loadTable');
       Route::get('data', 'Home\AgendaController@index');
       Route::get('edit/{id}', 'Home\AgendaController@edit');
+      Route::get('delete/{id}', 'Home\AgendaController@destroy');
       Route::post('update/{id}', 'Home\AgendaController@update');
     });
 

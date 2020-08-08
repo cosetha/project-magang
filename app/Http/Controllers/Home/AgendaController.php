@@ -209,7 +209,15 @@ class AgendaController
      */
     public function destroy($id)
     {
-        //
+      $gambarPath = Agenda::find($id)->value('gambar');
+      File::delete($gambarPath);
+        $agenda = Agenda::find($id);
+        $agenda->delete();
+        if($agenda) {
+          return response()->json([
+            'status' => 'deleted'
+          ]);
+        }
     }
 
     function checkGambar($file)

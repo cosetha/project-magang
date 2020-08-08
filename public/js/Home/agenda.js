@@ -216,7 +216,37 @@ $(document).ready(function() {
   //delete agenda
   $('body').on('click', '.btn-delete-agenda', function(e) {
     e.preventDefault();
-    $('#deleteAgendaModal').modal('show');
+    var id = $(this).data('id');
+    var judul = $(this).data('nama');
+    Swal.fire({
+      title: 'Anda yakin ingin menghapus ' + judul + '?',
+      text: "Anda tidak dapat membatalkan aksi ini!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          type: 'GET',
+          url: 'agenda/delete/' + id,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            if(data.status == 'deleted') {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+              )
+              loadDataAgenda();
+            }
+          }
+        });
+
+      }
+    })
+
   });
 
 });
