@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MasterData;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Bidang_keahlian;
@@ -37,13 +38,17 @@ class BidangKeahlianController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('gambar')){
-        $imgpath = request()->file('gambar')->store('image', 'public');
-        $bk = new Bidang_keahlian;
-        $bk->nama_bk = $request->nama;
-        $bk->deskripsi = $request->deskripsi;
-        $bk->akreditasi=$request->akreditasi;
-        $bk->gambar='/storage/' . $imgpath;
-        $bk->save();
+            $directory = 'assets/upload/thumbnail';
+            $file = request()->file('gambar');
+            $nama = time().$file->getClientOriginalName();
+            $file->name = $nama;
+            $file->move($directory, $file->name);
+            $bk = new Bidang_keahlian;
+            $bk->nama_bk = $request->nama;
+            $bk->deskripsi = $request->deskripsi;
+            $bk->akreditasi= $request->akreditasi;
+            $bk->gambar= $directory."/".$nama;
+            $bk->save();
 
         return response()->json([
             'message' => 'success'
@@ -95,14 +100,26 @@ class BidangKeahlianController extends Controller
     {
 
         if($request->hasFile('gambar')){
+
+            $directory = 'assets/upload/thumbnail';
+            $file = request()->file('gambar');
+            $nama_file = time().$file->getClientOriginalName();
+            $file->name = $nama_file;
+            $file->move($directory, $file->name);
+
+
             $bk = Bidang_keahlian::find($id);
-            $path = str_replace('/storage', '', $bk->gambar);;
-            Storage::delete('/public'.$path);
+            try {
+                unlink($bk->gambar);
+            } catch (\Throwable $th) {
+                echo($th);
+            }
+
             $bk->nama_bk = $request->nama;
             $bk->deskripsi = $request->deskripsi;
             $bk->akreditasi=$request->akreditasi;
-            $imgpath = request()->file('gambar')->store('image', 'public');
-            $bk->gambar='/storage/' . $imgpath;
+
+            $bk->gambar= $directory."/".$nama_file;
             $bk->save();
 
             return response()->json([
@@ -129,8 +146,11 @@ class BidangKeahlianController extends Controller
     public function destroy($id)
     {
         $bk = Bidang_keahlian::find($id);
-        $path = str_replace('/storage', '', $bk->gambar);;
-        Storage::delete('/public'.$path);
+        try {
+            unlink($bk->gambar);
+        } catch (\Throwable $th) {
+            echo($th);
+        }
         $bk->delete();
 
         return response()->json([
@@ -161,12 +181,13 @@ class BidangKeahlianController extends Controller
 
     public function storeImg()
     {
-    //     $directory = 'assets/upload';
-    //     $file = request()->file('file');
-    //     $file->move($directory, $file->getClientOriginalName());
-    //     return response()->json(['location' => $directory."/".$file->getClientOriginalName()]);
-    // }
-    $imgpath = request()->file('file')->store('image', 'public');
-    return response()->json(['location' => '/storage/' . $imgpath]);
+        $directory = 'assets/upload/images';
+        $file = request()->file('file');
+        $old = $file->getClientOriginalName();
+        $nama = time().$file->getClientOriginalName();
+        $file->name = $nama;
+        $file->move($directory, $file->name);
+        return response()->json(['location' => $directory."/".$nama,'alt'=>$old]);
+
     }
 }

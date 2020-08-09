@@ -27,8 +27,10 @@
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#BKModal" data-backdrop="static" data-keyboard="false">+
                 Add Bidang Keahlian</a>
             </div>
+            <div class="table-responsive">
             <div class="card-body">
                 <div id="datatable-bk"></div>
+            </div>
             </div>
         </div>
     </div>
@@ -57,13 +59,13 @@
 
                         <label for="Akreditasi" class="mt-2">Akreditasi</label>
                         <select class="form-control" id="AkreditasiTambah" name="tambahAkreditasi" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="0">Tidak terakreditasi</option>
                         </select>
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="edit-id" value="">
                         <div class="form-group mt-3">
                             <label for="file" class="mt-2">Gambar</label>
                             <input input id="file-upload-tambah" type="file" name="gambar" accept="image/*" aria-describedby="inputGroupFileAddon01" required>
@@ -91,7 +93,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Bidang Keahlian</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close close-modal-bk" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -100,7 +102,7 @@
 
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-bk">
                         @csrf
-
+                        <input type="hidden" name="edit-id" value="">
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
                         <input type="text" class="form-control" id="nama-edit" name="nama-edit">
 
@@ -108,12 +110,11 @@
                         <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
 
                         <label for="AkreditasiEdit" class="mt-2">Akreditasi</label>
-                        <select class="form-control" id="AkreditasiEdit" name="editAkreditasi">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                        <select class="form-control selector" id="AkreditasiEdit" name="editAkreditasi">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="0">Tidak terakreditasi</option>
                         </select>
 
                         <div class="form-group mt-3">
@@ -122,7 +123,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary btn-close close-modal-bk" type="button" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="btn-save-bk">Save</button>
                 <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

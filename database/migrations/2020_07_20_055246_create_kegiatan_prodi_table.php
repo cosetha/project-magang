@@ -16,7 +16,7 @@ class CreateKegiatanProdiTable extends Migration
         Schema::create('kegiatan_prodi', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('judul');
-            $table->text('gambar');
+            $table->mediumText('gambar');
             $table->integer('lokasi')->length(5)->unsigned();
             $table->date('tanggal');
             $table->timestamps();

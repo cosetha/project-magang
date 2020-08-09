@@ -31,39 +31,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                                <th>Nama Agenda</th>
-                                <th>Deskripsi</th>
-                                <th>Jam Agenda</th>
-                                <th>Gambar</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Selesai</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td align="center">
-                                    <a href="#" data-toggle="modal" data-target="#editAgendaModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                        <i class="fas fa-pen-square"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#deleteAgendaModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="datatable-agenda"></div>
                 </div>
             </div>
         </div>
@@ -74,7 +42,7 @@
 
     <!-- Add Agenda Modal-->
     <div class="modal fade" id="AgendaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Agenda</h5>
@@ -85,54 +53,62 @@
                 <div class="modal-body">
 
 
-                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-agenda">
                         @csrf
+                        <div class="alert alert-danger" id="tampil-error" style="display:none">
 
+                        </div>
 
                         <label for="namaagenda">Nama agenda</label>
-                        <input type="text" class="form-control" id="" name="">
+                        <input type="text" class="form-control" id="judul-agenda" name="judul-agenda">
 
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="" name=""> </textarea>
+                        <textarea type="text" class="form-control" id="deskripsi-agenda" name=""> </textarea>
 
                         <div class="form-group row mt-2" >
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="jamaagenda">Jam Mulai</label>
-                                <input type="time" class="form-control" id="" name="">
+                                <input type="time" class="form-control" id="" name="jam-mulai">
                             </div>
                             <div class="col-sm-6">
                                 <label for="jamaagenda">Jam Selesai</label>
-                                <input type="time" class="form-control" id="" name="">
+                                <input type="time" class="form-control" id="" name="jam-selesai">
                             </div>
                         </div>
 
                         <label for="tanggalmulai" class="mt-2">Tanggal Mulai</label>
-                        <input type="date" class="form-control" id="" name="">
+                        <input type="date" class="form-control" id="" name="tanggal-mulai">
 
 
                         <label for="tanggalselesai" class="mt-2">Tanggal Selesai</label>
-                        <input type="date" class="form-control" id="" name="">
+                        <input type="date" class="form-control" id="" name="tanggal-selesai">
+
+                        <label for="lokasi" class="mt-2">Lokasi</label>
+                        <input type="text" class="form-control" id="" name="lokasi">
 
                         <div class="form-group mt-3">
                             <label for="file">Gambar</label>
                             <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                         </div>
 
-
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <input class="btn btn-primary" type="submit" id="btn-tambah-agenda" value="Submit">
+                        </div>
                     </form>
 
                 </div>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Submit</a>
-                </div>
+                    <button class="btn btn-primary" type="button" id="btn-tambah-agenda">Submit</button>
+                </div> -->
             </div>
         </div>
     </div>
 
     <!-- Edit Agenda Modal-->
     <div class="modal fade" id="editAgendaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit agenda</h5>
@@ -143,43 +119,52 @@
                 <div class="modal-body">
 
 
-                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-agenda">
                         @csrf
 
                         <label for="namaagenda">Nama agenda</label>
-                        <input type="text" class="form-control" id="" name="">
+                        <input type="text" class="form-control" id="judul-agenda-edit" name="judul_agenda_edit">
 
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <input type="text" class="form-control" id="" name="">
+                        <textarea type="text" class="form-control" id="deskripsi-agenda-edit" name="deskripsi_agenda_edit"></textarea>
 
                         <div class="form-group row mt-2" >
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="jamaagenda">Jam Mulai</label>
-                                <input type="time" class="form-control" id="" name="">
+                                <input type="time" class="form-control" id="jam-mulai-edit" name="jam_mulai_edit">
                             </div>
                             <div class="col-sm-6">
                                 <label for="jamaagenda">Jam Selesai</label>
-                                <input type="time" class="form-control" id="" name="">
+                                <input type="time" class="form-control" id="jam_selesai_edit" name="jam_selesai_edit">
                             </div>
                         </div>
 
                         <label for="tanggalmulai" class="mt-2">Tanggal Mulai</label>
-                        <input type="date" class="form-control" id="" name="">
+                        <input type="date" class="form-control" id="tanggal_mulai_edit" name="tanggal_mulai_edit">
 
 
                         <label for="tanggalselesai" class="mt-2">Tanggal Selesai</label>
-                        <input type="date" class="form-control" id="" name="">
+                        <input type="date" class="form-control" id="tanggal_selesai_edit" name="tanggal_selesai_edit">
+
+                        <label for="lokasi" class="mt-2">Lokasi</label>
+                        <input type="text" class="form-control" id="lokasi-edit" name="lokasi-edit">
+
+                        <div class="form-group mt-3">
+                          <img id="image-edit-agenda" src="" alt="">
+                        </div>
 
                         <div class="form-group mt-3">
                             <label for="file">Gambar</label>
-                            <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                            <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-primary" name="" value="Submit">
+                            <input type="hidden" name="edit-id" value="">
                         </div>
                     </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Submit</a>
                 </div>
             </div>
         </div>
@@ -204,4 +189,7 @@
         </div>
     </div>
 
+    @endsection
+    @section('js-ajax')
+      <script src="{{ asset('js/home/agenda.js') }}"></script>
     @endsection

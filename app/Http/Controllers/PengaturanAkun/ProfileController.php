@@ -1,44 +1,66 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PengaturanAkun;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use \App\User;
+use Validator;
 use File;
 use Hash;
 
 class ProfileController extends Controller
 {
+
+    public function EditProfile(){
+        return view('admin/AdminProfile/editprofileAdmin');
+      }
+
+    public function EditPassword(){
+        return view('admin/AdminProfile/editpasswordAdmin');
+    }
+
     public function updatePassword(Request $request, $id)
     {
-      if(Hash::check($request->password_lama, auth()->user()->password)) {
-        $password = $request->password;
-        $passwordConfirm = $request->password_confirmation;
-        if($password == $passwordConfirm){
-          $user = User::find($id);
-          $user->password = bcrypt($passwordConfirm);
-          $user->save();
-
-          if($user) {
-            return response()->json([
-              'status' => '1'
-            ]);
-          } else {
-            return response()->json([
-              'status' => '0'
-            ]);
-          }
-
-        } else {
-          return response()->json([
-            'status' => 'invalid_password'
+      $validator = Validator::make($request->all(),[
+            'password' => 'required|string|min:8',
+            'password_confirmation' => 'required|string|min:8'
           ]);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+        }else{
+            if(Hash::check($request->password_lama, auth()->user()->password)) {
+              $password = $request->password;
+              $passwordConfirm = $request->password_confirmation;
+              if($password == $passwordConfirm){
+                $user = User::find($id);
+                $user->password = bcrypt($passwordConfirm);
+                $user->save();
+
+                if($user) {
+                  return response()->json([
+                    'status' => '1'
+                  ]);
+                } else {
+                  return response()->json([
+                    'status' => '0'
+                  ]);
+                }
+
+              } else {
+                return response()->json([
+                  'status' => 'invalid_password'
+                ]);
+              }
+            } else {
+              return response()->json([
+                'status' => 'salah'
+              ]);
+            }
         }
-      } else {
-        return response()->json([
-          'status' => 'salah'
-        ]);
-      }
 
 
     }

@@ -99,7 +99,7 @@
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Mini Navbar</h6>
                                 <a class="collapse-item" href="{{ url('sosmed') }}">Social Media</a>
-                                <a class="collapse-item" href="{{ url('menu') }}">Quick Menu</a>
+                                <a class="collapse-item" href="{{ url('quick-menu') }}">Quick Menu</a>
                             </div>
                         </div>
                     </li>
@@ -420,6 +420,11 @@
                     <script src="js/demo/chart-pie-demo.js"></script>
                     <script src="js/demo/datatables-demo.js"></script>
                     <script src="{{ asset('js/script.js') }}"></script>
+
+
+                    <!-- script ajax -->
+                    @yield('js-ajax')
+
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>

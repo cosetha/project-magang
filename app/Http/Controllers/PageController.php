@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use \App\User;
 
 use Illuminate\Http\Request;
 
@@ -20,14 +21,6 @@ class PageController extends Controller
 
     public function IndexJabatan(){
         return view('admin.MasterData.jabatanAdmin');
-    }
-
-    public function EditProfile(){
-      return view('admin/AdminProfile/editprofileAdmin');
-    }
-
-    public function EditPassword(){
-      return view('admin/AdminProfile/editpasswordAdmin');
     }
 
     public function Mahasiswa(){
@@ -122,10 +115,6 @@ class PageController extends Controller
       return view('admin/Kemahasiswaan/organisasiAdmin');
     }
 
-    public function Sosmed(){
-      return view('admin/MiniNavbar/socialmediaAdmin');
-    }
-
     public function Menu(){
       return view('admin/MiniNavbar/quickmenuAdmin');
     }
@@ -140,10 +129,6 @@ class PageController extends Controller
 
     public function Sejarah(){
       return view('admin/Profile/sejarahAdmin');
-    }
-
-    public function Struktur(){
-      return view('admin/Profile/strukturorganisasiAdmin');
     }
 
     public function VisiMisi(){
@@ -164,6 +149,12 @@ class PageController extends Controller
 
 
     public function logout(Request $request){
+        $id = auth()->user()->id;
+
+        $user = User::find($id);
+        $user->remember_token = "";
+        $user->save();
+
         $request->session()->flush();
         return redirect('/');
     }
