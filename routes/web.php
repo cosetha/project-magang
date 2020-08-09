@@ -131,10 +131,25 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/edit-headline/{id}','Home\HeadLineController@edit');
     Route::POST('/admin/konfirmasi-edit-headline/{id}','Home\HeadLineController@update');
 
-    Route::get('/berita', 'PageController@Berita');
+    Route::prefix('berita')->group(function () {
+      Route::get('/', 'PageController@Berita');
+      Route::post('/', 'Home\BeritaController@store');
+      Route::get('datatable', 'Home\BeritaController@loadTable');
+      Route::get('data', 'Home\BeritaController@index');
+      Route::get('edit/{id}', 'Home\BeritaController@edit');
+      Route::get('delete/{id}', 'Home\BeritaController@destroy');
+      Route::post('update/{id}', 'Home\BeritaController@update');
+    });
 
-    Route::get('/agenda', 'PageController@Agenda');
-
+    Route::prefix('agenda')->group(function () {
+      Route::get('/', 'PageController@Agenda');
+      Route::post('/', 'Home\AgendaController@store');
+      Route::get('datatable', 'Home\AgendaController@loadTable');
+      Route::get('data', 'Home\AgendaController@index');
+      Route::get('edit/{id}', 'Home\AgendaController@edit');
+      Route::get('delete/{id}', 'Home\AgendaController@destroy');
+      Route::post('update/{id}', 'Home\AgendaController@update');
+    });
 
     Route::get('/kerjasama', 'Home\KerjaSamaController@index');
     Route::post('/admin/tambah-kerjasama','Home\KerjaSamaController@store');
