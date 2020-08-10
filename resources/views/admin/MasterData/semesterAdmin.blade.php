@@ -24,7 +24,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#TambahSemesterModal">+
+            <button class="btn btn-primary ml-2" id="OpenModalSMT">+
                 Add Semester</a>
             </div>
             <div class="card-body">
@@ -53,7 +53,7 @@
                     @csrf
 
                     <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-tambah" name="semester-tambah">
+                    <input type="text" class="form-control" id="semester-tambah" name="semester-tambah" required>
 
                     <!-- Rounded switch -->
                     <label for="judulSemester" class="mt-3">Semester</label>
@@ -91,13 +91,13 @@
                     @csrf
 
                     <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-edit" name="semester-edit">
+                    <input type="text" class="form-control" id="semester-edit" name="semester-edit" required>
 
                     <!-- Rounded switch -->
                     <label for="judulSemester" class="mt-3">Semester</label>
                     <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status-edit" name="status-edit" style="padding: 7px 8px;" class="form-control">
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
-                    <input type="hidden" name="id-edit" value="">                        
+                    <input type="hidden" name="id-edit" value="">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
