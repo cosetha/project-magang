@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use \App\User;
+use App\User;
 
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function Dashboard(){
-        return view('admin.dashboardAdmin');
+      $admin = User::count();
+      return view('admin.dashboardAdmin', compact('admin'));
     }
 
     public function SosialMedia(){

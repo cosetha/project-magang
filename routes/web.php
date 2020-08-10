@@ -18,11 +18,6 @@ use Illuminate\Support\Facades\Route;
 //ROUTER GUEST
 Route::group(['middleware' => 'guest'],function(){
 
-Route::get('/forget', function () {
-    return view('admin/forgetpassword');
-});
-
-
     Route::get('/','PageController@LoginForm');
 
 });
@@ -53,6 +48,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/edit-jabatan/{id}','MasterData\JabatanController@update');
 
     Route::get('/semester','MasterData\SemesterController@index');
+    Route::get('/non-aktif/semua-semester','MasterData\SemesterController@NonaktifkanSemester');
     Route::get('/load/table-semester','MasterData\SemesterController@LoadTableSemester');
     Route::get('/load/data-semester','MasterData\SemesterController@LoadDataSemester');
     Route::get('/admin/delete-semester/{id}','MasterData\SemesterController@destroy');

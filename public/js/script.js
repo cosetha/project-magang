@@ -141,6 +141,8 @@ $(document).ready(function() {
     });
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
+	//------------------------------------------FITUR SEMESTER------------------------------------------
+
 	LoadTableSemester();
 
 	function LoadTableSemester() {
@@ -177,6 +179,11 @@ $(document).ready(function() {
 		});
 	}
 
+    $('body').on("click","#OpenModalSMT", function(){
+        $("#TambahSemesterModal").modal("show")
+        $('#btn-submit-semester').css('display', '');
+    })
+
 	//TAMBAH SMT
 	$('body').on('submit', '#form-tambah-semester', function(e) {
 		e.preventDefault();
@@ -185,18 +192,22 @@ $(document).ready(function() {
 		$('#btn-submit-semester').css('display', 'none');
 		var name = $('input[name=semester-tambah]').val();
 		var token = $('input[name=token]').val();
-		let status = 'ada';
 		if ($('#status').is(':checked')) {
-			status = 'aktif';
+            var status = 'aktif';
+            $.ajax({
+                type: "get",
+                url: "/non-aktif/semua-semester"
+            })
 		} else {
-			status = 'nonaktif';
+			var status = 'nonaktif';
 		}
-		console.log(status);
+		// console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
 			data: { _token: token, semester: name, status: status },
 			success: function(response) {
+                // console.log(response.data)
 				$('.modal-title-semester').html();
 				$('#TambahSemesterModal').modal('hide');
 				$('#form-tambah-semester').trigger('reset');
@@ -218,6 +229,7 @@ $(document).ready(function() {
 		});
 	});
 
+// DELETE SEMESTER
 	$('body').on('click', '.btn-delete-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -247,6 +259,7 @@ $(document).ready(function() {
 		});
 	});
 
+// EDIT SEMESTER
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -258,7 +271,7 @@ $(document).ready(function() {
 		$('#btn-save-semester').css('display', '');
 		$('#semester-edit').val(semester);
 		if (status == 'aktif') {
-			$('#status-edit').bootstrapToggle('on');
+            $('#status-edit').bootstrapToggle('on');
 		} else {
 			$('#status-edit').bootstrapToggle('off');
 		}
@@ -273,8 +286,12 @@ $(document).ready(function() {
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
 		let status = 'ada';
-		if ($('#status').is(':checked')) {
-			status = 'aktif';
+		if ($('#status-edit').is(':checked')) {
+            status = 'aktif';
+            $.ajax({
+                type: "get",
+                url: "/non-aktif/semua-semester"
+            })
 		} else {
 			status = 'nonaktif';
 		}
@@ -283,6 +300,7 @@ $(document).ready(function() {
 			url: '/admin/edit-semester/' + id,
 			data: { _token: token, semester: name, status: status },
 			success: function(response) {
+                // console.log(response.data)
 				$('#editSemesterModal').modal('hide');
 				$('#form-edit-semester').trigger('reset');
 				$('.btn-close-edit').css('display', '');
@@ -303,6 +321,10 @@ $(document).ready(function() {
 			}
 		});
 	});
+//------------------------------------------END FITUR SEMESTER------------------------------------------
+
+
+//------------------------------------------FITUR BIDANG KEAHLIAN------------------------------------------
 	LoadTableBK();
 
 	function LoadTableBK() {
@@ -326,13 +348,7 @@ $(document).ready(function() {
 					},
 					{
 						data: 'akreditasi',
-						render: function(data, type, row) {
-							if (data == 0) {
-								return 'Tidak terakreditasi';
-							} else {
-								return data;
-							}
-						}
+						name: 'akreditasi'
 					},
 					{
 						data: 'gambar',
@@ -350,7 +366,7 @@ $(document).ready(function() {
 			});
 		});
 	}
-	//TAMBAH SMT
+	//TAMBAH BIDANG KEAHLIAN
 	$('body').on('submit', '#form-tambah-bk', function(e) {
 		e.preventDefault();
 		$('.btn-close').css('display', 'none');
