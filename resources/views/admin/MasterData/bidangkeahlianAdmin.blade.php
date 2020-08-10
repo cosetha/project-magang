@@ -62,7 +62,7 @@
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
-                            <option value="0">Tidak terakreditasi</option>
+                            <option value="Tidak Terakreditasi">Tidak Terakreditasi</option>
                         </select>
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="edit-id" value="">
@@ -114,7 +114,7 @@
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
-                            <option value="0">Tidak terakreditasi</option>
+                            <option value="Tidak Terakreditasi">Tidak Terakreditasi</option>
                         </select>
 
                         <div class="form-group mt-3">
