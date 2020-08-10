@@ -24,7 +24,7 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary btn-modal-faq ml-2" href="#" data-toggle="modal" data-target="#TambahFaqModal">+
-                Add Jabatan</a>
+                Add FAQ</a>
         </div>
 
         <div class="card-body">

@@ -141,6 +141,8 @@ $(document).ready(function() {
     });
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
+	//------------------------------------------FITUR SEMESTER------------------------------------------
+
 	LoadTableSemester();
 
 	function LoadTableSemester() {
@@ -218,6 +220,7 @@ $(document).ready(function() {
 		});
 	});
 
+// DELETE SEMESTER
 	$('body').on('click', '.btn-delete-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -247,6 +250,7 @@ $(document).ready(function() {
 		});
 	});
 
+// EDIT SEMESTER
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -303,6 +307,10 @@ $(document).ready(function() {
 			}
 		});
 	});
+//------------------------------------------END FITUR SEMESTER------------------------------------------
+
+
+//------------------------------------------FITUR BIDANG KEAHLIAN------------------------------------------
 	LoadTableBK();
 
 	function LoadTableBK() {
@@ -326,13 +334,7 @@ $(document).ready(function() {
 					},
 					{
 						data: 'akreditasi',
-						render: function(data, type, row) {
-							if (data == 0) {
-								return 'Tidak terakreditasi';
-							} else {
-								return data;
-							}
-						}
+						name: 'akreditasi'
 					},
 					{
 						data: 'gambar',
@@ -350,7 +352,7 @@ $(document).ready(function() {
 			});
 		});
 	}
-	//TAMBAH SMT
+	//TAMBAH BIDANG KEAHLIAN
 	$('body').on('submit', '#form-tambah-bk', function(e) {
 		e.preventDefault();
 		$('.btn-close').css('display', 'none');
