@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>@yield('title')</title>
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/login-image.png') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/Login-image.png') }}">
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
