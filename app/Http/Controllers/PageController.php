@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use \App\User;
 
 use Illuminate\Http\Request;
 
@@ -148,6 +149,12 @@ class PageController extends Controller
 
 
     public function logout(Request $request){
+        $id = auth()->user()->id;
+
+        $user = User::find($id);
+        $user->remember_token = "";
+        $user->save();
+
         $request->session()->flush();
         return redirect('/');
     }

@@ -570,43 +570,52 @@ $(document).ready(function() {
 				},
 				dataType: 'json',
 				success: function(data) {
-					if (data.status == '1') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'success',
-							title: 'Sukses',
-							text: 'Sukses ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == '0') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Gagal ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == 'salah') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password anda salah!',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password harus sama!',
-							timer: 1200,
-							showConfirmButton: false
-						});
-					}
+                    if(data.error){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Password minimal 8 karakter!',
+                        });
+                    }else{
+
+                        if (data.status == '1') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Sukses ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == '0') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Gagal ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == 'salah') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password anda salah!',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password harus sama!',
+                                timer: 1200,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
 				}
 			});
 		}

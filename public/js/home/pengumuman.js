@@ -33,6 +33,7 @@ $(document).ready(function() {
   					timer: 1200,
   					showConfirmButton: false
   				});
+          $('#form-tambah-pengumuman').trigger('reset');
           $('#PengumumanModal .close').click();
           loadDataPengumuman();
         } else if(data.status == 'no_insert') {
@@ -163,6 +164,8 @@ $(document).ready(function() {
     });
 
     //end edit pengumuman
+
+    //hapus pengumuman
     $('body').on('click', '.btn-delete-pengumuman', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
