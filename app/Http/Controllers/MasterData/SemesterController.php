@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MasterData;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Semester;
 use DataTables;
 class SemesterController extends Controller
@@ -42,7 +43,8 @@ class SemesterController extends Controller
         $semester->save();
 
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
+            'data' => $request->all()
         ]);
     }
 
@@ -83,7 +85,8 @@ class SemesterController extends Controller
         $semester->save();
 
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
+            'data' => $request->all()
         ]);
     }
 
@@ -100,6 +103,14 @@ class SemesterController extends Controller
 
         return response()->json([
             "message" => "success"
+        ]);
+    }
+
+    public function NonaktifkanSemester(){
+        DB::table('semester')->where('status','=','aktif')->update(array('status' => 'nonaktif'));
+
+        return response([
+            'message' => 'nonaktifkan semua semester sukses'
         ]);
     }
 
