@@ -98,25 +98,27 @@ $(document).ready(function() {
 
   //edit fasilitas
   $('body').on('click', '.btn-edit-fasilitas', function(e) {
-		e.preventDefault();
+        e.preventDefault();
     var id = $(this).data('id');
+    console.log(id)
     $.ajax({
 			type: 'GET',
 			url: 'fasilitas/edit/' + id,
 			contentType: false,
 			processData: false,
 			success: function(data) {
-				$('#editFasilitasModal').modal('show');
-        $('#edit-nama_fasilitas').val(data.data.nama_fasilitas);
-        tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
-        $('input[name=edit-id]').val(id);
-        $('#file-upload-edit').val('');
+			    $('#editFasilitasModal').modal('show');
+                $('#edit-nama_fasilitas').val(data.data.nama_fasilitas);
+                tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
+                $('input[name=edit-id]').val(id);
+                $('#file-upload-edit').val('');
 			}
 		});
   });
 
 
-    $('body').on('submit', '#form-edit-fasilitas', function(e) {
+    $('body').on('submit','#form-edit-fasilitas', function(e) {
+        console.log("click")
       e.preventDefault();
       var formData = new FormData();
       var nama_fasilitas = $('input[name=edit-nama_fasilitas]').val();
@@ -167,6 +169,9 @@ $(document).ready(function() {
             });
           }
 
+        },
+        error: function(err){
+            console.log(err)
         }
       });
 
@@ -178,7 +183,9 @@ $(document).ready(function() {
     $('body').on('click', '.btn-delete-fasilitas', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
-      var nama_fasilitas = $(this).data('nama_fasilitas');
+      var nama_fasilitas = $(this).attr('data-nama')
+      console.log(nama_fasilitas)
+      console.log(id)
       Swal.fire({
         title: 'Anda yakin ingin menghapus ' + nama_fasilitas + '?',
         text: "Anda tidak dapat membatalkan aksi ini!",

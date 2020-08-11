@@ -91,8 +91,9 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-fasilitas">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-fasilitas">
                 <div class="modal-body">
+
                     @csrf
 
                     <label for="nama_fasilitas">Nama Fasilitas</label>
@@ -113,7 +114,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <button class="btn btn-primary" id="btn-edit-fasilitas" type="submit">Submit</button>
                 </div>
-                </form>
+            </form>
         </div>
     </div>
 </div>
