@@ -118,46 +118,58 @@ class HeadLineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            if($request->hasFile('gambar')){
-
-                $directory = 'assets/upload/thumbnail';
-                $file = request()->file('gambar');
-                $nama_file = time().$file->getClientOriginalName();
-                $file->name = $nama_file;
-                $file->move($directory, $file->name);
+        $validator = Validator::make($request->all(),[
+            'judul' => 'required|string|min:1|max:255',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            "caption" => 'required|string']);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+         }else{
+            try {
+                if($request->hasFile('gambar')){
     
-    
-                $headline = Headline::find($id);
-                try {
-                    unlink($headline->gambar);
-                } catch (\Throwable $th) {
-                    echo($th);
+                    $directory = 'assets/upload/thumbnail';
+                    $file = request()->file('gambar');
+                    $nama_file = time().$file->getClientOriginalName();
+                    $file->name = $nama_file;
+                    $file->move($directory, $file->name);
+        
+        
+                    $headline = Headline::find($id);
+                    try {
+                        unlink($headline->gambar);
+                    } catch (\Throwable $th) {
+                        echo($th);
+                    }
+                    
+        
+                    $headline->judul = $request->judul;
+                    $headline->caption = $request->caption;
+                    $headline->gambar= $directory."/".$nama_file;
+                    $headline->save();
+        
+                    return response()->json([
+                        'message' => 'Success'
+                    ]);
+                }else{
+                    $headline = Headline::find($id);
+                    $headline->judul = $request->judul;
+                    $headline->caption = $request->caption;
+                    $headline->save();
+                    return response()->json([
+                        'message' => 'Success'
+                    ]);
                 }
-                
-    
-                $headline->judul = $request->judul;
-                $headline->caption = $request->caption;
-                $headline->gambar= $directory."/".$nama_file;
-                $headline->save();
-    
+            } catch (\Exception $e) {
                 return response()->json([
-                    'message' => 'Success'
-                ]);
-            }else{
-                $headline = Headline::find($id);
-                $headline->judul = $request->judul;
-                $headline->caption = $request->caption;
-                $headline->save();
-                return response()->json([
-                    'message' => 'Success'
+                    'error' => $e
                 ]);
             }
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => $e
-            ]);
-        }
+           
+         }
        
        
     }

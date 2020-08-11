@@ -1,4 +1,4 @@
-<table class="table" id="tbl-kerjasama">
+<table class="table" id="tbl-kerjasama" width="100%">
     <thead>
         <tr>
             <th scope="col">No</th>

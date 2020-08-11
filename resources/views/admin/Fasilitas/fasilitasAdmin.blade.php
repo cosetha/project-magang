@@ -1,4 +1,4 @@
-@extends('layouts/adminLayout')
+@extends('layouts.adminLayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -31,33 +31,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                                <th>Nama Fasilitas</th>
-                                <th>Deskripsi</th>
-                                <th>Gambar</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td align="center">
-                                    <a href="#" data-toggle="modal" data-target="#editFasilitasModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                        <i class="fas fa-pen-square"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#deleteFasilitasModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="datatable-fasilitas"></div>
                 </div>
             </div>
         </div>
@@ -66,7 +40,7 @@
 <!-- End of Main Content -->
 
 
-<!-- Add Sosmed Modal-->
+<!-- Add Fasilitas Modal-->
 <div class="modal fade" id="FasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -79,19 +53,19 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-fasilitas">
                     @csrf
 
-                    <label for="namaFasilitas">Nama Fasilitas</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="nama_fasilitas">Nama Fasilitas</label>
+                    <input type="text" class="form-control" id="nama_fasilitas" name="nama_fasilitas">
 
 
-                    <label for="Deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
 
                     <div class="form-group mt-3">
-                        <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/png" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <label for="gambar">Gambar</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
 
@@ -99,15 +73,15 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
+                <button class="btn btn-primary" type="button" id="btn-tambah-fasilitas">Submit</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Edit Sosmed Modal-->
+<!-- Edit Fasilitas Modal-->
 <div class="modal fade" id="editFasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -117,36 +91,39 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-fasilitas">
+                <div class="modal-body">
 
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                     @csrf
 
-                    <label for="namaFasilitas">Nama Fasilitas</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="nama_fasilitas">Nama Fasilitas</label>
+                    <input type="text" class="form-control" id="edit-nama_fasilitas" name="edit-nama_fasilitas">
 
 
-                    <label for="Deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
+
+                    <div class="form-group mt-3">
+                        <img id="image-edit" src="" alt="">
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/png" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
+                    <input type="hidden" name="edit-id" value="">
 
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="btn-edit-fasilitas" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- Delete Sosmed Modal-->
+<!-- Delete Fasilitas Modal-->
 <div class="modal fade" id="deleteFasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -165,4 +142,7 @@
     </div>
 </div>
 
+@endsection
+@section('js-ajax')
+    <script src="{{ asset('js/fasilitas/fasilitas.js') }}"></script>
 @endsection

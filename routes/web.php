@@ -92,7 +92,15 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Fasilitas
-    Route::get('/fasilitas', 'PageController@Fasilitas');
+    Route::prefix('fasilitas')->group(function () {
+      Route::get('/', 'PageController@Fasilitas');
+      Route::post('/', 'Fasilitas\FasilitasController@store');
+      Route::get('data', 'Fasilitas\FasilitasController@index');
+      Route::get('datatable', 'Fasilitas\FasilitasController@loadTable');
+      Route::get('edit/{id}', 'Fasilitas\FasilitasController@edit');
+      Route::post('update/{id}', 'Fasilitas\FasilitasController@update');
+      Route::get('delete/{id}', 'Fasilitas\FasilitasController@destroy');
+    });
 
 
     //Footer
