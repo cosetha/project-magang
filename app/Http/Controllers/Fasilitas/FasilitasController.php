@@ -20,10 +20,10 @@ class FasilitasController
       return Datatables::of($data)
       ->addIndexColumn()
       ->addColumn('aksi', function($row){
-          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas"'.$row->nama_fasilitas.'" class="btn-edit-fasilitas" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+          $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas="'.$row->nama_fasilitas.'" class="btn-edit-fasilitas" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas"'.$row->nama_fasilitas.'"  class="btn-delete-fasilitas" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas="'.$row->nama_fasilitas.'"  class="btn-delete-fasilitas" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
@@ -152,5 +152,5 @@ class FasilitasController
     {
       
     }
-    
+
 }

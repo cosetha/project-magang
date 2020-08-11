@@ -69,6 +69,7 @@ $(document).ready(function() {
   //tampil fasilitas
   function loadDataFasilitas() {
     $('#datatable-fasilitas').load('/fasilitas/datatable', function() {
+      var host = window.location.origin;
       $('#fasilitas-table').DataTable({
         processing: true,
         serverSide: true,
@@ -80,7 +81,15 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'nama_fasilitas',name: 'nama_fasilitas'},
           {data: 'deskripsi',name: 'deskripsi'},
-          {data: 'gambar',name: 'gambar',searchable: false, orderable: false},
+          {
+            data: 'gambar',
+            name: 'gambar',
+            "render": function(data, type, row) {
+                return '<img src=" ' + host + '/img/fasilitas/'+ data + ' " style="height:200px;width:200px;"/>';
+            },
+            searchable: false,
+            orderable: false
+          },
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
       });
