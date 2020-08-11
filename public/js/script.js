@@ -33,7 +33,7 @@ $(document).ready(function() {
 		});
 	}
 
-	//TAMBAH JABATAN
+	//TAMBAH JAWABAN
 	$('body').on('submit', '#form-tambah-jabatan', function(e) {
 		e.preventDefault();
 		$('.btn-close').css('display', 'none');
@@ -103,45 +103,41 @@ $(document).ready(function() {
 		$('#EditJabatanModal').modal('show');
 		$('#btn-submit-jabatan').css('display', 'none');
 		$('#btn-save-jabatan').css('display', '');
-        $('#kolom-jabatan').val(nama);
-        $("#id-jabatan").val(id)
+		$('#kolom-jabatan').val(nama);
 
+		$('body').on('submit', '#form-edit-jabatan', function(e) {
+			e.preventDefault();
+			$('.btn-close-edit').css('display', 'none');
+			$('.btn-loading-edit').css('display', '');
+			$('#btn-save-jabatan').css('display', 'none');
+			var data = $('#form-edit-jabatan').serialize();
+			$.ajax({
+				type: 'post',
+				url: '/admin/edit-jabatan/' + id,
+				data: data,
+				success: function(response) {
+					$('#EditJabatanModal').modal('hide');
+					$('#form-edit-jabatan').trigger('reset');
+					$('.btn-close-edit').css('display', '');
+					$('.btn-loading-edit').css('display', 'none');
+					$('#btn-save-jabatan').css('display', '');
+					LoadTableJabatan();
+					Swal.fire({
+						icon: 'success',
+						title: 'Sukses',
+						text: 'Berhasil Mengedit Jabatan',
+						timer: 1200,
+						showConfirmButton: false
+					});
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		});
 	});
 
-    $('body').on('submit', '#form-edit-jabatan', function(e) {
-        e.preventDefault();
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-loading-edit').css('display', '');
-        $('#btn-save-jabatan').css('display', 'none');
-        var data = $('#form-edit-jabatan').serialize();
-        var id = $("#id-jabatan").val();
-        $.ajax({
-            type: 'post',
-            url: '/admin/edit-jabatan/' + id,
-            data: data,
-            success: function(response) {
-                $('#EditJabatanModal').modal('hide');
-                $('#form-edit-jabatan').trigger('reset');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-jabatan').css('display', '');
-                LoadTableJabatan();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Mengedit Jabatan',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    });
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
-
-	//------------------------------------------FITUR SEMESTER------------------------------------------
 
 	LoadTableSemester();
 
@@ -179,11 +175,6 @@ $(document).ready(function() {
 		});
 	}
 
-    $('body').on("click","#OpenModalSMT", function(){
-        $("#TambahSemesterModal").modal("show")
-        $('#btn-submit-semester').css('display', '');
-    })
-
 	//TAMBAH SMT
 	$('body').on('submit', '#form-tambah-semester', function(e) {
 		e.preventDefault();
@@ -192,22 +183,18 @@ $(document).ready(function() {
 		$('#btn-submit-semester').css('display', 'none');
 		var name = $('input[name=semester-tambah]').val();
 		var token = $('input[name=token]').val();
+		let status = 'ada';
 		if ($('#status').is(':checked')) {
-            var status = 'aktif';
-            $.ajax({
-                type: "get",
-                url: "/non-aktif/semua-semester"
-            })
+			status = 'aktif';
 		} else {
-			var status = 'nonaktif';
+			status = 'nonaktif';
 		}
-		// console.log(status);
+		console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
 			data: { _token: token, semester: name, status: status },
 			success: function(response) {
-                // console.log(response.data)
 				$('.modal-title-semester').html();
 				$('#TambahSemesterModal').modal('hide');
 				$('#form-tambah-semester').trigger('reset');
@@ -229,7 +216,6 @@ $(document).ready(function() {
 		});
 	});
 
-// DELETE SEMESTER
 	$('body').on('click', '.btn-delete-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -259,7 +245,6 @@ $(document).ready(function() {
 		});
 	});
 
-// EDIT SEMESTER
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
@@ -271,7 +256,7 @@ $(document).ready(function() {
 		$('#btn-save-semester').css('display', '');
 		$('#semester-edit').val(semester);
 		if (status == 'aktif') {
-            $('#status-edit').bootstrapToggle('on');
+			$('#status-edit').bootstrapToggle('on');
 		} else {
 			$('#status-edit').bootstrapToggle('off');
 		}
@@ -286,12 +271,8 @@ $(document).ready(function() {
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
 		let status = 'ada';
-		if ($('#status-edit').is(':checked')) {
-            status = 'aktif';
-            $.ajax({
-                type: "get",
-                url: "/non-aktif/semua-semester"
-            })
+		if (toggle == 'on') {
+			status = 'aktif';
 		} else {
 			status = 'nonaktif';
 		}
@@ -300,13 +281,11 @@ $(document).ready(function() {
 			url: '/admin/edit-semester/' + id,
 			data: { _token: token, semester: name, status: status },
 			success: function(response) {
-                // console.log(response.data)
 				$('#editSemesterModal').modal('hide');
 				$('#form-edit-semester').trigger('reset');
 				$('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                $('#btn-submit-semester').css('display', '');
+				$('#btn-save-semester').css('display', '');
 				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
@@ -321,10 +300,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-//------------------------------------------END FITUR SEMESTER------------------------------------------
-
-
-//------------------------------------------FITUR BIDANG KEAHLIAN------------------------------------------
 	LoadTableBK();
 
 	function LoadTableBK() {
@@ -348,7 +323,13 @@ $(document).ready(function() {
 					},
 					{
 						data: 'akreditasi',
-						name: 'akreditasi'
+						render: function(data, type, row) {
+							if (data == 0) {
+								return 'Tidak terakreditasi';
+							} else {
+								return data;
+							}
+						}
 					},
 					{
 						data: 'gambar',
@@ -366,7 +347,7 @@ $(document).ready(function() {
 			});
 		});
 	}
-	//TAMBAH BIDANG KEAHLIAN
+	//TAMBAH SMT
 	$('body').on('submit', '#form-tambah-bk', function(e) {
 		e.preventDefault();
 		$('.btn-close').css('display', 'none');
@@ -383,32 +364,48 @@ $(document).ready(function() {
 		formData.append('deskripsi', deskripsi);
 		formData.append('akreditasi', akreditasi);
 		formData.append('gambar', $('input[type=file]')[0].files[0]);
-		$.ajax({
-			type: 'post',
-			url: '/admin/tambah-bk',
-			data: formData,
-			processData: false,
-			contentType: false,
-			success: function(response) {
-				$('.modal-title-semester').html();
-				$('#BKModal').modal('hide');
-				$('#form-tambah-bk').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-bk').css('display', '');
-				LoadTableBK();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Bidang Keahlian',
-					timer: 1200,
-					showConfirmButton: false
-				});
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
+		console.log(deskripsi);
+		if (tinymce.get('deskripsi-tambah').getContent() == '') {
+			$('#form-tambah-bk').trigger('reset');
+			$('.btn-close').css('display', '');
+			$('.btn-loading').css('display', 'none');
+			$('#btn-submit-bk').css('display', '');
+			Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: 'Field Deksripsi perlu di isi',
+				timer: 1200,
+				showConfirmButton: false
+			});
+		} else {
+			$.ajax({
+				type: 'post',
+				url: '/admin/tambah-bk',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+					$('.modal-title-semester').html();
+					$('#BKModal').modal('hide');
+					$('#form-tambah-bk').trigger('reset');
+					$('.btn-close').css('display', '');
+					$('.btn-loading').css('display', 'none');
+					$('#btn-submit-bk').css('display', '');
+					$('#blah').attr('src', '');
+					LoadTableBK();
+					Swal.fire({
+						icon: 'success',
+						title: 'Sukses',
+						text: 'Berhasil Menambahkan Bidang Keahlian',
+						timer: 1200,
+						showConfirmButton: false
+					});
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		}
 	});
 
 	$('body').on('click', '.btn-delete-bk', function(e) {
@@ -443,17 +440,58 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-bk', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
+		$('#file-upload-edit').css('display', '');
+		$('.btn-close-edit').css('display', '');
+		$('.btn-loading-edit').css('display', 'none');
+		$('#btn-save-bk').css('display', '');
+		$('#edit-akreditasi').attr('disabled', false);
+		$('#file-upload-edit').attr('disabled', false);
+		$('#nama-edit').prop('readonly', false);
+		tinymce.get('deskripsi-edit').setMode('design');
 		$.ajax({
 			url: '/admin/edit-bk/' + id,
 			type: 'GET',
 			success: function(res) {
+				$('#modal-title-bk').html('Edit Bidang Keahlian');
 				$('#editBKModal').modal({ backdrop: 'static', keyboard: false });
 				$('#editBKModal').modal('show');
 				$('#btn-save-bk').css('display', '');
 				$('input[name=edit-id]').val(id);
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#AkreditasiEdit').val(res.values.akreditasi);
+				$('#edit-akreditasi').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
+				if (res.values.gambar) {
+					$('#blah-edit').attr('src', res.values.gambar);
+				}
+			}
+		});
+		return false;
+	});
+	$('body').on('click', '.btn-show-bk', function(e) {
+		e.preventDefault();
+		var id = $(this).attr('data-id');
+		$('.btn-close-edit').css('display', 'none');
+		$('#btn-save-bk').css('display', 'none');
+		$('#file-upload-edit').css('display', 'none');
+		$.ajax({
+			url: '/admin/edit-bk/' + id,
+			type: 'GET',
+			success: function(res) {
+				$('#modal-title-bk').html('Detail Bidang Keahlian');
+				$('#editBKModal').modal({ backdrop: 'static', keyboard: false });
+				$('#editBKModal').modal('show');
+				$('input[name=edit-id]').val(id);
+				$('input[name=edit-id]');
+				$('#nama-edit').val(res.values.nama_bk);
+				$('#edit-akreditasi').val(res.values.akreditasi);
+				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
+				$('#edit-akreditasi').attr('disabled', true);
+				$('#file-upload-edit').attr('disabled', true);
+				$('#nama-edit').prop('readonly', true);
+				tinymce.get('deskripsi-edit').setMode('readonly');
+				if (res.values.gambar) {
+					$('#blah-edit').attr('src', res.values.gambar);
+				}
 			}
 		});
 		return false;
@@ -468,38 +506,52 @@ $(document).ready(function() {
 		var deskripsi = tinymce.get('deskripsi-edit').getContent();
 		var token = $('input[name=token]').val();
 		var id = $('input[name=edit-id]').val();
-		var akreditasi = $('#AkreditasiEdit option:selected').val();
+		var akreditasi = $('#edit-akreditasi option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
 		formData.append('akreditasi', akreditasi);
 		formData.append('gambar', $('input[type=file]')[1].files[0]);
-		$.ajax({
-			type: 'post',
-			url: '/admin/konfirmasi-edit-bk/' + id,
-			data: formData,
-			processData: false,
-			contentType: false,
-			success: function(response) {
-				$('#editBKModal').modal('hide');
-				$('#form-edit-bk').trigger('reset');
-				$('.btn-close-edit').css('display', '');
-				$('.btn-loading-edit').css('display', 'none');
-				$('#btn-save-bk').css('display', '');
-				LoadTableBK();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Mengedit Bidang Keahlian',
-					timer: 1200,
-					showConfirmButton: false
-				});
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
-		return false;
+		if (tinymce.get('deskripsi-edit').getContent() == '') {
+			$('#form-edit-bk').trigger('reset');
+			$('.btn-close-edit').css('display', '');
+			$('.btn-loading-edit').css('display', 'none');
+			$('#btn-save-bk').css('display', '');
+			Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: 'Field Deksripsi perlu di isi',
+				timer: 1200,
+				showConfirmButton: false
+			});
+		} else {
+			$.ajax({
+				type: 'post',
+				url: '/admin/konfirmasi-edit-bk/' + id,
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+					$('#editBKModal').modal('hide');
+					$('#form-edit-bk').trigger('reset');
+					$('.btn-close-edit').css('display', '');
+					$('.btn-loading-edit').css('display', 'none');
+					$('#btn-save-bk').css('display', '');
+					LoadTableBK();
+					Swal.fire({
+						icon: 'success',
+						title: 'Sukses',
+						text: 'Berhasil Mengedit Bidang Keahlian',
+						timer: 1200,
+						showConfirmButton: false
+					});
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+			return false;
+		}
 	});
 
 	//---------FITUR PENGATURAN PROFILE  ----
@@ -586,207 +638,49 @@ $(document).ready(function() {
 				},
 				dataType: 'json',
 				success: function(data) {
-                    if(data.error){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Password minimal 8 karakter!',
-                        });
-                    }else{
-
-                        if (data.status == '1') {
-                            $('.form-edit-password')[0].reset();
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                text: 'Sukses ganti password',
-                                timer: 1000,
-                                showConfirmButton: false
-                            });
-                        } else if (data.status == '0') {
-                            $('.form-edit-password')[0].reset();
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ooopss...',
-                                text: 'Gagal ganti password',
-                                timer: 1000,
-                                showConfirmButton: false
-                            });
-                        } else if (data.status == 'salah') {
-                            $('.form-edit-password')[0].reset();
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ooopss...',
-                                text: 'Password anda salah!',
-                                timer: 1000,
-                                showConfirmButton: false
-                            });
-                        } else {
-                            $('.form-edit-password')[0].reset();
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ooopss...',
-                                text: 'Password harus sama!',
-                                timer: 1200,
-                                showConfirmButton: false
-                            });
-                        }
-                    }
+					if (data.status == '1') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Sukses ganti password',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else if (data.status == '0') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Gagal ganti password',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else if (data.status == 'salah') {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Password anda salah!',
+							timer: 1000,
+							showConfirmButton: false
+						});
+					} else {
+						$('.form-edit-password')[0].reset();
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: 'Password harus sama!',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
 				}
 			});
 		}
 	});
 	//--END PENGATURAN PROFILE ----
-
-
-	//------------------------------------------FITUR FAQ------------------------------------------
-
-	//DATATABLE FAQ
-	LoadTableFaq();
-
-	function LoadTableFaq() {
-		$('#datatable-faq').load('/load/table-faq', function() {
-			$('#tbl-faq').DataTable({
-				processing: true,
-				serverSide: true,
-				ajax: {
-					url: '/load/data-faq',
-					type: 'get'
-				},
-				columns: [
-					{
-						data: 'DT_RowIndex',
-						name: 'DT_RowIndex',
-						searchable: false
-					},
-					{
-						data: 'pertanyaan',
-						name: 'pertanyaan'
-					},
-					{
-						data: 'jawaban',
-						name: 'jawaban'
-					},
-					{
-						data: 'aksi',
-						name: 'aksi',
-						searchable: false,
-						orderable: false
-					}
-				]
-			});
-		});
-	}
-
-	//TAMBAH FAQ
-	$('body').on('submit', '#form-tambah-faq', function(e) {
-		e.preventDefault();
-		$('.btn-close').css('display', 'none');
-		$('.btn-loading').css('display', '');
-		$('#btn-submit-faq').css('display', 'none');
-		var data = $('#form-tambah-faq').serialize();
-		$.ajax({
-			type: 'post',
-			url: '/admin/tambah-faq',
-			data: data,
-			success: function(response) {
-				$('.modal-title-faq').html();
-				$('#TambahFaqModal').modal('hide');
-				$('#form-tambah-faq').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-faq').css('display', '');
-				LoadTableFaq();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan FAQ',
-					timer: 1200,
-					showConfirmButton: false
-				});
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
-	});
-
-	//DELETE FAQ
-	$('body').on('click', '.btn-delete-faq', function(e) {
-		e.preventDefault();
-		var id = $(this).attr('data-id');
-		Swal.fire({
-			title: 'Hapus Data Ini ?',
-			text: 'Anda tidak dapat mengurungkan aksi ini!',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Ya, Hapus!'
-		}).then((result) => {
-			if (result.value) {
-				$.ajax({
-					type: 'get',
-					url: '/admin/delete-faq/' + id,
-					success: function(response) {
-						Swal.fire('Deleted!, data telah dihapus.', 'success');
-						LoadTableFaq();
-					},
-					error: function(err) {
-						console.log(err);
-					}
-				});
-			}
-		});
-	});
-
-	$('body').on('click', '.btn-edit-faq', function(e) {
-		e.preventDefault();
-		var id = $(this).attr('data-id');
-		var pertanyaan = $(this).attr('data-pertanyaan');
-		var jawaban = $(this).attr('data-jawaban');
-		$('#EditFaqModal').modal('show');
-		$('#btn-submit-faq').css('display', 'none');
-		$('#btn-save-faq').css('display', '');
-		$('#kolom-pertanyaan').val(pertanyaan);
-		$('#kolom-jawaban').val(jawaban);
-
-		$('body').on('submit', '#form-edit-faq', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-faq').css('display', 'none');
-			var data = $('#form-edit-faq').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-faq/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditFaqModal').modal('hide');
-					$('#form-edit-faq').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-faq').css('display', '');
-					LoadTableFaq();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit FAQ',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
-
-	//------------------------------------------END FITUR FAQ -----------------------------------------
-
 	$.getScript('/js/Home/headline.js');
 	$.getScript('/js/Home/kerjasama.js');
 	$.getScript('/js/Home/konten.js');
-
 });

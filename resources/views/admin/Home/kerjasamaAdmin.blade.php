@@ -30,9 +30,9 @@
 
 
             <div class="card-body">
-                <div class="table-responsive">
+            <div class="table-responsive">
                 <div id="datatable-kerjasama"></div>
-                </div>
+              </div>
             </div>
         </div>
     </div>
