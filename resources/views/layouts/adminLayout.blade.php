@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/login-image.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/Login-image.png') }}">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard') }}">
                 <div>
-                    <img src="{{ asset('img/login-image.png') }}" style="width: 50px !important; height: 50px !important;">
+                    <img src="{{ asset('img/Login-image.png') }}" style="width: 50px !important; height: 50px !important;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin Prodi TI</div>
             </a>
