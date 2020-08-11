@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Bidang_keahlian;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 class BidangKeahlianController extends Controller
 {
     /**
@@ -37,23 +38,40 @@ class BidangKeahlianController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('gambar')){
-            $directory = 'assets/upload/thumbnail';
-            $file = request()->file('gambar');
-            $nama = time().$file->getClientOriginalName();
-            $file->name = $nama;
-            $file->move($directory, $file->name);
-            $bk = new Bidang_keahlian;
-            $bk->nama_bk = $request->nama;
-            $bk->deskripsi = $request->deskripsi;
-            $bk->akreditasi= $request->akreditasi;
-            $bk->gambar= $directory."/".$nama;
-            $bk->save();
-
-        return response()->json([
-            'message' => 'success'
-        ]);
-        }
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required|string',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            "deskripsi" => 'required|string',
+            "akreditasi" => 'required|string']);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+         }else{
+             try {
+                if($request->hasFile('gambar')){
+                    $directory = 'assets/upload/thumbnail';
+                    $file = request()->file('gambar');
+                    $nama = time().$file->getClientOriginalName();
+                    $file->name = $nama;
+                    $file->move($directory, $file->name);
+                    $bk = new Bidang_keahlian;
+                    $bk->nama_bk = $request->nama;
+                    $bk->deskripsi = $request->deskripsi;
+                    $bk->akreditasi= $request->akreditasi;
+                    $bk->gambar= $directory."/".$nama;
+                    $bk->save();
+        
+                return response()->json([
+                    'message' => 'success'
+                ]);
+                }
+             } catch (\Exception $e) {
+               
+             }
+         }
+        
 
     }
 
@@ -99,42 +117,61 @@ class BidangKeahlianController extends Controller
     public function update(Request $request, $id)
     {
 
-        if($request->hasFile('gambar')){
-
-            $directory = 'assets/upload/thumbnail';
-            $file = request()->file('gambar');
-            $nama_file = time().$file->getClientOriginalName();
-            $file->name = $nama_file;
-            $file->move($directory, $file->name);
-
-
-            $bk = Bidang_keahlian::find($id);
-            try {
-                unlink($bk->gambar);
-            } catch (\Throwable $th) {
-                echo($th);
-            }
-
-            $bk->nama_bk = $request->nama;
-            $bk->deskripsi = $request->deskripsi;
-            $bk->akreditasi=$request->akreditasi;
-
-            $bk->gambar= $directory."/".$nama_file;
-            $bk->save();
-
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required|string',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            "deskripsi" => 'required|string',
+            "akreditasi" => 'required|string']);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
             return response()->json([
-                'message' => 'success'
-            ]);
-        }else{
-            $bk = Bidang_keahlian::find($id);
-            $bk->nama_bk = $request->nama;
-            $bk->deskripsi = $request->deskripsi;
-            $bk->akreditasi=$request->akreditasi;
-            $bk->save();
-        }
-        return response()->json([
-            'message' => 'success'
-        ]);
+                'error' => $error,
+              ]);
+         }else{
+             try {
+                if($request->hasFile('gambar')){
+
+                    $directory = 'assets/upload/thumbnail';
+                    $file = request()->file('gambar');
+                    $nama_file = time().$file->getClientOriginalName();
+                    $file->name = $nama_file;
+                    $file->move($directory, $file->name);
+        
+        
+                    $bk = Bidang_keahlian::find($id);
+                    try {
+                        unlink($bk->gambar);
+                    } catch (\Throwable $th) {
+                        echo($th);
+                    }
+        
+                    $bk->nama_bk = $request->nama;
+                    $bk->deskripsi = $request->deskripsi;
+                    $bk->akreditasi=$request->akreditasi;
+        
+                    $bk->gambar= $directory."/".$nama_file;
+                    $bk->save();
+        
+                    return response()->json([
+                        'message' => 'success'
+                    ]);
+                }else{
+                    $bk = Bidang_keahlian::find($id);
+                    $bk->nama_bk = $request->nama;
+                    $bk->deskripsi = $request->deskripsi;
+                    $bk->akreditasi=$request->akreditasi;
+                    $bk->save();
+                }
+                return response()->json([
+                    'message' => 'success'
+                ]);
+             } catch (\Throwable $th) {
+                return response()->json([
+                    'error' => $e->getMessage()
+                ]);
+             }
+         }
+        
     }
 
     /**
@@ -172,6 +209,9 @@ class BidangKeahlianController extends Controller
                 </a>';
                 $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_bk.'" class="btn-delete-bk" style="font-size: 18pt; text-decoration: none; color:red;">
                 <i class="fas fa-trash"></i>
+                </a>';
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_bk.'" class="btn-show-bk" style="font-size: 18pt; text-decoration: none; color:green;">
+                <i class="fas fa-eye"></i>
                 </a>';
                 return $btn;
          })
