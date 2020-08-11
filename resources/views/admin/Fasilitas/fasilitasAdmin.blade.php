@@ -104,6 +104,10 @@
                     <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
 
                     <div class="form-group mt-3">
+                        <img id="image-edit" src="" alt="">
+                    </div>
+
+                    <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload-edit" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
