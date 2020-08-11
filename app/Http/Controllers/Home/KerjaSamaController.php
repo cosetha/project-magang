@@ -119,7 +119,17 @@ class KerjaSamaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        $validator = Validator::make($request->all(),[
+            'link' => 'required|string|min:1|max:255',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required',
+            "caption" => 'required|string',
+            "perusahaan" => 'required|string']);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+         }else{
             if($request->hasFile('gambar')){
 
                 $directory = 'assets/upload/thumbnail';
@@ -155,9 +165,7 @@ class KerjaSamaController extends Controller
                     'message' => 'Success'
                 ]);
             }
-
-        
-
+         }
     }
 
     /**

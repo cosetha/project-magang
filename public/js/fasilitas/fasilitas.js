@@ -69,6 +69,7 @@ $(document).ready(function() {
   //tampil fasilitas
   function loadDataFasilitas() {
     $('#datatable-fasilitas').load('/fasilitas/datatable', function() {
+      var host = window.location.origin;
       $('#fasilitas-table').DataTable({
         processing: true,
         serverSide: true,
@@ -80,7 +81,15 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'nama_fasilitas',name: 'nama_fasilitas'},
           {data: 'deskripsi',name: 'deskripsi'},
-          {data: 'gambar',name: 'gambar',searchable: false, orderable: false},
+          {
+            data: 'gambar',
+            name: 'gambar',
+            "render": function(data, type, row) {
+                return '<img src=" ' + host + '/img/fasilitas/'+ data + ' " style="height:200px;width:200px;"/>';
+            },
+            searchable: false,
+            orderable: false
+          },
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
       });
@@ -91,6 +100,7 @@ $(document).ready(function() {
   $('body').on('click', '.btn-edit-fasilitas', function(e) {
         e.preventDefault();
     var id = $(this).data('id');
+    var host = window.location.origin;
     console.log(id)
     $.ajax({
 			type: 'GET',
@@ -99,10 +109,11 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 			    $('#editFasilitasModal').modal('show');
-                $('#edit-nama_fasilitas').val(data.data.nama_fasilitas);
-                tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
-                $('input[name=edit-id]').val(id);
-                $('#file-upload-edit').val('');
+          $('#edit-nama_fasilitas').val(data.data.nama_fasilitas);
+          tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
+          $('#image-edit').attr('src', host + '/img/fasilitas/' + data.data.gambar);
+          $('input[name=edit-id]').val(id);
+          $('#file-upload-edit').val('');
 			}
 		});
   });
@@ -174,9 +185,9 @@ $(document).ready(function() {
     $('body').on('click', '.btn-delete-fasilitas', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
-      var nama_fasilitas = $(this).attr('data-nama')
-      console.log(nama_fasilitas)
-      console.log(id)
+      var nama_fasilitas = $(this).attr('data-nama_fasilitas');
+      console.log(nama_fasilitas);
+      console.log(id);
       Swal.fire({
         title: 'Anda yakin ingin menghapus ' + nama_fasilitas + '?',
         text: "Anda tidak dapat membatalkan aksi ini!",
