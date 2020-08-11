@@ -91,9 +91,9 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-fasilitas">
+                <div class="modal-body">
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-fasilitas">
                     @csrf
 
                     <label for="nama_fasilitas">Nama Fasilitas</label>
@@ -104,19 +104,20 @@
                     <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
 
                     <div class="form-group mt-3">
+                        <img id="image-edit" src="" alt="">
+                    </div>
+
+                    <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload-edit" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
                     <input type="hidden" name="edit-id" value="">
 
-
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" id="btn-edit-fasilitas" type="submit">Submit</button>
-            </div>
-
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="btn-edit-fasilitas" type="submit">Submit</button>
+                </div>
             </form>
         </div>
     </div>
