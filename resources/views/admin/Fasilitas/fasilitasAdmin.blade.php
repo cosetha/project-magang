@@ -104,7 +104,7 @@
                     <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
 
                     <div class="form-group mt-3">
-                        <img id="image-edit" src="" alt="">
+                        <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
