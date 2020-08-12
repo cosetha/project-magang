@@ -38,7 +38,8 @@
                                 <th>Judul Penelitian</th>
                                 <th>Peneliti</th>
                                 <th>Tahun</th>
-                                <th>Link</th>
+                                <th>Gambar</th>
+                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                             <tr>
                                 <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
                                 <td>Tiger Nixon</td>
+                                <td>System Architect</td>
                                 <td>System Architect</td>
                                 <td>System Architect</td>
                                 <td>System Architect</td>
@@ -91,10 +93,15 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="yearpicker form-control" value="" />
 
-                    <label for="link" class="mt-2">Link</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <div class="form-group mt-3">
+                        <label for="image">Gambar</label>
+                        <input input id="file-upload" type="file" name="image" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <label for="deskripsi" class="mt-1">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""></textarea>
 
 
                 </form>
@@ -132,10 +139,15 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="yearpicker form-control" value="" />
 
-                    <label for="link" class="mt-2">Link</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <div class="form-group mt-3">
+                        <label for="image">Gambar</label>
+                        <input input id="file-upload" type="file" name="image" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <label for=""deskripsi" class="mt-1">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="" name=""></textarea>
 
                 </form>
 

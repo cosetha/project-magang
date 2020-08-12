@@ -32,8 +32,9 @@
                     <thead>
                         <tr>
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Kode Jadwal</th>
                             <th>Nama Jadwal</th>
+                            <th>Semester</th>
+                            <th>Bidang Keahlian</th>
                             <th>File</th>
                             <th>Action</th>
                         </tr>
@@ -43,7 +44,8 @@
                             <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
-                            <td>System Architect</td>
+                            <td>TI Software</td>
+                            <td>3</td>
                             <td align="center">
                                 <a href="#" data-toggle="modal" data-target="#editJadwalModal" style="font-size: 19pt; text-decoration: none;" class="mr-3">
                                     <i class="fas fa-pen-square"></i>
@@ -79,12 +81,22 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                     @csrf
 
-
-                    <label for="idjadwal">Id Jadwal</label>
-                    <input type="text" class="form-control" id="" name="">
-
                     <label for="namajadwal" class="mt-2">Nama Jadwal</label>
                     <input type="text" class="form-control" id="" name="">
+
+                    <label for="semester" class="mt-2">Semester</label>
+                    <input type="text" class="form-control" id="" name="">
+
+                    <div class="form-group">
+                        <label for="bidang-keahlian" class="mt-2">Bidang Keahlian</label>
+                        <select class="form-control" id="" name="">
+                            <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
+                            <option value="Teknologi Informasi">Teknologi Informasi</option>
+                            <option value="Sistem Informasi">Sistem Informasi</option>
+                            <option value="Film dan Televisi">Film dan Televisi</option>
+                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option>
+                        </select>
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>
@@ -119,11 +131,22 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                     @csrf
 
-                    <label for="idjadwal">Id Jadwal</label>
-                    <input type="text" class="form-control" id="" name="">
-
                     <label for="namajadwal" class="mt-2">Nama Jadwal</label>
                     <input type="text" class="form-control" id="" name="">
+
+                    <label for="semester" class="mt-2">Semester</label>
+                    <input type="text" class="form-control" id="" name="">
+
+                    <div class="form-group">
+                        <label for="bidang-keahlian" class="mt-2">Bidang Keahlian</label>
+                        <select class="form-control" id="" name="">
+                            <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
+                            <option value="Juara 1">Juara 1</option>
+                            <option value="Sistem Informasi">Sistem Informasi</option>
+                            <option value="Film dan Televisi">Film dan Televisi</option>
+                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option>
+                        </select>
+                    </div>
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>

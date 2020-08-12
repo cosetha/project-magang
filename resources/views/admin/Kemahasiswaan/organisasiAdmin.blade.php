@@ -92,11 +92,6 @@
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
-                    <div class="form-group mt-3">
-                        <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                    </div>
-
 
                 </form>
 
@@ -136,12 +131,6 @@
                         <label for="file" style="padding-right:21px;">Logo</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-
-                    <div class="form-group mt-3">
-                        <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                    </div>
-
 
                 </form>
 

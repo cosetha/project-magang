@@ -23,9 +23,15 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
     <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
+
+    <link rel="stylesheet" href="yearpicker/src/style.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="yearpicker/dist/yearpicker.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 
@@ -62,23 +68,23 @@
                         <i class="fas fa-fw fa-users"></i>
                         <span>Data Pengguna</span></a>
                     </li>
-                @endif
+                    @endif
 
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item" id="MasterData">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMasterData" aria-expanded="true" aria-controls="collapseMasterData">
-                        <i class="fas fa-database"></i>
-                        <span>Master Data</span>
-                    </a>
-                    <div id="collapseMasterData" class="collapse" aria-labelledby="headingMasterData" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Master Data</h6>
-                            <a class="collapse-item" href="{{ url('semester') }}">Semester</a>
-                            <a class="collapse-item" href="{{ url('jabatan') }}">Jabatan</a>
-                            <a class="collapse-item" href="{{ url('bk') }}">Bidang Keahlian</a>
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item" id="MasterData">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMasterData" aria-expanded="true" aria-controls="collapseMasterData">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                        <div id="collapseMasterData" class="collapse" aria-labelledby="headingMasterData" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Master Data</h6>
+                                <a class="collapse-item" href="{{ url('semester') }}">Semester</a>
+                                <a class="collapse-item" href="{{ url('jabatan') }}">Jabatan</a>
+                                <a class="collapse-item" href="{{ url('bk') }}">Bidang Keahlian</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -362,7 +368,7 @@
                             <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; <a href="https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE">SBAdmin2</a></span>
+                                        <span>Copyright &copy; <a href="#">Teknologi Informasi dan Komputer</a></span>
                                     </div>
                                 </div>
                             </footer>
@@ -428,5 +434,18 @@
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>
-        </body>
-</html>
+
+                    <!-- script yearpicker -->
+
+                    <script src="yearpicker/dist/yearpicker.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            $(".yearpicker").yearpicker({
+                                year: 2010,
+                                startYear: 1900,
+                                endYear: 2099
+                            });
+                        });
+                    </script>
+                </body>
+                </html>

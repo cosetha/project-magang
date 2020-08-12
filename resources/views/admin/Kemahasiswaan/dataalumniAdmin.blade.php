@@ -99,14 +99,14 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="yearpicker form-control" value="" />
 
                     <label for="lulus" class="mt-2">Lulus</label>
-                    <input type="date" class="form-control" id="" name="">
-
-
+                    <input type="text" class="yearpicker form-control" value="" />
 
                 </form>
+
+
 
             </div>
             <div class="modal-footer">
@@ -150,10 +150,10 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="yearpicker form-control" value="" />
 
                     <label for="lulus" class="mt-2">Lulus</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="yearpicker form-control" value="" />
 
                 </form>
 
@@ -186,3 +186,16 @@
 </div>
 
 @endsection
+
+<script type="text/javascript">
+    // When the document is ready
+    $(document).ready(function () {
+
+        $('#example1').datepicker({
+            minViewMode: 'years',
+            autoclose: true,
+             format: 'yyyy'
+        });
+
+    });
+</script>
