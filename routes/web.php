@@ -18,7 +18,93 @@ use Illuminate\Support\Facades\Route;
 //ROUTER GUEST
 Route::group(['middleware' => 'guest'],function(){
 
-    Route::get('/','PageController@LoginForm');
+    Route::get('/login','PageController@LoginForm');
+
+    Route::get('/', function () {
+        return view('user.Home');
+    });
+
+    //Profile
+    Route::get('/gdosen', function () {
+        return view('user.Profile/dosen');
+    });
+
+    Route::get('/gprestasi', function () {
+        return view('user.Profile/prestasi');
+    });
+
+    Route::get('/gsejarah', function () {
+        return view('user.Profile/sejarah');
+    });
+
+
+    Route::get('/gvisimisi', function () {
+        return view('user.Profile/visimisi');
+    });
+
+    Route::get('/gstruktur', function () {
+        return view('user.Profile/struktur');
+    });
+
+
+    //Bidang Keahlian
+    Route::get('/gbk', function () {
+        return view('user.BK/bidangkeahlian');
+    });
+
+    //Akreditasi
+    Route::get('/gakreditasi', function () {
+        return view('user.Akademik/akreditasi');
+    });
+
+    Route::get('/gjadwalkuliah', function () {
+        return view('user.Akademik/jadwalkuliah');
+    });
+
+    Route::get('/gmahasiswa', function () {
+        return view('user.Akademik/mahasiswa');
+    });
+
+    Route::get('/gkalender', function () {
+        return view('user.Akademik/kalender');
+    });
+
+
+    //Kemahasiswaan
+    Route::get('/galumni', function () {
+        return view('user.Kemahasiswaan/alumni');
+    });
+
+    Route::get('/gkegiatan', function () {
+        return view('user.Kemahasiswaan/kegiatan');
+    });
+
+    Route::get('/gloker', function () {
+        return view('user.Kemahasiswaan/loker');
+    });
+
+    Route::get('/gorganisasi', function () {
+        return view('user.Kemahasiswaan/organisasi');
+    });
+
+
+    //Kemahasiswaan
+    Route::get('/gpenelitian', function () {
+        return view('user.Riset/penelitian');
+    });
+
+    Route::get('/gpengabdian', function () {
+        return view('user.Riset/pengabdian');
+    });
+
+    Route::get('/gprofilepeneliti', function () {
+        return view('user.Riset/profilepeneliti');
+    });
+
+    //Kemahasiswaan
+    Route::get('/gfasilitas', function () {
+        return view('user.Fasilitas/fasilitas');
+    });
 
 });
 
