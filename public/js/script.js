@@ -334,7 +334,7 @@ $(document).ready(function() {
 					{
 						data: 'gambar',
 						render: function(data, type, row) {
-							return '<img  class = "rounded mx-auto d-block" height="200px" src="' + data + '" />';
+							return '<img  class = "rounded mx-auto d-block" height="100px" src="' + data + '" />';
 						}
 					},
 					{
