@@ -24,7 +24,7 @@ $(document).ready(function() {
             data: 'gambar',
             name: 'gambar',
             "render": function(data, type, row) {
-                return '<img src=" ' + host + '/'+ data + ' " style="height:100px;width:100%;border-radius:10px;"/>';
+                return '<img src=" ' + host + '/'+ data + ' " class = "rounded mx-auto d-block" height="100px"/>';
             },
             searchable: false
           },
