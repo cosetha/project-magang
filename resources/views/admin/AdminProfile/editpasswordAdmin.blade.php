@@ -23,31 +23,32 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password lama:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
-                        </div
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="password" id="password" placeholder="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Confirm password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
-                                <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
-                                <span></span>
-                                <input type="reset" class="btn btn-default" value="Cancel">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+                      <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
+                    </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" id="password" placeholder="password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label">Confirm password:</label>
+                    <div class="col-md-8">
+                      <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                      <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
+                      <span></span>
+                      <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
         </div>
     </div>
     <!-- End of Main Content -->

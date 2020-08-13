@@ -120,10 +120,6 @@ class PageController extends Controller
       return view('admin/MiniNavbar/quickmenuAdmin');
     }
 
-    public function Dosen(){
-      return view('admin/Profile/dosendantenagakerja');
-    }
-
     public function Prestasi(){
       return view('admin/Profile/prestasiAdmin');
     }

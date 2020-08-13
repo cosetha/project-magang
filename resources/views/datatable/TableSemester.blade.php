@@ -1,4 +1,4 @@
-<table class="table" id="tbl-semester">
+<table class="table" id="tbl-semester" width="100%">
     <thead>
         <tr>
             <th scope="col">No</th>

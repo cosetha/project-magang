@@ -18,7 +18,93 @@ use Illuminate\Support\Facades\Route;
 //ROUTER GUEST
 Route::group(['middleware' => 'guest'],function(){
 
-    Route::get('/','PageController@LoginForm');
+    Route::get('/login','PageController@LoginForm');
+
+    Route::get('/', function () {
+        return view('user.Home');
+    });
+
+    //Profile
+    Route::get('/gdosen', function () {
+        return view('user.Profile/dosen');
+    });
+
+    Route::get('/gprestasi', function () {
+        return view('user.Profile/prestasi');
+    });
+
+    Route::get('/gsejarah', function () {
+        return view('user.Profile/sejarah');
+    });
+
+
+    Route::get('/gvisimisi', function () {
+        return view('user.Profile/visimisi');
+    });
+
+    Route::get('/gstruktur', function () {
+        return view('user.Profile/struktur');
+    });
+
+
+    //Bidang Keahlian
+    Route::get('/gbk', function () {
+        return view('user.BK/bidangkeahlian');
+    });
+
+    //Akreditasi
+    Route::get('/gakreditasi', function () {
+        return view('user.Akademik/akreditasi');
+    });
+
+    Route::get('/gjadwalkuliah', function () {
+        return view('user.Akademik/jadwalkuliah');
+    });
+
+    Route::get('/gmahasiswa', function () {
+        return view('user.Akademik/mahasiswa');
+    });
+
+    Route::get('/gkalender', function () {
+        return view('user.Akademik/kalender');
+    });
+
+
+    //Kemahasiswaan
+    Route::get('/galumni', function () {
+        return view('user.Kemahasiswaan/alumni');
+    });
+
+    Route::get('/gkegiatan', function () {
+        return view('user.Kemahasiswaan/kegiatan');
+    });
+
+    Route::get('/gloker', function () {
+        return view('user.Kemahasiswaan/loker');
+    });
+
+    Route::get('/gorganisasi', function () {
+        return view('user.Kemahasiswaan/organisasi');
+    });
+
+
+    //Kemahasiswaan
+    Route::get('/gpenelitian', function () {
+        return view('user.Riset/penelitian');
+    });
+
+    Route::get('/gpengabdian', function () {
+        return view('user.Riset/pengabdian');
+    });
+
+    Route::get('/gprofilepeneliti', function () {
+        return view('user.Riset/profilepeneliti');
+    });
+
+    //Kemahasiswaan
+    Route::get('/gfasilitas', function () {
+        return view('user.Fasilitas/fasilitas');
+    });
 
 });
 
@@ -92,7 +178,15 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Fasilitas
-    Route::get('/fasilitas', 'PageController@Fasilitas');
+    Route::prefix('fasilitas')->group(function () {
+      Route::get('/', 'PageController@Fasilitas');
+      Route::post('/', 'Fasilitas\FasilitasController@store');
+      Route::get('data', 'Fasilitas\FasilitasController@index');
+      Route::get('datatable', 'Fasilitas\FasilitasController@loadTable');
+      Route::get('edit/{id}', 'Fasilitas\FasilitasController@edit');
+      Route::post('update/{id}', 'Fasilitas\FasilitasController@update');
+      Route::get('delete/{id}', 'Fasilitas\FasilitasController@destroy');
+    });
 
 
     //Footer
@@ -194,7 +288,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('admin/edit-quick-menu/{id}', 'Home\WeblinkController@update');
 
     //Profile
-    Route::get('/dosen', 'PageController@Dosen');
+    Route::get('/dosen', 'Profile\DosenController@index');
+    Route::get('/load/table-dosen','Profile\DosenController@LoadTableDosen');
+    Route::get('/load/data-dosen','Profile\DosenController@LoadDataDosen');
+    Route::post('/tambah-dosen','Profile\DosenController@store');
+    Route::post('/save-dosen/{id}','Profile\DosenController@update');
+    Route::get('/get-dosen/{id}','Profile\DosenController@get');
+    Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
+
 
     Route::get('/prestasi', 'PageController@Prestasi');
 
@@ -214,9 +315,27 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Riset
-    Route::get('/penelitian', 'PageController@Penelitian');
+    //Penelitian
+    Route::prefix('penelitian')->group(function () {
+      Route::get('/', 'PageController@Penelitian');
+      Route::post('/', 'Riset\Penelitian@store');
+      Route::get('data', 'Riset\Penelitian@index');
+      Route::get('datatable', 'Riset\Penelitian@loadTable');
+      Route::get('edit/{id}', 'Riset\Penelitian@edit');
+      Route::post('update/{id}', 'Riset\Penelitian@update');
+      Route::get('delete/{id}', 'Riset\Penelitian@destroy');
+    });
 
-    Route::get('/pengabdian', 'PageController@Pengabdian');
+    //Pengabdian
+    Route::prefix('pengabdian')->group(function () {
+      Route::get('/', 'PageController@Pengabdian');
+      Route::post('/', 'Riset\PengabdianController@store');
+      Route::get('data', 'Riset\PengabdianController@index');
+      Route::get('datatable', 'Riset\PengabdianController@loadTable');
+      Route::get('edit/{id}', 'Riset\PengabdianController@edit');
+      Route::post('update/{id}', 'Riset\PengabdianController@update');
+      Route::get('delete/{id}', 'Riset\PengabdianController@destroy');
+    });
 
 });
 
