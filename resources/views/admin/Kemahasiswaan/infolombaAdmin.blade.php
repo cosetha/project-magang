@@ -36,7 +36,6 @@
                         <tr>
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                             <th>Judul</th>
-                            <th>Gambar</th>
                             <th>Deskripsi</th>
                             <th>Lokasi</th>
                             <th>Tanggal</th>
@@ -49,7 +48,6 @@
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
                             <td>1</td>
-                            <td>2</td>
                             <td>2</td>
                             <td align="center">
                                 <a href="#" data-toggle="modal" data-target="#editLombaModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
@@ -98,10 +96,10 @@
                     <label for="tanggal" class="mt-2">Tanggal</label>
                     <input type="date" class="form-control" id="" name="">
 
-                    <div class="form-group mt-3">
+                    {{-- <div class="form-group mt-3">
                         <label for="image">View</label>
                         <input input id="file-upload" type="file" name="image" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                    </div>
+                    </div> --}}
 
                 </form>
 
@@ -143,10 +141,10 @@
                     <label for="tanggal" class="mt-2">Tanggal</label>
                     <input type="date" class="form-control" id="" name="">
 
-                    <div class="form-group mt-3">
+                    {{-- <div class="form-group mt-3">
                         <label for="image">View</label>
                         <input input id="file-upload" type="file" name="image" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                    </div>
+                    </div> --}}
 
                 </form>
 

@@ -37,115 +37,138 @@
         </div>
     </div>
 </div>
-    <!-- End of Main Content -->
+<!-- End of Main Content -->
 
 
-    <!-- Add Berita Modal-->
-    <div class="modal fade" id="BeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Berita</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+<!-- Add Berita Modal-->
+<div class="modal fade" id="BeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Berita</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
 
-                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-berita">
-                        @csrf
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-berita">
+                    @csrf
 
-                        <label for="judulBerita">Judul Berita</label>
-                        <input type="text" class="form-control" id="" name="judul">
+                    <label for="judulBerita">Judul Berita</label>
+                    <input type="text" class="form-control" id="" name="judul">
 
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-berita" name=""> </textarea>
 
-                        <div class="form-group mt-3">
-                            <label for="file" class="mt-2">Gambar</label>
-                            <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                        </div>
+                    <div class="form-group mt-3">
+                        <label for="file" class="mt-2">Gambar</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
 
 
-                    </form>
+                </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="btn-tambah-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="btn-tambah-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Edit berita Modal-->
-    <div class="modal fade" id="editBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+<!-- Edit berita Modal-->
+<div class="modal fade" id="editBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
 
-                    <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-berita">
-                        @csrf
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-berita">
+                    @csrf
 
-                        <label for="judulBerita" class="mt-2">Judul Berita</label>
-                        <input type="text" class="form-control" id="judul-berita-edit" name="judul-berita-edit">
+                    <label for="judulBerita" class="mt-2">Judul Berita</label>
+                    <input type="text" class="form-control" id="judul-berita-edit" name="judul-berita-edit">
 
 
-                        <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsi-berita-edit" name=""> </textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="deskripsi-berita-edit" name=""> </textarea>
+
 
                         <div class="form-group mt-3">
                           <img id="image-edit-berita" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
                         </div>
 
-                        <div class="form-group mt-3">
-                            <label for="file">Gambar</label>
-                            <input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                            <input type="hidden" name="edit-id" value="">
-                        </div>
+                    <div class="form-group mt-3">
+                        <label for="file">Gambar</label>
+                        <input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input type="hidden" name="edit-id" value="">
+                    </div>
 
-                    </form>
+                </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="btn-edit-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="btn-edit-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Delete Sosmed Modal-->
-    <div class="modal fade" id="deleteBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Apakah anda yakin ingin menghapus berita?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="#">Delete</a>
-                </div>
+<!-- Delete berita Modal-->
+<div class="modal fade" id="deleteBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Apakah anda yakin ingin menghapus berita?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="#">Delete</a>
             </div>
         </div>
     </div>
+</div>
 
-    @endsection
+{{-- <!-- preview berita Modal-->
+<div class="modal fade" id="previewBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Preview Berita</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-    @section('js-ajax')
-      <script src="{{ asset('js/home/berita.js') }}"></script>
-    @endsection
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+@endsection
+
+@section('js-ajax')
+<script src="{{ asset('js/home/berita.js') }}"></script>
+@endsection
