@@ -207,6 +207,22 @@
 
 }
 
+.years-picker{
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+  color: transparent !important;
+  text-shadow: 0 0 0 #000 !important;
+}
+
+.years-picker[readonly]{
+  background-color: #ffffff;
+}
+
+.years-picker:focus{
+  outline: none !important;
+}
+
 .pencon {
     position: relative;
     width: 90%;
