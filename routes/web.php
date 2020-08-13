@@ -288,7 +288,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('admin/edit-quick-menu/{id}', 'Home\WeblinkController@update');
 
     //Profile
-    Route::get('/dosen', 'PageController@Dosen');
+    Route::get('/dosen', 'Profile\DosenController@index');
+    Route::get('/load/table-dosen','Profile\DosenController@LoadTableDosen');
+    Route::get('/load/data-dosen','Profile\DosenController@LoadDataDosen');
+    Route::post('/tambah-dosen','Profile\DosenController@store');
+    Route::post('/save-dosen/{id}','Profile\DosenController@update');
+    Route::get('/get-dosen/{id}','Profile\DosenController@get');
+    Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
+
 
     Route::get('/prestasi', 'PageController@Prestasi');
 
