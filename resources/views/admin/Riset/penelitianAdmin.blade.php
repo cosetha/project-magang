@@ -91,7 +91,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
 
                     <label for="link" class="mt-2">Link</label>
                     <input type="text" class="form-control" id="" name="">
@@ -132,7 +132,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly/>
 
                     <label for="link" class="mt-2">Link</label>
                     <input type="text" class="form-control" id="" name="">
@@ -168,4 +168,6 @@
 </div>
 
 @endsection
-
+@section('js-ajax')
+      <script src="{{ asset('js/datepicker.js') }}"></script>
+@endsection

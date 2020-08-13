@@ -88,11 +88,11 @@
                     <label for="judulpengabdian">Judul Pengabdian</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="peneliti" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="" name=""> </textarea>
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
@@ -112,7 +112,7 @@
 </div>
 
 
-<!-- Edit Sosmed Modal-->
+<!-- Edit Pengabdian Modal-->
 <div class="modal fade" id="editpengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -131,11 +131,11 @@
                     <label for="judulpengabdian">Judul Pengabdian</label>
                     <input type="text" class="form-control" id="" name="">
 
-                    <label for="peneliti" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="" name=""> </textarea>
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly/>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
@@ -173,4 +173,6 @@
 </div>
 
 @endsection
-
+@section('js-ajax')
+      <script src="{{ asset('js/datepicker.js') }}"></script>
+@endsection

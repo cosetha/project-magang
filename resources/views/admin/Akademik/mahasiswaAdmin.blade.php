@@ -88,7 +88,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly>
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -134,7 +134,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="date" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan" readonly>
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -175,4 +175,7 @@
     </div>
 </div>
 
+@endsection
+@section('js-ajax')
+      <script src="{{ asset('js/datepicker.js') }}"></script>
 @endsection
