@@ -23,7 +23,7 @@ class PengabdianController
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-edit-pengabdian" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          
+
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'"  class="btn-delete-pengabdian" style="font-size: 18pt; text-decoration: none; color:red;">
 
           <i class="fas fa-trash"></i>
@@ -88,6 +88,7 @@ class PengabdianController
 
     public function update(Request $request, $id)
     {
+
       $judul = $request->judul;
       $tahun = $request->tahun;
       $deskripsi = $request->deskripsi;
@@ -107,7 +108,7 @@ class PengabdianController
           $data = Pengabdian::find($id);
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
-          $data->tahun = $tahun;
+          $data->tahun = $request->tahun;
           $data->gambar = $fileName;
           $data->save();
 
@@ -122,9 +123,10 @@ class PengabdianController
             }
 
       } else {
+
           $data = Pengabdian::find($id);
           $data->judul = $judul;
-          $data->tahun = $tahun;
+          $data->tahun = $request->tahun;
           $data->deskripsi = $deskripsi;
           $data->save();
 
