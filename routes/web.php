@@ -222,23 +222,23 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::POST('/admin/konfirmasi-edit-headline/{id}','Home\HeadLineController@update');
 
     Route::prefix('berita')->group(function () {
-      Route::get('/', 'PageController@Berita');
-      Route::post('/', 'Home\BeritaController@store');
-      Route::get('datatable', 'Home\BeritaController@loadTable');
-      Route::get('data', 'Home\BeritaController@index');
-      Route::get('edit/{id}', 'Home\BeritaController@edit');
-      Route::get('delete/{id}', 'Home\BeritaController@destroy');
-      Route::post('update/{id}', 'Home\BeritaController@update');
+        Route::get('/', 'PageController@Berita');
+        Route::post('/', 'Home\BeritaController@store');
+        Route::get('datatable', 'Home\BeritaController@loadTable');
+        Route::get('data', 'Home\BeritaController@index');
+        Route::get('edit/{id}', 'Home\BeritaController@edit');
+        Route::get('delete/{id}', 'Home\BeritaController@destroy');
+        Route::post('update/{id}', 'Home\BeritaController@update');
     });
 
     Route::prefix('agenda')->group(function () {
-      Route::get('/', 'PageController@Agenda');
-      Route::post('/', 'Home\AgendaController@store');
-      Route::get('datatable', 'Home\AgendaController@loadTable');
-      Route::get('data', 'Home\AgendaController@index');
-      Route::get('edit/{id}', 'Home\AgendaController@edit');
-      Route::get('delete/{id}', 'Home\AgendaController@destroy');
-      Route::post('update/{id}', 'Home\AgendaController@update');
+        Route::get('/', 'PageController@Agenda');
+        Route::post('/', 'Home\AgendaController@store');
+        Route::get('datatable', 'Home\AgendaController@loadTable');
+        Route::get('data', 'Home\AgendaController@index');
+        Route::get('edit/{id}', 'Home\AgendaController@edit');
+        Route::get('delete/{id}', 'Home\AgendaController@destroy');
+        Route::post('update/{id}', 'Home\AgendaController@update');
     });
 
     Route::get('/kerjasama', 'Home\KerjaSamaController@index');
@@ -251,13 +251,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     Route::prefix('pengumuman')->group(function () {
-      Route::get('/', 'PageController@Pengumuman');
-      Route::post('/', 'Home\PengumumanController@store');
-      Route::get('data', 'Home\PengumumanController@index');
-      Route::get('datatable', 'Home\PengumumanController@loadTable');
-      Route::get('edit/{id}', 'Home\PengumumanController@edit');
-      Route::post('update/{id}', 'Home\PengumumanController@update');
-      Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+        Route::get('/', 'PageController@Pengumuman');
+        Route::post('/', 'Home\PengumumanController@store');
+        Route::get('data', 'Home\PengumumanController@index');
+        Route::get('datatable', 'Home\PengumumanController@loadTable');
+        Route::get('edit/{id}', 'Home\PengumumanController@edit');
+        Route::post('update/{id}', 'Home\PengumumanController@update');
+        Route::get('delete/{id}', 'Home\PengumumanController@destroy');
     });
 
     //Kemahasiswaan
@@ -288,7 +288,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('admin/edit-quick-menu/{id}', 'Home\WeblinkController@update');
 
     //Profile
-    Route::get('/dosen', 'PageController@Dosen');
+    Route::get('/dosen', 'Profile\DosenController@index');
+    Route::get('/load/table-dosen','Profile\DosenController@LoadTableDosen');
+    Route::get('/load/data-dosen','Profile\DosenController@LoadDataDosen');
+    Route::post('/tambah-dosen','Profile\DosenController@store');
+    Route::post('/save-dosen/{id}','Profile\DosenController@update');
+    Route::get('/get-dosen/{id}','Profile\DosenController@get');
+    Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
+
 
     Route::get('/prestasi', 'PageController@Prestasi');
 

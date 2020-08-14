@@ -45,11 +45,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Pengabdian</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-pengabdian">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-pengabdian">
                 <div class="modal-body">
                 @csrf
 
@@ -69,8 +69,12 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
-                    <button class="btn btn-primary" type="button" id="btn-tambah-pengabdian">Submit</button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="btn-tambah-pengabdian">Submit</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
                 </div>
             </form>
         </div>
@@ -84,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Pengabdian</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -99,7 +103,7 @@
                     <textarea class="form-control" id="edit-deskripsi" name="deskripsi"> </textarea>
 
                     <label for="tahun-edit" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun-edit" readonly/>
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun_edit" readonly/>
 
                     <div class="form-group mt-3">
                         <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
@@ -112,8 +116,12 @@
                     <input type="hidden" name="edit-id" value="">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="button" id="btn-edit-pengabdian">Submit</button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="btn-edit-pengabdian">Submit</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
                 </div>
             </form>
         </div>
