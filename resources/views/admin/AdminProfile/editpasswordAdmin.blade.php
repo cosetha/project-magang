@@ -43,7 +43,7 @@
                     <div class="col-md-8">
                       <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
                       <span></span>
-                      <a href="{{url('dashboard')}}" class="btn btn-default">Cancels</a>
+                      <a href="{{url('dashboard')}}" class="btn btn-default">Cancel</a>
                     </div>
                   </div>
                 </form>
@@ -55,22 +55,3 @@
     <!-- End of Main Content -->
 
     @endsection
-
-
-
-    <script>
-        function readURL(input, id) {
-            id = id || '#file-image';
-            if (input.files &amp;&amp; input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $(id).attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-                $('#file-image').removeClass('hidden');
-                $('#start').hide();
-            }
-        }
-    </script>
