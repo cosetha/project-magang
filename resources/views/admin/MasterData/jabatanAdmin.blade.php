@@ -52,7 +52,7 @@
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-jabatan">
                     @csrf
 
-                    <label for="judulJabatan">Jabatan</label>
+                    <label for="judulJabatan">Nama Jabatan</label>
                     <input type="text" class="form-control" name="nama_jabatan" required>
 
             </div>
@@ -87,7 +87,7 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-jabatan">
                     @csrf
                     <input type="hidden" value="" id="id-jabatan">
-                    <label for="judulJabatan">Jabatan</label>
+                    <label for="judulJabatan">Nama Jabatan</label>
                     <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit" required>
 
 

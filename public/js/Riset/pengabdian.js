@@ -101,7 +101,7 @@ $(document).ready(function() {
 
   //edit pengabdian
   $('body').on('click', '.btn-edit-pengabdian', function(e) {
-        e.preventDefault();
+    e.preventDefault();
     var id = $(this).data('id');
     var host = window.location.origin;
     console.log(id)
@@ -124,14 +124,18 @@ $(document).ready(function() {
 
 
     $('body').on('submit','#form-edit-pengabdian', function(e) {
-        console.log("click")
+        // console.log("click")
       e.preventDefault();
       var formData = new FormData();
       var judul = $('input[name=edit-judul]').val();
       var deskripsi = tinymce.get('edit-deskripsi').getContent();
-      var tahun = $('input[name=tahun-edit]').val();
+      var tahun = parseInt($('input[name=tahun_edit]').val());
       var gambar = $('#file-upload-edit')[0].files[0];
       var id = $('input[name=edit-id]').val();
+
+      console.log(tahun)
+
+    //   console.log(tahun)
 
       formData.append('judul', judul);
       formData.append('deskripsi', deskripsi);
@@ -147,6 +151,8 @@ $(document).ready(function() {
         success: function(data) {
           $('#editPengabdianModal').modal('hide');
           $('#form-edit-pengabdian').trigger('reset');
+
+
           if(data.status == 'ok') {
             Swal.fire({
               icon: 'success',
@@ -180,6 +186,7 @@ $(document).ready(function() {
         },
         error: function(err){
             console.log(err)
+
         }
       });
 
