@@ -23,7 +23,12 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password lama:</label>
                     <div class="col-md-8">
+                        <<<<<<< HEAD
                         <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
+                        =======
+
+                        <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
+                        >>>>>>> e7d15648a12f65e903a5aa577ee4d4b3de4643f6
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Password:</label>
@@ -49,6 +54,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- End of Main Content -->
 
