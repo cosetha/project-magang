@@ -29,7 +29,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$admin}}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fab fa-odnoklassniki fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dosen}}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tenaga}}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
