@@ -311,12 +311,12 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Penelitian
     Route::prefix('penelitian')->group(function () {
       Route::get('/', 'PageController@Penelitian');
-      Route::post('/', 'Riset\Penelitian@store');
-      Route::get('data', 'Riset\Penelitian@index');
-      Route::get('datatable', 'Riset\Penelitian@loadTable');
-      Route::get('edit/{id}', 'Riset\Penelitian@edit');
-      Route::post('update/{id}', 'Riset\Penelitian@update');
-      Route::get('delete/{id}', 'Riset\Penelitian@destroy');
+      Route::post('/', 'Riset\PenelitianController@store');
+      Route::get('data', 'Riset\PenelitianController@index');
+      Route::get('datatable', 'Riset\PenelitianController@loadTable');
+      Route::get('edit/{id}', 'Riset\PenelitianController@edit');
+      Route::post('update/{id}', 'Riset\PenelitianController@update');
+      Route::get('delete/{id}', 'Riset\PenelitianController@destroy');
     });
 
     //Pengabdian

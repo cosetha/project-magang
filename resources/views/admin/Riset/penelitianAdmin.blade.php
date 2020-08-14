@@ -1,4 +1,4 @@
-@extends('layouts/adminLayout')
+@extends('layouts.adminLayout')
 @section('title', 'Penelitian')
 
 @section('content')
@@ -24,42 +24,13 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#penelitianModal">+
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PenelitianModal">+
                 Add Penelitian</a>
             </div>
 
-
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                                <th>Judul Penelitian</th>
-                                <th>Peneliti</th>
-                                <th>Tahun</th>
-                                <th>Link</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td>System Architect</td>
-                                <td align="center">
-                                    <a href="#" data-toggle="modal" data-target="#editpenelitianModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                        <i class="fas fa-pen-square"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#deletepenelitianModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="datatable-penelitian"></div>
                 </div>
             </div>
         </div>
@@ -68,88 +39,98 @@
 <!-- End of Main Content -->
 
 
-<!-- Add Sosmed Modal-->
-<div class="modal fade" id="penelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Add Penelitian Modal-->
+<div class="modal fade" id="PenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah penelitian</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Penelitian</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-penelitian">
                     @csrf
 
-                    <label for="judulpenelitian">Judul Penelitian</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="judul">Judul Penelitian</label>
+                    <input type="text" class="form-control" id="judul" name="judul">
 
-                    <label for="peneliti" class="mt-2">Peneliti</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="peneliti" class="mt-2">Nama Peneliti</label>
+                    <input type="text" class="form-control" id="peneliti" name="peneliti">
+
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly>
 
-                    <label for="link" class="mt-2">Link</label>
-                    <input type="text" class="form-control" id="" name="">
-
-
-                </form>
+                    <div class="form-group mt-3">
+                        <label for="file">Gambar</label>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
+                <button class="btn btn-primary" type="button" id="btn-tambah-penelitian">Submit</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
 
 
-<!-- Edit Sosmed Modal-->
-<div class="modal fade" id="editpenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Edit Penelitian Modal-->
+<div class="modal fade" id="editPenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit penelitian</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Penelitian</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
                     @csrf
 
-                    <label for="judulpenelitian">Judul Penelitian</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="edit-judul">Judul Penelitian</label>
+                    <input type="text" class="form-control" id="edit-judul" name="judul">
 
-                    <label for="peneliti" class="mt-2">Peneliti</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="edit-peneliti" class="mt-2">Nama Peneliti</label>
+                    <input type="text" class="form-control" id="edit-peneliti" name="peneliti">
 
-                    <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly/>
+                    <label for="edit-deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="edit-deskripsi" name="deskripsi"></textarea>
 
-                    <label for="link" class="mt-2">Link</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <label for="tahun-edit" class="mt-2">Tahun</label>
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="edit" readonly>
 
-                </form>
-
+                    <div class="form-group mt-3">
+                        <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                    </div>
+                    
+                    <div class="form-group mt-3">
+                        <label for="file">Gambar</label>
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+                    <input type="hidden" id="edit-id" name="edit-id" value="">
+                
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-primary" type="button" id="btn-edit-penelitian">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- Delete Sosmed Modal-->
-<div class="modal fade" id="deletepenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Delete Penelitian Modal-->
+<div class="modal fade" id="deletePenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -158,7 +139,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus penelitian?</div>
+            <div class="modal-body">Apakah anda yakin ingin menghapus Penelitian?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-danger" href="#">Delete</a>
@@ -170,4 +151,5 @@
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
+      <script src="{{ asset('js/Riset/penelitian.js') }}"></script>
 @endsection

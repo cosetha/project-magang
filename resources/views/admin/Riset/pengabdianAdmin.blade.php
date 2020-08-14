@@ -1,5 +1,5 @@
 @extends('layouts.adminLayout')
-@section('title', 'Riset')
+@section('title', 'Pengabdian')
 
 @section('content')
 
