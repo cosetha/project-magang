@@ -19,7 +19,7 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Admin Counter -->
             <div class=" col-xl-4 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -36,7 +36,7 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Dosen Counter -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -55,7 +55,7 @@
 
 
 
-            <!-- Pending Requests Card Example -->
+            <!-- Tenaga Pendidik Counter -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -107,13 +107,13 @@
                   </div>
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
+                      <i class="fas fa-circle text-primary"></i> Dosen
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
+                      <i class="fas fa-circle text-success"></i> Tenaga Kerja
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
+                      <i class="fas fa-circle text-info"></i> Mahasiswa
                     </span>
                   </div>
                 </div>
