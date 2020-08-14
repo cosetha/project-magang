@@ -1,14 +1,14 @@
 $(document).ready(function() {
   $.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
   loadDataPenelitian();
 // ---- tambah penelitian
   $('body').on('click', '#btn-tambah-penelitian', function(e) {
-		e.preventDefault();
+    e.preventDefault();
     var formData = new FormData();
     var judul = $('input[name=judul]').val();
     var peneliti = $('input[name=peneliti]').val();
@@ -23,52 +23,52 @@ $(document).ready(function() {
     formData.append('gambar', gambar);
 
     $.ajax({
-			type: 'POST',
-			url: 'penelitian',
-			data: formData,
-			contentType: false,
-			processData: false,
-			success: function(data) {
-				if(data.status == 'ok') {
+      type: 'POST',
+      url: 'penelitian',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        if(data.status == 'ok') {
           Swal.fire({
-  					icon: 'success',
-  					title: 'Sukses',
-  					text: 'Berhasil Menambahkan Penelitian',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
+            icon: 'success',
+            title: 'Sukses',
+            text: 'Berhasil Menambahkan Penelitian',
+            timer: 1200,
+            showConfirmButton: false
+          });
           $('#form-tambah-penelitian').trigger('reset');
           $('#PenelitianModal .close').click();
           loadDataPenelitian();
         } else if(data.status == 'no_insert') {
           Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Gagal Menambahkan Penelitian',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Gagal Menambahkan Penelitian',
+            timer: 1200,
+            showConfirmButton: false
+          });
         } else if(data.status == "no_gambar"){
           Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Tidak ada gambar!',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Tidak ada gambar!',
+            timer: 1200,
+            showConfirmButton: false
+          });
         } else {
           Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Judul Penelitian, Peneliti, Deskripsi, dan Tahun tidak boleh kosong!',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Judul Penelitian, Nama Peneliti, Deskripsi, dan Tahun tidak boleh kosong!',
+            timer: 1200,
+            showConfirmButton: false
+          });
         }
-			}
-		});
+      }
+    });
 
-	});
+  });
 
   //tampil penelitian
   function loadDataPenelitian() {
@@ -104,17 +104,17 @@ $(document).ready(function() {
 
   //edit penelitian
   $('body').on('click', '.btn-edit-penelitian', function(e) {
-        e.preventDefault();
+    e.preventDefault();
     var id = $(this).data('id');
     var host = window.location.origin;
     console.log(id)
     $.ajax({
-			type: 'GET',
-			url: 'penelitian/edit/' + id,
-			contentType: false,
-			processData: false,
-			success: function(data) {
-			    $('#editPenelitianModal').modal('show');
+      type: 'GET',
+      url: 'penelitian/edit/' + id,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+          $('#editPenelitianModal').modal('show');
           $('#edit-judul').val(data.data.judul);
           $('#edit-peneliti').val(data.data.peneliti);
           tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
@@ -122,21 +122,22 @@ $(document).ready(function() {
           $('#image-edit').attr('src', host + '/img/riset/penelitian/' + data.data.gambar);
           $('input[name=edit-id]').val(id);
           $('#file-upload-edit').val('');
-			}
-		});
+      }
+    });
   });
 
 
     $('body').on('submit','#form-edit-penelitian', function(e) {
-        console.log("click")
       e.preventDefault();
       var formData = new FormData();
       var judul = $('input[name=edit-judul]').val();
-      var peneliti = $('input[name=peneliti]').val();
+      var peneliti = $('input[name=edit-peneliti]').val();
       var deskripsi = tinymce.get('edit-deskripsi').getContent();
-      var tahun = $('input[name=tahun-edit]').val();
+      var tahun = parseInt($('input[name=tahun_edit]').val());
       var gambar = $('#file-upload-edit')[0].files[0];
       var id = $('input[name=edit-id]').val();
+
+      console.log(tahun)
 
       formData.append('judul', judul);
       formData.append('peneliti', peneliti);
@@ -153,6 +154,7 @@ $(document).ready(function() {
         success: function(data) {
           $('#editPenelitianModal').modal('hide');
           $('#form-edit-penelitian').trigger('reset');
+
           if(data.status == 'ok') {
             Swal.fire({
               icon: 'success',
@@ -162,7 +164,7 @@ $(document).ready(function() {
               showConfirmButton: false
             });
             $('#editPenelitianModal').on('hidden.bs.modal', function () {
-              $(this).find("input, input, textarea, input, select").val('').end();
+              $(this).find("input,input,textarea,input,select").val('').end();
             });
             loadDataPenelitian();
           } else if(data.status == 'no_insert') {
@@ -186,6 +188,7 @@ $(document).ready(function() {
         },
         error: function(err){
             console.log(err)
+
         }
       });
 
@@ -230,6 +233,5 @@ $(document).ready(function() {
       })
 
     });
-
 
 });

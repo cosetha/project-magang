@@ -45,38 +45,41 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Penelitian</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-penelitian">
-                    @csrf
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-penelitian">
+                <div class="modal-body">
+                @csrf
 
                     <label for="judul">Judul Penelitian</label>
                     <input type="text" class="form-control" id="judul" name="judul">
 
-                    <label for="peneliti" class="mt-2">Nama Peneliti</label>
+                    <label for="peneliti">Nama Peneliti</label>
                     <input type="text" class="form-control" id="peneliti" name="peneliti">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly>
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
-                <button class="btn btn-primary" type="button" id="btn-tambah-penelitian">Submit</button>
-            </div>
-        </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="btn-tambah-penelitian">Submit</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -88,42 +91,44 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Penelitian</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
-                    @csrf
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
+                <div class="modal-body">
+                @csrf
 
                     <label for="edit-judul">Judul Penelitian</label>
-                    <input type="text" class="form-control" id="edit-judul" name="judul">
+                    <input type="text" class="form-control" id="edit-judul" name="edit-judul">
 
-                    <label for="edit-peneliti" class="mt-2">Nama Peneliti</label>
-                    <input type="text" class="form-control" id="edit-peneliti" name="peneliti">
+                    <label for="edit-peneliti">Nama Peneliti</label>
+                    <input type="text" class="form-control" id="edit-peneliti" name="edit-peneliti">
 
-                    <label for="edit-deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea class="form-control" id="edit-deskripsi" name="deskripsi"></textarea>
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="edit-deskripsi" name="deskripsi"> </textarea>
 
                     <label for="tahun-edit" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun-edit" name="edit" readonly>
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun_edit" readonly/>
 
                     <div class="form-group mt-3">
                         <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
                     </div>
-                    
+
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload-edit" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-                    <input type="hidden" id="edit-id" name="edit-id" value="">
-                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="button" id="btn-edit-penelitian">Submit</button>
-            </div>
+                    <input type="hidden" name="edit-id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="btn-edit-penelitian">Submit</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -139,7 +144,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus Penelitian?</div>
+            <div class="modal-body">Apakah anda yakin ingin menghapus data Penelitian?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-danger" href="#">Delete</a>

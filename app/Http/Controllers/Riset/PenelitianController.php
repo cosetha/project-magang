@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Riset;
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Penelitian;
 use DataTables;
 use File;
 
-class PenelitianController extends Controller
+class PenelitianController
 {
     public function loadTable()
     {
@@ -24,8 +23,9 @@ class PenelitianController extends Controller
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-edit-penelitian" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          
+
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'"  class="btn-delete-penelitian" style="font-size: 18pt; text-decoration: none; color:red;">
+
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
@@ -41,7 +41,7 @@ class PenelitianController extends Controller
         $peneliti = $request->peneliti;
         $deskripsi = $request->deskripsi;
         $tahun = $request->tahun;
-        if($judul == "" || $deskripsi == "" || $tahun == "" || $peneliti = "") {
+        if($judul == "" || $peneliti = "" || $deskripsi == "" || $tahun == "") {
           return response()->json([
             'status' => 'no_empty'
           ]);
@@ -90,12 +90,13 @@ class PenelitianController extends Controller
 
     public function update(Request $request, $id)
     {
+
       $judul = $request->judul;
       $peneliti = $request->peneliti;
       $deskripsi = $request->deskripsi;
       $tahun = $request->tahun;
       $gambar = $request->file('gambar');
-      if($judul == "" || $deskripsi == "" || $tahun = "" || $peneliti = "") {
+      if($judul == "" || $deskripsi == "" || $tahun = "") {
         return response()->json([
             'status' => 'no_empty'
           ]);
@@ -109,9 +110,9 @@ class PenelitianController extends Controller
 
           $data = Penelitian::find($id);
           $data->judul = $judul;
-          $data->peneliti = $peneliti;
+          $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
-          $data->tahun = $tahun;
+          $data->tahun = $request->tahun;
           $data->gambar = $fileName;
           $data->save();
 
@@ -126,11 +127,12 @@ class PenelitianController extends Controller
             }
 
       } else {
+
           $data = Penelitian::find($id);
           $data->judul = $judul;
-          $data->peneliti = $peneliti;
+          $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
-          $data->tahun = $tahun;
+          $data->tahun = $request->tahun;
           $data->save();
 
             if($data) {
