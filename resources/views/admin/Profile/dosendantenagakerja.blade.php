@@ -36,6 +36,7 @@
                         <tr>
                             <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
                             <th>Nama Dosen</th>
+                            <th>Deskripsi</th>
                             <th>Gambar</th>
                             <th>Action</th>
                         </tr>
@@ -84,6 +85,9 @@
                     <label for="namadosen">Nama Dosen</label>
                     <input type="text" class="form-control" id="" name="">
 
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="" name=""> </textarea>
+
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
@@ -119,6 +123,9 @@
 
                     <label for="namadosen">Nama Dosen</label>
                     <input type="text" class="form-control" id="" name="">
+                    
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="" name=""> </textarea>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>

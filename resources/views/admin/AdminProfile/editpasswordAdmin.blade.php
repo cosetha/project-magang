@@ -24,51 +24,51 @@
                     <label class="col-md-3 control-label">Password lama:</label>
                     <div class="col-md-8">
                         <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
-                        </div
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="password" id="password" placeholder="password">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Password:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="password" id="password" placeholder="password">
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Confirm password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Confirm password:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
-                                <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
-                                <span></span>
-                                <input type="reset" class="btn btn-default" value="Cancel">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
+                            <span></span>
+                            <input type="reset" class="btn btn-default" value="Cancel">
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- End of Main Content -->
+</div>
+<!-- End of Main Content -->
 
-    @endsection
+@endsection
 
 
 
-    <script>
-        function readURL(input, id) {
-            id = id || '#file-image';
-            if (input.files &amp;&amp; input.files[0]) {
-                var reader = new FileReader();
+<script>
+    function readURL(input, id) {
+        id = id || '#file-image';
+        if (input.files &amp;&amp; input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $(id).attr('src', e.target.result);
-                };
+            reader.onload = function (e) {
+                $(id).attr('src', e.target.result);
+            };
 
-                reader.readAsDataURL(input.files[0]);
-                $('#file-image').removeClass('hidden');
-                $('#start').hide();
-            }
+            reader.readAsDataURL(input.files[0]);
+            $('#file-image').removeClass('hidden');
+            $('#start').hide();
         }
-    </script>
+    }
+</script>

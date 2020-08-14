@@ -16,6 +16,7 @@ tinymce.init({
 	images_upload_url: '/upload',
 	importcss_append: true,
 	file_picker_types: 'file, image',
+	readonly: false,
 	file_picker_callback: function(cb, value, meta) {
 		var input = document.createElement('input');
 		input.setAttribute('type', 'file');

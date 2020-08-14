@@ -99,10 +99,10 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly/>
 
                     <label for="lulus" class="mt-2">Lulus</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="lulus" name="lulus" readonly/>
 
                 </form>
 
@@ -150,10 +150,10 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan" readonly/>
 
                     <label for="lulus" class="mt-2">Lulus</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="lulus-edit" name="lulus" readonly/>
 
                 </form>
 
@@ -186,16 +186,6 @@
 </div>
 
 @endsection
-
-<script type="text/javascript">
-    // When the document is ready
-    $(document).ready(function () {
-
-        $('#example1').datepicker({
-            minViewMode: 'years',
-            autoclose: true,
-             format: 'yyyy'
-        });
-
-    });
-</script>
+@section('js-ajax')
+<script src="{{ asset('js/datepicker.js') }}"></script>
+@endsection

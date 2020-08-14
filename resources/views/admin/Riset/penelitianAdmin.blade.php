@@ -93,7 +93,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
 
                     <div class="form-group mt-3">
                         <label for="image">Gambar</label>
@@ -139,7 +139,7 @@
                     <input type="text" class="form-control" id="" name="">
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="yearpicker form-control" value="" />
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly/>
 
                     <div class="form-group mt-3">
                         <label for="image">Gambar</label>
@@ -180,4 +180,6 @@
 </div>
 
 @endsection
-
+@section('js-ajax')
+      <script src="{{ asset('js/datepicker.js') }}"></script>
+@endsection
