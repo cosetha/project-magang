@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $user = [
              [
-	            'gambar' => 'a.jpg',
+	            'gambar' => '',
 	            'name' => 'Super Admin',
 		        'email' => 'superadmin@gmail.com',
 		        'password' => bcrypt('rahasia_superadmin'), // password
@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
 		        'remember_token' => Str::random(10)
         	],
         	[
-	            'gambar' => 'a.jpg',
+	            'gambar' => '',
 	            'name' => 'Admin',
 		        'email' => 'admin@gmail.com',
 		        'password' => bcrypt('rahasia_admin'), // password
