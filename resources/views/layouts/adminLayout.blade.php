@@ -21,11 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-
 
     <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
@@ -376,7 +374,7 @@
                             <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; <a href="#">Teknologi Informasi dan Komputer</a></span>
+                                        <span>Copyright &copy; <a href="#">Progam Studi Teknologi Informasi</a></span>
                                     </div>
                                 </div>
                             </footer>

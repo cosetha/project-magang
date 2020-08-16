@@ -99,12 +99,10 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-
                     <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly/>
 
                     <label for="lulus" class="mt-2">Lulus</label>
                     <input type="text" class="form-control years-picker" id="lulus" name="lulus" readonly/>
-
 
                 </form>
 
@@ -152,12 +150,10 @@
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-
                     <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan" readonly/>
 
                     <label for="lulus" class="mt-2">Lulus</label>
                     <input type="text" class="form-control years-picker" id="lulus-edit" name="lulus" readonly/>
-
 
                 </form>
 
@@ -190,8 +186,6 @@
 </div>
 
 @endsection
-
 @section('js-ajax')
-      <script src="{{ asset('js/datepicker.js') }}"></script>
+<script src="{{ asset('js/datepicker.js') }}"></script>
 @endsection
-
