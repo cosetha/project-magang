@@ -42,6 +42,7 @@
                             <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
@@ -54,6 +55,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </div>
 <!-- End of Main Content -->
