@@ -299,7 +299,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/prestasi', 'PageController@Prestasi');
 
-    Route::get('/sejarah', 'PageController@Sejarah');
+    Route::get('/sejarah', 'Profile\SejarahController@index');
+    Route::post('/admin/tambah-sejarah','Profile\SejarahController@store');
+    Route::get('/load/table-sejarah','Profile\SejarahController@LoadTableKonten');
+    Route::get('/load/data-sejarah','Profile\SejarahController@LoadDataKonten');
+    Route::get('/admin/delete-sejarah/{id}','Profile\SejarahController@destroy');
+    Route::get('/admin/edit-sejarah/{id}','Profile\SejarahController@edit');
+    Route::POST('/admin/konfirmasi-edit-sejarah/{id}','Profile\SejarahController@update');
 
     Route::get('/struktur', 'Profile\StrukturOrganisasiController@index');
     Route::post('/admin/tambah-struktur-organisasi', 'Profile\StrukturOrganisasiController@store');
@@ -309,7 +315,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/load/data-so','Profile\StrukturOrganisasiController@LoadDataSO');
     Route::get('/get-data-so/{id}','Profile\StrukturOrganisasiController@get');
 
-    Route::get('/visimisi', 'PageController@VisiMisi');
+    Route::get('/visimisi', 'Profile\VisimisiController@index');
+    Route::post('/admin/tambah-visimisi','Profile\VisimisiController@store');
+    Route::get('/load/table-visimisi','Profile\VisimisiController@LoadTableKonten');
+    Route::get('/load/data-visimisi','Profile\VisimisiController@LoadDataKonten');
+    Route::get('/admin/delete-visimisi/{id}','Profile\VisimisiController@destroy');
+    Route::get('/admin/edit-visimisi/{id}','Profile\VisimisiController@edit');
+    Route::POST('/admin/konfirmasi-edit-visimisi/{id}','Profile\VisimisiController@update');
 
     Route::get('/tenaga', 'PageController@Tenaga');
 
