@@ -56,10 +56,6 @@ class PageController extends Controller
       return view('admin/Akademik/ojtAdmin');
     }
 
-    public function TugasAkhir(){
-      return view('admin/Akademik/tugasakhirAdmin');
-    }
-
     public function Fasilitas(){
       return view('admin/Fasilitas/fasilitasAdmin');
     }

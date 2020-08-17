@@ -174,7 +174,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('ojt', 'PageController@Ojt');
 
-    Route::get('/tugasakhir', 'PageController@TugasAkhir');
+    Route::get('/tugasakhir', 'Akademik\TugasAkhirController@index');
+    Route::post('/store-ta', 'Akademik\TugasAkhirController@store');
+    Route::post('/update-ta/{id}', 'Akademik\TugasAkhirController@update');
+    Route::get('/delete-ta/{id}', 'Akademik\TugasAkhirController@destroy');
+    Route::get('/load/table-tugas-akhir','Akademik\TugasAkhirController@LoadTableTA');
+    Route::get('/load/data-tugas-akhir','Akademik\TugasAkhirController@LoadDataTA');
+    Route::get('/get-ta/{id}','Akademik\TugasAkhirController@get');
 
 
     //Fasilitas
