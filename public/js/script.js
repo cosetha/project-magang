@@ -366,7 +366,6 @@ $(document).ready(function() {
 		formData.append('gambar', $('input[type=file]')[0].files[0]);
 		console.log(deskripsi);
 		if (tinymce.get('deskripsi-tambah').getContent() == '') {
-			$('#form-tambah-bk').trigger('reset');
 			$('.btn-close').css('display', '');
 			$('.btn-loading').css('display', 'none');
 			$('#btn-submit-bk').css('display', '');
@@ -378,6 +377,7 @@ $(document).ready(function() {
 				showConfirmButton: false
 			});
 		} else {
+			$('#form-tambah-bk').trigger('reset');
 			$.ajax({
 				type: 'post',
 				url: '/admin/tambah-bk',
@@ -470,7 +470,6 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-show-bk', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-		$('.btn-close-edit').css('display', 'none');
 		$('#btn-save-bk').css('display', 'none');
 		$('#file-upload-edit').css('display', 'none');
 		$.ajax({
@@ -682,5 +681,4 @@ $(document).ready(function() {
 	//--END PENGATURAN PROFILE ----
 	$.getScript('/js/Home/headline.js');
 	$.getScript('/js/Home/kerjasama.js');
-	$.getScript('/js/Home/konten.js');
 });
