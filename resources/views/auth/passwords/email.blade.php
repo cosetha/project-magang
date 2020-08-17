@@ -44,7 +44,7 @@
                 </form>
                 <hr>
                 <div class="text-left">
-                    <a class="small" href="{{ url('/') }}">< Kembali</a>
+                    <a class="small" href="{{ url('/login') }}">< Kembali</a>
                 </div>
               </div>
             </div>

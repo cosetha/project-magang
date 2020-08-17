@@ -265,7 +265,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/lomba', 'PageController@Lomba');
 
-    Route::get('/kegiatanpro', 'PageController@KegiatanProdi');
+    //Kegiatan Prodi
+    Route::prefix('kegiatanProdi')->group(function () {
+      Route::get('/', 'PageController@KegiatanProdi');
+      Route::post('/', 'Kemahasiswaan\KegiatanProdiController@store');
+      Route::get('data', 'Kemahasiswaan\KegiatanProdiController@index');
+      Route::get('datatable', 'Kemahasiswaan\KegiatanProdiController@loadTable');
+      Route::get('edit/{id}', 'Kemahasiswaan\KegiatanProdiController@edit');
+      Route::post('update/{id}', 'Kemahasiswaan\KegiatanProdiController@update');
+      Route::get('delete/{id}', 'Kemahasiswaan\KegiatanProdiController@destroy');
+    });
 
     Route::get('/lowongan', 'PageController@Lowongan');
 

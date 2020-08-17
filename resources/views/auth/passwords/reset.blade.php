@@ -61,7 +61,7 @@
                 </form>
                 <hr>
                 <div class="text-left">
-                    <a class="small" href="{{ url('/') }}">< Batal</a>
+                    <a class="small" href="{{ url('/login') }}">< Batal</a>
                 </div>
               </div>
             </div>
