@@ -374,7 +374,7 @@
                             <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; <a href="#">Progam Studi Teknologi Informasi</a></span>
+                                        <span>Copyright &copy; <a href="https://raw.githubusercontent.com/StartBootstrap/startbootstrap-sb-admin-2/master/LICENSE">SB Admin 2</a></span>
                                     </div>
                                 </div>
                             </footer>
