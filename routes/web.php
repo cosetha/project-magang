@@ -293,7 +293,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/lowongan', 'PageController@Lowongan');
 
-    Route::get('/organisasi', 'PageController@Organisasi');
+    //Organisasi Mahasiswa
+    Route::prefix('organisasi')->group(function () {
+      Route::get('/', 'PageController@Organisasi');
+      Route::post('/', 'Kemahasiswaan\OrganisasiMahasiswaController@store');
+      Route::get('data', 'Kemahasiswaan\OrganisasiMahasiswaController@index');
+      Route::get('datatable', 'Kemahasiswaan\OrganisasiMahasiswaController@loadTable');
+      Route::get('edit/{id}', 'Kemahasiswaan\OrganisasiMahasiswaController@edit');
+      Route::post('update/{id}', 'Kemahasiswaan\OrganisasiMahasiswaController@update');
+      Route::get('delete/{id}', 'Kemahasiswaan\OrganisasiMahasiswaController@destroy');
+    });
 
 
     //MiniNavbar

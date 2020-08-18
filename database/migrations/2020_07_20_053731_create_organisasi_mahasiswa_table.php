@@ -16,7 +16,7 @@ class CreateOrganisasiMahasiswaTable extends Migration
         Schema::create('organisasi_mahasiswa', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('logo');
-            $table->string('judul');
+            $table->string('nama');
             $table->mediumText('deskripsi');
             $table->timestamps();
         });

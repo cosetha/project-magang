@@ -53,7 +53,7 @@ class PenelitianController
 
         $data = new Penelitian;
         $data->judul = $judul;
-        $data->peneliti = $peneliti;
+        $data->peneliti = $request->peneliti;
         $data->deskripsi = $deskripsi;
         $data->tahun = $tahun;
         $data->gambar = $fileName;
