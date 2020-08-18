@@ -297,7 +297,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
 
 
-    Route::get('/prestasi', 'PageController@Prestasi');
+    Route::prefix('prestasi')->group(function () {
+      Route::get('/', 'PageController@Prestasi');
+      Route::post('/', 'Profile\PrestasiController@store');
+      Route::get('get-bk', 'Profile\PrestasiController@getBK');
+      Route::get('data', 'Profile\PrestasiController@index');
+      Route::get('datatable', 'Profile\PrestasiController@loadTable');
+      Route::get('edit/{id}', 'Profile\PrestasiController@edit');
+      Route::get('delete/{id}', 'Profile\PrestasiController@destroy');
+      Route::post('update/{id}', 'Profile\PrestasiController@update');
+    });
 
     Route::get('/sejarah', 'PageController@Sejarah');
 
@@ -311,7 +320,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/visimisi', 'PageController@VisiMisi');
 
-    Route::get('/tenaga', 'PageController@Tenaga');
+    Route::prefix('tenaga')->group(function () {
+      Route::get('/', 'PageController@Tenaga');
+      Route::post('/', 'Profile\TenagaKependidikanController@store');
+      Route::get('jabatan', 'Profile\TenagaKependidikanController@getJabatan');
+      Route::get('data', 'Profile\TenagaKependidikanController@index');
+      Route::get('datatable', 'Profile\TenagaKependidikanController@loadTable');
+      Route::get('edit/{id}', 'Profile\TenagaKependidikanController@edit');
+      Route::get('delete/{id}', 'Profile\TenagaKependidikanController@destroy');
+      Route::post('update/{id}', 'Profile\TenagaKependidikanController@update');
+    });
 
 
     //Riset
