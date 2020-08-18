@@ -150,7 +150,7 @@
                         <input type="text" class="form-control" id="lokasi-edit" name="lokasi-edit">
 
                         <div class="form-group mt-3">
-                          <img id="image-edit-agenda" src="" alt="">
+                        <img id="image-edit-agenda" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
                         </div>
 
                         <div class="form-group mt-3">

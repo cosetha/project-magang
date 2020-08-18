@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Dosen;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -9,7 +11,9 @@ class PageController extends Controller
 {
     public function Dashboard(){
       $admin = User::count();
-      return view('admin.dashboardAdmin', compact('admin'));
+      $dosen = Dosen::count();
+      $tenaga = DB::table('tenaga_kependidikan')->count();
+      return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga'));
     }
 
     public function SosialMedia(){
@@ -50,10 +54,6 @@ class PageController extends Controller
 
     public function Ojt(){
       return view('admin/Akademik/ojtAdmin');
-    }
-
-    public function TugasAkhir(){
-      return view('admin/Akademik/tugasakhirAdmin');
     }
 
     public function Fasilitas(){

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInfoLombaSeminarTable extends Migration
+class CreateTugasAkhirsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateInfoLombaSeminarTable extends Migration
      */
     public function up()
     {
-        Schema::create('info_lomba_seminar', function (Blueprint $table) {
-            $table->increments('id',10);
+        Schema::create('tugas_akhirs', function (Blueprint $table) {
+            $table->id();
             $table->string('judul');
-            $table->mediumText('deskripsi');
-            $table->string('lokasi');
-            $table->date('tanggal');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateInfoLombaSeminarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_lomba_seminar');
+        Schema::dropIfExists('tugas_akhirs');
     }
 }
