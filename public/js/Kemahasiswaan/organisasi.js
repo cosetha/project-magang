@@ -80,7 +80,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'nama',name: 'nama'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {
             data: 'logo',
             name: 'logo',
@@ -219,5 +218,23 @@ $(document).ready(function() {
       })
 
     });
+
+    //DETAIL
+    $("body").on("click",".btn-show-om", function(e){
+        e.preventDefault()
+        var id = $(this).attr("data-id")
+        $.ajax({
+            type: 'GET',
+            url: 'organisasi/edit/' + id,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#detailOrganisasiModal').modal('show');
+                $('#detail-nama').val(data.data.nama);
+                tinymce.get('detail-deskripsi').setContent(data.data.deskripsi);
+                tinymce.get('detail-deskripsi').setMode('readonly');
+            }
+          });
+    })
 
 });

@@ -25,9 +25,11 @@ class OrganisasiMahasiswaController
           </a>';
 
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'"  class="btn-delete-organisasi" style="font-size: 18pt; text-decoration: none; color:red;">
-
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-show-om" style="font-size: 18pt; text-decoration: none; color:green;">
+                <i class="fas fa-eye"></i>
+                </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])

@@ -3,7 +3,6 @@
     <tr align="center">
       <th>No</th>
       <th>Nama Organisasi</th>
-      <th>Deskripsi</th>
       <th>Logo</th>
       <th>Action</th>
     </tr>
