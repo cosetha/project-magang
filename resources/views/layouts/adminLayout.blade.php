@@ -27,10 +27,7 @@
 
     <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
-
-    <link rel="stylesheet" href="yearpicker/src/style.css">
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="yearpicker/dist/yearpicker.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -442,17 +439,5 @@
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>
 
-                    <!-- script yearpicker -->
-
-                    <script src="yearpicker/dist/yearpicker.js"></script>
-                    <script>
-                        $(document).ready(function() {
-                            $(".yearpicker").yearpicker({
-                                year: 2010,
-                                startYear: 1900,
-                                endYear: 2099
-                            });
-                        });
-                    </script>
                 </body>
                 </html>
