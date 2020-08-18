@@ -180,7 +180,7 @@
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Kemahasiswaan</h6>
                                 <a class="collapse-item" href="{{ url('organisasi') }}">Organisasi</a>
-                                <a class="collapse-item" href="{{ url('lomba') }}">Info Lomba / Seminar</a>
+                                <a class="collapse-item" href="{{ url('lomba-seminar') }}">Info Lomba / Seminar</a>
                                 <a class="collapse-item" href="{{ url('kegiatanProdi') }}">Kegiatan Prodi</a>
                                 <a class="collapse-item" href="{{ url('lowongan') }}">Lowongan</a>
                                 <a class="collapse-item" href="{{ url('alumni') }}">Data Alumni</a>

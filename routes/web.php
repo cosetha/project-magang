@@ -269,7 +269,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Kemahasiswaan
     Route::get('/alumni', 'PageController@Alumni');
 
-    Route::get('/lomba', 'PageController@Lomba');
+    //Lomba Seminar
+    Route::prefix('lomba-seminar')->group(function () {
+      Route::get('/', 'PageController@Lomba');
+      Route::post('/', 'Kemahasiswaan\InfoLombaController@store');
+      Route::get('data', 'Kemahasiswaan\InfoLombaController@index');
+      Route::get('datatable', 'Kemahasiswaan\InfoLombaController@loadTable');
+      Route::get('edit/{id}', 'Kemahasiswaan\InfoLombaController@edit');
+      Route::post('update/{id}', 'Kemahasiswaan\InfoLombaController@update');
+      Route::get('delete/{id}', 'Kemahasiswaan\InfoLombaController@destroy');
+    });
 
     //Kegiatan Prodi
     Route::prefix('kegiatanProdi')->group(function () {
