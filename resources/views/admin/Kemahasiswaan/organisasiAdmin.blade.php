@@ -119,6 +119,35 @@
     </div>
 </div>
 
+<!-- Detail Organisasi Modal-->
+<div class="modal fade" id="detailOrganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Organisasi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form accept-charset="utf-8" enctype="multipart/form-data">
+                <div class="modal-body">
+                @csrf
+
+                    <label for="edit-nama">Nama Organisasi</label>
+                    <input type="text" class="form-control" id="detail-nama" name="detail-nama" readonly>
+
+                    <label for="edit-deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="detail-deskripsi" name="detail-deskripsi"> </textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Delete Organisasi Modal-->
 <div class="modal fade" id="deleteOrganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
