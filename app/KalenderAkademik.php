@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class KalenderAkademik extends Model
 {
-  protected $table = ['kalender_akademik'];
+  protected $table = 'kalender_akademik';
   protected $guarded = ['id'];
 
   public function semester()

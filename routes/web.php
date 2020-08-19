@@ -168,7 +168,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/jadwal', 'PageController@Jadwal');
 
-    Route::get('/kalender', 'PageController@Kalender');
+    Route::prefix('kalender')->group(function () {
+      Route::get('/', 'PageController@Kalender');
+      Route::post('/', 'Akademik\KalenderAkademikController@store');
+      Route::get('list-smt', 'Akademik\KalenderAkademikController@listSemester');
+      Route::get('data', 'Akademik\KalenderAkademikController@index');
+      Route::get('datatable', 'Akademik\KalenderAkademikController@loadTable');
+      Route::get('edit/{id}', 'Akademik\KalenderAkademikController@edit');
+      Route::post('update/{id}', 'Akademik\KalenderAkademikController@update');
+      Route::get('delete/{id}', 'Akademik\KalenderAkademikController@destroy');
+    });
 
     Route::get('kegiatan', 'PageController@Kegiatan');
 

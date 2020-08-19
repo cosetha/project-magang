@@ -56,7 +56,6 @@ $(document).ready(function() {
           }
         }
     });
-
   });
 
   //tambah prestasi
