@@ -26,9 +26,8 @@
                 @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="form-group">
-                        <label for="email">E-Mail</label>
 
-                        <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="Masukkan Email" required disabled>
+                        <input id="email" type="hidden" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="Masukkan Email">
 
                         @error('email')
                           <span class="invalid-feedback" role="alert">
