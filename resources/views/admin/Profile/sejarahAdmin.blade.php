@@ -28,31 +28,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Judul Sejarah</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>Edinburgh</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editSejarahModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteSejarahModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="datatable-sejarah"></div>
             </div>
         </div>
     </div>
@@ -72,24 +48,26 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" id="form-sejarah" method="post">
                     @csrf
 
                     <label for="judulsejarah" >Judul Sejarah</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="judul" name="judul" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
-
-                </form>
-
+                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" required> </textarea>
+                        <input type="hidden" name="token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="menu" value="Sejarah"/>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-submit-sejarah">Submit</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
+                </form>
         </div>
     </div>
 </div>
@@ -100,51 +78,39 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Sejarah</h5>
+                <h5 class="modal-title" id="modal-title-sejarah-edit">Edit Sejarah</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" id="form-sejarah-edit" method="post">
                     @csrf
 
                     <label for="judulsejarah">Judul Sejarah</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="judul-edit" name="judul-edit" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
-
-                </form>
-
+                    <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit" required> </textarea> 
+                        <input type="hidden" name="token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id-edit" value=""/>
+                        <input type="hidden" name="menu-edit" value="Sejarah"/>              
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete sejarah Modal-->
-<div class="modal fade" id="deleteSejarahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-sejarah">Save</button>
+                <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus Sejarah?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
-            </div>
+                </form>
         </div>
     </div>
 </div>
 
+
+@endsection
+@section('js-ajax')
+      <script src="{{ asset('js/Profile/Sejarah.js') }}"></script>
 @endsection

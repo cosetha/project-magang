@@ -85,7 +85,7 @@ $(document).ready(function() {
             data: 'gambar',
             name: 'gambar',
             "render": function(data, type, row) {
-                return '<img src=" ' + host + '/img/fasilitas/'+ data + ' " style="height:200px;width:200px;"/>';
+                return '<img src=" ' + host + '/img/fasilitas/'+ data + ' " class = "rounded mx-auto d-block" height="100px"/>';
             },
             searchable: false,
             orderable: false

@@ -108,7 +108,7 @@
                     </div>
 
                     <label for="tahun" class="mt-2">Tahun</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly>
 
                     <div class="form-group">
                     <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -136,7 +136,7 @@
       </div>
 
 
-      <!-- Edit Sosmed Modal-->
+      <!-- Edit Prestasi Modal-->
       <div class="modal fade" id="editPrestasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -172,7 +172,7 @@
                     </div>
 
                     <label for="tahun">Tahun</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly>
 
                     <div class="form-group">
                     <label for="bk">Bidang Keahlian</label>
@@ -218,4 +218,7 @@
         </div>
       </div>
 
-      @endsection
+@endsection
+@section('js-ajax')
+      <script src="{{ asset('js/datepicker.js') }}"></script>
+@endsection
