@@ -48,10 +48,6 @@ class PageController extends Controller
       return view('admin/Akademik/kalenderAdmin');
     }
 
-    public function Kegiatan(){
-      return view('admin/Akademik/kegiatanakaAdmin');
-    }
-
     public function Ojt(){
       return view('admin/Akademik/ojtAdmin');
     }
