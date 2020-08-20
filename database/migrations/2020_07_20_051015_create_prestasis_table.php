@@ -19,11 +19,16 @@ class CreatePrestasisTable extends Migration
             $table->string('nama_kejuaraan',255);
             $table->string('peringkat',255);
             $table->string('nama',255);
-           
+            $table->bigInteger('id_bidang_keahlian')->unsigned();
+            $table->foreign('id_bidang_keahlian')
+                  ->references('id')
+                  ->on('bidang_keahlian')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->integer('tahun')->unsigned();;
             $table->timestamps();
         });
-       
+
     }
 
     /**

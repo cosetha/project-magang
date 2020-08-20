@@ -23,38 +23,12 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#KalenderModal">+ Add Kalender Akademik</a>
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-kalender">+ Add Kalender Akademik</a>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Nama Kegiatan</th>
-                            <th>Semester</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>1</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editKalenderModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteKalenderModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="datatable-kalender"></div>
             </div>
         </div>
     </div>
@@ -76,15 +50,15 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-kalender">
                     @csrf
 
                     <label for="namakegiatan">Nama Kegiatan</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="nama-kegiatan">
 
                     <div class="form-group">
                         <label for="semester" class="mt-2">Semester</label>
-                        <select class="form-control" id="" name="">
+                        <select class="form-control" id="list-semester" name="">
                             <option value="" hidden> -- Pilih Semester -- </option>
 
                             <option value=""></option>
@@ -92,17 +66,18 @@
                     </div>
 
                     <label for="tanggalmulai" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""></textarea>
+                    <textarea type="text" class="form-control" id="deskripsi-kalender" name=""></textarea>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                    </div>
 
 
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -121,15 +96,15 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-kalender">
                     @csrf
 
                     <label for="namakalender">Nama kalender</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-kegiatan-edit" name="nama-kegiatan-edit">
 
                     <div class="form-group">
                         <label for="semester" class="mt-2">Semester</label>
-                        <select class="form-control" id="" name="">
+                        <select class="form-control" id="list-semester-edit" name="">
                             <option value="" hidden> -- Pilih Semester -- </option>
 
                             <option value=""></option>
@@ -137,15 +112,16 @@
                     </div>
 
                     <label for="tanggalmulai" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""></textarea>
+                    <textarea type="text" class="form-control" id="deskripsi-kalender-edit" name=""></textarea>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <input type="hidden" name="edit-id" value="">
+                    </div>
 
                 </form>
 
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
             </div>
         </div>
     </div>
@@ -164,10 +140,14 @@
             <div class="modal-body">Apakah anda yakin ingin menghapus data kalender akademik?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <button class="btn btn-danger" type="button" id="btn-confirm-kalender">Delete</button>
+                <input type="hidden" name="hapus-id" value="">
             </div>
         </div>
     </div>
 </div>
 
+@endsection
+@section('js-ajax')
+      <script src="{{ asset('js/Akademik/kalenderAkademik.js') }}"></script>
 @endsection

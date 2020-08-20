@@ -7,21 +7,22 @@ use Illuminate\Http\Request;
 use \App\Konten;
 use DataTables;
 
-class TugasAkhirController extends Controller
+class KegiatanAkademikController extends Controller
 {
+
     public function index(){
-        return view('admin/Akademik/tugasakhirAdmin');
+        return view('admin/Akademik/kegiatanakaAdmin');
     }
 
     public function store(Request $request){
         $k = new Konten;
-        $k->menu = "Tugas Akhir";
+        $k->menu = "Kegiatan Akademik";
         $k->judul = $request->judul;
         $k->deskripsi = $request->deskripsi;
         $k->save();
 
         return response([
-            'message' => 'sukses'
+            'message' => 'success'
         ]);
     }
 
@@ -53,27 +54,28 @@ class TugasAkhirController extends Controller
         ]);
     }
 
-    public function LoadTableTA(){
-        return view('datatable.TableTugasAkhir');
+    public function LoadTableKA(){
+        return view('datatable.TableKegiatanAkademik');
     }
 
-    public function LoadDataTA(){
-        $jabatan = Konten::where('menu','Tugas Akhir')->orderBy('id','desc')->get();
+    public function LoadDataKA(){
+        $jabatan = Konten::where('menu','Kegiatan Akademik')->orderBy('id','desc')->get();
 
             return Datatables::of($jabatan)->addIndexColumn()
             ->addColumn('aksi', function($row){
-                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-edit-ta" style="font-size: 18pt; text-decoration: none;" class="mr-3">
+                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-edit-ka" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                 <i class="fas fa-pen-square"></i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-delete-ta" style="font-size: 18pt; text-decoration: none; color:red;">
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-delete-ka" style="font-size: 18pt; text-decoration: none; color:red;">
                 <i class="fas fa-trash"></i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-show-ta" style="font-size: 18pt; text-decoration: none; color:green;">
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'" class="btn-show-ka" style="font-size: 18pt; text-decoration: none; color:green;">
                 <i class="fas fa-eye"></i>
                 </a>';
                 return $btn;
          })
          ->rawColumns(['aksi'])
-            ->make(true);
+
+         ->make(true);
     }
 }
