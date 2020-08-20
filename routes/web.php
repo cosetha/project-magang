@@ -162,7 +162,15 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Akademik
     Route::get('/mahasiswa', 'PageController@Mahasiswa');
 
-    Route::get('/dokumen', 'PageController@Dokumen');
+    Route::prefix('dokumen')->group(function () {
+      Route::get('/', 'PageController@Dokumen');
+      Route::post('/', 'Akademik\DokumenController@store');
+      Route::get('data', 'Akademik\DokumenController@index');
+      Route::get('datatable', 'Akademik\DokumenController@loadTable');
+      Route::get('edit/{id}', 'Akademik\DokumenController@edit');
+      Route::post('update/{id}', 'Akademik\DokumenController@update');
+      Route::get('delete/{id}', 'Akademik\DokumenController@destroy');
+    });
 
     Route::get('/form', 'PageController@Form');
 
