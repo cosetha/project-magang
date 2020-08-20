@@ -24,42 +24,12 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#TenagaModal">+ Add Tenaga Kerja</a>
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Nama Tenaga Kerja</th>
-                            <th>Alamat</th>
-                            <th>Telepon</th>
-                            <th>Jabatan</th>
-                            <th>Gambar</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editTenagaModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteTenagaModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="datatable-tenaga"></div>
             </div>
         </div>
     </div>
@@ -83,24 +53,22 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-tk">
                     @csrf
 
                     <label for="namatenaga">Nama Tenaga Kerja</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="nama">
 
                     <label for="alamat" class="mt-2">Alamat</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="alamat">
 
                     <label for="Telepon" class="mt-2">Telepon</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="telepon">
 
                     <div class="form-group">
                         <label for="jabatan" class="mt-2">Jabatan</label>
-                        <select class="form-control" id="" name="">
-                            <option value="" hidden> -- Pilih Jabatan -- </option>
+                        <select class="form-control" id="jabatan" name="">
 
-                            <option value=""></option>
                         </select>
                     </div>
 
@@ -109,13 +77,15 @@
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -134,21 +104,22 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-tk">
                     @csrf
 
                     <label for="namatenaga">Nama Tenaga Kerja</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit">
 
                     <label for="alamat" class="mt-2">Alamat</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="alamat-edit" name="alamat-edit">
 
                     <label for="Telepon" class="mt-2">Telepon</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="telp-edit" name="telp-edit">
+                    <input type="hidden" name="edit-id" value="">
 
                     <div class="form-group">
                         <label for="jabatan" class="mt-2">Jabatan</label>
-                        <select class="form-control" id="" name="">
+                        <select class="form-control" id="jabatan-edit" name="">
                             <option value="" hidden> -- Pilih Jabatan -- </option>
 
                             <option value=""></option>
@@ -156,18 +127,24 @@
                     </div>
 
                     <div class="form-group mt-3">
+                      <img id="image-edit-tenaga" src="" alt="">
+                    </div>
+
+                    <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" name="submit" value="Submit">
                     </div>
 
 
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -185,11 +162,15 @@
             <div class="modal-body">Apakah anda yakin ingin menghapus data tenaga kerja?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <button class="btn btn-danger" type="button" id="confirm-delete-tenaga">Delete</button>
+                <input type="hidden" name="hapus-id" value="">
             </div>
         </div>
     </div>
 </div>
 
 
+@endsection
+@section('js-ajax')
+  <script src="{{ asset('js/Profile/tenagaKerja.js') }}"></script>
 @endsection

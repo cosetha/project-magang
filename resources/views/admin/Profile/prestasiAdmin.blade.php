@@ -26,44 +26,12 @@
             </div>
 
             <div class="d-sm-flex align-items-center m-3">
-                <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PrestasiModal">+ Add Prestasi</a>
+                <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-prestasi">+ Add Prestasi</a>
             </div>
 
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                        <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                      <th>Nama Kejuaraan</th>
-                      <th>Nama</th>
-                      <th>Peringkat</th>
-                      <th>Tahun</th>
-                      <th>Bidang Keahlian</th>
-                      <th>Gambar</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td align="center">
-                        <a href="#" data-toggle="modal" data-target="#editPrestasiModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                            <i class="fas fa-pen-square"></i>
-                        </a>
-                        <a href="#" data-toggle="modal" data-target="#deletePrestasiModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div id="datatable-prestasi"></div>
               </div>
             </div>
           </div>
@@ -72,7 +40,7 @@
       <!-- End of Main Content -->
 
 
-      <!-- Add Sosmed Modal-->
+      <!-- Add Prestasi Modal-->
       <div class="modal fade" id="PrestasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -85,18 +53,18 @@
             <div class="modal-body">
 
 
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-prestasi">
             @csrf
 
                     <label for="namakejuaraaan">Nama Kejuaraaan</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="nama-kejuaraan">
 
                     <label for="nama" class="mt-2">Nama</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="nama">
 
                     <div class="form-group">
                     <label for="peringkat" class="mt-2">Peringkat</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control" id="peringkat" name="peringkat">
                           <option value="" hidden> -- Pilih Peringkat -- </option>
                               <option value="Juara 1">Juara 1</option>
                               <option value="Juara 2">Juara 2</option>
@@ -112,10 +80,9 @@
 
                     <div class="form-group">
                     <label for="bk" class="mt-2">Bidang Keahlian</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control bk" id="list-bk" name="">
                           <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
-
-                              <option value=""></option>
+                              <!-- <option value="">ok</option> -->
                       </select>
                     </div>
 
@@ -124,13 +91,15 @@
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                      <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
             </form>
 
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
           </div>
         </div>
       </div>
@@ -149,18 +118,18 @@
             <div class="modal-body">
 
 
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-prestasi">
             @csrf
 
                     <label for="namakejuaraaan">Nama Kejuaraaan</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-kejuaraan-edit" name="nama-kejuaraan-edit">
 
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit">
 
                     <div class="form-group">
                     <label for="peringkat">Peringkat</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control" id="peringkat-edit" name="">
                           <option value="" hidden> -- Pilih Peringkat -- </option>
                               <option value="Juara 1">Juara 1</option>
                               <option value="Juara 2">Juara 2</option>
@@ -172,11 +141,11 @@
                     </div>
 
                     <label for="tahun">Tahun</label>
-                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun" readonly>
+                    <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun-edit">
 
                     <div class="form-group">
                     <label for="bk">Bidang Keahlian</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control" id="bk-edit" name="">
                           <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
 
                               <option value=""></option>
@@ -184,17 +153,24 @@
                     </div>
 
                     <div class="form-group mt-3">
+                      <img id="image-edit-prestasi" src="" alt="">
+                    </div>
+
+                    <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                      <input type="submit" name="submit" value="Submit">
+                      <input type="hidden" name="edit-id" value="">
                     </div>
 
             </form>
 
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
           </div>
         </div>
       </div>
@@ -212,7 +188,8 @@
             <div class="modal-body">Apakah anda yakin ingin menghapus data prestasi?</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-danger" href="#">Delete</a>
+              <button class="btn btn-danger" type="button" id="btn-confirm-hapus">Delete</button>
+              <input type="hidden" name="hapus-id" value="">
             </div>
           </div>
         </div>
@@ -221,4 +198,5 @@
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
+      <script src="{{ asset('js/Profile/prestasi.js') }}"></script>
 @endsection

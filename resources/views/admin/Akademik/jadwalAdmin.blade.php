@@ -23,40 +23,12 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#JadwalModal">+ Add Jadwal Kuliah</a>
+            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-jadwal">+ Add Jadwal Kuliah</a>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Nama Jadwal</th>
-                            <th>Semester</th>
-                            <th>Bidang Keahlian</th>
-                            <th>File</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>TI Software</td>
-                            <td>3</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editJadwalModal" style="font-size: 19pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteJadwalModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="datatable-jadwal"></div>
             </div>
         </div>
     </div>
@@ -78,23 +50,29 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-jadwal">
                     @csrf
 
                     <label for="namajadwal" class="mt-2">Nama Jadwal</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="" name="nama-jadwal">
 
-                    <label for="semester" class="mt-2">Semester</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <!-- <label for="semester" class="mt-2">Semester</label>
+                    <input type="text" class="form-control" id="" name=""> -->
+                    <div class="form-group">
+                        <label for="semester" class="mt-2">Semester</label>
+                        <select class="form-control" id="list-semester" name="">
+
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="bidang-keahlian" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="" name="">
-                            <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
+                        <select class="form-control" id="list-bk" name="">
+                            <!-- <option value="" hidden>  Pilih Bidang Keahlian  </option>
                             <option value="Teknologi Informasi">Teknologi Informasi</option>
                             <option value="Sistem Informasi">Sistem Informasi</option>
                             <option value="Film dan Televisi">Film dan Televisi</option>
-                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option>
+                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option> -->
                         </select>
                     </div>
 
@@ -103,13 +81,15 @@
                         <input input id="file-upload" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" name="" class="btn btn-primary" value="Submit">
+                    </div>
+
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -128,38 +108,41 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-jadwal">
                     @csrf
 
                     <label for="namajadwal" class="mt-2">Nama Jadwal</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-jadwal-edit" name="nama-jadwal-edit">
 
-                    <label for="semester" class="mt-2">Semester</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <div class="form-group">
+                        <label for="semester" class="mt-2">Semester</label>
+                        <select class="form-control" id="list-semester-edit" name="">
+
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="bidang-keahlian" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="" name="">
-                            <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
-                            <option value="Juara 1">Juara 1</option>
-                            <option value="Sistem Informasi">Sistem Informasi</option>
-                            <option value="Film dan Televisi">Film dan Televisi</option>
-                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option>
+                        <select class="form-control" id="list-bk-edit" name="">
+
                         </select>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>
-                        <input input id="file-upload" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" name="" value="Submit">
+                        <input type="hidden" name="edit-id" value="">
                     </div>
 
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -177,10 +160,14 @@
             <div class="modal-body">Apakah anda yakin ingin menghapus data jadwal kuliah?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <a class="btn btn-danger" href="#" id="btn-confirm-hapus">Delete</a>
+                <input type="hidden" name="hapus-id" value="">
             </div>
         </div>
     </div>
 </div>
 
+@endsection
+@section('js-ajax')
+      <script src="{{ asset('js/Akademik/jadwalKuliah.js') }}"></script>
 @endsection
