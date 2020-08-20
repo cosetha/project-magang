@@ -170,7 +170,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/kalender', 'PageController@Kalender');
 
-    Route::get('kegiatan', 'PageController@Kegiatan');
+    Route::get('kegiatan', 'Akademik\KegiatanAkademikController@index');
+    Route::get('/load/table-kegiatan-akademik','Akademik\KegiatanAkademikController@LoadTableKA');
+    Route::get('/load/data-kegiatan-akademik','Akademik\KegiatanAkademikController@LoadDataKA');
+    Route::post('/store-ka', 'Akademik\KegiatanAkademikController@store');
+    Route::post('/update-ka/{id}', 'Akademik\KegiatanAkademikController@update');
+    Route::get('/delete-ka/{id}', 'Akademik\KegiatanAkademikController@destroy');
+    Route::get('/get-ka/{id}','Akademik\KegiatanAkademikController@get');
 
     Route::get('ojt', 'PageController@Ojt');
 
