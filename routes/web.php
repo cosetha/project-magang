@@ -150,6 +150,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/edit-bk/{id}','MasterData\BidangKeahlianController@edit');
     Route::post('/admin/konfirmasi-edit-bk/{id}','MasterData\BidangKeahlianController@update');
     Route::POST('/upload','MasterData\BidangKeahlianController@storeImg');
+    Route::POST('/upload-file','FileController@store');
 
     //Admin Profile
     Route::get('/editprofile', 'PengaturanAkun\ProfileController@EditProfile');
@@ -160,11 +161,24 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Akademik
-    Route::get('/mahasiswa', 'PageController@Mahasiswa');
+    Route::get('/mahasiswa', 'Akademik\MahasiswaController@index');
+    Route::post('/admin/tambah-mahasiswa','Akademik\MahasiswaController@store');
+    Route::get('/load/table-mahasiswa','Akademik\MahasiswaController@LoadTableMahasiswa');
+    Route::get('/load/data-mahasiswa','Akademik\MahasiswaController@LoadDataMahasiswa');
+    Route::get('/admin/delete-mahasiswa/{id}','Akademik\MahasiswaController@destroy');
+    Route::get('/admin/edit-mahasiswa/{id}','Akademik\MahasiswaController@edit');
+    Route::POST('/admin/konfirmasi-edit-mahasiswa/{id}','Akademik\MahasiswaController@update');
 
     Route::get('/dokumen', 'PageController@Dokumen');
 
-    Route::get('/form', 'PageController@Form');
+    Route::get('/form', 'Akademik\FormController@index');
+    Route::post('/admin/tambah-form','Akademik\FormController@store');
+    Route::get('/load/table-form','Akademik\FormController@LoadTableForm');
+    Route::get('/load/data-form','Akademik\FormController@LoadDataForm');
+    Route::get('/admin/delete-form/{id}','Akademik\FormController@destroy');
+    Route::get('/admin/edit-form/{id}','Akademik\FormController@edit');
+    Route::POST('/admin/konfirmasi-edit-form/{id}','Akademik\FormController@update');
+
 
     Route::get('/jadwal', 'PageController@Jadwal');
 
@@ -172,7 +186,14 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('kegiatan', 'PageController@Kegiatan');
 
-    Route::get('ojt', 'PageController@Ojt');
+    Route::get('ojt', 'Akademik\OjtController@index');
+    Route::get('documents/pdf-document/', 'FileController@retrieve');
+    Route::post('/admin/tambah-ojt','Akademik\OjtController@store');
+    Route::get('/load/table-ojt','Akademik\OjtController@LoadTableKonten');
+    Route::get('/load/data-ojt','Akademik\OjtController@LoadDataKonten');
+    Route::get('/admin/delete-ojt/{id}','Akademik\OjtController@destroy');
+    Route::get('/admin/edit-ojt/{id}','Akademik\OjtController@edit');
+    Route::POST('/admin/konfirmasi-edit-ojt/{id}','Akademik\OjtController@update');
 
     Route::get('/tugasakhir', 'PageController@TugasAkhir');
 
@@ -261,13 +282,25 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     });
 
     //Kemahasiswaan
-    Route::get('/alumni', 'PageController@Alumni');
+    Route::get('/alumni', 'Kemahasiswaan\AlumniController@index');
+    Route::post('/admin/tambah-alumni','Kemahasiswaan\AlumniController@store');
+    Route::get('/load/table-alumni','Kemahasiswaan\AlumniController@LoadTableAlumni');
+    Route::get('/load/data-alumni','Kemahasiswaan\AlumniController@LoadDataAlumni');
+    Route::get('/admin/delete-alumni/{id}','Kemahasiswaan\AlumniController@destroy');
+    Route::get('/admin/edit-alumni/{id}','Kemahasiswaan\AlumniController@edit');
+    Route::POST('/admin/konfirmasi-edit-alumni/{id}','Kemahasiswaan\AlumniController@update');
 
     Route::get('/lomba', 'PageController@Lomba');
 
     Route::get('/kegiatanpro', 'PageController@KegiatanProdi');
 
-    Route::get('/lowongan', 'PageController@Lowongan');
+    Route::get('/lowongan', 'Kemahasiswaan\LowonganController@index');
+    Route::post('/admin/tambah-lowongan','Kemahasiswaan\LowonganController@store');
+    Route::get('/load/table-lowongan','Kemahasiswaan\LowonganController@LoadTableLowongan');
+    Route::get('/load/data-lowongan','Kemahasiswaan\LowonganController@LoadDataLowongan');
+    Route::get('/admin/delete-lowongan/{id}','Kemahasiswaan\LowonganController@destroy');
+    Route::get('/admin/edit-lowongan/{id}','Kemahasiswaan\LowonganController@edit');
+    Route::POST('/admin/konfirmasi-edit-lowongan/{id}','Kemahasiswaan\LowonganController@update');
 
     Route::get('/organisasi', 'PageController@Organisasi');
 

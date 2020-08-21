@@ -55,7 +55,7 @@
                     <input type="text" class="form-control" id="judul" name="judul" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" required> </textarea>
+                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="menu" value="Sejarah"/>
             </div>
@@ -91,7 +91,7 @@
                     <input type="text" class="form-control" id="judul-edit" name="judul-edit" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit" required> </textarea> 
+                    <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea> 
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id-edit" value=""/>
                         <input type="hidden" name="menu-edit" value="Sejarah"/>              
