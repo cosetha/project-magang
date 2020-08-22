@@ -510,7 +510,9 @@ $(document).ready(function() {
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
 		formData.append('akreditasi', akreditasi);
-		formData.append('gambar', $('input[type=file]')[1].files[0]);
+		if ($('#file-upload-edit').get(0).files.length != 0) {
+			formData.append('gambar', $('input[type=file]')[1].files[0]);
+		}
 		if (tinymce.get('deskripsi-edit').getContent() == '') {
 			$('#form-edit-bk').trigger('reset');
 			$('.btn-close-edit').css('display', '');

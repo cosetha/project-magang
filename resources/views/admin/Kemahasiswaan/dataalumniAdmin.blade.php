@@ -28,37 +28,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Nama Alumni</th>
-                            <th>NIM</th>
-                            <th>Bidang Keahlian</th>
-                            <th>Angkatan</th>
-                            <th>Lulus</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>System Architect</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editAlumniModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteAlumniModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="datatable-alumni"></div>
             </div>
         </div>
     </div>
@@ -80,21 +50,22 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-alumni">
                     @csrf
 
                     <label for="namaalumni">Nama Alumni</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama" name="nama">
 
                     <label for="NIMalumni" class="mt-2">NIM Alumni</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nim" name="nim">
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="" name="">
+                        <select class="form-control" id="bk" name="bk">
                             <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
-
-                            <option value=""></option>
+                            @foreach($bidang as $b)
+                            <option value="{{$b->id}}">{{$b->nama_bk}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -104,15 +75,20 @@
                     <label for="lulus" class="mt-2">Lulus</label>
                     <input type="text" class="form-control years-picker" id="lulus" name="lulus" readonly/>
 
-                </form>
+                
 
 
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-submit-alumni">Submit</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -131,56 +107,39 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-alumni-edit">
                     @csrf
 
                     <label for="namaalumni">Nama Alumni</label>
-                    <input type="text" class="form-control" id="" name="">
-
-                    <label for="NIMalumni" class="mt-2">NIM Alumni</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit">
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="" name="">
-                            <option value="" hidden> -- Pilih Bidang Keahlian -- </option>
-
-                            <option value=""></option>
+                        <select class="form-control" id="bk-edit" name="bk-edit">
+                            @foreach($bidang as $b)
+                            <option value="{{$b->id}}">{{$b->nama_bk}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <label for="angkatan" class="mt-2">Angkatan</label>
-                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan" readonly/>
-
+                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan-edit" readonly/>
+                    <input type="hidden" class="form-control " id="id-edit" name="id-edit" readonly/>
                     <label for="lulus" class="mt-2">Lulus</label>
-                    <input type="text" class="form-control years-picker" id="lulus-edit" name="lulus" readonly/>
+                    <input type="text" class="form-control years-picker" id="lulus-edit" name="lulus-edit" readonly/>
 
-                </form>
+               
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Alumni Modal-->
-<div class="modal fade" id="deleteAlumniModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-alumni">Save</button>
+                <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data alumni?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -188,4 +147,5 @@
 @endsection
 @section('js-ajax')
 <script src="{{ asset('js/datepicker.js') }}"></script>
+<script src="{{ asset('js/Kemahasiswaan/Alumni.js') }}"></script>
 @endsection
