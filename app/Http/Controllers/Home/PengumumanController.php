@@ -50,7 +50,7 @@ class PengumumanController
         $data = new Pengumuman;
         $data->judul = $judul;
         $data->deskripsi = $deskripsi;
-        $data->lampiran = $fileName;
+        $data->lampiran = 'file/pengumuman/'.$fileName;
         $data->save();
 
           if($data) {
@@ -96,13 +96,13 @@ class PengumumanController
       if($lampiran != null) {
           $fileName = time().'_'.$lampiran->getClientOriginalName();
           $lampiran->move('file/pengumuman', $fileName, 'public');
-          $lampiranPath = Pengumuman::where('id', $id)->value('lampiran');
-          File::delete('file/pengumuman/'. $lampiranPath);
+          $lampiranPath = Pengumuman::find($id)->value('lampiran');
+          File::delete($lampiranPath);
 
           $data = Pengumuman::find($id);
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
-          $data->lampiran = $fileName;
+          $data->lampiran = 'file/pengumuman/'.$fileName;
           $data->save();
 
             if($data) {
@@ -135,8 +135,8 @@ class PengumumanController
 
     public function destroy($id)
     {
-      $lampiranPath = Pengumuman::where('id', $id)->value('lampiran');
-      File::delete('file/pengumuman/'. $lampiranPath);
+      $lampiranPath = Pengumuman::find($id)->value('lampiran');
+      File::delete($lampiranPath);
 
       $destroy = Pengumuman::find($id);
       $destroy->delete();
@@ -150,7 +150,7 @@ class PengumumanController
 
     public function show($id)
     {
-      
+
     }
 
 }

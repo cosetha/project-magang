@@ -86,10 +86,7 @@
                         <label for="lokasi" class="mt-2">Lokasi</label>
                         <input type="text" class="form-control" id="" name="lokasi">
 
-                        <div class="form-group mt-3">
-                            <label for="file">Gambar</label>
-                            <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                        </div>
+
 
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -149,14 +146,7 @@
                         <label for="lokasi" class="mt-2">Lokasi</label>
                         <input type="text" class="form-control" id="lokasi-edit" name="lokasi-edit">
 
-                        <div class="form-group mt-3">
-                        <img id="image-edit-agenda" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label for="file">Gambar</label>
-                            <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
-                        </div>
+                        
 
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
