@@ -187,20 +187,11 @@ $(document).ready(function() {
 		var name = $('input[name=semester-tambah]').val();
 		var token = $('input[name=token]').val();
 
-		if ($('#status').is(':checked')) {
-			var status = 'aktif';
-			$.ajax({
-				type: 'get',
-				url: '/non-aktif/semua-semester'
-			});
-		} else {
-			status = 'nonaktif';
-		}
 		// console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
-			data: { _token: token, semester: name, status: status },
+			data: { _token: token, semester: name },
 			success: function(response) {
 				$('.modal-title-semester').html();
 				$('#TambahSemesterModal').modal('hide');
@@ -255,42 +246,107 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-		var semester = $(this).attr('data-semester');
-		var status = $(this).attr('data-status');
+        var semester = $(this).attr('data-semester');
+        var status = $(this).attr('data-status');
 		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
-		$('#semester-edit').val(semester);
-		if (status == 'aktif') {
-			$('#status-edit').bootstrapToggle('on');
-		} else {
-			$('#status-edit').bootstrapToggle('off');
-		}
-	});
+        $('#semester-edit').val(semester);
+
+        if(status == "aktif"){
+            $(".btn-aktifkan").css("display","none")
+            $(".btn-nonaktifkan").css("display","")
+        }else{
+            $(".btn-aktifkan").css("display","")
+            $(".btn-nonaktifkan").css("display","none")
+        }
+
+    });
+
+    //AKTIFKAN SEMESTER
+    $("body").on("click",".btn-aktifkan", function(e){
+        e.preventDefault()
+        var id = $("#id-edit").val()
+
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-aktifkan').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-semester').css('display', 'none');
+
+        $.ajax({
+            type: "get",
+            url: "/aktifkan-semester/"+id,
+            success: function(response){
+                $('#editSemesterModal').modal('hide');
+                $('.btn-close-edit').css('display', '');
+                $('.btn-aktifkan').css('display', '');
+                $('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-semester').css('display', '');
+                LoadTableSemester();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Semester di aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+
+    //NONAKTIFKAN SEMESTER
+    $("body").on("click",".btn-nonaktifkan", function(e){
+        e.preventDefault()
+        var id = $("#id-edit").val()
+
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-nonaktifkan').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-semester').css('display', 'none');
+
+        $.ajax({
+            type: "get",
+            url: "/non-aktifkan-semester/"+id,
+            success: function(response){
+                $('#editSemesterModal').modal('hide');
+                $('.btn-close-edit').css('display', '');
+                $('.btn-nonaktifkan').css('display', '');
+                $('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-semester').css('display', '');
+                LoadTableSemester();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Semester di non-aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+
 	$('body').on('submit', '#form-edit-semester', function(e) {
 		e.preventDefault();
 		$('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
-		$('#btn-save-semester').css('display', 'none');
+        $('#btn-save-semester').css('display', 'none');
+        $(".btn-aktifkan").css("display","none")
+        $(".btn-nonaktifkan").css("display","none")
 		var name = $('input[name=semester-edit]').val();
-		var toggle = $('input[name=status-edit]').val();
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
-		let status = 'ada';
-		if ($('#status-edit').is(':checked')) {
-			status = 'aktif';
-			$.ajax({
-				type: 'get',
-				url: '/non-aktif/semua-semester'
-			});
-		} else {
-			status = 'nonaktif';
-		}
+
 		$.ajax({
 			type: 'post',
 			url: '/admin/edit-semester/' + id,
-			data: { _token: token, semester: name, status: status },
+			data: { _token: token, semester: name },
 			success: function(response) {
 				$('#editSemesterModal').modal('hide');
 				$('#form-edit-semester').trigger('reset');
@@ -310,9 +366,9 @@ $(document).ready(function() {
 				console.log(err);
 			}
 		});
-	});
-	LoadTableBK();
+    });
 
+	LoadTableBK();
 	function LoadTableBK() {
 		$('#datatable-bk').load('/load/table-bk', function() {
 			$('#tbl-bk').DataTable({
