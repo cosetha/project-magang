@@ -57,13 +57,7 @@
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah" required> </textarea>
 
-                        <label for="Akreditasi" class="mt-2">Akreditasi</label>
-                        <select class="form-control" id="AkreditasiTambah" name="tambahAkreditasi" required>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="0">Tidak Terakreditasi</option>
-                        </select>
+                       
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="edit-id" value="">
                         <div class="form-group mt-3">
@@ -124,14 +118,7 @@
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
 
-                        <label for="AkreditasiEdit" class="mt-2">Akreditasi</label>
-                        <select class="form-control selector" id="edit-akreditasi" name="editAkreditasi">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="0">Tidak Terakreditasi</option>
-                        </select>
-
+                      
                         <div class="form-group mt-3">
                             <label for="file" class="mt-2">Gambar</label>
                             <input input id="file-upload-edit" type="file" name="gambar-edit" accept="image/*" onchange="readURLe(this);"  aria-describedby="inputGroupFileAddon01">

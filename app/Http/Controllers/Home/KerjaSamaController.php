@@ -121,7 +121,7 @@ class KerjaSamaController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'link' => 'required|string|min:1|max:255',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required',
+            'gambar' => 'mimes:jpeg,jpg,png,gif',
             "caption" => 'required|string',
             "perusahaan" => 'required|string']);
         if ($validator->fails()) {
