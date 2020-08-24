@@ -24,7 +24,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-        <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#TambahSemesterModal">+
+            <button class="btn btn-primary ml-2" id="OpenModalSMT">+
                 Add Semester</a>
             </div>
             <div class="card-body">

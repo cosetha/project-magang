@@ -174,7 +174,10 @@ $(document).ready(function() {
 			});
 		});
 	}
-
+	$('body').on('click', '#OpenModalSMT', function() {
+		$('#TambahSemesterModal').modal('show');
+		$('#btn-submit-semester').css('display', '');
+	});
 	//TAMBAH SMT
 	$('body').on('submit', '#form-tambah-semester', function(e) {
 		e.preventDefault();
@@ -183,13 +186,17 @@ $(document).ready(function() {
 		$('#btn-submit-semester').css('display', 'none');
 		var name = $('input[name=semester-tambah]').val();
 		var token = $('input[name=token]').val();
-		let status = 'ada';
+
 		if ($('#status').is(':checked')) {
-			status = 'aktif';
+			var status = 'aktif';
+			$.ajax({
+				type: 'get',
+				url: '/non-aktif/semua-semester'
+			});
 		} else {
 			status = 'nonaktif';
 		}
-		console.log(status);
+		// console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
@@ -271,8 +278,12 @@ $(document).ready(function() {
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
 		let status = 'ada';
-		if (toggle == 'on') {
+		if ($('#status-edit').is(':checked')) {
 			status = 'aktif';
+			$.ajax({
+				type: 'get',
+				url: '/non-aktif/semua-semester'
+			});
 		} else {
 			status = 'nonaktif';
 		}
