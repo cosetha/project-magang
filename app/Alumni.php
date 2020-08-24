@@ -9,8 +9,8 @@ class Alumni extends Model
     protected $table = "alumni";
     protected $guarded = ['id'];
     
-    public function prestasi()
+    public function bidangKeahlian()
     {
-    	return $this->belongsTo('App\Bidang_keahlian');
+        return $this->hasMany('App\Bidang_keahlian', 'id', 'kode_bk');
     }
 }

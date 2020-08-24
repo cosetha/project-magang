@@ -1,4 +1,4 @@
-@extends('layouts/userlayout')
+@extends('layout/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')

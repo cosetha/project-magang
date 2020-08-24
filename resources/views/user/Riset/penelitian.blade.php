@@ -1,4 +1,4 @@
-@extends('layouts/userlayout')
+@extends('layout/userlayout')
 @section('title', 'Penelitian')
 
 @section('content')
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-
+           
 
             <div class="col-sm background-card mb-row mx-4">
                 <div class="card mt-card">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-
+           
 
             <div class="col-sm background-card mb-row mx-4">
                 <div class="card mt-card">

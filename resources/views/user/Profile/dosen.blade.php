@@ -1,4 +1,4 @@
-@extends('layouts/userlayout')
+@extends('layout/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -11,47 +11,48 @@
     </div>
 </div>
 
-
-<div class="container ">
+<section id="team">
+<div class="container my-3 py-5 text-center ">
     <div class="row row-cols-1 row-cols-md-4 mt-3">
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a short card.</p>
-            </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</section>
 
 <div class="container-fluid background">
     <div class="row mt-4">
@@ -62,45 +63,47 @@
 </div>
 
 
-<div class="container ">
+<section id="team">
+<div class="container my-3 py-5 text-center ">
     <div class="row row-cols-1 row-cols-md-4 mt-3">
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a short card.</p>
-            </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</section>
 
 @endsection
