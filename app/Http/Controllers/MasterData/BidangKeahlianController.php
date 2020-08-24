@@ -119,7 +119,7 @@ class BidangKeahlianController extends Controller
 
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
             "deskripsi" => 'required|string',
             "akreditasi" => 'required|string']);
         if ($validator->fails()) {

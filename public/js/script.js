@@ -538,14 +538,25 @@ $(document).ready(function() {
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-bk').css('display', '');
-					LoadTableBK();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Bidang Keahlian',
-						timer: 1200,
-						showConfirmButton: false
-					});
+
+					if (response.hasOwnProperty('error')) {
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error,
+							timer: 1200,
+							showConfirmButton: false
+						});
+					} else {
+						LoadTableBK();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Berhasil Mengedit Bidang Keahlian',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
 				},
 				error: function(err) {
 					console.log(err);
