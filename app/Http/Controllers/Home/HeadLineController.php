@@ -120,7 +120,7 @@ class HeadLineController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|min:1|max:255',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
             "caption" => 'required|string']);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
