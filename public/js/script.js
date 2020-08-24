@@ -333,16 +333,6 @@ $(document).ready(function() {
 						name: 'nama_bk'
 					},
 					{
-						data: 'akreditasi',
-						render: function(data, type, row) {
-							if (data == 0) {
-								return 'Tidak terakreditasi';
-							} else {
-								return data;
-							}
-						}
-					},
-					{
 						data: 'gambar',
 						render: function(data, type, row) {
 							return '<img  class = "rounded mx-auto d-block" height="100px" src="' + data + '" />';
@@ -369,11 +359,9 @@ $(document).ready(function() {
 		var name = $('input[name=nama-tambah]').val();
 		var deskripsi = tinymce.get('deskripsi-tambah').getContent();
 		var token = $('input[name=token]').val();
-		var akreditasi = $('#AkreditasiTambah option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
-		formData.append('akreditasi', akreditasi);
 		formData.append('gambar', $('input[type=file]')[0].files[0]);
 		console.log(deskripsi);
 		if (tinymce.get('deskripsi-tambah').getContent() == '') {
@@ -404,13 +392,24 @@ $(document).ready(function() {
 					$('#btn-submit-bk').css('display', '');
 					$('#blah').attr('src', '');
 					LoadTableBK();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Menambahkan Bidang Keahlian',
-						timer: 1200,
-						showConfirmButton: false
-					});
+					if (response.hasOwnProperty('error')) {
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error,
+							timer: 1200,
+							showConfirmButton: false
+						});
+					} else {
+						LoadTableBK();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Berhasil Menambahkan Bidang Keahlian',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
 				},
 				error: function(err) {
 					console.log(err);
@@ -455,7 +454,6 @@ $(document).ready(function() {
 		$('.btn-close-edit').css('display', '');
 		$('.btn-loading-edit').css('display', 'none');
 		$('#btn-save-bk').css('display', '');
-		$('#edit-akreditasi').attr('disabled', false);
 		$('#file-upload-edit').attr('disabled', false);
 		$('#nama-edit').prop('readonly', false);
 		tinymce.get('deskripsi-edit').setMode('design');
@@ -469,7 +467,6 @@ $(document).ready(function() {
 				$('#btn-save-bk').css('display', '');
 				$('input[name=edit-id]').val(id);
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#edit-akreditasi').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
 				if (res.values.gambar) {
 					$('#blah-edit').attr('src', res.values.gambar);
@@ -493,9 +490,7 @@ $(document).ready(function() {
 				$('input[name=edit-id]').val(id);
 				$('input[name=edit-id]');
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#edit-akreditasi').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
-				$('#edit-akreditasi').attr('disabled', true);
 				$('#file-upload-edit').attr('disabled', true);
 				$('#nama-edit').prop('readonly', true);
 				tinymce.get('deskripsi-edit').setMode('readonly');
@@ -516,11 +511,10 @@ $(document).ready(function() {
 		var deskripsi = tinymce.get('deskripsi-edit').getContent();
 		var token = $('input[name=token]').val();
 		var id = $('input[name=edit-id]').val();
-		var akreditasi = $('#edit-akreditasi option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
-		formData.append('akreditasi', akreditasi);
+
 		if ($('#file-upload-edit').get(0).files.length != 0) {
 			formData.append('gambar', $('input[type=file]')[1].files[0]);
 		}
