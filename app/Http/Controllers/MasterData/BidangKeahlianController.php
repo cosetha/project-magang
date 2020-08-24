@@ -41,8 +41,7 @@ class BidangKeahlianController extends Controller
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string',
             'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
-            "deskripsi" => 'required|string',
-            "akreditasi" => 'required|string']);
+            "deskripsi" => 'required|string']);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
@@ -59,7 +58,6 @@ class BidangKeahlianController extends Controller
                     $bk = new Bidang_keahlian;
                     $bk->nama_bk = $request->nama;
                     $bk->deskripsi = $request->deskripsi;
-                    $bk->akreditasi= $request->akreditasi;
                     $bk->gambar= $directory."/".$nama;
                     $bk->save();
         
@@ -119,9 +117,9 @@ class BidangKeahlianController extends Controller
 
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
             "deskripsi" => 'required|string',
-            "akreditasi" => 'required|string']);
+            ]);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
@@ -147,8 +145,6 @@ class BidangKeahlianController extends Controller
         
                     $bk->nama_bk = $request->nama;
                     $bk->deskripsi = $request->deskripsi;
-                    $bk->akreditasi=$request->akreditasi;
-        
                     $bk->gambar= $directory."/".$nama_file;
                     $bk->save();
         
@@ -159,7 +155,6 @@ class BidangKeahlianController extends Controller
                     $bk = Bidang_keahlian::find($id);
                     $bk->nama_bk = $request->nama;
                     $bk->deskripsi = $request->deskripsi;
-                    $bk->akreditasi=$request->akreditasi;
                     $bk->save();
                 }
                 return response()->json([
