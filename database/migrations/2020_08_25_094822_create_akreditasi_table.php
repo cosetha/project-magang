@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBidangKeahlihansTable extends Migration
+class CreateAkreditasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateBidangKeahlihansTable extends Migration
      */
     public function up()
     {
-        Schema::create('bidang_keahlian', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_bk',255);
-            $table->mediumText('deskripsi');
-            $table->text('gambar');
+        Schema::create('akreditasi', function (Blueprint $table) {
+            $table->increments('id',10);
+            $table->string('nilai');
+            $table->string('lembaga');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateBidangKeahlihansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bidang_keahlian');
+        Schema::dropIfExists('akreditasi');
     }
 }
