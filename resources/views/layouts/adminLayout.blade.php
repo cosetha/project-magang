@@ -155,6 +155,7 @@
                         <div id="collapseAkademik" class="collapse" aria-labelledby="headingAkademik" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Akademik</h6>
+                                <a class="collapse-item" href="{{ url('akreditasi') }}">Akreditasi</a>
                                 <a class="collapse-item" href="{{ url('mahasiswa') }}">Mahasiswa</a>
                                 <a class="collapse-item" href="{{ url('kalender') }}">Kalender Akademik</a>
                                 <a class="collapse-item" href="{{ url('jadwal') }}">Jadwal Kuliah</a>
