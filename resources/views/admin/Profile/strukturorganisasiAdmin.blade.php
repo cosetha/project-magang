@@ -109,8 +109,9 @@
 
                     <div class="form-group mt-3">
                         <label for="file">Logo</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
                     </div>
+                    <img id="blah" class = "rounded mx-auto d-block" height="200px" src="" alt=""" />
 
             </div>
             <div class="modal-footer">
