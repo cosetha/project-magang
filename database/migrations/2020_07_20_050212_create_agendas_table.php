@@ -17,7 +17,6 @@ class CreateAgendasTable extends Migration
             $table->increments('id',10);
             $table->string('judul');
             $table->mediumText('deskripsi');
-            $table->text('gambar');
             $table->string('jam_agenda');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');

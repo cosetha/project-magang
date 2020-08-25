@@ -21,14 +21,6 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
           {data: 'deskripsi',name: 'deskripsi'},
-          {
-            data: 'gambar',
-            name: 'gambar',
-            "render": function(data, type, row) {
-                return '<img src=" ' + host + '/'+ data + ' " class = "rounded mx-auto d-block" height="100px"/>';
-            },
-            searchable: false
-          },
           {data: 'jam_agenda',name: 'jam_agenda', searchable: false},
           {data: 'tanggal_mulai',name: 'tanggal_mulai'},
           {data: 'tanggal_selesai',name: 'tanggal_selesai'},
@@ -50,17 +42,15 @@ $(document).ready(function() {
     var jamMulai = $('input[name=jam-mulai]').val();
     var jamSelesai = $('input[name=jam-selesai]').val();
     var jam = jamMulai + '-' + jamSelesai;
-    var gambar = $('#file-upload')[0].files[0];
     formData.append('judul', judul);
     formData.append('deskripsi', deskripsi);
     formData.append('tanggal_mulai', tanggalMulai);
     formData.append('tanggal_selesai', tanggalSelesai);
-    formData.append('gambar', gambar);
     formData.append('lokasi', lokasi);
     formData.append('jam', jam);
     if(
       judul == "" || deskripsi == "" || tanggalMulai == "" || tanggalSelesai == "" || lokasi == "" ||
-      jamMulai == "" || jamSelesai == "" || gambar == null
+      jamMulai == "" || jamSelesai == ""
     ) {
       Swal.fire({
       		icon: 'error',
@@ -96,14 +86,6 @@ $(document).ready(function() {
     					timer: 1200,
     					showConfirmButton: false
     				});
-          } else if(data.status == 'not_valid_image') {
-            Swal.fire({
-    					icon: 'error',
-    					title: 'Gagal',
-    					text: 'File harus gambar (png, jpg, png, gif, svg)',
-    					timer: 1200,
-    					showConfirmButton: false
-    				});
           }
   			},
         error: function(data) {
@@ -117,7 +99,6 @@ $(document).ready(function() {
   $('body').on('click', '.btn-edit-agenda', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
-    var host = window.location.origin;
     $('input[name=edit-id]').val(id);
     $.ajax({
       type: 'GET',
@@ -126,7 +107,6 @@ $(document).ready(function() {
       processData: false,
       success: function(data) {
         $('#editAgendaModal').modal('show');
-        $('#image-edit-agenda').attr('src', host + '/' + data.data.gambar);
         $('#judul-agenda-edit').val(data.data.judul);
         tinymce.get('deskripsi-agenda-edit').setContent(data.data.deskripsi);
         var jam = data.data.jam_agenda;
@@ -151,14 +131,12 @@ $(document).ready(function() {
       var jamMulai = $('input[name=jam_mulai_edit]').val();
       var jamSelesai = $('input[name=jam_selesai_edit]').val();
       var jam = jamMulai + '-' + jamSelesai;
-      var gambar = $('#file-upload-edit')[0].files[0];
       var id = $('input[name=edit-id]').val();
 
       formData.append('judul', judul);
       formData.append('deskripsi', deskripsi);
       formData.append('tanggal_mulai', tanggalMulai);
       formData.append('tanggal_selesai', tanggalSelesai);
-      formData.append('gambar', gambar);
       formData.append('lokasi', lokasi);
       formData.append('jam', jam);
       if(
@@ -199,15 +177,7 @@ $(document).ready(function() {
                 					timer: 1200,
                 					showConfirmButton: false
                 				});
-                      } else if(data.status == 'not_valid_image') {
-                        Swal.fire({
-                					icon: 'error',
-                					title: 'Gagal',
-                					text: 'File harus gambar (png, jpg, png, gif, svg)',
-                					timer: 1200,
-                					showConfirmButton: false
-                				});
-                      }
+                      } 
             }
           });
         }

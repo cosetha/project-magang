@@ -147,6 +147,8 @@ class PrestasiController
 
     public function destroy($id)
     {
+      $pathDelete = Prestasi::find($id)->value('gambar');
+      File::delete($pathDelete);
       Prestasi::destroy($id);
       return response()->json([
         'status' => 'deleted'
