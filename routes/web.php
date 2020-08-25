@@ -134,6 +134,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/edit-jabatan/{id}','MasterData\JabatanController@update');
 
     Route::get('/semester','MasterData\SemesterController@index');
+    Route::get('/aktifkan-semester/{id}','MasterData\SemesterController@AktifkanSemester');
+    Route::get('/non-aktifkan-semester/{id}','MasterData\SemesterController@NonAktifkanSemester');
     Route::get('/non-aktif/semua-semester','MasterData\SemesterController@NonaktifkanSemester');
     Route::get('/load/table-semester','MasterData\SemesterController@LoadTableSemester');
     Route::get('/load/data-semester','MasterData\SemesterController@LoadDataSemester');
