@@ -111,9 +111,11 @@ Route::group(['middleware' => 'guest'],function(){
 //ROUTER KHUSUS SUPER-ADMIN
 Route::group(['middleware' => ['auth','checkRole:1']],function(){
 
-    Route::get('/datapengguna', function () {
-        return view('admin/datapenggunaAdmin');
-    });
+    Route::get('/datapengguna', 'Pengguna\PenggunaController@index');
+    Route::get('/load/table-pengguna','Pengguna\PenggunaController@LoadTablePengguna');
+    Route::get('/load/data-pengguna','Pengguna\PenggunaController@LoadDataPengguna');
+    Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
+    Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
 });
 

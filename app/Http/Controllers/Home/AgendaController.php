@@ -32,6 +32,9 @@ class AgendaController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-delete-agenda" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-agenda" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
+          </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
