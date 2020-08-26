@@ -11,14 +11,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-
-
-
-
  .login-form{
 margin-top: 150px;
  }
-
 
  .edit-icon{
 
@@ -26,15 +21,16 @@ margin-top: 150px;
   color:#1cc88a;
  }
 
-
-
-
-
-
-
-
-
-
+/*Show Hide Password Styling*/
+.eye{
+  background-color:#efefef; 
+  padding-top: 15px; 
+  padding-bottom: 11px; 
+  padding-right: 16px;
+  padding-left: 10px;
+  border-top-right-radius: 10rem;
+  border-bottom-right-radius: 10rem;
+}
 
 :root {
   --blue: #4e73df;

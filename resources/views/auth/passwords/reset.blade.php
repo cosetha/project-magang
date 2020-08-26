@@ -39,8 +39,14 @@
                     <div class="form-group">
                         <label for="password">Password Baru</label>
 
-                        <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password Baru" required autocomplete="new-password" minlength="8" autofocus>
-
+                        <div class="input-group" id="show_hide_password">
+                          <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password Baru" required autocomplete="new-password" minlength="8" autofocus>
+                          <!-- Show Hide Password Component -->
+                          <a href=""><div class="input-group-addon eye">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                          </div></a>
+                          <!-- Show Hide Password Component -->
+                        </div>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -51,8 +57,15 @@
                     <div class="form-group">
                         <label for="password-confirm">Konfirmasi Password</label>
 
-                        <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password" minlength="8" autofocus>
-                    </div>
+                        <div class="input-group" id="show_hide_password-2">
+                          <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password" minlength="8" autofocus>
+                          <!-- Show Hide Password Component -->
+                            <a href=""><div class="input-group-addon eye">
+                              <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </div></a>
+                            <!-- Show Hide Password Component -->
+                          </div>
+                        </div>
 
                   <button type="submit" class="btn btn-primary btn-user btn-block">
                     Reset Password
