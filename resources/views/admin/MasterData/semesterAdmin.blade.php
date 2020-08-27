@@ -55,9 +55,6 @@
                     <label for="judulSemester">Semester</label>
                     <input type="text" class="form-control" id="semester-tambah" name="semester-tambah" required>
 
-                    <!-- Rounded switch -->
-                    <label for="judulSemester" class="mt-3">Semester</label>
-                    <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status" name="status-tambah">
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
             </div>
             <div class="modal-footer">
@@ -80,7 +77,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Semester</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close-edit" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -93,11 +90,8 @@
                     <label for="judulSemester">Semester</label>
                     <input type="text" class="form-control" id="semester-edit" name="semester-edit" required>
 
-                    <!-- Rounded switch -->
-                    <label for="judulSemester" class="mt-3">Semester</label>
-                    <input type="checkbox" data-toggle="toggle" data-width="100" data-on="Aktif" data-off="Tidak" id="status-edit" name="status-edit" style="padding: 7px 8px;" class="form-control">
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
-                    <input type="hidden" name="id-edit" value="">
+                    <input type="hidden" name="id-edit" id="id-edit" value="">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
@@ -106,6 +100,8 @@
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Memproses...
                 </button>
+                <button type="button" class="btn btn-success btn-aktifkan" style="display: none">Aktifkan</button>
+                <button type="button" class="btn btn-warning btn-nonaktifkan" style="display: none">Non-Aktifkan</button>
             </div>
             </form>
         </div>

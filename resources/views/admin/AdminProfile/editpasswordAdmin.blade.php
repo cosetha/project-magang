@@ -21,36 +21,50 @@
 
             <form class="form-horizontal form-edit-password" role="form">
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Password lama:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="password" id="password-lama" placeholder="masukkan password lama">
+                    <label class="col-md-3 control-label">Password Lama:</label>
+                    <div class="col-md-8 input-group" id="show_hide_password">
+                        <input class="form-control" type="password" id="password-lama" placeholder="Masukkan Password Lama...">
+                        <!-- Show Hide Password Component -->
+                        <a href=""><div class="input-group-addon eye">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </div></a>
+                        <!-- Show Hide Password Component -->
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Password:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="password" id="password" placeholder="password">
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Password Baru:</label>
+                    <div class="col-md-8 input-group" id="show_hide_password-2">
+                        <input class="form-control" type="password" id="password" placeholder="Masukkan Password Baru...">
+                        <!-- Show Hide Password Component -->
+                        <a href=""><div class="input-group-addon eye">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </div></a>
+                        <!-- Show Hide Password Component -->
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Confirm password:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="password" placeholder="password confirmation" id="password-confirm">
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Konfirmasi Password Baru:</label>
+                    <div class="col-md-8 input-group" id="show_hide_password-3">
+                        <input class="form-control" type="password" placeholder="Masukkan Konfirmasi Password..." id="password-confirm">
+                        <!-- Show Hide Password Component -->
+                        <a href=""><div class="input-group-addon eye">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </div></a>
+                        <!-- Show Hide Password Component -->
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
-                            <span></span>
-                            <input type="reset" class="btn btn-default" value="Cancel">
-                        </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" value="Cancel">
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-
 </div>
 </div>
 <!-- End of Main Content -->

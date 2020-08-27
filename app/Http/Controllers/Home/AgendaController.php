@@ -32,6 +32,9 @@ class AgendaController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-delete-agenda" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-agenda" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
+          </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -62,20 +65,10 @@ class AgendaController
         $tanggalMulai = $request->tanggal_mulai;
         $tanggalSelesi = $request->tanggal_selesai;
         $lokasi = $request->lokasi;
-        $gambar = $request->file('gambar');
-
-        $fileEx = $gambar->getClientOriginalName();
-        $fileArr = explode(".", $fileEx);
-
-        if($this->checkGambar($fileArr[1])) {
-          $gambarName = time().'_'.$fileEx;
-          $gambarPath = "img/agenda";
-          $gambar->move($gambarPath, $gambarName, "public");
 
           $agenda = new Agenda;
           $agenda->judul = $judul;
           $agenda->deskripsi = $deskripsi;
-          $agenda->gambar = $gambarPath.'/'.$gambarName;
           $agenda->jam_agenda = $jam;
           $agenda->tanggal_mulai = $tanggalMulai;
           $agenda->tanggal_selesai = $tanggalSelesi;
@@ -92,12 +85,6 @@ class AgendaController
               'status' => 'no_insert'
             ]);
           }
-        } else {
-          return response()->json([
-            'status' => 'not_valid_image'
-          ]);
-        }
-
 
     }
 
@@ -141,22 +128,10 @@ class AgendaController
       $tanggalMulai = $request->tanggal_mulai;
       $tanggalSelesi = $request->tanggal_selesai;
       $lokasi = $request->lokasi;
-      $gambar = $request->file('gambar');
-      if($gambar != null) {
-        $fileEx = $gambar->getClientOriginalName();
-        $fileArr = explode(".", $fileEx);
-
-        if($this->checkGambar($fileArr[1])) {
-          $gambarName = time().'_'.$fileEx;
-          $gambarPath = "img/agenda";
-          $gambarPathDelete = Agenda::find($id)->value('gambar');
-          File::delete($gambarPathDelete);
-          $gambar->move($gambarPath, $gambarName, "public");
 
           $agenda = Agenda::find($id);
           $agenda->judul = $judul;
           $agenda->deskripsi = $deskripsi;
-          $agenda->gambar = $gambarPath.'/'.$gambarName;
           $agenda->jam_agenda = $jam;
           $agenda->tanggal_mulai = $tanggalMulai;
           $agenda->tanggal_selesai = $tanggalSelesi;
@@ -173,32 +148,6 @@ class AgendaController
               'status' => 'no_insert'
             ]);
           }
-        } else {
-          return response()->json([
-            'status' => 'not_valid_image'
-          ]);
-        }
-      } else {
-        $agenda = Agenda::find($id);
-        $agenda->judul = $judul;
-        $agenda->deskripsi = $deskripsi;
-        $agenda->jam_agenda = $jam;
-        $agenda->tanggal_mulai = $tanggalMulai;
-        $agenda->tanggal_selesai = $tanggalSelesi;
-        $agenda->lokasi = $lokasi;
-
-        $agenda->save();
-
-        if($agenda) {
-          return response()->json([
-            'status' => 'ok'
-          ]);
-        } else {
-          return response()->json([
-            'status' => 'no_insert'
-          ]);
-        }
-      }
     }
 
     /**
@@ -209,8 +158,6 @@ class AgendaController
      */
     public function destroy($id)
     {
-      $gambarPath = Agenda::find($id)->value('gambar');
-      File::delete($gambarPath);
         $agenda = Agenda::find($id);
         $agenda->delete();
         if($agenda) {

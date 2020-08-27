@@ -39,7 +39,7 @@ class SemesterController extends Controller
     {
         $semester = new Semester;
         $semester->semester = $request->semester;
-        $semester->status = $request->status;
+        $semester->status = "nonaktif";
         $semester->save();
 
         return response()->json([
@@ -81,7 +81,6 @@ class SemesterController extends Controller
     {
         $semester = Semester::find($id);
         $semester->semester = $request->semester;
-        $semester->status = $request->status;
         $semester->save();
 
         return response()->json([
@@ -106,11 +105,26 @@ class SemesterController extends Controller
         ]);
     }
 
-    public function NonaktifkanSemester(){
-        DB::table('semester')->where('status','=','aktif')->update(array('status' => 'nonaktif'));
+    public function AktifkanSemester($id){
+        DB::table('semester')->update(array('status' => 'nonaktif'));
+
+        $s = Semester::find($id);
+        $s->status = "aktif";
+        $s->save();
 
         return response([
-            'message' => 'nonaktifkan semua semester sukses'
+            'message' => 'sukses'
+        ]);
+    }
+
+    public function NonAktifkanSemester($id){
+
+        $s = Semester::find($id);
+        $s->status = "nonaktif";
+        $s->save();
+
+        return response([
+            'message' => 'sukses'
         ]);
     }
 

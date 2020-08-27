@@ -174,7 +174,10 @@ $(document).ready(function() {
 			});
 		});
 	}
-
+	$('body').on('click', '#OpenModalSMT', function() {
+		$('#TambahSemesterModal').modal('show');
+		$('#btn-submit-semester').css('display', '');
+	});
 	//TAMBAH SMT
 	$('body').on('submit', '#form-tambah-semester', function(e) {
 		e.preventDefault();
@@ -183,17 +186,12 @@ $(document).ready(function() {
 		$('#btn-submit-semester').css('display', 'none');
 		var name = $('input[name=semester-tambah]').val();
 		var token = $('input[name=token]').val();
-		let status = 'ada';
-		if ($('#status').is(':checked')) {
-			status = 'aktif';
-		} else {
-			status = 'nonaktif';
-		}
-		console.log(status);
+
+		// console.log(status);
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
-			data: { _token: token, semester: name, status: status },
+			data: { _token: token, semester: name },
 			success: function(response) {
 				$('.modal-title-semester').html();
 				$('#TambahSemesterModal').modal('hide');
@@ -248,38 +246,107 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-		var semester = $(this).attr('data-semester');
-		var status = $(this).attr('data-status');
+        var semester = $(this).attr('data-semester');
+        var status = $(this).attr('data-status');
 		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
-		$('#semester-edit').val(semester);
-		if (status == 'aktif') {
-			$('#status-edit').bootstrapToggle('on');
-		} else {
-			$('#status-edit').bootstrapToggle('off');
-		}
-	});
+        $('#semester-edit').val(semester);
+
+        if(status == "aktif"){
+            $(".btn-aktifkan").css("display","none")
+            $(".btn-nonaktifkan").css("display","")
+        }else{
+            $(".btn-aktifkan").css("display","")
+            $(".btn-nonaktifkan").css("display","none")
+        }
+
+    });
+
+    //AKTIFKAN SEMESTER
+    $("body").on("click",".btn-aktifkan", function(e){
+        e.preventDefault()
+        var id = $("#id-edit").val()
+
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-aktifkan').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-semester').css('display', 'none');
+
+        $.ajax({
+            type: "get",
+            url: "/aktifkan-semester/"+id,
+            success: function(response){
+                $('#editSemesterModal').modal('hide');
+                $('.btn-close-edit').css('display', '');
+                $('.btn-aktifkan').css('display', '');
+                $('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-semester').css('display', '');
+                LoadTableSemester();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Semester di aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+
+    //NONAKTIFKAN SEMESTER
+    $("body").on("click",".btn-nonaktifkan", function(e){
+        e.preventDefault()
+        var id = $("#id-edit").val()
+
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-nonaktifkan').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+		$('#btn-save-semester').css('display', 'none');
+
+        $.ajax({
+            type: "get",
+            url: "/non-aktifkan-semester/"+id,
+            success: function(response){
+                $('#editSemesterModal').modal('hide');
+                $('.btn-close-edit').css('display', '');
+                $('.btn-nonaktifkan').css('display', '');
+                $('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-semester').css('display', '');
+                LoadTableSemester();
+				Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Semester di non-aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+
 	$('body').on('submit', '#form-edit-semester', function(e) {
 		e.preventDefault();
 		$('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
-		$('#btn-save-semester').css('display', 'none');
+        $('#btn-save-semester').css('display', 'none');
+        $(".btn-aktifkan").css("display","none")
+        $(".btn-nonaktifkan").css("display","none")
 		var name = $('input[name=semester-edit]').val();
-		var toggle = $('input[name=status-edit]').val();
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
-		let status = 'ada';
-		if (toggle == 'on') {
-			status = 'aktif';
-		} else {
-			status = 'nonaktif';
-		}
+
 		$.ajax({
 			type: 'post',
 			url: '/admin/edit-semester/' + id,
-			data: { _token: token, semester: name, status: status },
+			data: { _token: token, semester: name },
 			success: function(response) {
 				$('#editSemesterModal').modal('hide');
 				$('#form-edit-semester').trigger('reset');
@@ -299,9 +366,9 @@ $(document).ready(function() {
 				console.log(err);
 			}
 		});
-	});
-	LoadTableBK();
+    });
 
+	LoadTableBK();
 	function LoadTableBK() {
 		$('#datatable-bk').load('/load/table-bk', function() {
 			$('#tbl-bk').DataTable({
@@ -320,16 +387,6 @@ $(document).ready(function() {
 					{
 						data: 'nama_bk',
 						name: 'nama_bk'
-					},
-					{
-						data: 'akreditasi',
-						render: function(data, type, row) {
-							if (data == 0) {
-								return 'Tidak terakreditasi';
-							} else {
-								return data;
-							}
-						}
 					},
 					{
 						data: 'gambar',
@@ -358,11 +415,9 @@ $(document).ready(function() {
 		var name = $('input[name=nama-tambah]').val();
 		var deskripsi = tinymce.get('deskripsi-tambah').getContent();
 		var token = $('input[name=token]').val();
-		var akreditasi = $('#AkreditasiTambah option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
-		formData.append('akreditasi', akreditasi);
 		formData.append('gambar', $('input[type=file]')[0].files[0]);
 		console.log(deskripsi);
 		if (tinymce.get('deskripsi-tambah').getContent() == '') {
@@ -393,13 +448,24 @@ $(document).ready(function() {
 					$('#btn-submit-bk').css('display', '');
 					$('#blah').attr('src', '');
 					LoadTableBK();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Menambahkan Bidang Keahlian',
-						timer: 1200,
-						showConfirmButton: false
-					});
+					if (response.hasOwnProperty('error')) {
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error,
+							timer: 1200,
+							showConfirmButton: false
+						});
+					} else {
+						LoadTableBK();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Berhasil Menambahkan Bidang Keahlian',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
 				},
 				error: function(err) {
 					console.log(err);
@@ -444,7 +510,6 @@ $(document).ready(function() {
 		$('.btn-close-edit').css('display', '');
 		$('.btn-loading-edit').css('display', 'none');
 		$('#btn-save-bk').css('display', '');
-		$('#edit-akreditasi').attr('disabled', false);
 		$('#file-upload-edit').attr('disabled', false);
 		$('#nama-edit').prop('readonly', false);
 		tinymce.get('deskripsi-edit').setMode('design');
@@ -458,7 +523,6 @@ $(document).ready(function() {
 				$('#btn-save-bk').css('display', '');
 				$('input[name=edit-id]').val(id);
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#edit-akreditasi').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
 				if (res.values.gambar) {
 					$('#blah-edit').attr('src', res.values.gambar);
@@ -482,9 +546,7 @@ $(document).ready(function() {
 				$('input[name=edit-id]').val(id);
 				$('input[name=edit-id]');
 				$('#nama-edit').val(res.values.nama_bk);
-				$('#edit-akreditasi').val(res.values.akreditasi);
 				tinymce.get('deskripsi-edit').setContent(res.values.deskripsi);
-				$('#edit-akreditasi').attr('disabled', true);
 				$('#file-upload-edit').attr('disabled', true);
 				$('#nama-edit').prop('readonly', true);
 				tinymce.get('deskripsi-edit').setMode('readonly');
@@ -505,12 +567,13 @@ $(document).ready(function() {
 		var deskripsi = tinymce.get('deskripsi-edit').getContent();
 		var token = $('input[name=token]').val();
 		var id = $('input[name=edit-id]').val();
-		var akreditasi = $('#edit-akreditasi option:selected').val();
 		formData.append('_token', token);
 		formData.append('nama', name);
 		formData.append('deskripsi', deskripsi);
-		formData.append('akreditasi', akreditasi);
-		formData.append('gambar', $('input[type=file]')[1].files[0]);
+
+		if ($('#file-upload-edit').get(0).files.length != 0) {
+			formData.append('gambar', $('input[type=file]')[1].files[0]);
+		}
 		if (tinymce.get('deskripsi-edit').getContent() == '') {
 			$('#form-edit-bk').trigger('reset');
 			$('.btn-close-edit').css('display', '');
@@ -536,14 +599,25 @@ $(document).ready(function() {
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-bk').css('display', '');
-					LoadTableBK();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Bidang Keahlian',
-						timer: 1200,
-						showConfirmButton: false
-					});
+
+					if (response.hasOwnProperty('error')) {
+						Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error,
+							timer: 1200,
+							showConfirmButton: false
+						});
+					} else {
+						LoadTableBK();
+						Swal.fire({
+							icon: 'success',
+							title: 'Sukses',
+							text: 'Berhasil Mengedit Bidang Keahlian',
+							timer: 1200,
+							showConfirmButton: false
+						});
+					}
 				},
 				error: function(err) {
 					console.log(err);

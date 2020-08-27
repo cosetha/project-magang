@@ -23,7 +23,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/admin/style.css')}}">
 
     <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
 
@@ -155,6 +155,7 @@
                         <div id="collapseAkademik" class="collapse" aria-labelledby="headingAkademik" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Akademik</h6>
+                                <a class="collapse-item" href="{{ url('akreditasi') }}">Akreditasi</a>
                                 <a class="collapse-item" href="{{ url('mahasiswa') }}">Mahasiswa</a>
                                 <a class="collapse-item" href="{{ url('kalender') }}">Kalender Akademik</a>
                                 <a class="collapse-item" href="{{ url('jadwal') }}">Jadwal Kuliah</a>
@@ -410,6 +411,7 @@
                     <!-- Bootstrap core JavaScript-->
                     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
                     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+                    <script src="{{asset('vendor/bootstrap/js/bootstrap-show-password.js')}}"></script>
 
                     <!-- Core plugin JavaScript-->
                     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>

@@ -28,35 +28,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th> {{--Tolong buatkan script buat auto numbering--}}
-                            <th>Nama Lowongan</th>
-                            <th>Deskripsi</th>
-                            <th>Jenis Lowongan</th>
-                            <th>Gambar</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td width="1%" align="center">1</td> {{--Tolong buatkan script buat auto numbering--}}
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>System Architect</td>
-                            <td>System Architect</td>
-                            <td align="center">
-                                <a href="#" data-toggle="modal" data-target="#editLowonganModal" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                                    <i class="fas fa-pen-square"></i>
-                                </a>
-                                <a href="#" data-toggle="modal" data-target="#deleteLowonganModal" style="font-size: 18pt; text-decoration: none; color:red;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+               <div id="datatable-lowongan"></div>
             </div>
         </div>
     </div>
@@ -78,35 +50,59 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-lowongan">
                     @csrf
 
                     <label for="namalowongan">Nama lowongan</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama" name="nama" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
 
                     <div class="form-group">
                     <label for="jenis" class="mt-2">Jenis Lowongan</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control" id="jenis" name="jenis">
                           <option value="" hidden> -- Pilih Jenis Lowongan -- </option>
+                          @foreach($data as $b)
+                            <option value="{{$b['value']}}">{{$b['alt']}}</option>
+                          @endforeach
                       </select>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURLa(this);" aria-describedby="inputGroupFileAddon01" required>
+
                     </div>
+                    <script>
+                                function readURLa(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        
+                                        reader.onload = function(e) {
+                                        $('#blah').attr('src', e.target.result);
+                                        }
+                                        
+                                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                                    }
+                                    }
+                    </script>
+                                
+                            <img id="blah" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
 
 
-                </form>
+                
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
+            <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-submit-lowongan">Save</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -117,7 +113,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit lowongan</h5>
+                <h5 class="modal-title-lowongan" id="exampleModalLabel">Edit lowongan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -125,55 +121,61 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-lowongan-edit">
                     @csrf
 
                     <label for="namalowongan">Nama lowongan</label>
-                    <input type="text" class="form-control" id="" name="">
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" required>
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="" name=""> </textarea>
+                    <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
 
                     <div class="form-group">
                     <label for="jenis" class="mt-2">Jenis Lowongan</label>
-                      <select class="form-control" id="" name="">
-                          <option value="" hidden> -- Pilih Jenis Lowongan -- </option>
+                      <select class="form-control" id="lowongan-edit" name="lowongan-edit">
+                        @foreach($data as $b)
+                            <option value="{{$b['value']}}">{{$b['alt']}}</option>
+                        @endforeach
                       </select>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
+                        <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURLn(this);" aria-describedby="inputGroupFileAddon01" >
                     </div>
-
-                </form>
+                    <script>
+                                function readURLn(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        
+                                        reader.onload = function(e) {
+                                        $('#blah-edit').attr('src', e.target.result);
+                                        }
+                                        
+                                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                                    }
+                                    }
+                                </script>
+                                
+                            <img id="blah-edit" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
+                            <input type="hidden" name="id-edit" id="id-edit">
+                
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">Submit</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Lowongan Modal-->
-<div class="modal fade" id="deleteLowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+            <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-lowongan">Save</button>
+                <button class="btn btn-primary btn-loading-edit" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data lowongan?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
-            </div>
+            </form>
         </div>
     </div>
 </div>
 
+@endsection
+@section('js-ajax')
+<script src="{{ asset('js/Kemahasiswaan/Lowongan.js') }}"></script>
 @endsection

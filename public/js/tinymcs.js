@@ -30,7 +30,7 @@ tinymce.init({
 				formData.append('file', file);
 				$.ajax({
 					type: 'post',
-					url: '/upload',
+					url: '/upload-file',
 					data: formData,
 					processData: false,
 					contentType: false,

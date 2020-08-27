@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTugasAkhirsTable extends Migration
+class CreateAkreditasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTugasAkhirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tugas_akhirs', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->text('deskripsi');
+        Schema::create('akreditasi', function (Blueprint $table) {
+            $table->increments('id',10);
+            $table->string('nilai');
+            $table->string('lembaga');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTugasAkhirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tugas_akhirs');
+        Schema::dropIfExists('akreditasi');
     }
 }

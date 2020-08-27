@@ -111,9 +111,11 @@ Route::group(['middleware' => 'guest'],function(){
 //ROUTER KHUSUS SUPER-ADMIN
 Route::group(['middleware' => ['auth','checkRole:1']],function(){
 
-    Route::get('/datapengguna', function () {
-        return view('admin/datapenggunaAdmin');
-    });
+    Route::get('/datapengguna', 'Pengguna\PenggunaController@index');
+    Route::get('/load/table-pengguna','Pengguna\PenggunaController@LoadTablePengguna');
+    Route::get('/load/data-pengguna','Pengguna\PenggunaController@LoadDataPengguna');
+    Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
+    Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
 });
 
@@ -134,6 +136,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/edit-jabatan/{id}','MasterData\JabatanController@update');
 
     Route::get('/semester','MasterData\SemesterController@index');
+    Route::get('/aktifkan-semester/{id}','MasterData\SemesterController@AktifkanSemester');
+    Route::get('/non-aktifkan-semester/{id}','MasterData\SemesterController@NonAktifkanSemester');
     Route::get('/non-aktif/semua-semester','MasterData\SemesterController@NonaktifkanSemester');
     Route::get('/load/table-semester','MasterData\SemesterController@LoadTableSemester');
     Route::get('/load/data-semester','MasterData\SemesterController@LoadDataSemester');
@@ -150,6 +154,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/edit-bk/{id}','MasterData\BidangKeahlianController@edit');
     Route::post('/admin/konfirmasi-edit-bk/{id}','MasterData\BidangKeahlianController@update');
     Route::POST('/upload','MasterData\BidangKeahlianController@storeImg');
+    Route::POST('/upload-file','FileController@store');
 
     //Admin Profile
     Route::get('/editprofile', 'PengaturanAkun\ProfileController@EditProfile');
@@ -160,19 +165,82 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
 
     //Akademik
-    Route::get('/mahasiswa', 'PageController@Mahasiswa');
 
-    Route::get('/dokumen', 'PageController@Dokumen');
+    // Akreditasi
+    Route::get('/akreditasi', 'Akademik\AkreditasiController@index');
+    Route::post('/admin/tambah-akreditasi','Akademik\AkreditasiController@store');
+    Route::get('/load/table-akreditasi','Akademik\AkreditasiController@LoadTableAkreditasi');
+    Route::get('/load/data-akreditasi','Akademik\AkreditasiController@LoadDataAkreditasi');
+    Route::get('/admin/delete-akreditasi/{id}','Akademik\AkreditasiController@destroy');
+    Route::get('/admin/edit-akreditasi/{id}','Akademik\AkreditasiController@edit');
+    Route::POST('/admin/konfirmasi-edit-akreditasi/{id}','Akademik\AkreditasiController@update');
 
-    Route::get('/form', 'PageController@Form');
+    // Mahasiswa
+    Route::get('/mahasiswa', 'Akademik\MahasiswaController@index');
+    Route::post('/admin/tambah-mahasiswa','Akademik\MahasiswaController@store');
+    Route::get('/load/table-mahasiswa','Akademik\MahasiswaController@LoadTableMahasiswa');
+    Route::get('/load/data-mahasiswa','Akademik\MahasiswaController@LoadDataMahasiswa');
+    Route::get('/admin/delete-mahasiswa/{id}','Akademik\MahasiswaController@destroy');
+    Route::get('/admin/edit-mahasiswa/{id}','Akademik\MahasiswaController@edit');
+    Route::POST('/admin/konfirmasi-edit-mahasiswa/{id}','Akademik\MahasiswaController@update');
 
-    Route::get('/jadwal', 'PageController@Jadwal');
+    Route::prefix('dokumen')->group(function () {
+      Route::get('/', 'PageController@Dokumen');
+      Route::post('/', 'Akademik\DokumenController@store');
+      Route::get('data', 'Akademik\DokumenController@index');
+      Route::get('datatable', 'Akademik\DokumenController@loadTable');
+      Route::get('edit/{id}', 'Akademik\DokumenController@edit');
+      Route::post('update/{id}', 'Akademik\DokumenController@update');
+      Route::get('delete/{id}', 'Akademik\DokumenController@destroy');
+    });
 
-    Route::get('/kalender', 'PageController@Kalender');
+    Route::get('/form', 'Akademik\FormController@index');
+    Route::post('/admin/tambah-form','Akademik\FormController@store');
+    Route::get('/load/table-form','Akademik\FormController@LoadTableForm');
+    Route::get('/load/data-form','Akademik\FormController@LoadDataForm');
+    Route::get('/admin/delete-form/{id}','Akademik\FormController@destroy');
+    Route::get('/admin/edit-form/{id}','Akademik\FormController@edit');
+    Route::POST('/admin/konfirmasi-edit-form/{id}','Akademik\FormController@update');
 
-    Route::get('kegiatan', 'PageController@Kegiatan');
 
-    Route::get('ojt', 'PageController@Ojt');
+    Route::prefix('jadwal')->group(function () {
+      Route::get('/', 'PageController@Jadwal');
+      Route::post('/', 'Akademik\JadwalKuliahController@store');
+      Route::get('get-list', 'Akademik\JadwalKuliahController@list');
+      Route::get('data', 'Akademik\JadwalKuliahController@index');
+      Route::get('datatable', 'Akademik\JadwalKuliahController@loadTable');
+      Route::get('edit/{id}', 'Akademik\JadwalKuliahController@edit');
+      Route::post('update/{id}', 'Akademik\JadwalKuliahController@update');
+      Route::get('delete/{id}', 'Akademik\JadwalKuliahController@destroy');
+    });
+
+    Route::prefix('kalender')->group(function () {
+      Route::get('/', 'PageController@Kalender');
+      Route::post('/', 'Akademik\KalenderAkademikController@store');
+      Route::get('list-smt', 'Akademik\KalenderAkademikController@listSemester');
+      Route::get('data', 'Akademik\KalenderAkademikController@index');
+      Route::get('datatable', 'Akademik\KalenderAkademikController@loadTable');
+      Route::get('edit/{id}', 'Akademik\KalenderAkademikController@edit');
+      Route::post('update/{id}', 'Akademik\KalenderAkademikController@update');
+      Route::get('delete/{id}', 'Akademik\KalenderAkademikController@destroy');
+    });
+
+    Route::get('kegiatan', 'Akademik\KegiatanAkademikController@index');
+    Route::get('/load/table-kegiatan-akademik','Akademik\KegiatanAkademikController@LoadTableKA');
+    Route::get('/load/data-kegiatan-akademik','Akademik\KegiatanAkademikController@LoadDataKA');
+    Route::post('/store-ka', 'Akademik\KegiatanAkademikController@store');
+    Route::post('/update-ka/{id}', 'Akademik\KegiatanAkademikController@update');
+    Route::get('/delete-ka/{id}', 'Akademik\KegiatanAkademikController@destroy');
+    Route::get('/get-ka/{id}','Akademik\KegiatanAkademikController@get');
+
+    Route::get('ojt', 'Akademik\OjtController@index');
+    Route::get('documents/pdf-document/', 'FileController@retrieve');
+    Route::post('/admin/tambah-ojt','Akademik\OjtController@store');
+    Route::get('/load/table-ojt','Akademik\OjtController@LoadTableKonten');
+    Route::get('/load/data-ojt','Akademik\OjtController@LoadDataKonten');
+    Route::get('/admin/delete-ojt/{id}','Akademik\OjtController@destroy');
+    Route::get('/admin/edit-ojt/{id}','Akademik\OjtController@edit');
+    Route::POST('/admin/konfirmasi-edit-ojt/{id}','Akademik\OjtController@update');
 
     Route::get('/tugasakhir', 'Akademik\TugasAkhirController@index');
     Route::post('/store-ta', 'Akademik\TugasAkhirController@store');
@@ -267,7 +335,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     });
 
     //Kemahasiswaan
-    Route::get('/alumni', 'PageController@Alumni');
+    Route::get('/alumni', 'Kemahasiswaan\AlumniController@index');
+    Route::post('/admin/tambah-alumni','Kemahasiswaan\AlumniController@store');
+    Route::get('/load/table-alumni','Kemahasiswaan\AlumniController@LoadTableAlumni');
+    Route::get('/load/data-alumni','Kemahasiswaan\AlumniController@LoadDataAlumni');
+    Route::get('/admin/delete-alumni/{id}','Kemahasiswaan\AlumniController@destroy');
+    Route::get('/admin/edit-alumni/{id}','Kemahasiswaan\AlumniController@edit');
+    Route::POST('/admin/konfirmasi-edit-alumni/{id}','Kemahasiswaan\AlumniController@update');
 
     //Lomba Seminar
     Route::prefix('lomba-seminar')->group(function () {
@@ -291,7 +365,13 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('delete/{id}', 'Kemahasiswaan\KegiatanProdiController@destroy');
     });
 
-    Route::get('/lowongan', 'PageController@Lowongan');
+    Route::get('/lowongan', 'Kemahasiswaan\LowonganController@index');
+    Route::post('/admin/tambah-lowongan','Kemahasiswaan\LowonganController@store');
+    Route::get('/load/table-lowongan','Kemahasiswaan\LowonganController@LoadTableLowongan');
+    Route::get('/load/data-lowongan','Kemahasiswaan\LowonganController@LoadDataLowongan');
+    Route::get('/admin/delete-lowongan/{id}','Kemahasiswaan\LowonganController@destroy');
+    Route::get('/admin/edit-lowongan/{id}','Kemahasiswaan\LowonganController@edit');
+    Route::POST('/admin/konfirmasi-edit-lowongan/{id}','Kemahasiswaan\LowonganController@update');
 
     //Organisasi Mahasiswa
     Route::prefix('organisasi')->group(function () {
@@ -330,7 +410,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
 
 
-    Route::get('/prestasi', 'PageController@Prestasi');
+    Route::prefix('prestasi')->group(function () {
+      Route::get('/', 'PageController@Prestasi');
+      Route::post('/', 'Profile\PrestasiController@store');
+      Route::get('get-bk', 'Profile\PrestasiController@getBK');
+      Route::get('data', 'Profile\PrestasiController@index');
+      Route::get('datatable', 'Profile\PrestasiController@loadTable');
+      Route::get('edit/{id}', 'Profile\PrestasiController@edit');
+      Route::get('delete/{id}', 'Profile\PrestasiController@destroy');
+      Route::post('update/{id}', 'Profile\PrestasiController@update');
+    });
 
     Route::get('/sejarah', 'Profile\SejarahController@index');
     Route::post('/admin/tambah-sejarah','Profile\SejarahController@store');
@@ -356,7 +445,16 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/edit-visimisi/{id}','Profile\VisimisiController@edit');
     Route::POST('/admin/konfirmasi-edit-visimisi/{id}','Profile\VisimisiController@update');
 
-    Route::get('/tenaga', 'PageController@Tenaga');
+    Route::prefix('tenaga')->group(function () {
+      Route::get('/', 'PageController@Tenaga');
+      Route::post('/', 'Profile\TenagaKependidikanController@store');
+      Route::get('jabatan', 'Profile\TenagaKependidikanController@getJabatan');
+      Route::get('data', 'Profile\TenagaKependidikanController@index');
+      Route::get('datatable', 'Profile\TenagaKependidikanController@loadTable');
+      Route::get('edit/{id}', 'Profile\TenagaKependidikanController@edit');
+      Route::get('delete/{id}', 'Profile\TenagaKependidikanController@destroy');
+      Route::post('update/{id}', 'Profile\TenagaKependidikanController@update');
+    });
 
 
     //Riset

@@ -3,8 +3,6 @@
     <tr>
       <th>No</th>
       <th>Judul Agenda</th>
-      <th>Deskripsi</th>
-      <th>Gambar</th>
       <th>Jam Agenda</th>
       <th>Tanggal Mulai</th>
       <th>Tanggal Selesai</th>

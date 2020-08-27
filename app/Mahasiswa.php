@@ -11,6 +11,6 @@ class Mahasiswa extends Model
 
     public function bidangKeahlian()
     {
-        return $this->belongsTo('App\Bidang_keahlian'); 
+        return $this->hasMany('App\Bidang_keahlian', 'id', 'kode_bk');
     }
 }

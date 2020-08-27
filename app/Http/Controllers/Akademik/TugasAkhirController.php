@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Akademik;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\TugasAkhir;
+use \App\Konten;
 use DataTables;
 
 class TugasAkhirController extends Controller
@@ -14,7 +14,11 @@ class TugasAkhirController extends Controller
     }
 
     public function store(Request $request){
-        TugasAkhir::create($request->all());
+        $k = new Konten;
+        $k->menu = "Tugas Akhir";
+        $k->judul = $request->judul;
+        $k->deskripsi = $request->deskripsi;
+        $k->save();
 
         return response([
             'message' => 'sukses'
@@ -22,7 +26,7 @@ class TugasAkhirController extends Controller
     }
 
     public function destroy($id){
-        $a = TugasAkhir::find($id);
+        $a = Konten::find($id);
         $a->delete();
 
         return response([
@@ -31,7 +35,7 @@ class TugasAkhirController extends Controller
     }
 
     public function get($id){
-        $a = TugasAkhir::find($id);
+        $a = Konten::find($id);
 
         return response([
             'data' => $a
@@ -39,7 +43,7 @@ class TugasAkhirController extends Controller
     }
 
     public function update(Request $request,$id){
-        $a = TugasAkhir::find($id);
+        $a = Konten::find($id);
         $a->judul = $request->edit_judul;
         $a->deskripsi = $request->edit_deskripsi;
         $a->Save();
@@ -54,7 +58,7 @@ class TugasAkhirController extends Controller
     }
 
     public function LoadDataTA(){
-        $jabatan = TugasAkhir::orderBy('id','desc')->get();
+        $jabatan = Konten::where('menu','Tugas Akhir')->orderBy('id','desc')->get();
 
             return Datatables::of($jabatan)->addIndexColumn()
             ->addColumn('aksi', function($row){

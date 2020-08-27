@@ -18,7 +18,6 @@ class CreateBidangKeahlihansTable extends Migration
             $table->string('nama_bk',255);
             $table->mediumText('deskripsi');
             $table->text('gambar');
-            $table->string('akreditasi',20);
             $table->timestamps();
         });
         
