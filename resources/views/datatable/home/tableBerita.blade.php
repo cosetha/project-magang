@@ -3,7 +3,6 @@
     <tr>
       <th>No</th>
       <th>Judul Berita</th>
-      <th>Deskripsi</th>
       <th>Gambar</th>
       <th>Penulis</th>
       <th>Action</th>

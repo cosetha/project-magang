@@ -69,7 +69,9 @@ class TenagaKependidikanController
       if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
-        if($this->checkGambar($fileArr[1])) {
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
           $gambarName = time().'_'.$fileEx;
           $gambarPath = "img/tenaga";
           $gambar->move($gambarPath, $gambarName, "public");
@@ -148,7 +150,9 @@ class TenagaKependidikanController
       if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
-        if($this->checkGambar($fileArr[1])) {
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
           $gambarDelete = TK::find($id)->value('gambar');
           File::delete($gambarDelete);
           $gambarName = time().'_'.$fileEx;

@@ -1,4 +1,4 @@
-@extends('layouts/loginLayout')
+@extends('layouts.loginLayout')
 @section('title', 'Login')
 
 @section('content')
@@ -32,7 +32,14 @@
                       @enderror
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="exampleInputPassword" placeholder="Password" name="password" required autocomplete="current-password">
+                      <div class="input-group" id="show_hide_password">
+                        <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="inputPassword" placeholder="Password" name="password" required autocomplete="current-password">
+                        <!-- Show Hide Password Component -->
+                        <a href=""><div class="input-group-addon eye">
+                          <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        </div></a>
+                        <!-- Show Hide Password Component -->
+                      </div>
                       @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -79,7 +79,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {data: 'lampiran',name: 'lampiran'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
@@ -201,5 +200,22 @@ $(document).ready(function() {
 
     });
 
+    $('body').on('click', '.btn-show-pengumuman', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      $('#file-pengumuman').empty();
+      $.ajax({
+  			type: 'GET',
+  			url: 'pengumuman/show/' + id,
+  			contentType: false,
+  			processData: false,
+  			success: function(data) {
+  				$('#showPengumumanModal').modal('show');
+          $('#show-judul').val(data.data.judul);
+          tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
+          $('#file-pengumuman').append(data.data.lampiran).attr('href', data.data.lampiran);
+  			}
+  		});
+    });
 
 });

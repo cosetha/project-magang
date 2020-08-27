@@ -4,35 +4,6 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    loadDataBerita();
-    //tampil Berita
-    function loadDataBerita() {
-        $('#datatable-berita').load('/berita/datatable', function() {
-            var host = window.location.origin;
-            $('#berita-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '/berita/data',
-                    type: 'GET'
-                },
-                columns: [
-                    {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
-                    {data: 'judul',name: 'judul'},
-                    {data: 'deskripsi',name: 'deskripsi'},
-                    {
-                        data: 'gambar',
-                        name: 'gambar',
-                        "render": function(data, type, row) {
-                            return '<img src=" ' + host + '/'+ data + ' " class = "rounded mx-auto d-block" height="100px"/>';
-                        },
-                        searchable: false
-                    },
-                    {data: 'name',name: 'name'},
-                    {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
-                ]
-            });
-        });
         loadDataBerita();
         //tampil Berita
         function loadDataBerita() {
@@ -48,7 +19,6 @@ $(document).ready(function() {
                     columns: [
                         {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
                         {data: 'judul',name: 'judul'},
-                        {data: 'deskripsi',name: 'deskripsi'},
                         {
                             data: 'gambar',
                             name: 'gambar',
@@ -244,5 +214,22 @@ $(document).ready(function() {
                 })
 
             });
-        }
+        // }
+        $('body').on('click', '.btn-show-berita', function(e) {
+          e.preventDefault();
+          var id = $(this).data('id');
+          var host = window.location.origin;
+          $.ajax({
+              type: 'GET',
+              url: 'berita/show/' + id,
+              contentType: false,
+              processData: false,
+              success: function(data) {
+                  $('#showBeritaModal').modal('show');
+                  $('#image-show-berita').attr('src', host + '/' + data.data.gambar);
+                  $('#judul-berita-show').val(data.data.judul);
+                  tinymce.get('deskripsi-berita-show').setContent(data.data.deskripsi);
+              }
+          });
+        });
     });

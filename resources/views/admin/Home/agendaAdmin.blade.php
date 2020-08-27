@@ -150,7 +150,7 @@
 
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <input type="submit" class="btn btn-primary" name="" value="Submit">
+                            <input type="submit" class="btn btn-primary btn-save" name="" value="Submit">
                             <input type="hidden" name="edit-id" value="">
                         </div>
                     </form>
