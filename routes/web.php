@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth','checkRole:1']],function(){
     Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
     Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
+    Route::get('/datapengguna/export','Pengguna\PenggunaController@export');
+
 });
 
 //ROUTER CAMPURAN (BISA DIAKSES ADMIN DAN SUPER-ADMIN)
