@@ -200,4 +200,11 @@ $(document).ready(function() {
         })
     })
 
+    //OPEN EXPORT MODAL
+    $("body").on("click","#btn-export-dosen",function(e){
+        e.preventDefault()
+        $("#ExportDosenModal").modal("show")
+    })
+
+
 })
