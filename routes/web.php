@@ -305,6 +305,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\BeritaController@edit');
         Route::get('delete/{id}', 'Home\BeritaController@destroy');
         Route::post('update/{id}', 'Home\BeritaController@update');
+        Route::get('show/{id}', 'Home\BeritaController@show');
     });
 
     Route::prefix('agenda')->group(function () {
@@ -334,6 +335,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\PengumumanController@edit');
         Route::post('update/{id}', 'Home\PengumumanController@update');
         Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+        Route::get('show/{id}', 'Home\PengumumanController@show');
     });
 
     //Kemahasiswaan
