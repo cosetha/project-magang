@@ -179,13 +179,22 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="get" id="form-mahasiswa-export" action="/admin/export-mahasiswa">
                     @csrf
                     <div class="form-group">
-                        <label for="bk" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="bk" name="bk">
-                            @foreach($bidang as $b)
-                            <option value="{{$b->id}}">{{$b->nama_bk}}</option>
-                            @endforeach
-                            <option value="0">Semua</option>
-                        </select>
+                        <div class="form-row">
+                            <label for="bk" class="mt-2">Bidang Keahlian</label>
+                                <select class="form-control" id="bk" name="bk">
+                                    @foreach($bidang as $b)
+                                    <option value="{{$b->id}}">{{$b->nama_bk}}</option>
+                                    @endforeach
+                                    <option value="0">Semua</option>
+                                </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="bk" class="mt-2">Tipe File</label>
+                                <select class="form-control" id="type" name="type">
+                                        <option value="Excel">Excel</option>
+                                        <option value="Pdf">Pdf</option>
+                                </select>
+                        </div>    
                     </div>
             </div>
             <div class="modal-footer">

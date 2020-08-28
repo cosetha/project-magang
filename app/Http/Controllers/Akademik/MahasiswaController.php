@@ -11,6 +11,7 @@ use Validator;
 use App\Exports\MahasiswaExport;
 use App\Imports\MahasiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 class MahasiswaController extends Controller
 {
     /**
@@ -196,16 +197,40 @@ class MahasiswaController extends Controller
 
     public function export_excel(Request $request) 
     {       
-        return Excel::download(new MahasiswaExport($request), 'mahasiswa.xlsx');
+        if($request->type == 'Excel'){
+            try {
+                return Excel::download(new MahasiswaExport($request), 'mahasiswa.xlsx');
+            } catch (\Throwable $th) {
+               
+            }
+           
+        }else if($request->type == 'Pdf'){
+            if($request->bk == 0 ){
+                $mhs = Mahasiswa::with('bidangKeahlian')->get();
+                $pdf = PDF::loadview('PDF/Mhs_PDF',['mhs'=>$mhs]);
+                return $pdf->download('laporan-mahasiswa.pdf');
+            }else {
+                $mhs = Mahasiswa::where('kode_bk', $request->bk)->get();
+                $pdf = PDF::loadview('PDF/Mhs_PDF',['mhs'=>$mhs]);
+                return $pdf->download('laporan-mahasiswa.pdf');
+            }
+            
+        }
+       
     } 
     public function import_excel(Request $request) 
     {       
 		$this->validate($request, [
 			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
-		$file = $request->file('file');
+        ]);
+        try {
+         $file = $request->file('file');
 		Excel::import(new MahasiswaImport, $file);
 		return redirect('/mahasiswa');
+        } catch (\Throwable $th) {
+            
+        }
+		
     } 
     // public function load_mhs(Request $request) 
     // {       
