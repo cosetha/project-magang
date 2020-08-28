@@ -248,4 +248,39 @@ $(document).ready(function() {
     });
   });
 
+  $('body').on('click', '#btn-import', function(e) {
+    e.preventDefault();
+    $("#importExcel").modal("show");
+  });
+  $('body').on('click', '#btn-export', function(e) {
+    e.preventDefault();
+    $("#exportModal").modal("show");
+  });
+
+  $('body').on('click', '.btn-save', function(e) {
+    e.preventDefault();
+    $(".btn-close").css('display','none')
+    $(".btn-loading").css('display','')
+    $(".btn-save").css('display','none')
+    var formData = new FormData();
+    var file = $('#file')[0].files[0];
+    formData.append('file', file);
+    $.ajax({
+      type: 'POST',
+      url: 'tenaga/import',
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function(data) {
+        if(data.status == 'ok') {
+          $(".btn-close").css('display','')
+          $(".btn-loading").css('display','none')
+          $(".btn-save").css('display','')
+          $("#importExcel").modal("hide");
+          loadDataTenaga();
+        }
+      }
+    });
+  });
+
 });
