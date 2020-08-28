@@ -1,4 +1,4 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -24,7 +24,7 @@
                     </div>
                 </div>
         </div>
-        
+
         <div class="col-sm">
             <img src = "{{ asset('img/rog.jpg') }}" class = "rounded-circle mt-2 mx-auto d-block" alt = "Rounded Image" width = "100" height = "100">
                 <div class="card mt-5">
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>" -->
-        
+
     </div>
 </div>
 

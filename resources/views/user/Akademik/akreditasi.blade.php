@@ -1,4 +1,4 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Akreditasi')
 
 @section('content')
@@ -13,7 +13,7 @@
 </div>
 
 <div class="container my-5">
-    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>    
+    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
     <table class="table table-bordered">
   <thead>

@@ -1,4 +1,4 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -29,7 +29,7 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
   </ul>
-  
+
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -74,10 +74,10 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
-    
+
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -119,11 +119,11 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     </div>
   </section>
-  
-  
+
+
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -151,7 +151,7 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
   </ul>
-  
+
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -196,10 +196,10 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
-    
+
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -221,7 +221,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -241,11 +241,11 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     </div>
   </section>
-  
-  
+
+
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo2" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -275,7 +275,7 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
   </ul>
-  
+
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -320,10 +320,10 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
-    
+
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -345,7 +345,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -365,11 +365,11 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     </div>
   </section>
-  
-  
+
+
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo3" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -401,7 +401,7 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
   </ul>
-  
+
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -446,10 +446,10 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
-    
+
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -471,7 +471,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -491,11 +491,11 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     </div>
   </section>
-  
-  
+
+
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo4" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>

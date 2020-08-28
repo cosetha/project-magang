@@ -1,4 +1,4 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -13,9 +13,9 @@
     <div class="row mt-4 mb-row">
             <div class="col mx-4 col-overflow">
                 <h2>Visi</h2>
-                
+
             </div>
-            
+
 
 
              <div class="col mx-4 col-overflow">
