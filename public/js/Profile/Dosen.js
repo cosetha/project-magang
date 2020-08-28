@@ -206,5 +206,45 @@ $(document).ready(function() {
         $("#ExportDosenModal").modal("show")
     })
 
+    //IMPORT EXCEL
+    $("body").on("submit","#FormExcelDosen", function(e){
+        e.preventDefault()
+        $(".btn-loading").css("display","")
+        $(".btn-close").css("display","none")
+        $(".btn-import").css("display","none")
+
+        var formData = new FormData();
+        var file = $('#file-excel')[0].files[0];
+        formData.append('file', file);
+        formData.append('_token', $('input[name=_token]').val());
+
+        // console.log($('#file-excel'))
+
+        $.ajax({
+            type: "post",
+            url: "/dosen/import-excel",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                $(".btn-loading").css("display","none")
+                $(".btn-close").css("display","")
+                $(".btn-import").css("display","")
+                $("#FormExcelDosen").trigger("reset")
+                $("#importExcel").modal("hide")
+                LoadDosen()
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Berhasil Import File Dosen!',
+                    timer: 1200,
+                    showConfirmButton: false
+                });
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
 })

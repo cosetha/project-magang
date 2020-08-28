@@ -176,24 +176,29 @@
 <!-- Import Dosen Modal -->
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
-				<form method="post" action="/dosen/import-excel" enctype="multipart/form-data">
+				<form method="post" id="FormExcelDosen" enctype="multipart/form-data">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
 						</div>
 						<div class="modal-body">
 
-							{{ csrf_field() }}
+							@csrf
 
 							<label>Pilih file excel</label>
 							<div class="form-group">
-								<input type="file" name="file" required="required">
-							</div>
+								<input type="file" id="file-excel" name="file" required="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            </div>
+                            <input type="hidden" name="token" value="{{ csrf_token() }}">
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Import</button>
+							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary btn-import">Import</button>
+                            <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Memproses...
+                            </button>
 						</div>
 					</div>
 				</form>

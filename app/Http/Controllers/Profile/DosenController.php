@@ -119,16 +119,14 @@ class DosenController extends Controller
     }
 
     public function import_excel(Request $request){
-        // validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
 
 		$file = $request->file('file');
 
 		// import data
 		Excel::import(new DosenImport, $file);
 
-		return redirect('/dosen');
+		return response([
+            'message' => "import dosen excel sukses"
+        ]);
     }
 }
