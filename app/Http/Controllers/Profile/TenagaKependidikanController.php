@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Profile;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jabatan;
 use App\TenagaKependidikan as TK;
 use Illuminate\Support\Facades\DB;
-use DataTables, File;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\TenagaImport;
+use App\Exports\TenagaExport;
+use DataTables, File, PDF;
 
-class TenagaKependidikanController
+class TenagaKependidikanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -122,6 +126,7 @@ class TenagaKependidikanController
     public function edit($id)
     {
       $data = DB::table('tenaga_kependidikan as tng')
+      ->where('tng.id', $id)
       ->join('jabatan as j', 'tng.kode_jabatan', '=', 'j.id')
       ->select('tng.*', 'j.nama_jabatan')
       ->orderBy('id', 'desc')
@@ -202,7 +207,7 @@ class TenagaKependidikanController
      */
     public function destroy($id)
     {
-      $gambarDelete = TK::find($id)->value('gambar');
+      $gambarDelete = TK::where('id', $id)->value('gambar');
       File::delete($gambarDelete);
         $tenaga = TK::destroy($id);
           return response()->json([
@@ -226,5 +231,36 @@ class TenagaKependidikanController
         return true;
       }
       return false;
+    }
+
+    public function importExcel(Request $request)
+    {
+  		$this->validate($request, [
+  			'file' => 'required|mimes:csv,xls,xlsx'
+  		]);
+
+  		$file = $request->file('file');
+
+  		// import data
+  		Excel::import(new TenagaImport, $file);
+      return response()->json([
+        'status' => 'ok'
+      ]);
+  		// return redirect('/tenaga');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new TenagaExport, 'tenaga kependidikan.xlsx');
+    }
+
+    public function exportPDF(){
+        $data = DB::table('tenaga_kependidikan as tng')
+        ->join('jabatan as j', 'tng.kode_jabatan', '=', 'j.id')
+        ->select('tng.*', 'j.nama_jabatan')
+        ->orderBy('id', 'desc')
+        ->get();
+        $pdf = PDF::loadview('PDF/TenagaKependidikanPDF',['tenaga'=>$data]);
+	    return $pdf->download('Tenaga Kependidikan.pdf');
     }
 }
