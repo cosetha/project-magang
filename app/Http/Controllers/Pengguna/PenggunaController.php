@@ -12,7 +12,7 @@ use DataTables;
 class PenggunaController extends Controller
 {
     public function index(){
-        return view('admin.pengguna.datapenggunaAdmin');
+        return view('admin.Pengguna.datapenggunaAdmin');
     }
 
     public function store(Request $request){
