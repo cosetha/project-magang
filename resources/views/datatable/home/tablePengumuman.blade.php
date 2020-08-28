@@ -3,7 +3,6 @@
     <tr>
       <th>No</th>
       <th>Pengumuman</th>
-      <th>Deskripsi</th>
       <th>Lampiran</th>
       <th>Action</th>
     </tr>

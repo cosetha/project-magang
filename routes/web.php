@@ -305,6 +305,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\BeritaController@edit');
         Route::get('delete/{id}', 'Home\BeritaController@destroy');
         Route::post('update/{id}', 'Home\BeritaController@update');
+        Route::get('show/{id}', 'Home\BeritaController@show');
     });
 
     Route::prefix('agenda')->group(function () {
@@ -334,6 +335,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\PengumumanController@edit');
         Route::post('update/{id}', 'Home\PengumumanController@update');
         Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+        Route::get('show/{id}', 'Home\PengumumanController@show');
     });
 
     //Kemahasiswaan
@@ -410,6 +412,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/save-dosen/{id}','Profile\DosenController@update');
     Route::get('/get-dosen/{id}','Profile\DosenController@get');
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
+    Route::get('/dosen/export-excel','Profile\DosenController@export_excel');
+    Route::get('/dosen/export-pdf','Profile\DosenController@export_pdf');
+    Route::post('/dosen/import-excel','Profile\DosenController@import_excel');
 
 
     Route::prefix('prestasi')->group(function () {
