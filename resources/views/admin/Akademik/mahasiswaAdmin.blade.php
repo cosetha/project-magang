@@ -24,6 +24,8 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
+            <a type="submit" class="btn btn-success ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export Excel</a>
+            <a type="submit" class="btn btn-info ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import Excel</a>
         </div>
 
         <div class="card-body">
@@ -139,6 +141,60 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="importMahasiswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Mahasiswa</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa-export" action="/admin/import-mahasiswa">
+                    @csrf
+                    <div class="form-group">
+                        <label for="bk" class="mt-2">Mahasiswa</label>
+                        <input type="file" name="file" id="file">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Import</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exportMahasiswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Export Mahasiswa</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="get" id="form-mahasiswa-export" action="/admin/export-mahasiswa">
+                    @csrf
+                    <div class="form-group">
+                        <label for="bk" class="mt-2">Bidang Keahlian</label>
+                        <select class="form-control" id="bk" name="bk">
+                            @foreach($bidang as $b)
+                            <option value="{{$b->id}}">{{$b->nama_bk}}</option>
+                            @endforeach
+                            <option value="0">Semua</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Export</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
