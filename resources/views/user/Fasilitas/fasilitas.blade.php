@@ -1,20 +1,14 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
 
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
             <img src="{{ asset('img/rog.jpg') }}" class="d-block w-100">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Ruang Kelas</h5>
-                <p>Ini Ruang Kelas</p>
             </div>
             </div>
             <div class="carousel-item">

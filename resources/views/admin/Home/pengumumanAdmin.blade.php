@@ -141,6 +141,39 @@
         </div>
       </div>
 
+      <!-- show pengumuman modal -->
+      <div class="modal fade" id="showPengumumanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detail Pengumuman</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post">
+            <div class="modal-body">
+
+              @csrf
+
+                    <label for="pengumuman">Pengumuman</label>
+                    <input type="text" class="form-control" id="show-judul" disabled>
+
+
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="show-deskripsi"> </textarea>
+
+                    <label for="deskripsi" class="mt-2">Lampiran</label>
+                    <br>
+                    <a href=""  id="file-pengumuman"></a>
+
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       @endsection
       @section('js-ajax')
       <script src="{{ asset('js/home/pengumuman.js') }}"></script>

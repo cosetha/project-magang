@@ -166,14 +166,4 @@ class AgendaController
           ]);
         }
     }
-
-    function checkGambar($file)
-    {
-      $file = strtolower($file);
-      $ex = array("png","jpg","jpeg","svg","gif");
-      if(in_array($file, $ex)) {
-        return true;
-      }
-      return false;
-    }
 }

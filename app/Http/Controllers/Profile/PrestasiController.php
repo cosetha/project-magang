@@ -43,7 +43,9 @@ class PrestasiController
       if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
-        if($this->checkGambar($fileArr[1])) {
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
           $gambarName = time().'_'.$fileEx;
           $gambarPath = "img/prestasi";
           $gambar->move($gambarPath, $gambarName, "public");
@@ -100,13 +102,15 @@ class PrestasiController
       if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
-        if($this->checkGambar($fileArr[1])) {
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
 
           $gambarName = time().'_'.$fileEx;
           $gambarPath = "img/prestasi";
           $gambar->move($gambarPath, $gambarName, "public");
 
-          $pathDelete = Prestasi::find($id)->value('gambar');
+          $pathDelete = Prestasi::where('id', $id)->value('gambar');
           File::delete($pathDelete);
 
           $prestasi = Prestasi::find($id);
@@ -147,7 +151,7 @@ class PrestasiController
 
     public function destroy($id)
     {
-      $pathDelete = Prestasi::find($id)->value('gambar');
+      $pathDelete = Prestasi::where('id', $id)->value('gambar');
       File::delete($pathDelete);
       Prestasi::destroy($id);
       return response()->json([

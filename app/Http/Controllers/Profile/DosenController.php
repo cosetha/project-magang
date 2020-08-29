@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Dosen;
 use DataTables;
+use App\Exports\DosenExport;
+use App\Imports\DosenImport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class DosenController extends Controller
 {
@@ -102,5 +106,32 @@ class DosenController extends Controller
          })
          ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function export_excel(){
+        return Excel::download(new DosenExport, 'dosen.xlsx');
+    }
+
+    public function export_pdf(){
+        $dosen = Dosen::all();
+        $pdf = PDF::loadview('PDF/Dosen_pdf',['dosen'=>$dosen]);
+	    return $pdf->download('laporan-dosen.pdf');
+    }
+
+    public function download_excel(){
+
+	    return response()->download('EXCEL/Dosen/example-dosen.xlsx');
+    }
+
+    public function import_excel(Request $request){
+
+		$file = $request->file('file');
+
+		// import data
+		Excel::import(new DosenImport, $file);
+
+		return response([
+            'message' => "import dosen excel sukses"
+        ]);
     }
 }

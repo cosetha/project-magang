@@ -26,7 +26,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#DosenModal">+ Add Dosen</a>
+            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#DosenModal">+ Add Dosen</button>&nbsp;<button data-toggle="modal" data-target="#importExcel" type="button" class="btn btn-dark">Import</button>&nbsp;<button id="btn-export-dosen" type="button" class="btn btn-dark">Export</button>
         </div>
         <div class="card-body">
             <div id="datatable-dosen"></div>
@@ -154,24 +154,57 @@
     </div>
 </div>
 
-<!-- Delete Dosen Modal-->
-<div class="modal fade" id="deleteDosenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Export Dosen Modal-->
+<div class="modal fade" id="ExportDosenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Export</h5>
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data dosen?</div>
+            <div class="modal-body">Pilih Format Laporan untuk di Export</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <a href="/dosen/export-excel" class="btn btn-outline-success">Excel</a>
+                <a href="/dosen/export-pdf" class="btn btn-outline-danger">PDF</a>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Import Dosen Modal -->
+<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form method="post" id="FormExcelDosen" enctype="multipart/form-data">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+						</div>
+						<div class="modal-body">
+
+							@csrf
+
+							<label>Pilih file excel</label>
+							<div class="form-group">
+								<input type="file" id="file-excel" name="file" required="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            </div>
+                            <input type="hidden" name="token" value="{{ csrf_token() }}">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-import">Import</button>
+                            <a href="/dosen/download-format-excel" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Memproses...
+                            </button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 @endsection
 
 @section('js-ajax')

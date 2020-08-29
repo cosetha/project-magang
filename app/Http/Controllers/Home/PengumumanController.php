@@ -26,6 +26,9 @@ class PengumumanController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-delete-pengumuman" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-pengumuman" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
+          </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -150,7 +153,10 @@ class PengumumanController
 
     public function show($id)
     {
-
+      $data = Pengumuman::find($id);
+      return response()->json([
+        'data' => $data
+      ]);
     }
 
 }

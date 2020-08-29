@@ -1,4 +1,4 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
@@ -13,40 +13,45 @@
 
 
 <div class="container ">
-    <div class="row row-cols-1 row-cols-md-4 mt-3">
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
-        <div class="col mb-4">
-            <img src="{{ asset('img/rog.jpg') }}"  width="270px" height="190px">
-            <div class="bottom-left-kegiatan text-white">Sistem Informasi</div>
-        </div>
+    <div class="row mb-5 mt-5">
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-4">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
     </div>
+    
 </div>
 
 @endsection

@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Pengguna;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\User;
+use App\Exports\PenggunaExport;
 use DataTables;
 
 class PenggunaController extends Controller
 {
     public function index(){
-        return view('admin.pengguna.datapenggunaAdmin');
+        return view('admin.Pengguna.datapenggunaAdmin');
     }
 
     public function store(Request $request){
@@ -51,5 +53,9 @@ class PenggunaController extends Controller
          })
          ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function export(){
+        return Excel::download(new PenggunaExport, date("dmY-His").'-DataPengguna.xlsx');
     }
 }

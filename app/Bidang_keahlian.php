@@ -19,7 +19,7 @@ class Bidang_keahlian extends Model
     }
     public function mahasiswa()
     {
-    	return $this->hasMany('App\Prestasi');
+    	return $this->hasMany('App\Mahasiswa');
     }
     public function alumni()
     {

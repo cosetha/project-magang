@@ -12,8 +12,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Pengguna</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+        <h1 class="h3 mb-0 text-gray-800">Data Pengguna</h1>
     </div>
 
     <!-- Content Row -->
@@ -24,6 +23,9 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PenggunaModal">+ Add Pengguna</a>
+            <!-- Export Data -->
+             <a href="{{url('datapengguna/export')}}" class="btn btn-success shadow-sm ml-1"><i class="fas fa-file-excel mr-2"></i>Export</a>
+             <!-- Export Data -->
         </div>
 
         <div class="card-body">
