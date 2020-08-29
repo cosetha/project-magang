@@ -153,7 +153,7 @@
                     </div>
 
                     <div class="form-group mt-3">
-                      <img id="image-edit-prestasi" src="" alt="">
+                      <img id="image-edit-prestasi" src="" alt="" style="width: 70%; height: 70%; border-radius: 10px;">
                     </div>
 
                     <div class="form-group mt-3">

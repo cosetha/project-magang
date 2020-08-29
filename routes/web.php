@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth','checkRole:1']],function(){
     Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
     Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
+    Route::get('/datapengguna/export','Pengguna\PenggunaController@export');
+
 });
 
 //ROUTER CAMPURAN (BISA DIAKSES ADMIN DAN SUPER-ADMIN)
@@ -183,6 +185,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/delete-mahasiswa/{id}','Akademik\MahasiswaController@destroy');
     Route::get('/admin/edit-mahasiswa/{id}','Akademik\MahasiswaController@edit');
     Route::POST('/admin/konfirmasi-edit-mahasiswa/{id}','Akademik\MahasiswaController@update');
+    Route::get('/admin/export-mahasiswa','Akademik\MahasiswaController@export_excel');
+    Route::post('/admin/import-mahasiswa','Akademik\MahasiswaController@import_excel');
+    // Route::get('/load/data-mhs','Akademik\MahasiswaController@load_mhs');
 
     Route::prefix('dokumen')->group(function () {
       Route::get('/', 'PageController@Dokumen');
@@ -303,6 +308,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\BeritaController@edit');
         Route::get('delete/{id}', 'Home\BeritaController@destroy');
         Route::post('update/{id}', 'Home\BeritaController@update');
+        Route::get('show/{id}', 'Home\BeritaController@show');
     });
 
     Route::prefix('agenda')->group(function () {
@@ -332,6 +338,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
         Route::get('edit/{id}', 'Home\PengumumanController@edit');
         Route::post('update/{id}', 'Home\PengumumanController@update');
         Route::get('delete/{id}', 'Home\PengumumanController@destroy');
+        Route::get('show/{id}', 'Home\PengumumanController@show');
     });
 
     //Kemahasiswaan
@@ -408,6 +415,10 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/save-dosen/{id}','Profile\DosenController@update');
     Route::get('/get-dosen/{id}','Profile\DosenController@get');
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
+    Route::get('/dosen/download-format-excel','Profile\DosenController@download_excel');
+    Route::get('/dosen/export-excel','Profile\DosenController@export_excel');
+    Route::get('/dosen/export-pdf','Profile\DosenController@export_pdf');
+    Route::post('/dosen/import-excel','Profile\DosenController@import_excel');
 
 
     Route::prefix('prestasi')->group(function () {
@@ -454,6 +465,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('edit/{id}', 'Profile\TenagaKependidikanController@edit');
       Route::get('delete/{id}', 'Profile\TenagaKependidikanController@destroy');
       Route::post('update/{id}', 'Profile\TenagaKependidikanController@update');
+      Route::post('import', 'Profile\TenagaKependidikanController@importExcel');
+      Route::get('export-excel', 'Profile\TenagaKependidikanController@exportExcel');
+      Route::get('export-pdf', 'Profile\TenagaKependidikanController@exportPDF');
     });
 
 

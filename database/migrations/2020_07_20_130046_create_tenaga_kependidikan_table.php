@@ -15,7 +15,7 @@ class CreateTenagaKependidikanTable extends Migration
     {
         Schema::create('tenaga_kependidikan', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->string('nama');
             $table->bigInteger('kode_jabatan')->unsigned();
             $table->foreign('kode_jabatan')

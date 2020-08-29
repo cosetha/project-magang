@@ -32,6 +32,9 @@ class BeritaController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-delete-berita" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-berita" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
+          </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -68,8 +71,9 @@ class BeritaController
       if($gambar != null) {
       $fileEx = $gambar->getClientOriginalName();
       $fileArr = explode(".", $fileEx);
-
-      if($this->checkGambar($fileArr[1])) {
+      $panjangArray = count($fileArr);
+      $indexTerakhir = $panjangArray - 1;
+      if($this->checkGambar($fileArr[$indexTerakhir])) {
         $gambarName = time().'_'.$fileEx;
         $gambarPath = "img/berita";
         $gambar->move($gambarPath, $gambarName, "public");
@@ -111,7 +115,13 @@ class BeritaController
      */
     public function show($id)
     {
-        //
+        $data = Berita::find($id);
+        // ->join('users as u', 'berita.id_penulis', '=', 'u.id')
+        // ->select('u.name', 'berita.*')
+        // ->get();
+        return response()->json([
+          'data' => $data
+        ]);
     }
 
     /**
@@ -146,8 +156,9 @@ class BeritaController
       if($gambar != null) {
         $fileEx = $gambar->getClientOriginalName();
         $fileArr = explode(".", $fileEx);
-
-        if($this->checkGambar($fileArr[1])) {
+        $panjangArray = count($fileArr);
+        $indexTerakhir = $panjangArray - 1;
+        if($this->checkGambar($fileArr[$indexTerakhir])) {
           $gambarName = time().'_'.$fileEx;
           $gambarPath = "img/berita";
           $gambarPathDel = Berita::find($id)->value('gambar');
@@ -202,7 +213,7 @@ class BeritaController
      */
     public function destroy($id)
     {
-      $gambarPath = Berita::find($id)->value('gambar');
+      $gambarPath = Berita::where('id', $id)->value('gambar');
       File::delete($gambarPath);
 
         $del = Berita::find($id);

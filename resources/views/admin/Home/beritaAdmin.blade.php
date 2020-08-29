@@ -97,7 +97,7 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-berita">
+                <form accept-charset="utf-8" enctype="multipart/form-data" id="form-edit-berita">
                     @csrf
 
                     <label for="judulBerita" class="mt-2">Judul Berita</label>
@@ -118,13 +118,15 @@
                         <input type="hidden" name="edit-id" value="">
                     </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" id="btn-edit-berita" type="hidden" data-penulis="{{ auth()->user()->id }}">Submit</button>
+                    </div>
+
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" id="btn-edit-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -224,6 +226,41 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- show berita Modal-->
+<div class="modal fade" id="showBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    @csrf
+
+                    <label for="judulBerita" class="mt-2">Judul Berita</label>
+                    <input type="text" class="form-control" id="judul-berita-show" disabled>
+
+
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="deskripsi-berita-show" disabled> </textarea>
+
+
+                    <div class="form-group mt-3">
+                        <img id="image-show-berita" src="" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;" >
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>

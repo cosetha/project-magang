@@ -1,15 +1,12 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
 
-<div class="container-img">
-  <img src="{{ asset('img/rog.jpg') }}" alt="Snow" style="width:100%; height:400px ;">
-  <div class="bottom-left">Sistem Informasi</div>
-  <div class="top-left">Top Left</div>
-  <div class="top-right">Top Right</div>
-  <div class="bottom-right">Bottom Right</div>
-  <div class="centered">Centered</div>
+
+<div class="caption">
+    <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
+    <h3>Sejarah</h3>
 </div>
 
 <div class="container">
