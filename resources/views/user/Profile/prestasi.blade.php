@@ -3,13 +3,10 @@
 
 @section('content')
 
-<div class="container-img">
-  <img src="{{ asset('img/rog.jpg') }}" alt="Snow" style="width:100%; height:400px ;">
-  <div class="bottom-left">Sistem Informasi</div>
-  <div class="top-left">Top Left</div>
-  <div class="top-right">Top Right</div>
-  <div class="bottom-right">Bottom Right</div>
-  <div class="centered">Centered</div>
+
+<div class="caption">
+    <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
+    <h3>Pretasi</h3>
 </div>
 
 
@@ -23,12 +20,6 @@
 </div>
 
 <div id="demo" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
 
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
@@ -74,10 +65,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 
-
+    
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -99,7 +90,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -119,11 +110,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     </div>
   </section>
-
-
+  
+  
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -145,13 +136,7 @@
 </div>
 
 <div id="demo2" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
-
+  
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -196,10 +181,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 
-
+    
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -221,7 +206,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -241,11 +226,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     </div>
   </section>
-
-
+  
+  
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo2" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -270,12 +255,6 @@
 
 <div id="demo3" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
-
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -320,10 +299,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 
-
+    
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -345,7 +324,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -365,11 +344,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     </div>
   </section>
-
-
+  
+  
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo3" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -395,13 +374,7 @@
 
 
 <div id="demo4" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
-
+  
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -446,10 +419,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 
-
+    
     <div class="carousel-item">
     <div class="card-deck" style="margin-top:70px;">
         <div class="col-lg-3 col-md-6">
@@ -471,7 +444,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col-lg-3 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -491,11 +464,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     </div>
   </section>
-
-
+  
+  
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo4" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
