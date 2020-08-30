@@ -213,7 +213,7 @@ class BeritaController
      */
     public function destroy($id)
     {
-      $gambarPath = Berita::find($id)->value('gambar');
+      $gambarPath = Berita::where('id', $id)->value('gambar');
       File::delete($gambarPath);
 
         $del = Berita::find($id);

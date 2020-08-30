@@ -8,6 +8,10 @@ use App\Bidang_keahlian;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Validator;
+use App\Exports\MahasiswaExport;
+use App\Imports\MahasiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 class MahasiswaController extends Controller
 {
     /**
@@ -176,8 +180,8 @@ class MahasiswaController extends Controller
     }
 
     public function LoadDataMahasiswa(){
-        $headline = Mahasiswa::with('bidangKeahlian')->orderBy('id','desc')->get();
-            return Datatables::of($headline)->addIndexColumn()
+        $mhs = Mahasiswa::with('bidangKeahlian')->orderBy('id','desc')->get();
+            return Datatables::of($mhs)->addIndexColumn()
             ->addColumn('aksi', function($row){
                 $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-edit-mahasiswa" style="font-size: 18pt; text-decoration: none;" class="mr-3">
                 <i class="fas fa-pen-square"></i>
@@ -190,4 +194,52 @@ class MahasiswaController extends Controller
          ->rawColumns(['aksi'])
             ->make(true);
     }
+
+    public function export_excel(Request $request) 
+    {       
+        if($request->type == 'Excel'){
+            try {
+                return Excel::download(new MahasiswaExport($request), 'mahasiswa.xlsx');
+            } catch (\Throwable $th) {
+               
+            }
+           
+        }else if($request->type == 'Pdf'){
+            if($request->bk == 0 ){
+                $mhs = Mahasiswa::with('bidangKeahlian')->get();
+                $pdf = PDF::loadview('PDF/Mhs_PDF',['mhs'=>$mhs]);
+                return $pdf->download('laporan-mahasiswa.pdf');
+            }else {
+                $mhs = Mahasiswa::where('kode_bk', $request->bk)->get();
+                $pdf = PDF::loadview('PDF/Mhs_PDF',['mhs'=>$mhs]);
+                return $pdf->download('laporan-mahasiswa.pdf');
+            }
+            
+        }
+       
+    } 
+    public function import_excel(Request $request) 
+    {       
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        try {
+         $file = $request->file('file');
+		Excel::import(new MahasiswaImport, $file);
+		return redirect('/mahasiswa');
+        } catch (\Throwable $th) {
+            
+        }
+		
+    } 
+    // public function load_mhs(Request $request) 
+    // {       
+    //     $data = Mahasiswa::all();
+    //     $output = [];
+    //     $i = 1;
+    //     foreach ($data as $mhs)
+    //     {
+    //         echo($mhs->bidangKeahlian()->first()->nama_bk);
+    //     }
+    // } 
 }

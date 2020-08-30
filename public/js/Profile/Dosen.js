@@ -212,6 +212,7 @@ $(document).ready(function() {
         $(".btn-loading").css("display","")
         $(".btn-close").css("display","none")
         $(".btn-import").css("display","none")
+        $(".btn-download").css("display","none")
 
         var formData = new FormData();
         var file = $('#file-excel')[0].files[0];
@@ -230,6 +231,7 @@ $(document).ready(function() {
                 $(".btn-loading").css("display","none")
                 $(".btn-close").css("display","")
                 $(".btn-import").css("display","")
+                $(".btn-download").css("display","")
                 $("#FormExcelDosen").trigger("reset")
                 $("#importExcel").modal("hide")
                 LoadDosen()

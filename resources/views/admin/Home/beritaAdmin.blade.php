@@ -97,7 +97,7 @@
             <div class="modal-body">
 
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-berita">
+                <form accept-charset="utf-8" enctype="multipart/form-data" id="form-edit-berita">
                     @csrf
 
                     <label for="judulBerita" class="mt-2">Judul Berita</label>
@@ -118,13 +118,15 @@
                         <input type="hidden" name="edit-id" value="">
                     </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" id="btn-edit-berita" type="hidden" data-penulis="{{ auth()->user()->id }}">Submit</button>
+                    </div>
+
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" id="btn-edit-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
-            </div>
+
         </div>
     </div>
 </div>

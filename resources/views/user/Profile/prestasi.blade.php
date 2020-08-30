@@ -1,15 +1,12 @@
-@extends('layout/userlayout')
+@extends('layouts/userlayout')
 @section('title', 'Fasilitas')
 
 @section('content')
 
-<div class="container-img">
-  <img src="{{ asset('img/rog.jpg') }}" alt="Snow" style="width:100%; height:400px ;">
-  <div class="bottom-left">Sistem Informasi</div>
-  <div class="top-left">Top Left</div>
-  <div class="top-right">Top Right</div>
-  <div class="bottom-right">Bottom Right</div>
-  <div class="centered">Centered</div>
+
+<div class="caption">
+    <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
+    <h3>Pretasi</h3>
 </div>
 
 
@@ -24,12 +21,6 @@
 
 <div id="demo" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
-  
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -145,12 +136,6 @@
 </div>
 
 <div id="demo2" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
   
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
@@ -270,12 +255,6 @@
 
 <div id="demo3" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
-  
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
     <section id="team">
@@ -395,12 +374,6 @@
 
 
 <div id="demo4" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-  </ul>
   
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">

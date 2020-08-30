@@ -124,7 +124,7 @@
             <div class="col mx-4 col-overflow">
                 <h2>PENGUMUMAN</h2>
                 <div class="overflow">
-                    <div class="card mt-3">
+                    <div class="card mt-3 card-flow">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p>This is some text within a card body.</p>
@@ -132,7 +132,31 @@
                         </div>
                     </div>
 
-                    <div class="card mt-3">
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p>This is some text within a card body.</p>
+                            <a href="#" class="card-link">Selanjutnya...</a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p>This is some text within a card body.</p>
+                            <a href="#" class="card-link">Selanjutnya...</a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p>This is some text within a card body.</p>
+                            <a href="#" class="card-link">Selanjutnya...</a>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 card-flow">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p>This is some text within a card body.</p>
@@ -147,9 +171,9 @@
              <div class="col mx-4 col-overflow">
                 <h2>AGENDA</h2>
                 <div class="overflow">
-                    <div class="card mt-3">
+                    <div class="card mt-3 card-flow">
                         <div class="card-body">
-                           <table class="table table-borderless">
+                           <table class="table table-borderless text-white">
                                     <tr>
                                         <td rowspan="3" class="border border-secondary tgl-agenda"><h1>20 October</h1></td>
                                         <td>@twitter</td>
@@ -164,9 +188,9 @@
                         </div>
                     </div>
 
-                    <div class="card mt-3">
+                    <div class="card mt-3 card-flow">
                         <div class="card-body">
-                          <table class="table table-borderless">
+                           <table class="table table-borderless text-white">
                                     <tr>
                                         <td rowspan="3" class="border border-secondary tgl-agenda"><h1>20 October</h1></td>
                                         <td>@twitter</td>
@@ -180,6 +204,61 @@
                             </table>
                         </div>
                     </div>
+                    
+
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                           <table class="table table-borderless text-white">
+                                    <tr>
+                                        <td rowspan="3" class="border border-secondary tgl-agenda"><h1>20 October</h1></td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                           <table class="table table-borderless text-white">
+                                    <tr>
+                                        <td rowspan="3" class="border border-secondary tgl-agenda"><h1>20 October</h1></td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+
+                    <div class="card mt-3 card-flow">
+                        <div class="card-body">
+                           <table class="table table-borderless text-white">
+                                    <tr>
+                                        <td rowspan="3" class="border border-secondary tgl-agenda"><h1>20 October</h1></td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Larry the Bird</td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
                  </div>
             </div>
 
@@ -208,36 +287,115 @@
                 </div>          
             </div>
 
-            <div class="row">
-                <div class="col col-prodi bg-primary" style="background-image: url({{url('img/rog.jpg')}});">
-                    <div class="col-prodi-text ">
-                        Sistem Informasi
-                    </div>
-                </div>
-                
-
-                <div class="col col-prodi bg-primary">
-                    <div class="col-prodi-text ">
-                        Sistem Informasi
-                    </div>
-                </div>
-
-                <div class="w-100"></div>
-                <div class="col col-prodi bg-primary">
-                    <div class="col-prodi-text ">
-                        Sistem Informasi
-                    </div>
-                </div>
-                <div class="col col-prodi bg-primary">
-                    <div class="col-prodi-text ">
-                        Sistem Informasi
-                    </div>
-                </div>
-                
-                </div>
+    <div class="row mb-5 mt-5">
+         <div class="col-sm-6">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width img-rounded" />
+               <h3>My Caption Goes Here</h3>
             </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width img-rounded" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width img-rounded" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="caption-2">
+               <img src="http://placekitten.com/g/400/300" class="img-full-width img-rounded" />
+               <h3>My Caption Goes Here</h3>
+            </div>
+         </div>
+    </div>
+</div>
+
 
         
+
+
+
+<div id="demo" class="carousel slide background-sec" data-ride="carousel">
+ 
+  <!-- The slideshow -->
+  <div class="container carousel-inner no-padding">
+    <div class="carousel-item active">
+        <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>   
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>  
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>   
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>  
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div> 
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div> 
+        </div>
+
+
+    </div> 
+      <div class="carousel-item">
+      <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>   
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>  
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>   
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div>  
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div> 
+
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg" alt="Avatar" class="image" style="width:100%">
+            </div> 
+        </div>     
+    </div>
+  </div>
+  
+
+
+  <!-- Left and right controls -->
+
+
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+
     </div>
 
     @endsection
