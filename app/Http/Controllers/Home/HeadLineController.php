@@ -38,10 +38,16 @@ class HeadLineController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'judul.required'=>'Field Judul Perlu di Isi',
+            'gambar.required'=>'Field Gambar Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'caption.required'=>'Field Caption Perlu di Isi',
+        );
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|min:1|max:255',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
-            "caption" => 'required|string']);
+            'gambar' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+            "caption" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
@@ -118,10 +124,16 @@ class HeadLineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'judul.required'=>'Field Judul Perlu di Isi',
+            'gambar.required'=>'Field Gambar Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'caption.required'=>'Field Caption Perlu di Isi',
+        );
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|min:1|max:255',
             'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            "caption" => 'required|string']);
+            "caption" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
