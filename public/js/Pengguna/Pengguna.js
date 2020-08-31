@@ -49,19 +49,35 @@ $(document).ready(function() {
             url: "/tambah-pengguna",
             data: data,
             success: function(response){
-                $(".btn-close").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-submit-pengguna").css("display","")
-                $("#PenggunaModal").modal("hide")
-                $("#FormPengguna").trigger("reset")
-                LoadPengguna()
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Pengguna',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
+
+                if(response.message == "sukses"){
+                    $(".btn-close").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-submit-pengguna").css("display","")
+                    $("#PenggunaModal").modal("hide")
+                    $("#FormPengguna").trigger("reset")
+                    LoadPengguna()
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Pengguna',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }else{
+                    $("#FormPengguna").trigger("reset")
+                    $(".btn-close").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-submit-pengguna").css("display","")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'Email Telah digunakan!',
+                    });
+                }
+
+                // console.log(response)
+
             },
             error: function(err){
                 console.log(err)

@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use App\Exports\PenggunaExport;
 use DataTables;
+use Validator;
 
 class PenggunaController extends Controller
 {
@@ -16,6 +17,18 @@ class PenggunaController extends Controller
     }
 
     public function store(Request $request){
+
+        //CEK EMAIL UNIQUE
+        $validator = Validator::make($request->all(),[
+                'email' => 'required|unique:users,email'
+            ]);
+
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $u = new User;
         $u->name = $request->name;
         $u->email = $request->email;
@@ -24,7 +37,7 @@ class PenggunaController extends Controller
         $u->save();
 
         return response([
-            'message' => 'sukses'
+            'message' => 'sukses',
         ]);
     }
 
