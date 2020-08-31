@@ -188,6 +188,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/admin/delete-mahasiswa/{id}','Akademik\MahasiswaController@destroy');
     Route::get('/admin/edit-mahasiswa/{id}','Akademik\MahasiswaController@edit');
     Route::POST('/admin/konfirmasi-edit-mahasiswa/{id}','Akademik\MahasiswaController@update');
+    Route::get('/admin/export-mahasiswa','Akademik\MahasiswaController@export_excel');
+    Route::post('/admin/import-mahasiswa','Akademik\MahasiswaController@import_excel');
+    // Route::get('/load/data-mhs','Akademik\MahasiswaController@load_mhs');
 
     Route::prefix('dokumen')->group(function () {
       Route::get('/', 'PageController@Dokumen');

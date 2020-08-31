@@ -16,7 +16,7 @@
     <div class="row row-cols-1 row-cols-md-4 mt-3">
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -25,7 +25,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -43,7 +43,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -68,7 +68,7 @@
     <div class="row row-cols-1 row-cols-md-4 mt-3">
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -77,7 +77,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -86,7 +86,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -95,7 +95,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="card">
-                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" />
+                <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                 <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
