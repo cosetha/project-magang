@@ -16,7 +16,7 @@ class SejarahController extends Controller
      */
     public function index()
     {
-        return view('admin/profile/sejarahAdmin');
+        return view('admin/Profile/sejarahAdmin');
     }
 
     /**
