@@ -54,14 +54,14 @@
                     @csrf
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
                     <label for="namadosen">Nama Dosen</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01" required>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
             </div>

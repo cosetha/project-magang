@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\StrukturOrganisasiProdi;
 use DataTables;
+use Validator;
 use Illuminate\Support\Facades\Storage;
 
 class StrukturOrganisasiController extends Controller
@@ -15,6 +16,26 @@ class StrukturOrganisasiController extends Controller
     }
 
     public function store(Request $request){
+
+        $messages =array(
+            'nama.required' => 'Kolom Nama tidak boleh kosong!',
+            'deskripsi.required' => 'Kolom Deskripsi tidak boleh kosong!',
+            'gambar.required' => 'Harap masukkan logo!',
+            'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+        );
+
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required|string',
+            'deskripsi' => 'required|string',
+            "gambar" => 'mimes:jpeg,jpg,png,gif|required|max:10000'],$messages);
+
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+            ]);
+        }
+
         if($request->hasFile('gambar')){
             $directory = 'assets/upload/thumbnail';
             $file = request()->file('gambar');
@@ -35,7 +56,28 @@ class StrukturOrganisasiController extends Controller
 
     public function update(Request $request, $id){
 
+
         if($request->hasFile('gambar')){
+
+            $messages =array(
+                'nama.required' => 'Kolom Nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom Deskripsi tidak boleh kosong!',
+                'gambar.required' => 'Harap masukkan logo!',
+                'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string',
+                "gambar" => 'mimes:jpeg,jpg,png,gif|required|max:10000'],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
+            }
+
             $directory = 'assets/upload/thumbnail';
             $file = request()->file('gambar');
             $nama = time().$file->getClientOriginalName();
@@ -57,6 +99,23 @@ class StrukturOrganisasiController extends Controller
                 'message' => 'update successfully'
             ]);
         }else{
+
+            $messages =array(
+                'nama.required' => 'Kolom Nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom Deskripsi tidak boleh kosong!',
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string'],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
+            }
+
             $so = StrukturOrganisasiProdi::find($id);
             $so->judul = $request->nama;
             $so->deskripsi = $request->deskripsi;
