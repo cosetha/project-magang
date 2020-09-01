@@ -1,4 +1,28 @@
 $(document).ready(function() {
+
+    //CEK PASSWORD UPDATE UNTUK ADMIN BARU
+    $.ajax({
+        url: "/cek-update-pass",
+        type: "get",
+        success: function(response){
+            // console.log(response.user.created_at)
+            if(response.user.created_at == response.user.updated_at){
+                Swal.fire({
+					icon: 'info',
+					title: 'Reset Password',
+                    text: 'Silahkan Klik link di bawah ini',
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+					footer: '<a href="/editpassword">Reset Password</a>'
+				});
+            }
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+
 	//------------------------------------------FITUR JABATAN------------------------------------------
 
 	//DATATABLE JABATAN

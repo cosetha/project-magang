@@ -129,6 +129,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
 
+    //CEK PASSWORD UPDATE UNTUK ADMIN BARU
+    Route::get('/cek-update-pass','PengaturanAkun\ProfileController@CekUpdatePassword');
+
     //Master Data
     Route::get('/jabatan','MasterData\JabatanController@index');
     Route::get('/load/table-jabatan','MasterData\JabatanController@LoadTableJabatan');
