@@ -57,13 +57,13 @@
                         @csrf
 
                         <label for="perusahaan">Perusahaan</label>
-                        <input type="text" class="form-control" id="perusahaan" name="perusahaan" required>
+                        <input type="text" class="form-control" id="perusahaan" name="perusahaan" >
 
                         <label for="caption" class="mt-2">Caption</label>
-                        <input type="text" class="form-control" id="caption" name="caption" required>
+                        <input type="text" class="form-control" id="caption" name="caption" >
 
                         <label for="link" class="mt-2">Link</label>
-                        <input type="text" class="form-control" id="link" name="link" required>
+                        <input type="text" class="form-control" id="link" name="link" >
 
                         <div class="form-group mt-3">
                             <label for="file">Logo</label>
@@ -120,13 +120,13 @@
                         @csrf
 
                         <label for="perusahaan">Perusahaan</label>
-                        <input type="text" class="form-control" id="perusahaan-edit" name="perusahaan-edit" required>
+                        <input type="text" class="form-control" id="perusahaan-edit" name="perusahaan-edit" >
 
                         <label for="caption" class="mt-2">Caption</label>
-                        <input type="text" class="form-control" id="caption-edit" name="caption-edit" required>
+                        <input type="text" class="form-control" id="caption-edit" name="caption-edit" >
 
                         <label for="link" class="mt-2">Link</label>
-                        <input type="text" class="form-control" id="link-edit" name="link-edit" required>
+                        <input type="text" class="form-control" id="link-edit" name="link-edit" >
 
                         <div class="form-group mt-3">
                             <label for="file">Logo</label>

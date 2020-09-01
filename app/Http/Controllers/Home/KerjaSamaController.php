@@ -38,6 +38,13 @@ class KerjaSamaController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'link.required'=>'Field Link Perlu di Isi',
+            'gambar.required'=>'Field Gambar Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'caption.required'=>'Field Caption Perlu di Isi',
+            'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
+        );
         $validator = Validator::make($request->all(),[
             'link' => 'required|string|min:1|max:255',
             'gambar' => 'mimes:jpeg,jpg,png,gif|required',
@@ -119,11 +126,17 @@ class KerjaSamaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'link.required'=>'Field Link Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'caption.required'=>'Field Caption Perlu di Isi',
+            'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
+        );
         $validator = Validator::make($request->all(),[
             'link' => 'required|string|min:1|max:255',
             'gambar' => 'mimes:jpeg,jpg,png,gif',
             "caption" => 'required|string',
-            "perusahaan" => 'required|string']);
+            "perusahaan" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
