@@ -314,44 +314,43 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-        var semester = $(this).attr('data-semester');
-        var status = $(this).attr('data-status');
+		var semester = $(this).attr('data-semester');
+		var status = $(this).attr('data-status');
 		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
-        $('#semester-edit').val(semester);
+		$('#semester-edit').val(semester);
 
-        if(status == "aktif"){
-            $(".btn-aktifkan").css("display","none")
-            $(".btn-nonaktifkan").css("display","")
-        }else{
-            $(".btn-aktifkan").css("display","")
-            $(".btn-nonaktifkan").css("display","none")
-        }
+		if (status == 'aktif') {
+			$('.btn-aktifkan').css('display', 'none');
+			$('.btn-nonaktifkan').css('display', '');
+		} else {
+			$('.btn-aktifkan').css('display', '');
+			$('.btn-nonaktifkan').css('display', 'none');
+		}
+	});
 
-    });
+	//AKTIFKAN SEMESTER
+	$('body').on('click', '.btn-aktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-    //AKTIFKAN SEMESTER
-    $("body").on("click",".btn-aktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
-
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-aktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-aktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-aktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -359,33 +358,33 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
-    //NONAKTIFKAN SEMESTER
-    $("body").on("click",".btn-nonaktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
+	//NONAKTIFKAN SEMESTER
+	$('body').on('click', '.btn-nonaktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-nonaktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/non-aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-nonaktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/non-aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-nonaktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -393,20 +392,20 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
 	$('body').on('submit', '#form-edit-semester', function(e) {
 		e.preventDefault();
 		$('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
-        $('#btn-save-semester').css('display', 'none');
-        $(".btn-aktifkan").css("display","none")
-        $(".btn-nonaktifkan").css("display","none")
+		$('#btn-save-semester').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		var name = $('input[name=semester-edit]').val();
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
@@ -448,7 +447,7 @@ $(document).ready(function() {
 				console.log(err);
 			}
 		});
-    });
+	});
 
 	LoadTableBK();
 	function LoadTableBK() {
@@ -522,13 +521,9 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('.modal-title-semester').html();
-					$('#BKModal').modal('hide');
-					$('#form-tambah-bk').trigger('reset');
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-bk').css('display', '');
-					$('#blah').attr('src', '');
 					LoadTableBK();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
@@ -539,6 +534,9 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#BKModal').modal('hide');
+						$('#form-tambah-bk').trigger('reset');
+						$('#blah').attr('src', '');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',
@@ -676,8 +674,6 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#editBKModal').modal('hide');
-					$('#form-edit-bk').trigger('reset');
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-bk').css('display', '');
@@ -691,6 +687,8 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#editBKModal').modal('hide');
+						$('#form-edit-bk').trigger('reset');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',

@@ -55,9 +55,9 @@
                             @csrf
 
                             <label for="judulHeadline">Judul Headline</label>
-                            <input type="text" class="form-control" id="judul" name="judul" required>
+                            <input type="text" class="form-control" id="judul" name="judul" >
                             <label for="caption" class="mt-2">Caption</label>
-                            <input type="text" class="form-control" id="caption" name="caption" required>
+                            <input type="text" class="form-control" id="caption" name="caption" >
 
                             <div class="form-group mt-3">
                                 <label for="gambar">Gambar</label>
@@ -110,9 +110,9 @@
                             @csrf
 
                             <label for="judulHeadline">Judul Headline</label>
-                            <input type="text" class="form-control" id="edit-judul" name="edit-judul" required>
+                            <input type="text" class="form-control" id="edit-judul" name="edit-judul" >
                             <label for="caption" class="mt-2">Caption</label>
-                            <input type="text" class="form-control" id="edit-caption" name="edit-caption" required>
+                            <input type="text" class="form-control" id="edit-caption" name="edit-caption" >
 
                             <div class="form-group mt-3">
                                 <label for="gambar">Gambar</label>

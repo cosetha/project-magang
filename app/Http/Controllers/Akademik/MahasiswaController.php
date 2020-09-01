@@ -22,7 +22,7 @@ class MahasiswaController extends Controller
     public function index()
     {
         $bk = Bidang_keahlian::all();
-        return view('admin/akademik/mahasiswaAdmin',['bidang'=>$bk]);
+        return view('admin/Akademik/mahasiswaAdmin',['bidang'=>$bk]);
     }
 
     /**

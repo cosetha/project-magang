@@ -40,7 +40,7 @@
 
     <!-- Add BK Modal-->
     <div class="modal fade" id="BKModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title-bk" id="exampleModalLabel">Tambah Bidang Keahlian</h5>
@@ -52,11 +52,10 @@
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-bk">
                         @csrf
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
-                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah">
+                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah" >
 
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
-
+                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah" > </textarea>
 
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="edit-id" value="">
@@ -98,7 +97,7 @@
 
     <!-- Edit BK Modal-->
     <div class="modal fade" id="editBKModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-title-bk">Edit Bidang Keahlian</h5>
