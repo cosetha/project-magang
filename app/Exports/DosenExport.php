@@ -15,13 +15,12 @@ class DosenExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        return Dosen::select('id','nama','deskripsi','created_at','updated_at')->get();
+        return Dosen::select('nama','deskripsi','created_at','updated_at')->get();
     }
 
     public function headings(): array
     {
         return [
-            '#',
             'Nama Dosen',
             'Deskripsi',
             'Dibuat Tanggal',

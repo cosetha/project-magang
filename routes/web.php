@@ -469,6 +469,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('delete/{id}', 'Profile\TenagaKependidikanController@destroy');
       Route::post('update/{id}', 'Profile\TenagaKependidikanController@update');
       Route::post('import', 'Profile\TenagaKependidikanController@importExcel');
+      Route::get('download-format-excel','Profile\TenagaKependidikanController@download_excel');
       Route::get('export-excel', 'Profile\TenagaKependidikanController@exportExcel');
       Route::get('export-pdf', 'Profile\TenagaKependidikanController@exportPDF');
     });
