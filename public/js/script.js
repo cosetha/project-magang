@@ -736,7 +736,8 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(data) {
 					if (data.status == '1') {
-						$('.form-edit-password')[0].reset();
+                        $('.form-edit-password')[0].reset();
+                        window.location.href = '/dashboard';
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',

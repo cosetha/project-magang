@@ -418,9 +418,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/save-dosen/{id}','Profile\DosenController@update');
     Route::get('/get-dosen/{id}','Profile\DosenController@get');
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
-    Route::get('/dosen/download-format-excel','Profile\DosenController@download_excel');
     Route::get('/dosen/export-excel','Profile\DosenController@export_excel');
     Route::get('/dosen/export-pdf','Profile\DosenController@export_pdf');
+    Route::get('/download-format-excel-dosen','Profile\DosenController@download_format');
     Route::post('/dosen/import-excel','Profile\DosenController@import_excel');
 
 

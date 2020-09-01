@@ -249,4 +249,19 @@ $(document).ready(function() {
         })
     })
 
+    // $("body").on("click",".btn-download", function(e){
+    //     e.preventDefault()
+    //     console.log("download")
+
+    //     $.ajax({
+    //         type: "get",
+    //         url: "/download-format-excel-dosen",
+    //         success: function(response){
+    //             console.log(response)
+    //         },
+    //         error: function(err){
+    //             console.log(err)
+    //         }
+    //     })
+    // })
 })

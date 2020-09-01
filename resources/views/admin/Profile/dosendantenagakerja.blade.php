@@ -195,7 +195,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary btn-import">Import</button>
-                            <a href="/dosen/download-format-excel" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <a href="/download-format-excel-dosen" class="btn btn-success btn-download">Download Format</a>
                             <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Memproses...

@@ -118,9 +118,11 @@ class DosenController extends Controller
 	    return $pdf->download('laporan-dosen.pdf');
     }
 
-    public function download_excel(){
-
-	    return response()->download('EXCEL/Dosen/example-dosen.xlsx');
+    public function download_format(){
+        // return response([
+        //     'message' => "downloaded!"
+        // ]);
+        return response()->download('EXCEL/dosen/example-dosen-format.xlsx');
     }
 
     public function import_excel(Request $request){
