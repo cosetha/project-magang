@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Jabatan;
 use DataTables;
+use Validator;
 
 class JabatanController extends Controller
 {
@@ -37,6 +38,15 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'nama_jabatan' => 'required|string'
+        ]);
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $jabatan = new Jabatan;
         $jabatan->nama_jabatan = $request->nama_jabatan;
         $jabatan->save();
@@ -77,6 +87,15 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(),[
+            'nama_jabatan_edit' => 'required|string'
+        ]);
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $jabatan = Jabatan::find($id);
         $jabatan->nama_jabatan = $request->nama_jabatan_edit;
         $jabatan->save();

@@ -52,31 +52,31 @@
                     <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-bk">
                         @csrf
                         <label for="namaBK" class="mt-2">Nama Bidang Keahlian</label>
-                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah" required>
+                        <input type="text" class="form-control" id="nama-tambah" name="nama-tambah">
 
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah" required> </textarea>
+                        <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
 
-                       
+
                         <input type="hidden" name="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="edit-id" value="">
                         <div class="form-group mt-3">
                             <label for="file" class="mt-2">Gambar</label>
-                            <input input id="file-upload-tambah" type="file" name="gambar" accept="image/*" onchange="readURLa(this);" aria-describedby="inputGroupFileAddon01" required>
+                            <input input id="file-upload-tambah" type="file" name="gambar" accept="image/*" onchange="readURLa(this);" aria-describedby="inputGroupFileAddon01">
                             <script>
                                 function readURLa(input) {
                                     if (input.files && input.files[0]) {
                                         var reader = new FileReader();
-                                        
+
                                         reader.onload = function(e) {
                                         $('#blah').attr('src', e.target.result);
                                         }
-                                        
+
                                         reader.readAsDataURL(input.files[0]); // convert to base64 string
                                     }
                                     }
                                 </script>
-                                
+
                             <img id="blah" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
                         </div>
 
@@ -118,7 +118,7 @@
                         <label for="deskripsi" class="mt-2">Deskripsi</label>
                         <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
 
-                      
+
                         <div class="form-group mt-3">
                             <label for="file" class="mt-2">Gambar</label>
                             <input input id="file-upload-edit" type="file" name="gambar-edit" accept="image/*" onchange="readURLe(this);"  aria-describedby="inputGroupFileAddon01">
@@ -126,11 +126,11 @@
                                 function readURLe(input) {
                                     if (input.files && input.files[0]) {
                                         var reader = new FileReader();
-                                        
+
                                         reader.onload = function(e) {
                                         $('#blah-edit').attr('src', e.target.result);
                                         }
-                                        
+
                                         reader.readAsDataURL(input.files[0]); // convert to base64 string
                                     }
                                     }
