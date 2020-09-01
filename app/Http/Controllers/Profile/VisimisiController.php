@@ -16,7 +16,7 @@ class VisimisiController extends Controller
      */
     public function index()
     {
-        return view('admin/profile/visimisiAdmin');
+        return view('admin/Profile/visimisiAdmin');
     }
 
     /**

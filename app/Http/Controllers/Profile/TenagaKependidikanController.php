@@ -263,4 +263,9 @@ class TenagaKependidikanController extends Controller
         $pdf = PDF::loadview('PDF/TenagaKependidikanPDF',['tenaga'=>$data]);
 	    return $pdf->download('Tenaga Kependidikan.pdf');
     }
+
+    public function download_excel(){
+
+      return response()->download('EXCEL/TenagaKerja/example-tenaga-kerja.xlsx');
+    }
 }
