@@ -6,15 +6,15 @@ $(document).ready(function() {
         type: "get",
         success: function(response){
             // console.log(response.user.created_at)
-            if(response.user.created_at == response.user.updated_at){
+            if(response.user.created_at == response.user.updated_at && response.user.id_role == 2){
                 Swal.fire({
 					icon: 'info',
-					title: 'Reset Password',
-                    text: 'Silahkan Klik link di bawah ini',
+					title: 'Ganti Password',
+                    text: 'Untuk Admin baru wajib mengganti password untuk menggunakan fitur pada portal ini',
                     showCloseButton: true,
                     showConfirmButton: false,
                     allowOutsideClick: false,
-					footer: '<a href="/editpassword">Reset Password</a>'
+					footer: '<a href="/editpassword"><button class="btn btn-primary">Ganti Password</button></a>'
 				});
             }
         },
