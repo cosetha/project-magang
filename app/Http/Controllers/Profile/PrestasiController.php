@@ -23,7 +23,7 @@ class PrestasiController
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-prestasi" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-delete-prestasi" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-prestasi" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
