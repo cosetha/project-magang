@@ -65,19 +65,32 @@ $(document).ready(function() {
 			processData: false,
 			contentType: false,
 			success: function(response) {
-				$('#StrukturorganisasiModal').modal('hide');
-				$('#FormAddSO').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-so').css('display', '');
-				$('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Struktur Organisasi',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.hasOwnProperty('error')){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-so').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.error
+                    });
+                }else{
+                    $('#StrukturorganisasiModal').modal('hide');
+                    $('#FormAddSO').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-so').css('display', '');
+                    $('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Struktur Organisasi',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -159,19 +172,32 @@ $(document).ready(function() {
 			processData: false,
 			contentType: false,
 			success: function(response) {
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('.btn-save-so').css('display', '');
-				$('#FormEditSO').trigger('reset');
-				$('#editStrukturorganisasiModal').modal('hide');
-				$('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Mengedit Struktur Organisasi',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.hasOwnProperty('error')){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('.btn-save-so').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.error
+                    });
+                }else{
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('.btn-save-so').css('display', '');
+                    $('#FormEditSO').trigger('reset');
+                    $('#editStrukturorganisasiModal').modal('hide');
+                    $('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Struktur Organisasi',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);

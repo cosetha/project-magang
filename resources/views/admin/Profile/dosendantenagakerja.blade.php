@@ -54,14 +54,14 @@
                     @csrf
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
                     <label for="namadosen">Nama Dosen</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01" required>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
             </div>
@@ -195,7 +195,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary btn-import">Import</button>
-                            <a href="{{url('/dosen/download-format-excel')}}" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <a href="/download-format-excel-dosen" class="btn btn-success btn-download">Download Format</a>
                             <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Memproses...

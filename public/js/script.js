@@ -69,20 +69,33 @@ $(document).ready(function() {
 			url: '/admin/tambah-jabatan',
 			data: data,
 			success: function(response) {
-				$('.modal-title-jabatan').html();
-				$('#TambahJabatanModal').modal('hide');
-				$('#form-tambah-jabatan').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-jabatan').css('display', '');
-				LoadTableJabatan();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('.modal-title-jabatan').html();
+                    $('#TambahJabatanModal').modal('hide');
+                    $('#form-tambah-jabatan').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -125,41 +138,58 @@ $(document).ready(function() {
 		var id = $(this).attr('data-id');
 		var nama = $(this).attr('data-nama');
 		$('#EditJabatanModal').modal('show');
-		$('#btn-submit-jabatan').css('display', 'none');
 		$('#btn-save-jabatan').css('display', '');
-		$('#kolom-jabatan').val(nama);
+        $('#kolom-jabatan').val(nama);
+        $("#jabatan-id").val(id)
+    });
 
-		$('body').on('submit', '#form-edit-jabatan', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-jabatan').css('display', 'none');
-			var data = $('#form-edit-jabatan').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-jabatan/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditJabatanModal').modal('hide');
-					$('#form-edit-jabatan').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-jabatan').css('display', '');
-					LoadTableJabatan();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
+    $('body').on('submit', '#form-edit-jabatan', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-jabatan').css('display', 'none');
+        var data = $('#form-edit-jabatan').serialize();
+        var id = $("#jabatan-id").val()
+        console.log(id)
+        $.ajax({
+            type: 'post',
+            url: '/admin/edit-jabatan/' + id,
+            data: data,
+            success: function(response) {
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('#EditJabatanModal').modal('hide');
+                    $('#form-edit-jabatan').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
+
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
@@ -217,20 +247,34 @@ $(document).ready(function() {
 			url: '/admin/tambah-semester',
 			data: { _token: token, semester: name },
 			success: function(response) {
-				$('.modal-title-semester').html();
-				$('#TambahSemesterModal').modal('hide');
-				$('#form-tambah-semester').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+
+                    $('.modal-title-semester').html();
+                    $('#TambahSemesterModal').modal('hide');
+                    $('#form-tambah-semester').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -270,44 +314,43 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-        var semester = $(this).attr('data-semester');
-        var status = $(this).attr('data-status');
+		var semester = $(this).attr('data-semester');
+		var status = $(this).attr('data-status');
 		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
-        $('#semester-edit').val(semester);
+		$('#semester-edit').val(semester);
 
-        if(status == "aktif"){
-            $(".btn-aktifkan").css("display","none")
-            $(".btn-nonaktifkan").css("display","")
-        }else{
-            $(".btn-aktifkan").css("display","")
-            $(".btn-nonaktifkan").css("display","none")
-        }
+		if (status == 'aktif') {
+			$('.btn-aktifkan').css('display', 'none');
+			$('.btn-nonaktifkan').css('display', '');
+		} else {
+			$('.btn-aktifkan').css('display', '');
+			$('.btn-nonaktifkan').css('display', 'none');
+		}
+	});
 
-    });
+	//AKTIFKAN SEMESTER
+	$('body').on('click', '.btn-aktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-    //AKTIFKAN SEMESTER
-    $("body").on("click",".btn-aktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
-
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-aktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-aktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-aktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -315,33 +358,33 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
-    //NONAKTIFKAN SEMESTER
-    $("body").on("click",".btn-nonaktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
+	//NONAKTIFKAN SEMESTER
+	$('body').on('click', '.btn-nonaktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-nonaktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/non-aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-nonaktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/non-aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-nonaktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -349,20 +392,20 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
 	$('body').on('submit', '#form-edit-semester', function(e) {
 		e.preventDefault();
 		$('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
-        $('#btn-save-semester').css('display', 'none');
-        $(".btn-aktifkan").css("display","none")
-        $(".btn-nonaktifkan").css("display","none")
+		$('#btn-save-semester').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		var name = $('input[name=semester-edit]').val();
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
@@ -372,25 +415,39 @@ $(document).ready(function() {
 			url: '/admin/edit-semester/' + id,
 			data: { _token: token, semester: name },
 			success: function(response) {
-				$('#editSemesterModal').modal('hide');
-				$('#form-edit-semester').trigger('reset');
-				$('.btn-close-edit').css('display', '');
-				$('.btn-loading-edit').css('display', 'none');
-				$('#btn-save-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Mengedit Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+
+                    });
+                }else{
+                    $('#editSemesterModal').modal('hide');
+                    $('#form-edit-semester').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
 			}
 		});
-    });
+	});
 
 	LoadTableBK();
 	function LoadTableBK() {
@@ -464,13 +521,9 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('.modal-title-semester').html();
-					$('#BKModal').modal('hide');
-					$('#form-tambah-bk').trigger('reset');
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-bk').css('display', '');
-					$('#blah').attr('src', '');
 					LoadTableBK();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
@@ -481,6 +534,9 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#BKModal').modal('hide');
+						$('#form-tambah-bk').trigger('reset');
+						$('#blah').attr('src', '');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',
@@ -618,8 +674,6 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#editBKModal').modal('hide');
-					$('#form-edit-bk').trigger('reset');
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-bk').css('display', '');
@@ -633,6 +687,8 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#editBKModal').modal('hide');
+						$('#form-edit-bk').trigger('reset');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',
@@ -736,7 +792,8 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(data) {
 					if (data.status == '1') {
-						$('.form-edit-password')[0].reset();
+                        $('.form-edit-password')[0].reset();
+                        window.location.href = '/dashboard';
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',

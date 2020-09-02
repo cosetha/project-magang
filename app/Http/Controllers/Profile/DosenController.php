@@ -10,6 +10,7 @@ use App\Exports\DosenExport;
 use App\Imports\DosenImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Validator;
 
 class DosenController extends Controller
 {
@@ -20,6 +21,27 @@ class DosenController extends Controller
     }
 
     public function store(Request $request){
+
+        $messages = array(
+            'nama.required' => 'Kolom nama tidak boleh kosong!',
+            'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+            'gambar.required' => 'Harap masukkan gambar!',
+            'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+        );
+
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required|string',
+            'deskripsi' => 'required|string',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+        ],$messages);
+
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
+        }
+
         if($request->hasFile('gambar')){
             $directory = 'assets/upload/dosen';
             $file = request()->file('gambar');
@@ -41,6 +63,27 @@ class DosenController extends Controller
 
     public function update(Request $request, $id){
         if($request->hasFile('gambar')){
+
+            $messages = array(
+                'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+                'gambar.required' => 'Harap masukkan gambar!',
+                'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string',
+                'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                    return response()->json([
+                        'error' => $error,
+                    ]);
+            }
+
             $directory = 'assets/upload/dosen';
             $file = request()->file('gambar');
             $nama = time().$file->getClientOriginalName();
@@ -48,6 +91,9 @@ class DosenController extends Controller
             $file->move($directory, $file->name);
 
             $dosen = Dosen::find($id);
+
+            unlink($dosen->gambar);
+
             $dosen->nama = $request->nama;
             $dosen->deskripsi = $request->deskripsi;
             $dosen->gambar= $directory."/".$nama;
@@ -57,6 +103,23 @@ class DosenController extends Controller
                 'message' => 'success'
             ]);
         }else{
+            $messages = array(
+                'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string',
+            ],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                    return response()->json([
+                        'error' => $error,
+                    ]);
+            }
+
             $dosen = Dosen::find($id);
             $dosen->nama = $request->nama;
             $dosen->deskripsi = $request->deskripsi;
@@ -118,9 +181,11 @@ class DosenController extends Controller
 	    return $pdf->download('laporan-dosen.pdf');
     }
 
-    public function download_excel(){
-
-	    return response()->download('EXCEL/Dosen/example-dosen.xlsx');
+    public function download_format(){
+        // return response([
+        //     'message' => "downloaded!"
+        // ]);
+        return response()->download('EXCEL/dosen/example-dosen-format.xlsx');
     }
 
     public function import_excel(Request $request){

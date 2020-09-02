@@ -53,7 +53,8 @@
                     @csrf
 
                     <label for="judulJabatan">Nama Jabatan</label>
-                    <input type="text" class="form-control" name="nama_jabatan" required>
+                    <input type="text" class="form-control" name="nama_jabatan">
+                    <input type="hidden" id="jabatan-id">
 
             </div>
             <div class="modal-footer">
@@ -88,7 +89,7 @@
                     @csrf
                     <input type="hidden" value="" id="id-jabatan">
                     <label for="judulJabatan">Nama Jabatan</label>
-                    <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit" required>
+                    <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit">
 
 
 

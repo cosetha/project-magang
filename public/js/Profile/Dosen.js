@@ -61,19 +61,32 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    $(".btn-close").css('display','')
-                    $(".btn-loading").css('display','none')
-                    $(".btn-submit-dosen").css('display','')
-                    $("#DosenModal").modal("hide")
-                    $("#FormTambahDosen").trigger("reset")
-                    $("#tbl-dosen").DataTable().page('last').draw('page');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: 'Berhasil Menambahkan Dosen',
-                        timer: 1200,
-                        showConfirmButton: false
-                    });
+
+                    if(response.hasOwnProperty('error')){
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-submit-dosen").css('display','')
+                        Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error
+						});
+                    }else{
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-submit-dosen").css('display','')
+                        $("#DosenModal").modal("hide")
+                        $("#FormTambahDosen").trigger("reset")
+                        $("#tbl-dosen").DataTable().page('last').draw('page');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menambahkan Dosen',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                    }
+
                 },
                 error: function(err){
                     console.log(err)
@@ -128,19 +141,32 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    $(".btn-close").css('display','')
-                    $(".btn-loading").css('display','none')
-                    $(".btn-save").css('display','')
-                    $("#editDosenModal").modal("hide")
-                    $("#FormEditDosen").trigger("reset")
-                    $("#tbl-dosen").DataTable().page('last').draw('page');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: 'Berhasil Edit Dosen',
-                        timer: 1200,
-                        showConfirmButton: false
-                    });
+
+                    if(response.hasOwnProperty('error')){
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-save").css('display','')
+                        Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error
+						});
+                    }else{
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-save").css('display','')
+                        $("#editDosenModal").modal("hide")
+                        $("#FormEditDosen").trigger("reset")
+                        $("#tbl-dosen").DataTable().page('last').draw('page');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Edit Dosen',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                    }
+
                 },
                 error: function(err){
                     console.log(err)
