@@ -51,6 +51,7 @@ class MahasiswaController extends Controller
         );
         if ($validator->fails()) {
             $error = $validator->errors()->first();
+            
             return response()->json([
                 'error' => $error,
               ]);
