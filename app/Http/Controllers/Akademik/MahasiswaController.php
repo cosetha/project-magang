@@ -50,7 +50,7 @@ class MahasiswaController extends Controller
             "bk" => 'required']
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -127,7 +127,7 @@ class MahasiswaController extends Controller
             "bk" => 'required']
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);

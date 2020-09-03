@@ -49,8 +49,6 @@ $(document).ready(function() {
 			contentType: false,
 			accepts: 'application / json',
 			success: function(response) {
-				$('#FormModal').modal('hide');
-				$('#form-form').trigger('reset');
 				$('.btn-close').css('display', '');
 				$('.btn-loading').css('display', 'none');
 				$('#btn-submit-form').css('display', '');
@@ -65,6 +63,8 @@ $(document).ready(function() {
 					});
 					console.log(response.error);
 				} else {
+					$('#FormModal').modal('hide');
+					$('#form-form').trigger('reset');
 					Swal.fire({
 						icon: 'success',
 						title: response.message,
@@ -146,6 +146,7 @@ $(document).ready(function() {
 				$('#btn-save-form').css('display', '');
 				$('input[name=id-edit]').val(id);
 				$('#nama-edit').val(res.values.nama_form);
+				$('#show-frame').remove();
 			}
 		});
 		return false;
@@ -167,7 +168,13 @@ $(document).ready(function() {
 				$('#btn-simpan-form').css('display', '');
 				$('input[name=id-edit]').val(id);
 				$('#nama-edit').val(res.values.nama_form);
-				$('#show-form-edit').attr('src', res.values.file);
+				$('#show-frame').remove();
+				$(
+					'<div class="embed-responsive embed-responsive-16by9" id="show-frame"><iframe id="show-form-edit" class="embed-responsive-item" src="' +
+						res.values.file +
+						'"></iframe></div>'
+				).appendTo('#show');
+
 				$('#nama-edit').attr('disabled', true);
 				$('#file-upload-edit').css('display', 'none');
 			}
@@ -192,19 +199,28 @@ $(document).ready(function() {
 			processData: false,
 			contentType: false,
 			success: function(response) {
-				$('#editFormModal').modal('hide');
-				$('#form-form-edit').trigger('reset');
 				$('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
 				$('#btn-save-form').css('display', '');
-				LoatTableForm();
-				Swal.fire({
-					icon: 'success',
-					title: response.message,
-					text: 'Berhasil MengeditForm',
-					timer: 1200,
-					showConfirmButton: false
-				});
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 1200,
+						showConfirmButton: false
+					});
+				} else {
+					$('#editFormModal').modal('hide');
+					$('#form-form-edit').trigger('reset');
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Mengedit Form ' + nama,
+						timer: 2000,
+						showConfirmButton: false
+					});
+				}
 			},
 			error: function(err) {
 				console.log(err);

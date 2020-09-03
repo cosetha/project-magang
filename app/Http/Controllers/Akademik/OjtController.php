@@ -42,7 +42,7 @@ class OjtController extends Controller
             'judul' => 'required|string',
             "deskripsi" => 'required|string']);
         if ($validator->fails()) {
-            $error = $validator->messages()->json();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);

@@ -126,25 +126,24 @@ class KerjaSamaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messsages = array(
-            'link.required'=>'Field Link Perlu di Isi',
-            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
-            'caption.required'=>'Field Caption Perlu di Isi',
-            'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
-        );
-        $validator = Validator::make($request->all(),[
-            'link' => 'required|string|min:1|max:255',
-            'gambar' => 'mimes:jpeg,jpg,png,gif',
-            "caption" => 'required|string',
-            "perusahaan" => 'required|string'],$messsages);
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json([
-                'error' => $error,
-              ]);
-         }else{
-            if($request->hasFile('gambar')){
-
+        if($request->hasFile('gambar')){
+            $messsages = array(
+                'link.required'=>'Field Link Perlu di Isi',
+                'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+                'caption.required'=>'Field Caption Perlu di Isi',
+                'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
+            );
+            $validator = Validator::make($request->all(),[
+                'link' => 'required|string|min:1|max:255',
+                'gambar' => 'mimes:jpeg,jpg,png,gif',
+                "caption" => 'required|string',
+                "perusahaan" => 'required|string'],$messsages);
+            if ($validator->fails()) {
+                $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                  ]);
+             }else{
                 $directory = 'assets/upload/thumbnail';
                 $file = request()->file('gambar');
                 $nama_file = time().$file->getClientOriginalName();
@@ -168,17 +167,41 @@ class KerjaSamaController extends Controller
                 return response()->json([
                     'message' => 'Success'
                 ]);
-            }else{
-                $kerjasama = KerjaSama::find($id);
-                $kerjasama->perusahaan = $request->perusahaan;
-                $kerjasama->link = $request->link;
-                $kerjasama->caption = $request->caption;
-                $kerjasama->save();
+             }
+        }else{
+            $messsages = array(
+                'link.required'=>'Field Link Perlu di Isi',
+                'caption.required'=>'Field Caption Perlu di Isi',
+                'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
+            );
+            $validator = Validator::make($request->all(),[
+                'link' => 'required|string|min:1|max:255',
+                "caption" => 'required|string',
+                "perusahaan" => 'required|string'],$messsages);
+            if ($validator->fails()) {
+                $error = $validator->errors()->first();
                 return response()->json([
-                    'message' => 'Success'
-                ]);
-            }
-         }
+                    'error' => $error,
+                  ]);
+             }else{
+            $kerjasama = KerjaSama::find($id);
+            $kerjasama->perusahaan = $request->perusahaan;
+            $kerjasama->link = $request->link;
+            $kerjasama->caption = $request->caption;
+            $kerjasama->save();
+            return response()->json([
+                'message' => 'Success'
+            ]);
+             }
+        }
+       
+           
+
+                
+           
+              
+            
+         
     }
 
     /**

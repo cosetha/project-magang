@@ -38,12 +38,17 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'file.required'=>'Field File Perlu di Isi',
+            'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'file'   => 'required||mimes:doc,pdf,docx,zip,csv, xls, xlsx']
+            'file'   => 'required||mimes:doc,pdf,docx,zip,csv, xls, xlsx'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -116,12 +121,17 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'file.required'=>'Field File Perlu di Isi',
+            'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'file'   => 'mimes:doc,pdf,docx,zip,csv, xls, xlsx']
+            'file'   => 'mimes:doc,pdf,docx,zip,csv,xls,xlsx'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
