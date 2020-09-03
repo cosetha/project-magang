@@ -347,7 +347,7 @@
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                             @if(auth()->user()->created_at == auth()->user()->updated_at && auth()->user()->id_role == 2)
-                                            
+
                                             @else
                                             <a class="dropdown-item" href="{{ url('editprofile') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -433,19 +433,22 @@
                     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
                     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
+                    @yield('js-ajax')
+
                     <!-- Page level custom scripts -->
                     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-                    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+                    <!-- <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> -->
                     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
                     <script src="{{ asset('js/script.js') }}"></script>
 
 
                     <!-- script ajax -->
-                    @yield('js-ajax')
 
 
                     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
                     <script src="{{ asset('js/tinymcs.js') }}"></script>
+
+                    @yield('chart')
 
                 </body>
                 </html>
