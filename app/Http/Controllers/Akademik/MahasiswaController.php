@@ -233,6 +233,12 @@ class MahasiswaController extends Controller
         }
 		
     } 
+    public function download_format(){
+        // return response([
+        //     'message' => "downloaded!"
+        // ]);
+        return response()->download('EXCEL/Mahasiswa/example_mahasiswa_format.xlsx');
+    }
     // public function load_mhs(Request $request) 
     // {       
     //     $data = Mahasiswa::all();

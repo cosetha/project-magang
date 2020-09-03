@@ -24,8 +24,8 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
-            <a type="submit" class="btn btn-success ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export Excel</a>
-            <a type="submit" class="btn btn-info ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import Excel</a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export </a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import </a>
         </div>
 
         <div class="card-body">
@@ -160,6 +160,7 @@
                     </div>
             </div>
             <div class="modal-footer">
+             <a href="/download-format-excel-mahasiswa" class="btn btn-success btn-download">Download Format</a>
                 <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Import</button>
             </div>
             </form>
