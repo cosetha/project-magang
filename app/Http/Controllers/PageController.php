@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Dosen;
+use App\Mahasiswa;
 use DB;
 
 use Illuminate\Http\Request;
@@ -13,7 +14,37 @@ class PageController extends Controller
       $admin = User::count();
       $dosen = Dosen::count();
       $tenaga = DB::table('tenaga_kependidikan')->count();
-      return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga'));
+
+    //   dd($mhs);
+
+        //UNTUK CHART
+        $tahun = Mahasiswa::orderBy('angkatan','asc')->get();
+        $mahasiswa = DB::table('mahasiswa')
+                 ->select(DB::raw('count(*) as total'))
+                 ->groupBy('angkatan')
+                 ->get();
+
+        $angkatan = [];
+        foreach($tahun as $t){
+            $angkatan[] = $t->angkatan;
+        }
+        $angkatan_fix = array_values(array_unique($angkatan));
+
+        $total = [];
+        foreach($mahasiswa as $m){
+            $total[] = $m->total;
+        }
+
+        $lainnya = [];
+        $lainnya[] = $admin;
+        $lainnya[] = $tenaga;
+        $lainnya[] = $dosen;
+
+
+        // dd(json_encode($angkatan_fix));
+        // dd(json_encode($lainnya));
+
+      return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga','angkatan_fix','total','lainnya'));
     }
 
     public function SosialMedia(){

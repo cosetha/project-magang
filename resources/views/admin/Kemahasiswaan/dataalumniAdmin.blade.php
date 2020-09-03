@@ -56,9 +56,6 @@
                     <label for="namaalumni">Nama Alumni</label>
                     <input type="text" class="form-control" id="nama" name="nama">
 
-                    <label for="NIMalumni" class="mt-2">NIM Alumni</label>
-                    <input type="text" class="form-control" id="nim" name="nim">
-
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
                         <select class="form-control" id="bk" name="bk">

@@ -190,6 +190,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::POST('/admin/konfirmasi-edit-mahasiswa/{id}','Akademik\MahasiswaController@update');
     Route::get('/admin/export-mahasiswa','Akademik\MahasiswaController@export_excel');
     Route::post('/admin/import-mahasiswa','Akademik\MahasiswaController@import_excel');
+    Route::get('/download-format-excel-mahasiswa','Akademik\MahasiswaController@download_format');
     // Route::get('/load/data-mhs','Akademik\MahasiswaController@load_mhs');
 
     Route::prefix('dokumen')->group(function () {

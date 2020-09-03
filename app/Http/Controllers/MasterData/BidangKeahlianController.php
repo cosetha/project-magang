@@ -120,66 +120,76 @@ class BidangKeahlianController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $messsages = array(
-            'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
-            'gambar.required'=>'Field Gambar Perlu di Isi',
-            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
-            'nama.required'=>'Field Nama Perlu di Isi',
-        );
-
-        $validator = Validator::make($request->all(),[
-            'nama' => 'required|string',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            "deskripsi" => 'required|string',
-        ],$messsages);
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json([
-                'error' => $error,
-              ]);
-         }else{
-             try {
-                if($request->hasFile('gambar')){
-
-                    $directory = 'assets/upload/thumbnail';
-                    $file = request()->file('gambar');
-                    $nama_file = time().$file->getClientOriginalName();
-                    $file->name = $nama_file;
-                    $file->move($directory, $file->name);
-
-
-                    $bk = Bidang_keahlian::find($id);
-                    try {
-                        unlink($bk->gambar);
-                    } catch (\Throwable $th) {
-                        echo($th);
-                    }
-
-                    $bk->nama_bk = $request->nama;
-                    $bk->deskripsi = $request->deskripsi;
-                    $bk->gambar= $directory."/".$nama_file;
-                    $bk->save();
-
-                    return response()->json([
-                        'message' => 'success'
-                    ]);
-                }else{
-                    $bk = Bidang_keahlian::find($id);
-                    $bk->nama_bk = $request->nama;
-                    $bk->deskripsi = $request->deskripsi;
-                    $bk->save();
-                }
+        if($request->hasFile('gambar')){
+            $messsages = array(
+                'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
+                'gambar.required'=>'Field Gambar Perlu di Isi',
+                'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+                'nama.required'=>'Field Nama Perlu di Isi',
+            );
+    
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
+                "deskripsi" => 'required|string',
+            ],$messsages);
+            if ($validator->fails()) {
+                $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                  ]);
+             }else{
+                $directory = 'assets/upload/thumbnail';
+                $file = request()->file('gambar');
+                $nama_file = time().$file->getClientOriginalName();
+                $file->name = $nama_file;
+                $file->move($directory, $file->name);
+    
+    
+                $bk = Bidang_keahlian::find($id);
+                try {
+                    unlink($bk->gambar);
+                } catch (\Throwable $th) {
+                    echo($th);
+               }
+    
+                $bk->nama_bk = $request->nama;
+                $bk->deskripsi = $request->deskripsi;
+                $bk->gambar= $directory."/".$nama_file;
+                $bk->save();
+    
                 return response()->json([
                     'message' => 'success'
                 ]);
-             } catch (\Throwable $th) {
-                return response()->json([
-                    'error' => $e->getMessage()
-                ]);
              }
-         }
+        }else{
+            $messsages = array(
+                'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
+                'nama.required'=>'Field Nama Perlu di Isi',
+            );
+    
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                "deskripsi" => 'required|string',
+            ],$messsages);
+            if ($validator->fails()) {
+                $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                  ]);
+             }else{
+            $bk = Bidang_keahlian::find($id);
+            $bk->nama_bk = $request->nama;
+            $bk->deskripsi = $request->deskripsi;
+            $bk->save();
+            return response()->json([
+                'message' => 'success'
+            ]);
+             }
+        }
+ 
 
+        
     }
 
     /**
