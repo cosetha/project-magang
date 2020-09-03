@@ -43,14 +43,23 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'nim.required'=>'Field NIM Perlu di Isi',
+            'nim.numeric'=>'Format NIM Salah',
+            'angkatan.required'=>'Field Angkatan di Isi',
+            'bk.required'=>'Field Bidang Keahlian Perlu di isi'
+            
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required',
+            'nim' => 'required|numeric',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
+            $error = $validator->errors()->first();
+            
             return response()->json([
                 'error' => $error,
               ]);
@@ -120,14 +129,21 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'nim.required'=>'Field NIM Perlu di Isi',
+            'angkatan.required'=>'Field Angkatan di Isi',
+            'nim.numeric'=>'Format NIM Salah',
+            'bk.required'=>'Field Bidang Keahlian Perlu di isi'
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required',
+            'nim' => 'required|numeric',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -232,6 +248,12 @@ class MahasiswaController extends Controller
         }
 		
     } 
+    public function download_format(){
+        // return response([
+        //     'message' => "downloaded!"
+        // ]);
+        return response()->download('EXCEL/Mahasiswa/example_mahasiswa_format.xlsx');
+    }
     // public function load_mhs(Request $request) 
     // {       
     //     $data = Mahasiswa::all();

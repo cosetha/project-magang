@@ -54,12 +54,12 @@
                     @csrf
 
                     <label for="namaform">Nama Form</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama" >
 
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>
-                        <input input id="file-upload" type="file" name="file" accept="file/*" aria-describedby="inputGroupFileAddon01" required>
+                        <input input id="file-upload" type="file" name="file" accept="file/*" aria-describedby="inputGroupFileAddon01" >
                     </div>
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
 
@@ -97,31 +97,17 @@
                     @csrf
 
                     <label for="namaform">Nama Form</label>
-                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" required>
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" >
 
 
                     <div class="form-group mt-3">
                         <label for="file">File</label>
-                        <input input id="file-upload-edit" type="file" name="file-edit" accept="file/*" onchange="readURLb(this);" aria-describedby="inputGroupFileAddon01" required>
+                        <input input id="file-upload-edit" type="file" name="file-edit" accept="file/*" onchange="readURLb(this);" aria-describedby="inputGroupFileAddon01" >
                     </div>
 
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
                     <input type="hidden" name="id-edit" value=""/>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe id="show-form-edit" class="embed-responsive-item" src=""></iframe>
-                        <script>
-                                function readURLb(input) {
-                                    if (input.files && input.files[0]) {
-                                        var reader = new FileReader();
-                                        
-                                        reader.onload = function(e) {
-                                        $('#show-form').attr('src', e.target.result);
-                                        }
-                                        
-                                        reader.readAsDataURL(input.files[0]); // convert to base64 string
-                                    }
-                                }
-                        </script>
+                    <div id="show">
                     </div>
 
             </div>

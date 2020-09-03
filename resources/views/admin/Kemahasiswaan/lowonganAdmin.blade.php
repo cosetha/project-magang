@@ -54,7 +54,7 @@
                     @csrf
 
                     <label for="namalowongan">Nama lowongan</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama" >
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
@@ -71,7 +71,7 @@
 
                     <div class="form-group mt-3">
                         <label for="file">Gambar</label>
-                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURLa(this);" aria-describedby="inputGroupFileAddon01" required>
+                        <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURLa(this);" aria-describedby="inputGroupFileAddon01" >
 
                     </div>
                     <script>
@@ -125,7 +125,7 @@
                     @csrf
 
                     <label for="namalowongan">Nama lowongan</label>
-                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" required>
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" >
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea>
