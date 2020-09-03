@@ -69,6 +69,9 @@
                     </li>
                     @endif
 
+                    @if(auth()->user()->created_at == auth()->user()->updated_at && auth()->user()->id_role == 2)
+
+                    @else
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item" id="MasterData">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMasterData" aria-expanded="true" aria-controls="collapseMasterData">
@@ -92,7 +95,6 @@
                     <div class="sidebar-heading text-gray-100">
                         Management Konten
                     </div>
-
 
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item" id="mininavbar">
@@ -223,7 +225,7 @@
                                 </div>
                             </div>
                         </li>
-
+                        @endif
 
 
                         <!-- Sidebar Toggler (Sidebar) -->
@@ -344,10 +346,14 @@
                                         </a>
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                            @if(auth()->user()->created_at == auth()->user()->updated_at && auth()->user()->id_role == 2)
+                                            
+                                            @else
                                             <a class="dropdown-item" href="{{ url('editprofile') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Edit Profile
                                             </a>
+                                            @endif
                                             <a class="dropdown-item" href="{{ url('editpassword') }}">
                                                 <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Edit Password

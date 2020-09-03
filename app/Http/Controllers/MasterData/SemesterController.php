@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Semester;
 use DataTables;
+use Validator;
 class SemesterController extends Controller
 {
     /**
@@ -37,6 +38,15 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'semester_tambah' => 'required|string'
+        ]);
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $semester = new Semester;
         $semester->semester = $request->semester;
         $semester->status = "nonaktif";
@@ -79,6 +89,15 @@ class SemesterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(),[
+            'semester' => 'required|string'
+        ]);
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $semester = Semester::find($id);
         $semester->semester = $request->semester;
         $semester->save();

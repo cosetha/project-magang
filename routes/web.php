@@ -129,6 +129,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
 
+    //CEK PASSWORD UPDATE UNTUK ADMIN BARU
+    Route::get('/cek-update-pass','PengaturanAkun\ProfileController@CekUpdatePassword');
+
     //Master Data
     Route::get('/jabatan','MasterData\JabatanController@index');
     Route::get('/load/table-jabatan','MasterData\JabatanController@LoadTableJabatan');
@@ -415,9 +418,9 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/save-dosen/{id}','Profile\DosenController@update');
     Route::get('/get-dosen/{id}','Profile\DosenController@get');
     Route::get('/delete-dosen/{id}','Profile\DosenController@destroy');
-    Route::get('/dosen/download-format-excel','Profile\DosenController@download_excel');
     Route::get('/dosen/export-excel','Profile\DosenController@export_excel');
     Route::get('/dosen/export-pdf','Profile\DosenController@export_pdf');
+    Route::get('/download-format-excel-dosen','Profile\DosenController@download_format');
     Route::post('/dosen/import-excel','Profile\DosenController@import_excel');
 
 
@@ -466,6 +469,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('delete/{id}', 'Profile\TenagaKependidikanController@destroy');
       Route::post('update/{id}', 'Profile\TenagaKependidikanController@update');
       Route::post('import', 'Profile\TenagaKependidikanController@importExcel');
+      Route::get('download-format-excel','Profile\TenagaKependidikanController@download_excel');
       Route::get('export-excel', 'Profile\TenagaKependidikanController@exportExcel');
       Route::get('export-pdf', 'Profile\TenagaKependidikanController@exportPDF');
     });

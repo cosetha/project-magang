@@ -140,4 +140,12 @@ class ProfileController extends Controller
       }
       return true;
     }
+
+    public function CekUpdatePassword(){
+        $user = User::find(auth()->user()->id);
+
+        return response([
+            'user' => $user
+        ]);
+    }
 }

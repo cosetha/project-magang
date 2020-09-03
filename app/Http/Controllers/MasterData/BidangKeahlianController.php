@@ -66,16 +66,16 @@ class BidangKeahlianController extends Controller
                     $bk->deskripsi = $request->deskripsi;
                     $bk->gambar= $directory."/".$nama;
                     $bk->save();
-        
+
                 return response()->json([
                     'message' => 'success'
                 ]);
                 }
              } catch (\Exception $e) {
-               
+
              }
          }
-        
+
 
     }
 
@@ -151,7 +151,7 @@ class BidangKeahlianController extends Controller
                     unlink($bk->gambar);
                 } catch (\Throwable $th) {
                     echo($th);
-                }
+               }
     
                 $bk->nama_bk = $request->nama;
                 $bk->deskripsi = $request->deskripsi;

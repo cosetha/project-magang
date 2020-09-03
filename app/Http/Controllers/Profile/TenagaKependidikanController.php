@@ -33,7 +33,7 @@ class TenagaKependidikanController extends Controller
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-delete-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
@@ -211,7 +211,7 @@ class TenagaKependidikanController extends Controller
       File::delete($gambarDelete);
         $tenaga = TK::destroy($id);
           return response()->json([
-            'status' => 'ok'
+            'status' => 'deleted'
           ]);
     }
 
@@ -262,5 +262,10 @@ class TenagaKependidikanController extends Controller
         ->get();
         $pdf = PDF::loadview('PDF/TenagaKependidikanPDF',['tenaga'=>$data]);
 	    return $pdf->download('Tenaga Kependidikan.pdf');
+    }
+
+    public function download_excel(){
+
+      return response()->download('EXCEL/TenagaKerja/example-tenaga-kerja.xlsx');
     }
 }

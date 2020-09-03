@@ -1,4 +1,28 @@
 $(document).ready(function() {
+
+    //CEK PASSWORD UPDATE UNTUK ADMIN BARU
+    $.ajax({
+        url: "/cek-update-pass",
+        type: "get",
+        success: function(response){
+            // console.log(response.user.created_at)
+            if(response.user.created_at == response.user.updated_at && response.user.id_role == 2){
+                Swal.fire({
+					icon: 'info',
+					title: 'Ganti Password',
+                    text: 'Untuk Admin baru wajib mengganti password untuk menggunakan fitur pada portal ini',
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+					footer: '<a href="/editpassword"><button class="btn btn-primary">Ganti Password</button></a>'
+				});
+            }
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+
 	//------------------------------------------FITUR JABATAN------------------------------------------
 
 	//DATATABLE JABATAN
@@ -45,20 +69,33 @@ $(document).ready(function() {
 			url: '/admin/tambah-jabatan',
 			data: data,
 			success: function(response) {
-				$('.modal-title-jabatan').html();
-				$('#TambahJabatanModal').modal('hide');
-				$('#form-tambah-jabatan').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-jabatan').css('display', '');
-				LoadTableJabatan();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('.modal-title-jabatan').html();
+                    $('#TambahJabatanModal').modal('hide');
+                    $('#form-tambah-jabatan').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -101,41 +138,58 @@ $(document).ready(function() {
 		var id = $(this).attr('data-id');
 		var nama = $(this).attr('data-nama');
 		$('#EditJabatanModal').modal('show');
-		$('#btn-submit-jabatan').css('display', 'none');
 		$('#btn-save-jabatan').css('display', '');
-		$('#kolom-jabatan').val(nama);
+        $('#kolom-jabatan').val(nama);
+        $("#jabatan-id").val(id)
+    });
 
-		$('body').on('submit', '#form-edit-jabatan', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-jabatan').css('display', 'none');
-			var data = $('#form-edit-jabatan').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-jabatan/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditJabatanModal').modal('hide');
-					$('#form-edit-jabatan').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-jabatan').css('display', '');
-					LoadTableJabatan();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
+    $('body').on('submit', '#form-edit-jabatan', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-jabatan').css('display', 'none');
+        var data = $('#form-edit-jabatan').serialize();
+        var id = $("#jabatan-id").val()
+        console.log(id)
+        $.ajax({
+            type: 'post',
+            url: '/admin/edit-jabatan/' + id,
+            data: data,
+            success: function(response) {
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('#EditJabatanModal').modal('hide');
+                    $('#form-edit-jabatan').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
+
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
@@ -193,20 +247,34 @@ $(document).ready(function() {
 			url: '/admin/tambah-semester',
 			data: { _token: token, semester: name },
 			success: function(response) {
-				$('.modal-title-semester').html();
-				$('#TambahSemesterModal').modal('hide');
-				$('#form-tambah-semester').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+
+                    $('.modal-title-semester').html();
+                    $('#TambahSemesterModal').modal('hide');
+                    $('#form-tambah-semester').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -347,19 +415,33 @@ $(document).ready(function() {
 			url: '/admin/edit-semester/' + id,
 			data: { _token: token, semester: name },
 			success: function(response) {
-				$('#editSemesterModal').modal('hide');
-				$('#form-edit-semester').trigger('reset');
-				$('.btn-close-edit').css('display', '');
-				$('.btn-loading-edit').css('display', 'none');
-				$('#btn-save-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Mengedit Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+
+                    });
+                }else{
+                    $('#editSemesterModal').modal('hide');
+                    $('#form-edit-semester').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -710,7 +792,8 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(data) {
 					if (data.status == '1') {
-						$('.form-edit-password')[0].reset();
+                        $('.form-edit-password')[0].reset();
+                        window.location.href = '/dashboard';
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',
