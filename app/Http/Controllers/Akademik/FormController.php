@@ -121,41 +121,58 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messsages = array(
-            'nama.required'=>'Field Nama Perlu di Isi',
-            'file.required'=>'Field File Perlu di Isi',
-            'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
-        );
-        $validator = Validator::make($request->all(),[
-            'nama' => 'required',
-            'file'   => 'mimes:doc,pdf,docx,zip,csv,xls,xlsx'],$messsages
-        );
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json([
-                'error' => $error,
-              ]);
-         }else{
-            try {
+        
+        
+           
                 if($request->hasFile('file')){
-                    $directory = 'assets/upload/file';
-                    $file = request()->file('file');
-                    $nama_file = time().$file->getClientOriginalName();
-                    $file->name = $nama_file;
-                    $file->move($directory, $file->name);
-                    $form = Form::find($id);
-                    try {
-                        unlink($form->file);
-                    } catch (\Throwable $th) {
-                        //throw $th;
+                    $messsages = array(
+                        'nama.required'=>'Field Nama Perlu di Isi',
+                        'file.required'=>'Field File Perlu di Isi',
+                        'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+                    );
+                    $validator = Validator::make($request->all(),[
+                        'nama' => 'required',
+                        'file'   => 'mimes:doc,pdf,docx,zip,csv,xls,xlsx'],$messsages
+                    );
+                    if ($validator->fails()) {
+                        $error = $validator->errors()->first();
+                        return response()->json([
+                            'error' => $error,
+                          ]);
+                    }else{
+                        $directory = 'assets/upload/file';
+                        $file = request()->file('file');
+                        $nama_file = time().$file->getClientOriginalName();
+                        $file->name = $nama_file;
+                        $file->move($directory, $file->name);
+                        $form = Form::find($id);
+                        try {
+                            unlink($form->file);
+                        } catch (\Throwable $th) {
+                            //throw $th;
+                        }
+                        $form->nama_form = $request->nama;
+                        $form->file = $directory."/".$nama_file;
+                        $form->save();
+                        return response()->json([
+                            'message' => 'Success'
+                        ]);
                     }
-                    $form->nama_form = $request->nama;
-                    $form->file = $directory."/".$nama_file;
-                    $form->save();
-                    return response()->json([
-                        'message' => 'Success'
-                    ]);
+                    
                 }else{
+                    $messsages = array(
+                        'nama.required'=>'Field Nama Perlu di Isi',
+                    );
+                    $validator = Validator::make($request->all(),[
+                        'nama' => 'required',
+                        ],$messsages
+                    );
+                    if ($validator->fails()) {
+                        $error = $validator->errors()->first();
+                        return response()->json([
+                            'error' => $error,
+                          ]);
+                    }else{
                     $form = Form::find($id);
                     $form->nama = $request->nama;
                     $form->save();
@@ -163,16 +180,8 @@ class FormController extends Controller
                         'message' => 'Success'
                     ]);
                 }
-               
-                
-            } catch (\Exception $e) {
-               
-                return response()->json([
-                    'error' => $e->getMessage()
-                ]);
             }
-           
-         }
+                
     }
 
     /**
