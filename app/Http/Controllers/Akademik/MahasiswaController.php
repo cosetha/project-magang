@@ -43,11 +43,19 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'nim.required'=>'Field NIM Perlu di Isi',
+            'nim.numeric'=>'Format NIM Salah',
+            'angkatan.required'=>'Field Angkatan di Isi',
+            'bk.required'=>'Field Bidang Keahlian Perlu di isi'
+            
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required',
+            'nim' => 'required|numeric',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
             $error = $validator->errors()->first();
@@ -121,11 +129,18 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'nim.required'=>'Field NIM Perlu di Isi',
+            'angkatan.required'=>'Field Angkatan di Isi',
+            'nim.numeric'=>'Format NIM Salah',
+            'bk.required'=>'Field Bidang Keahlian Perlu di isi'
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required',
+            'nim' => 'required|numeric',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
             $error = $validator->errors()->first();

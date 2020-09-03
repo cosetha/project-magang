@@ -65,6 +65,7 @@ $(document).ready(function () {
                 } else {
                     $("#FormModal").modal("hide");
                     $("#form-form").trigger("reset");
+                    LoatTableForm();
                     Swal.fire({
                         icon: "success",
                         title: response.message,
@@ -219,6 +220,7 @@ $(document).ready(function () {
                 } else {
                     $("#editFormModal").modal("hide");
                     $("#form-form-edit").trigger("reset");
+                    LoatTableForm();
                     Swal.fire({
                         icon: "success",
                         title: response.message,
