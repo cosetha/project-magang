@@ -61,56 +61,42 @@ $(document).ready(function() {
 		formData.append('deskripsi', deskripsi);
 		formData.append('jenis', jenis);
 		formData.append('gambar', $('input[type=file]')[0].files[0]);
-		if (nama != '' && deskripsi != '' && jenis != '') {
-			$.ajax({
-				type: 'post',
-				url: '/admin/tambah-lowongan',
-				data: formData,
-				processData: false,
-				contentType: false,
-				accepts: 'application / json',
-				success: function(response) {
+		$.ajax({
+			type: 'post',
+			url: '/admin/tambah-lowongan',
+			data: formData,
+			processData: false,
+			contentType: false,
+			accepts: 'application / json',
+			success: function(response) {
+				$('.btn-close').css('display', '');
+				$('.btn-loading').css('display', 'none');
+				$('#btn-submit-lowongan').css('display', '');
+				LoadTableLowongan();
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 3000,
+						showConfirmButton: false
+					});
+				} else {
 					$('#LowonganModal').modal('hide');
 					$('#form-lowongan').trigger('reset');
-					$('.btn-close').css('display', '');
-					$('.btn-loading').css('display', 'none');
-					$('#btn-submit-lowongan').css('display', '');
-					LoadTableLowongan();
-					if (response.hasOwnProperty('error')) {
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: response.error,
-							timer: 3000,
-							showConfirmButton: false
-						});
-					} else {
-						Swal.fire({
-							icon: 'success',
-							title: response.message,
-							text: 'Berhasil Menambahkan Lowongan',
-							timer: 2000,
-							showConfirmButton: false
-						});
-					}
-				},
-				error: function(err) {
-					console.log(err);
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Menambahkan Lowongan',
+						timer: 2000,
+						showConfirmButton: false
+					});
 				}
-			});
-		} else {
-			$('.btn-close').css('display', '');
-			$('.btn-loading').css('display', 'none');
-			$('#btn-submit-lowongan').css('display', '');
-			LoadTableLowongan();
-			Swal.fire({
-				icon: 'error',
-				title: 'Ooopss...',
-				text: 'Semua Field Harus di Isi',
-				timer: 3000,
-				showConfirmButton: false
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 	});
 
 	$('body').on('click', '.btn-delete-lowongan', function(e) {
@@ -240,68 +226,52 @@ $(document).ready(function() {
 		var formData = new FormData();
 		var formData = new FormData();
 		var nama = $('input[name=nama-edit]').val();
-		var deskripsi = $('input[name=deskripsi-edit]').val();
+		var deskripsi = tinymce.get('deskripsi-edit').getContent();
 		var jenis = $('#lowongan-edit').val();
 		var id = $('input[name=id-edit]').val();
 		formData.append('_token', $('input[name=_token]').val());
 		formData.append('nama', nama);
 		formData.append('deskripsi', deskripsi);
 		formData.append('jenis', jenis);
+		console.log(deskripsi);
 		if ($('#file-upload-edit').get(0).files.length != 0) {
 			formData.append('gambar', $('input[type=file]')[1].files[0]);
 		}
-		if (nama != '' && deskripsi != '' && jenis != '') {
-			$.ajax({
-				type: 'POST',
-				url: '/admin/konfirmasi-edit-lowongan/' + id,
-				data: formData,
-				processData: false,
-				contentType: false,
-				success: function(response) {
+		$.ajax({
+			type: 'POST',
+			url: '/admin/konfirmasi-edit-lowongan/' + id,
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function(response) {
+				$('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-lowongan').css('display', '');
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 1200,
+						showConfirmButton: false
+					});
+				} else {
 					$('#editLowonganModal').modal('hide');
 					$('#form-lowongan-edit').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-lowongan').css('display', '');
-					if (response.hasOwnProperty('error')) {
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: response.error,
-							timer: 1200,
-							showConfirmButton: false
-						});
-					} else {
-						LoadTableLowongan();
-						Swal.fire({
-							icon: 'success',
-							title: response.message,
-							text: 'Berhasil Mengedit Lowongan',
-							timer: 1200,
-							showConfirmButton: false
-						});
-					}
-				},
-				error: function(err) {
-					console.log(err);
+					LoadTableLowongan();
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Mengedit Lowongan',
+						timer: 1200,
+						showConfirmButton: false
+					});
 				}
-			});
-		} else {
-			$('#editLowonganModal').modal('hide');
-			$('#form-lowongan-edit').trigger('reset');
-			$('.btn-close-edit').css('display', '');
-			$('.btn-loading-edit').css('display', 'none');
-			$('#btn-save-lowongan').css('display', '');
-			LoadTableLowongan();
-			Swal.fire({
-				icon: 'error',
-				title: 'Ooopss...',
-				text: 'Semua Field Harus di Isi',
-				timer: 3000,
-				showConfirmButton: false
-			});
-		}
-
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 		return false;
 	});
 });

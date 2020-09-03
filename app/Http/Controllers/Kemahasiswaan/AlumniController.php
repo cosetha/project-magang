@@ -39,14 +39,20 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'bk.required'=>'Field Bidang Keahlian Perlu di Isi',
+            'angkatan.required'=>'Field Angkatan Perlu di Isi',
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'lulus.required'=>'Field Tahub Lulus Perlu d Isi'
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
             'lulus' => 'required',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -115,14 +121,20 @@ class AlumniController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'bk.required'=>'Field Bidang Keahlian Perlu di Isi',
+            'angkatan.required'=>'Field Angkatan Perlu di Isi',
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'lulus.required'=>'Field Tahub Lulus Perlu d Isi'
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
             'lulus' => 'required',
             "angkatan" => 'required',
-            "bk" => 'required']
+            "bk" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);

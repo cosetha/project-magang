@@ -24,8 +24,8 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
-            <a type="submit" class="btn btn-success ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export Excel</a>
-            <a type="submit" class="btn btn-info ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import Excel</a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export </a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import </a>
         </div>
 
         <div class="card-body">
@@ -56,13 +56,13 @@
                     @csrf
 
                     <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim" name="nim" required>
+                    <input type="text" class="form-control" id="nim" name="nim" >
 
                     <label for="nama" class="mt-2">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama" >
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly required>
+                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly >
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -107,13 +107,13 @@
                     @csrf
 
                     <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" required>
+                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" >
 
                     <label for="nama" class="mt-2">Nama</label>
-                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" required>
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" >
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan-edit" readonly required>
+                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan-edit" readonly >
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -160,6 +160,7 @@
                     </div>
             </div>
             <div class="modal-footer">
+             <a href="/download-format-excel-mahasiswa" class="btn btn-success btn-download">Download Format</a>
                 <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Import</button>
             </div>
             </form>

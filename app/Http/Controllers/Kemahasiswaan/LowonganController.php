@@ -40,14 +40,21 @@ class LowonganController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
+            'gambar.required'=>'Field Gambar Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'jenis.required'=>'Field Jenis Perlu d Isi'
+        );
         $validator = Validator::make($request->all(),[
             'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             'nama' => 'required',
             "deskripsi" => 'required',
-            "jenis" => 'required']
+            "jenis" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -122,14 +129,21 @@ class LowonganController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messsages = array(
+            'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
+            'gambar.required'=>'Field Gambar Perlu di Isi',
+            'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'jenis.required'=>'Field Jenis Perlu d Isi'
+        );
         $validator = Validator::make($request->all(),[
             'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'nama' => 'required',
             "deskripsi" => 'required',
-            "jenis" => 'required']
+            "jenis" => 'required'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);

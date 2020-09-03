@@ -124,9 +124,9 @@ class HeadLineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->hasFile('gambar')){
         $messsages = array(
             'judul.required'=>'Field Judul Perlu di Isi',
-            'gambar.required'=>'Field Gambar Perlu di Isi',
             'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
             'caption.required'=>'Field Caption Perlu di Isi',
         );
@@ -140,50 +140,55 @@ class HeadLineController extends Controller
                 'error' => $error,
               ]);
          }else{
+            $directory = 'assets/upload/thumbnail';
+            $file = request()->file('gambar');
+            $nama_file = time().$file->getClientOriginalName();
+            $file->name = $nama_file;
+            $file->move($directory, $file->name);
+
+
+            $headline = Headline::find($id);
             try {
-                if($request->hasFile('gambar')){
-    
-                    $directory = 'assets/upload/thumbnail';
-                    $file = request()->file('gambar');
-                    $nama_file = time().$file->getClientOriginalName();
-                    $file->name = $nama_file;
-                    $file->move($directory, $file->name);
-        
-        
-                    $headline = Headline::find($id);
-                    try {
-                        unlink($headline->gambar);
-                    } catch (\Throwable $th) {
-                        echo($th);
-                    }
-                    
-        
-                    $headline->judul = $request->judul;
-                    $headline->caption = $request->caption;
-                    $headline->gambar= $directory."/".$nama_file;
-                    $headline->save();
-        
-                    return response()->json([
-                        'message' => 'Success'
-                    ]);
-                }else{
-                    $headline = Headline::find($id);
-                    $headline->judul = $request->judul;
-                    $headline->caption = $request->caption;
-                    $headline->save();
-                    return response()->json([
-                        'message' => 'Success'
-                    ]);
-                }
-            } catch (\Exception $e) {
-                return response()->json([
-                    'error' => $e
-                ]);
+                unlink($headline->gambar);
+            } catch (\Throwable $th) {
+                echo($th);
             }
-           
+            
+
+            $headline->judul = $request->judul;
+            $headline->caption = $request->caption;
+            $headline->gambar= $directory."/".$nama_file;
+            $headline->save();
+
+            return response()->json([
+                'message' => 'Success'
+            ]);
          }
-       
-       
+    }else{
+        $messsages = array(
+            'judul.required'=>'Field Judul Perlu di Isi',
+            'caption.required'=>'Field Caption Perlu di Isi',
+        );
+        $validator = Validator::make($request->all(),[
+            'judul' => 'required|string|min:1|max:255',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            "caption" => 'required|string'],$messsages);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+         }else{
+        $headline = Headline::find($id);
+        $headline->judul = $request->judul;
+        $headline->caption = $request->caption;
+        $headline->save();
+        return response()->json([
+            'message' => 'Success'
+        ]);
+        }
+    }
+    
     }
 
     /**
