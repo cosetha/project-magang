@@ -58,7 +58,7 @@
                     @csrf
 
                     <label for="judulojt" >Judul Ojt</label>
-                    <input type="text" class="form-control" id="judul" name="judul" required>
+                    <input type="text" class="form-control" id="judul" name="judul" >
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
@@ -94,7 +94,7 @@
                     @csrf
 
                     <label for="judulojt">Judul Ojt</label>
-                    <input type="text" class="form-control" id="judul-edit" name="judul-edit" required>
+                    <input type="text" class="form-control" id="judul-edit" name="judul-edit" >
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-edit" name="deskripsi-edit"> </textarea> 

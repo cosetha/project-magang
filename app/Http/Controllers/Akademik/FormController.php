@@ -174,7 +174,7 @@ class FormController extends Controller
                           ]);
                     }else{
                     $form = Form::find($id);
-                    $form->nama = $request->nama;
+                    $form->nama_form = $request->nama;
                     $form->save();
                     return response()->json([
                         'message' => 'Success'
