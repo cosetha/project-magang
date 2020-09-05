@@ -34,6 +34,7 @@ class PenggunaController extends Controller
         $u->email = $request->email;
         $u->password = bcrypt('rahasia_admin');
         $u->id_role = 2;
+        $u->remember_token = '';
         $u->save();
 
         return response([

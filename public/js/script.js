@@ -13,7 +13,7 @@ $(document).ready(function() {
                     text: 'Untuk Admin baru wajib mengganti password untuk menggunakan fitur pada portal ini',
                     showCloseButton: true,
                     showConfirmButton: false,
-                    allowOutsideClick: false,
+                    allowOutsideClick: true,
 					footer: '<a href="/editpassword"><button class="btn btn-primary">Ganti Password</button></a>'
 				});
             }
