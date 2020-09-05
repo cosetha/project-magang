@@ -47,13 +47,14 @@ class MahasiswaController extends Controller
             'nama.required'=>'Field Nama Perlu di Isi',
             'nim.required'=>'Field NIM Perlu di Isi',
             'nim.numeric'=>'Format NIM Salah',
+            'nim.unique'=>'NIM sudah digunakan',
             'angkatan.required'=>'Field Angkatan di Isi',
             'bk.required'=>'Field Bidang Keahlian Perlu di isi'
             
         );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required|numeric',
+            'nim' => 'required|numeric|unique:mahasiswa,nim',
             "angkatan" => 'required',
             "bk" => 'required'],$messsages
         );
@@ -134,11 +135,12 @@ class MahasiswaController extends Controller
             'nim.required'=>'Field NIM Perlu di Isi',
             'angkatan.required'=>'Field Angkatan di Isi',
             'nim.numeric'=>'Format NIM Salah',
+            'nim.unique'=>'NIM sudah digunakan',
             'bk.required'=>'Field Bidang Keahlian Perlu di isi'
         );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'nim' => 'required|numeric',
+            'nim' => 'required|numeric|unique:mahasiswa,nim,'.$id,
             "angkatan" => 'required',
             "bk" => 'required'],$messsages
         );

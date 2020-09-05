@@ -55,8 +55,8 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa">
                     @csrf
 
-                    <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim" name="nim" >
+                    <label for="nim">NIM</label>
+                    <input type="text" class="form-control" id="nim" name="nim" pattern="\d*" maxlength="15">
 
                     <label for="nama" class="mt-2">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama" >
@@ -106,8 +106,8 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa-edit">
                     @csrf
 
-                    <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" >
+                    <label for="nim">NIM</label>
+                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" pattern="\d*" maxlength="15">
 
                     <label for="nama" class="mt-2">Nama</label>
                     <input type="text" class="form-control" id="nama-edit" name="nama-edit" >
