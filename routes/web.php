@@ -128,6 +128,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     Route::get('/dashboard', 'PageController@Dashboard')->name('home');
 
+    Route::get('/search-menu/{menu}','PageController@SearchMenu');
+    Route::get('/cek-role','PageController@CekRole');
 
     //CEK PASSWORD UPDATE UNTUK ADMIN BARU
     Route::get('/cek-update-pass','PengaturanAkun\ProfileController@CekUpdatePassword');

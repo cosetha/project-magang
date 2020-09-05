@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Dosen;
 use App\Mahasiswa;
+use App\SearchMenu;
 use DB;
 
 use Illuminate\Http\Request;
@@ -45,6 +46,22 @@ class PageController extends Controller
         // dd(json_encode($lainnya));
 
       return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga','angkatan_fix','total','lainnya'));
+    }
+
+    public function SearchMenu($menu){
+        $data = SearchMenu::where('menu',$menu)->first();
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
+    public function CekRole(){
+        $data = auth()->user()->id_role;
+
+        return response([
+            'data' => $data
+        ]);
     }
 
     public function SosialMedia(){
