@@ -19,7 +19,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{asset('vendor/jquery-ui/css/jquery-ui.css')}}">
 
 
     <!-- Custom styles for this template-->
@@ -251,7 +251,7 @@
                                 <!-- Topbar Search -->
                                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" id="search" class="form-control bg-light border-0 small ui-widget" placeholder="Cari Menu disini ..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" id="search" class="form-control bg-light border-0 small ui-widget" placeholder="Cari Menu disini ..." autocomplete="off" aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" id="search-button-layout" type="button">
                                                 <i class="fas fa-arrow-right fa-sm"></i>
@@ -272,7 +272,7 @@
                                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                             <form class="form-inline mr-auto w-100 navbar-search">
                                                 <div class="input-group">
-                                                    <input type="text" id="search2" class="form-control bg-light border-0 small ui-widget" placeholder="Cari Menu disini ..." aria-label="Search" aria-describedby="basic-addon2">
+                                                    <input type="text" id="search2" class="form-control bg-light border-0 small ui-widget" placeholder="Cari Menu disini ..." autocomplete="off" aria-label="Search" aria-describedby="basic-addon2">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary" id="search-button-layout2" type="button">
                                                             <i class="fas fa-arrow-right fa-sm"></i>
@@ -424,7 +424,7 @@
                     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
                     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-                    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+                    <script type="text/javascript" src="{{asset('vendor/jquery-ui/js/jquery-ui.js')}}"></script>
                     <script type="text/javascript" src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
