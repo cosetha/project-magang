@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth','checkRole:1']],function(){
     Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
     Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
+    Route::get('/history','HistoryController@index');
+
     Route::get('/datapengguna/export','Pengguna\PenggunaController@export');
 
 });
@@ -176,9 +178,11 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     // Akreditasi
     Route::get('/akreditasi', 'Akademik\AkreditasiController@index');
     Route::post('/admin/tambah-akreditasi','Akademik\AkreditasiController@store');
+    Route::get('/aktifkan-akreditasi/{id}','Akademik\AkreditasiController@Aktifkan');
+    Route::get('/nonaktifkan-akreditasi/{id}','Akademik\AkreditasiController@nonAktifkan');
     Route::get('/load/table-akreditasi','Akademik\AkreditasiController@LoadTableAkreditasi');
     Route::get('/load/data-akreditasi','Akademik\AkreditasiController@LoadDataAkreditasi');
-    Route::get('/admin/delete-akreditasi/{id}','Akademik\AkreditasiController@destroy');
+    Route::get('/delete-akreditasi/{id}','Akademik\AkreditasiController@destroy');
     Route::get('/admin/edit-akreditasi/{id}','Akademik\AkreditasiController@edit');
     Route::POST('/admin/konfirmasi-edit-akreditasi/{id}','Akademik\AkreditasiController@update');
 

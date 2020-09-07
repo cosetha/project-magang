@@ -16,7 +16,8 @@ class CreateAkreditasiTable extends Migration
         Schema::create('akreditasi', function (Blueprint $table) {
             $table->increments('id',10);
             $table->string('nilai');
-            $table->string('lembaga');
+            $table->string('file');
+            $table->string('status');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->timestamps();

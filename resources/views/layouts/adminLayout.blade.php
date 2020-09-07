@@ -253,6 +253,9 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+                    @if(auth()->user()->created_at == auth()->user()->updated_at && auth()->user()->id_role == 2)
+
+                    @else
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -264,6 +267,8 @@
                             </div>
                         </div>
                     </form>
+
+                    @endif
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -288,6 +293,7 @@
                             </div>
                         </li>
 
+                        @if(auth()->user()->id_role == 1)
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -336,6 +342,7 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
+                        @endif
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
