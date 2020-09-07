@@ -16,7 +16,7 @@ class OjtController extends Controller
      */
     public function index()
     {
-        return view('admin/akademik/ojtAdmin');
+        return view('admin/Akademik/ojtAdmin');
     }
 
     /**
