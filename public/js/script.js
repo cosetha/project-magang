@@ -780,57 +780,69 @@ $(document).ready(function() {
 				showConfirmButton: false
 			});
 		} else {
-			$.ajax({
-				type: 'POST',
-				url: 'editpassword/' + id,
-				data: {
-					password: password,
-					password_confirmation: password_confirm,
-					id: id,
-					password_lama: password_lama
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.status == '1') {
-                        $('.form-edit-password')[0].reset();
-                        window.location.href = '/dashboard';
-						Swal.fire({
-							icon: 'success',
-							title: 'Sukses',
-							text: 'Sukses ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == '0') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Gagal ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == 'salah') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password anda salah!',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password harus sama!',
-							timer: 1200,
-							showConfirmButton: false
-						});
-					}
-				}
-			});
+
+            if(password_lama == password){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password Lama dan Password baru harus beda!',
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+            }else{
+                $.ajax({
+                    type: 'POST',
+                    url: 'editpassword/' + id,
+                    data: {
+                        password: password,
+                        password_confirmation: password_confirm,
+                        id: id,
+                        password_lama: password_lama
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status == '1') {
+                            $('.form-edit-password')[0].reset();
+                            window.location.href = '/dashboard';
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Sukses ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == '0') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Gagal ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == 'salah') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password anda salah!',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password harus sama!',
+                                timer: 1200,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
+            }
+
 		}
 	});
 	//--END PENGATURAN PROFILE ----
