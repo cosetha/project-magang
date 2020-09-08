@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use \App\WebLink;
 use DataTables;
@@ -56,6 +57,14 @@ class WeblinkController extends Controller
 
     public function LoadTableWebLink(){
         return view("datatable.TableWeblink");
+    }
+
+    public function RedirectLayanan($data){
+        // dd($data);
+        $url = 'http://'.$data;
+        Redirect::to($url);
+
+        return redirect($url);
     }
 
     public function LoadDataSosmed(){
