@@ -294,7 +294,6 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/edit-faq/{id}','Footer\FaqController@update');
 
     Route::get('/layanan', 'Home\WeblinkController@indexLayanan');
-    Route::get('/redirect/{data}', 'Home\WeblinkController@RedirectLayanan');
     Route::get('/load/table-layanan', 'Home\WeblinkController@LoadTableWebLink');
     Route::get('/load/data-layanan', 'Home\WeblinkController@LoadDataLayanan');
     Route::get('/admin/delete-layanan/{id}', 'Home\WeblinkController@destroy');

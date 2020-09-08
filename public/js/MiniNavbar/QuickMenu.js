@@ -25,7 +25,7 @@ $(document).ready(function() {
 						data: 'link',
 						name: 'link',
                         "render": function(data, type, full, meta) {
-                            return '<a href="/redirect/'+data+'" target="_blank">'+data+'</a>';
+                            return '<a href="'+data+'" target="_blank">'+data+'</a>';
                         }
 					},
 					{
@@ -55,29 +55,45 @@ $(document).ready(function() {
         $(".btn-loading").css("display","")
         $(".btn-close").css("display","none")
         var data = $("#FormAddQuickMenu").serialize()
-        $.ajax({
-            type: "post",
-            url: "/tambah/quick-menu",
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $("#QuickMenuModal").modal("hide")
-                $("#FormAddQuickMenu").trigger("reset")
-                $(".btn-submit-quick-menu").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Quick Menu',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+        var nama = $("#nama_web").val()
+        var link = $("#link_Web").val()
+
+        if(nama != '' && link != ''){
+            $.ajax({
+                type: "post",
+                url: "/tambah/quick-menu",
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $("#QuickMenuModal").modal("hide")
+                    $("#FormAddQuickMenu").trigger("reset")
+                    $(".btn-submit-quick-menu").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-close").css("display","")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Quick Menu',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-submit-quick-menu").css("display","")
+            $(".btn-loading").css("display","none")
+            $(".btn-close").css("display","")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
 
     })
 
@@ -124,8 +140,8 @@ $(document).ready(function() {
         var link = $(this).attr("data-link")
 
         $("#id-quick-menu").val(id)
-        $("#edit_nama_web").val(nama)
-        $("#edit_link_web").val(link)
+        $("#edit_nama_web_q").val(nama)
+        $("#edit_link_web_q").val(link)
     })
 
     //SAVE EDIT QUICK MENU
@@ -133,32 +149,53 @@ $(document).ready(function() {
         e.preventDefault()
         var id = $("#id-quick-menu").val()
         var data = $("#FormEditQuickMenu").serialize()
+        var nama = $("#edit_nama_web_q").val()
+        var link = $("#edit_link_web_q").val()
+
+        console.log(nama)
+        console.log(link)
 
         $(".btn-close").css("display","none")
         $(".btn-save-quick-menu").css("display","none")
         $(".btn-loading").css("display","")
-        $.ajax({
-            type: "post",
-            url: "admin/edit-quick-menu/"+id,
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $(".btn-close").css("display","")
-                $(".btn-save-quick-menu").css("display","none")
-                $(".btn-loading").css("display","")
-                $("#FormEditQuickMenu").trigger("reset")
-                $("#editQuickMenuModal").modal("hide")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Memperbarui Quick Menu',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+
+        if(nama != '' && link != ''){
+            console.log("masuk")
+            $.ajax({
+                type: "post",
+                url: "admin/edit-quick-menu/"+id,
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $(".btn-close").css("display","")
+                    $(".btn-save-quick-menu").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $("#FormEditQuickMenu").trigger("reset")
+                    $("#editQuickMenuModal").modal("hide")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Memperbarui Quick Menu',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-close").css("display","")
+            $(".btn-save-quick-menu").css("display","")
+            $(".btn-loading").css("display","none")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
     })
 })
