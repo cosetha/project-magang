@@ -892,31 +892,48 @@ $(document).ready(function() {
 		$('.btn-close').css('display', 'none');
 		$('.btn-loading').css('display', '');
 		$('#btn-submit-faq').css('display', 'none');
-		var data = $('#form-tambah-faq').serialize();
-		$.ajax({
-			type: 'post',
-			url: '/admin/tambah-faq',
-			data: data,
-			success: function(response) {
-				$('.modal-title-faq').html();
-				$('#TambahFaqModal').modal('hide');
-				$('#form-tambah-faq').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-faq').css('display', '');
-				LoadTableFaq();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
-					timer: 1200,
-					showConfirmButton: false
-				});
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
+        var data = $('#form-tambah-faq').serialize();
+        var pertanyaan = $("#pertanyaan").val()
+        var jawaban = $("#jawaban").val()
+
+        if(pertanyaan != '' && jawaban != ''){
+            $.ajax({
+                type: 'post',
+                url: '/admin/tambah-faq',
+                data: data,
+                success: function(response) {
+                    $('.modal-title-faq').html();
+                    $('#TambahFaqModal').modal('hide');
+                    $('#form-tambah-faq').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-faq').css('display', '');
+                    LoadTableFaq();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }else{
+            $('.btn-close').css('display', '');
+            $('.btn-loading').css('display', 'none');
+            $('#btn-submit-faq').css('display', '');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
 	});
 
 	//DELETE FAQ
@@ -937,7 +954,13 @@ $(document).ready(function() {
 					type: 'get',
 					url: '/admin/delete-faq/' + id,
 					success: function(response) {
-						Swal.fire('Deleted!, data telah dihapus.', 'success');
+						Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menghapus FAQ',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
 						LoadTableFaq();
 					},
 					error: function(err) {
@@ -958,38 +981,58 @@ $(document).ready(function() {
 		$('#btn-save-faq').css('display', '');
 		$('#kolom-pertanyaan').val(pertanyaan);
 		$('#kolom-jawaban').val(jawaban);
+		$('#id-faq').val(id);
 
-		$('body').on('submit', '#form-edit-faq', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-faq').css('display', 'none');
-			var data = $('#form-edit-faq').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-faq/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditFaqModal').modal('hide');
-					$('#form-edit-faq').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-faq').css('display', '');
-					LoadTableFaq();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
+    });
+
+    $('body').on('submit', '#form-edit-faq', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-faq').css('display', 'none');
+        var data = $('#form-edit-faq').serialize();
+        var id = $("#id-faq").val()
+        var pertanyaan = $("#kolom-pertanyaan").val()
+        var jawaban = $("#kolom-jawaban").val()
+
+        if(pertanyaan != '' && jawaban != ''){
+            $.ajax({
+                type: 'post',
+                url: '/admin/edit-faq/' + id,
+                data: data,
+                success: function(response) {
+                    $('#EditFaqModal').modal('hide');
+                    $('#form-edit-faq').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-faq').css('display', '');
+                    LoadTableFaq();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }else{
+            $('.btn-close-edit').css('display', '');
+            $('.btn-loading-edit').css('display', 'none');
+            $('#btn-save-faq').css('display', '');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
+    });
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 

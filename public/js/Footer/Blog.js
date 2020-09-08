@@ -25,7 +25,7 @@ $(document).ready(function() {
 						data: 'link',
 						name: 'link',
                         "render": function(data, type, full, meta) {
-                            return '<a href="/redirect/'+data+'" target="_blank">'+data+'</a>';
+                            return '<a href="'+data+'" target="_blank">'+data+'</a>';
                         }
 					},
 					{
@@ -55,29 +55,45 @@ $(document).ready(function() {
         $(".btn-loading").css("display","")
         $(".btn-close").css("display","none")
         var data = $("#FormAddBlog").serialize()
-        $.ajax({
-            type: "post",
-            url: "/tambah/blog",
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $("#BlogModal").modal("hide")
-                $("#FormAddBlog").trigger("reset")
-                $(".btn-submit-blog").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Blog',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+        var nama = $("#nama_web").val()
+        var link = $("#link_Web").val()
+
+        if(nama != '' && link != ''){
+            $.ajax({
+                type: "post",
+                url: "/tambah/blog",
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $("#BlogModal").modal("hide")
+                    $("#FormAddBlog").trigger("reset")
+                    $(".btn-submit-blog").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-close").css("display","")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Blog',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-submit-blog").css("display","")
+            $(".btn-loading").css("display","none")
+            $(".btn-close").css("display","")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
 
     })
 
@@ -133,32 +149,49 @@ $(document).ready(function() {
         e.preventDefault()
         var id = $("#id-blog").val()
         var data = $("#FormEditBlog").serialize()
+        var nama = $("#edit_nama_web").val()
+        var link = $("#edit_link_web").val()
 
         $(".btn-close").css("display","none")
         $(".btn-save-blog").css("display","none")
         $(".btn-loading").css("display","")
-        $.ajax({
-            type: "post",
-            url: "admin/edit-blog/"+id,
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $(".btn-close").css("display","")
-                $(".btn-save-blog").css("display","none")
-                $(".btn-loading").css("display","")
-                $("#FormEditBlog").trigger("reset")
-                $("#editBlogModal").modal("hide")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Memperbarui Blog',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+
+        if(nama != '' && link != ''){
+            $.ajax({
+                type: "post",
+                url: "admin/edit-blog/"+id,
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $(".btn-close").css("display","")
+                    $(".btn-save-blog").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $("#FormEditBlog").trigger("reset")
+                    $("#editBlogModal").modal("hide")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Memperbarui Blog',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-close").css("display","")
+            $(".btn-save-blog").css("display","")
+            $(".btn-loading").css("display","none")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
     })
 })

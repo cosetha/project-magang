@@ -229,6 +229,7 @@ $(document).ready(function() {
                   $('#image-show-berita').attr('src', host + '/' + data.data.gambar);
                   $('#judul-berita-show').val(data.data.judul);
                   tinymce.get('deskripsi-berita-show').setContent(data.data.deskripsi);
+                  tinymce.get('deskripsi-berita-show').setMode('readonly');
               }
           });
         });
