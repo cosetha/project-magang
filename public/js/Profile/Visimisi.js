@@ -52,56 +52,42 @@ $(document).ready(function() {
 		formData.append('judul', judul);
 		formData.append('deskripsi', deskripsi);
 		formData.append('menu', menu);
-		if (tinymce.get('deskripsi').getContent() == '') {
-			$('.btn-close').css('display', '');
-			$('.btn-loading').css('display', 'none');
-			$('#btn-submit-visimisi').css('display', '');
-			Swal.fire({
-				icon: 'error',
-				title: 'Error',
-				text: 'Field Deksripsi perlu di isi',
-				timer: 1200,
-				showConfirmButton: false
-			});
-		} else {
-			$.ajax({
-				type: 'post',
-				url: '/admin/tambah-visimisi',
-				data: formData,
-				processData: false,
-				contentType: false,
-				accepts: 'application / json',
-				success: function(response) {
+		$.ajax({
+			type: 'post',
+			url: '/admin/tambah-visimisi',
+			data: formData,
+			processData: false,
+			contentType: false,
+			accepts: 'application / json',
+			success: function(response) {
+				$('.btn-close').css('display', '');
+				$('.btn-loading').css('display', 'none');
+				$('#btn-submit-visimisi').css('display', '');
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 2200,
+						showConfirmButton: false
+					});
+				} else {
 					$('#VisimisiModal').modal('hide');
 					$('#form-visimisi').trigger('reset');
-					$('.btn-close').css('display', '');
-					$('.btn-loading').css('display', 'none');
-					$('#btn-submit-visimisi').css('display', '');
 					LoadTableVisi();
-					if (response.hasOwnProperty('error')) {
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: Object.keys(response.error),
-							timer: 2200,
-							showConfirmButton: false
-						});
-						console.log(Object.keys(response.error));
-					} else {
-						Swal.fire({
-							icon: 'success',
-							title: response.message,
-							text: 'Berhasil Menambahkan Visi dan Misi',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					}
-				},
-				error: function(err) {
-					console.log(err);
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Menambahkan Visi dan Misi',
+						timer: 1000,
+						showConfirmButton: false
+					});
 				}
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 	});
 
 	$('body').on('click', '.btn-delete-visimisi', function(e) {
@@ -215,30 +201,28 @@ $(document).ready(function() {
 		formData.append('judul', judul);
 		formData.append('deskripsi', deskripsi);
 		formData.append('menu', menu);
-		if (tinymce.get('deskripsi-edit').getContent() == '') {
-			$('.btn-close-edit').css('display', '');
-			$('.btn-loading-edit').css('display', 'none');
-			$('#btn-save-visimisi').css('display', '');
-			Swal.fire({
-				icon: 'error',
-				title: 'Error',
-				text: 'Field Deksripsi perlu di isi',
-				timer: 1200,
-				showConfirmButton: false
-			});
-		} else {
-			$.ajax({
-				type: 'POST',
-				url: '/admin/konfirmasi-edit-visimisi/' + id,
-				data: formData,
-				processData: false,
-				contentType: false,
-				success: function(response) {
+		$.ajax({
+			type: 'POST',
+			url: '/admin/konfirmasi-edit-visimisi/' + id,
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function(response) {
+				$('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-visimisi').css('display', '');
+
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 1200,
+						showConfirmButton: false
+					});
+				} else {
 					$('#editVisimisiModal').modal('hide');
 					$('#form-visimisi-edit').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-visimisi').css('display', '');
 					LoadTableVisi();
 					Swal.fire({
 						icon: 'success',
@@ -247,12 +231,12 @@ $(document).ready(function() {
 						timer: 1200,
 						showConfirmButton: false
 					});
-				},
-				error: function(err) {
-					console.log(err);
 				}
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 
 		return false;
 	});

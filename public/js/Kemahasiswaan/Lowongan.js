@@ -72,7 +72,7 @@ $(document).ready(function() {
 				$('.btn-close').css('display', '');
 				$('.btn-loading').css('display', 'none');
 				$('#btn-submit-lowongan').css('display', '');
-				LoadTableLowongan();
+				$('#blah').attr('src', '');
 				if (response.hasOwnProperty('error')) {
 					Swal.fire({
 						icon: 'error',
@@ -84,6 +84,7 @@ $(document).ready(function() {
 				} else {
 					$('#LowonganModal').modal('hide');
 					$('#form-lowongan').trigger('reset');
+					LoadTableLowongan();
 					Swal.fire({
 						icon: 'success',
 						title: response.message,

@@ -48,7 +48,7 @@ class LowonganController extends Controller
             'jenis.required'=>'Field Jenis Perlu d Isi'
         );
         $validator = Validator::make($request->all(),[
-            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required',
             'nama' => 'required',
             "deskripsi" => 'required',
             "jenis" => 'required'],$messsages
@@ -137,7 +137,7 @@ class LowonganController extends Controller
             'jenis.required'=>'Field Jenis Perlu d Isi'
         );
         $validator = Validator::make($request->all(),[
-            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif',
             'nama' => 'required',
             "deskripsi" => 'required',
             "jenis" => 'required'],$messsages
