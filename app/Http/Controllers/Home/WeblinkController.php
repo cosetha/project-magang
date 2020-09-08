@@ -60,7 +60,7 @@ class WeblinkController extends Controller
     }
 
     public function RedirectLayanan($data){
-        // dd($data);
+        
         $url = 'http://'.$data;
         Redirect::to($url);
 
