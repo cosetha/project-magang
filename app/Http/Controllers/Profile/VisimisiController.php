@@ -37,12 +37,17 @@ class VisimisiController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'menu.required'=>'Field Menu Perlu di Isi',
+            'judul.required'=>'Field Judul Perlu di Isi',
+            'deskripsi.required'=>'Field Deskripsi Perlu d Isi'
+        );
         $validator = Validator::make($request->all(),[
             'menu' => 'required|string',
             'judul' => 'required|string',
-            "deskripsi" => 'required|string']);
+            "deskripsi" => 'required|string'],$messsages);
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -112,7 +117,21 @@ class VisimisiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $messsages = array(
+            'menu.required'=>'Field Menu Perlu di Isi',
+            'judul.required'=>'Field Judul Perlu di Isi',
+            'deskripsi.required'=>'Field Deskripsi Perlu d Isi'
+        );
+        $validator = Validator::make($request->all(),[
+            'menu' => 'required|string',
+            'judul' => 'required|string',
+            "deskripsi" => 'required|string'],$messsages);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json([
+                'error' => $error,
+              ]);
+         }else{
             $konten = Konten::find($id);
             $konten->judul = $request->judul;
             $konten->deskripsi = $request->deskripsi;
@@ -121,6 +140,7 @@ class VisimisiController extends Controller
             return response()->json([
                 'message' => 'Success'
             ]);
+         }
         
     }
 

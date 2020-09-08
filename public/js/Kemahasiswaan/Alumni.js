@@ -72,7 +72,7 @@ $(document).ready(function() {
 		formData.append('angkatan', angkatan);
 		formData.append('bk', bk);
 		var c = lulus - angkatan;
-		if (c <= 0) {
+		if (c < 0) {
 			$('.btn-close').css('display', '');
 			$('.btn-loading').css('display', 'none');
 			$('#btn-submit-alumni').css('display', '');
@@ -97,7 +97,6 @@ $(document).ready(function() {
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-alumni').css('display', '');
-					LoadTableAlumni();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
 							icon: 'error',
@@ -109,6 +108,7 @@ $(document).ready(function() {
 					} else {
 						$('#AlumniModal').modal('hide');
 						$('#form-alumni').trigger('reset');
+						LoadTableAlumni();
 						Swal.fire({
 							icon: 'success',
 							title: response.message,

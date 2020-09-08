@@ -208,5 +208,5 @@
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
-      <script src="{{ asset('js/akademik/mahasiswa.js') }}"></script>
+      <script src="{{ asset('js/Akademik/mahasiswa.js') }}"></script>
 @endsection
