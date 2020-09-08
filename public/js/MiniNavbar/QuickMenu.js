@@ -52,29 +52,45 @@ $(document).ready(function() {
         $(".btn-loading").css("display","")
         $(".btn-close").css("display","none")
         var data = $("#FormAddQuickMenu").serialize()
-        $.ajax({
-            type: "post",
-            url: "/tambah/quick-menu",
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $("#QuickMenuModal").modal("hide")
-                $("#FormAddQuickMenu").trigger("reset")
-                $(".btn-submit-quick-menu").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Quick Menu',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+        var nama = $("#nama_web").val()
+        var link = $("#link_Web").val()
+
+        if(nama != '' && link != ''){
+            $.ajax({
+                type: "post",
+                url: "/tambah/quick-menu",
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $("#QuickMenuModal").modal("hide")
+                    $("#FormAddQuickMenu").trigger("reset")
+                    $(".btn-submit-quick-menu").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-close").css("display","")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Quick Menu',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-submit-quick-menu").css("display","")
+            $(".btn-loading").css("display","none")
+            $(".btn-close").css("display","")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
 
     })
 

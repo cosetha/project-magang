@@ -53,7 +53,7 @@
                     <input type="text" class="form-control" id="nama_web" name="nama_web" required>
 
                     <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" id="link_Web" name="link" required>
+                    <input type="text" class="form-control" id="link_Web" name="link" placeholder="https://" value="https://" required>
 
                     <input type="hidden" class="form-control" id="jenis" name="menu" value="layanan">
 
@@ -94,7 +94,7 @@
                     <input type="text" class="form-control" id="edit_nama_web" name="nama_web" required>
 
                     <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" id="edit_link_web" name="link" required>
+                    <input type="text" class="form-control" placeholder="https://" id="edit_link_web" name="link" required>
 
 
 

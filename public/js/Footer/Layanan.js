@@ -25,7 +25,7 @@ $(document).ready(function() {
 						data: 'link',
 						name: 'link',
                         "render": function(data, type, full, meta) {
-                            return '<a href="/layanan/'+data+'" target="_blank">'+data+'</a>';
+                            return '<a href="'+data+'" target="_blank">'+data+'</a>';
                         },
 					},
 					{

@@ -59,14 +59,6 @@ class WeblinkController extends Controller
         return view("datatable.TableWeblink");
     }
 
-    public function RedirectLayanan($data){
-        // dd($data);
-        $url = 'http://'.$data;
-        Redirect::to($url);
-
-        return redirect($url);
-    }
-
     public function LoadDataSosmed(){
         $weblink = WebLink::where('menu','=','sosmed')->orderBy('id','desc')->get();
 

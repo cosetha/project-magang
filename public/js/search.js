@@ -28,7 +28,7 @@ $(document).ready(function() {
             url:"/cek-role",
             success: function(response){
 
-                console.log(response.data)
+                // console.log(response.data)
                 if(response.data == 1){
                     var data = [
                         { label: "Edit Profile", category: "Akun" },
@@ -194,7 +194,7 @@ $(document).ready(function() {
             url:"/cek-role",
             success: function(response){
 
-                console.log(response.data)
+                // console.log(response.data)
                 if(response.data == 1){
                     var data = [
                         { label: "Edit Profile", category: "Akun" },
