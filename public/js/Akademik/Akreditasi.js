@@ -17,11 +17,12 @@ $(document).ready(function() {
 						name: 'DT_RowIndex',
 						searchable: false,
 						orderable: false
-					},
-
-					{
-						data: 'lembaga',
-						name: 'lembaga'
+                    },
+                    {
+						data: 'file',
+						render: function(data, type, row) {
+							return '<img  class = "rounded mx-auto d-block" height="200px" src="' + data + '" />';
+						}
 					},
 
 					{
@@ -39,6 +40,11 @@ $(document).ready(function() {
 					{
 						data: 'tanggal_selesai',
 						name: 'tanggal_selesai'
+                    },
+
+					{
+						data: 'status',
+						name: 'status'
 					},
 
 					{
@@ -59,15 +65,16 @@ $(document).ready(function() {
 		$('.btn-loading').css('display', '');
 		$('#btn-submit-akreditasi').css('display', 'none');
 		var formData = new FormData();
-		var lembaga = $('input[name=lembaga]').val();
+		var file = $('#file-upload')[0].files[0];
 		var nilai = $('#nilai').val();
 		var tanggal_mulai = $('input[name=tanggal_mulai]').val();
 		var tanggal_selesai = $('input[name=tanggal_selesai]').val();
-		formData.append('lembaga', lembaga);
 		formData.append('nilai', nilai);
 		formData.append('tanggal_mulai', tanggal_mulai);
-		formData.append('tanggal_selesai', tanggal_selesai);
-		if (nilai != '' && lembaga != '' && tanggal_mulai != '' && tanggal_selesai != '') {
+        formData.append('tanggal_selesai', tanggal_selesai);
+        formData.append('file', file);
+
+		if (nilai != '' && tanggal_mulai != '' && tanggal_selesai != '') {
 			$.ajax({
 				type: 'post',
 				url: '/admin/tambah-akreditasi',
@@ -76,12 +83,9 @@ $(document).ready(function() {
 				contentType: false,
 				accepts: 'application / json',
 				success: function(response) {
-					$('#AkreditasiModal').modal('hide');
-					$('#form-akreditasi').trigger('reset');
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-akreditasi').css('display', '');
-					LoadTableAkreditasi();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
 							icon: 'error',
@@ -91,6 +95,9 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+                        $('#AkreditasiModal').modal('hide');
+                        $('#form-akreditasi').trigger('reset');
+                        LoadTableAkreditasi();
 						Swal.fire({
 							icon: 'success',
 							title: response.message,
@@ -130,6 +137,16 @@ $(document).ready(function() {
 			url: '/admin/edit-akreditasi/' + id,
 			type: 'GET',
 			success: function(res) {
+                // console.log(res.values)
+
+                if(res.values.status == "nonaktif"){
+                    $(".btn-aktifkan-akreditasi").css("display","")
+                    $(".btn-nonaktifkan-akreditasi").css("display","none")
+                }else{
+                    $(".btn-aktifkan-akreditasi").css("display","none")
+                    $(".btn-nonaktifkan-akreditasi").css("display","")
+                }
+
 				if (res.hasOwnProperty('error')) {
 					Swal.fire({
 						icon: 'error',
@@ -151,12 +168,80 @@ $(document).ready(function() {
 					$('#nilai-edit').val(res.values.nilai);
 					$('#tanggal_mulai-edit').val(res.values.tanggal_mulai);
 					$('#tanggal_selesai-edit').val(res.values.tanggal_selesai);
-					
+
 				}
 			}
 		});
 		return false;
-	});
+    });
+
+    //Nonaktifkan
+    $("body").on("click",'.btn-nonaktifkan-akreditasi', function(e){
+        e.preventDefault()
+        $('.btn-close-edit').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+        $('#btn-save-akreditasi').css('display', 'none');
+        $(".btn-nonaktifkan-akreditasi").css("display","none")
+        var id = $("#id-edit").val();
+
+        $.ajax({
+            type: "get",
+            url: "/nonaktifkan-akreditasi/"+id,
+            success: function(response){
+                $('#editAkreditasiModal').modal('hide');
+				$('#form-akreditasi-edit').trigger('reset');
+                $('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-akreditasi').css('display', '');
+                $(".btn-nonaktifkan-akreditasi").css("display","")
+                LoadTableAkreditasi();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Akreditasi non-Aktif!',
+                    timer: 1200,
+                    showConfirmButton: false
+                });
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+
+    //Aktifkan
+    $("body").on("click",".btn-aktifkan-akreditasi", function(e){
+        e.preventDefault()
+        $('.btn-close-edit').css('display', 'none');
+		$('.btn-loading-edit').css('display', '');
+        $('#btn-save-akreditasi').css('display', 'none');
+        $(".btn-aktifkan-akreditasi").css("display","none")
+        var id = $("#id-edit").val();
+
+        $.ajax({
+            type: "get",
+            url: "/aktifkan-akreditasi/"+id,
+            success: function(response){
+                $('#editAkreditasiModal').modal('hide');
+				$('#form-akreditasi-edit').trigger('reset');
+                $('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+                $('#btn-save-akreditasi').css('display', '');
+                $(".btn-aktifkan-akreditasi").css("display","")
+                LoadTableAkreditasi();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Akreditasi Aktif!',
+                    timer: 1200,
+                    showConfirmButton: false
+                });
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
 	// Update Akreditasi
 	$('body').on('submit', '#form-akreditasi-edit', function(e) {
@@ -165,18 +250,18 @@ $(document).ready(function() {
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-akreditasi').css('display', 'none');
 		var formData = new FormData();
-		var lembaga = $('input[name=lembaga-edit]').val();
+		var file = $('#file-upload-edit')[0].files[0];
 		var nilai = $('#nilai-edit').val();
 		var tanggal_mulai = $('input[name=tanggal_mulai-edit]').val();
 		var tanggal_selesai = $('input[name=tanggal_selesai-edit]').val();
-		
+
 		var id = $('input[name=id-edit]').val();
-		formData.append('lembaga', lembaga);
 		formData.append('nilai', nilai);
 		formData.append('tanggal_mulai', tanggal_mulai);
-		formData.append('tanggal_selesai', tanggal_selesai);
-		
-		if (nilai != '' && lembaga != '' && tanggal_mulai != '' && tanggal_selesai != '') {
+        formData.append('tanggal_selesai', tanggal_selesai);
+        formData.append('file', file);
+
+		if (nilai != '' && tanggal_mulai != '' && tanggal_selesai != '') {
 			$.ajax({
 				type: 'POST',
 				url: '/admin/konfirmasi-edit-akreditasi/' + id,
@@ -234,10 +319,9 @@ $(document).ready(function() {
 	// Delete Akreditasi
 	$('body').on('click', '.btn-delete-akreditasi', function(e) {
 		e.preventDefault();
-		var id = $(this).attr('data-id');
-		var lembaga = $(this).attr('data-lembaga');
+		var id = $(this).attr("data-id");
 		Swal.fire({
-			title: 'Hapus ' + lembaga + '?',
+			title: 'Hapus ?',
 			text: 'Anda tidak dapat mengurungkan aksi ini!',
 			icon: 'warning',
 			showCancelButton: true,
@@ -247,27 +331,18 @@ $(document).ready(function() {
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					accepts: 'application/json',
 					type: 'get',
-					url: '/admin/delete-akreditasi/' + id,
+					url: '/delete-akreditasi/' + id,
 					success: function(response) {
-						if (response.hasOwnProperty('error')) {
-							Swal.fire({
-								icon: 'error',
-								title: 'Ooopss...',
-								text: response.error,
-								timer: 1200,
-								showConfirmButton: false
-							});
-						} else {
+
 							Swal.fire({
 								icon: 'success',
 								title: response.message,
-								text: 'Berhasil Menghapus ' + lembaga,
+								text: 'Berhasil Menghapus Akreditasi',
 								timer: 2000,
 								showConfirmButton: false
 							});
-						}
+
 						LoadTableAkreditasi();
 					},
 					error: function(err) {

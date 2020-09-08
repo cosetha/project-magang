@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\SearchMenu;
+use Illuminate\Database\Eloquent\Model;
 
 class SearchSeeder extends Seeder
 {
@@ -44,7 +45,11 @@ class SearchSeeder extends Seeder
         	[
 	            'menu' => 'Data Pengguna',
 	            'url' => '/datapengguna'
-        	],
+            ],
+            [
+                'menu' => 'History',
+                'url' => '/history'
+            ],
         	[
 	            'menu' => 'Dokumen',
 	            'url' => '/dokumen'
@@ -172,7 +177,7 @@ class SearchSeeder extends Seeder
         	[
 	            'menu' => 'Visi dan Misi',
 	            'url' => '/visimisi'
-        	]		
+        	]
         ];
 
         foreach ($menu as $m) {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAkreditasiTable extends Migration
+class CreateHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAkreditasiTable extends Migration
      */
     public function up()
     {
-        Schema::create('akreditasi', function (Blueprint $table) {
-            $table->increments('id',10);
-            $table->string('nilai');
-            $table->string('file');
-            $table->string('status');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
+        Schema::create('history', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('aksi');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAkreditasiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akreditasi');
+        Schema::dropIfExists('history');
     }
 }

@@ -20,6 +20,8 @@ class CreatePenelitiansTable extends Migration
             $table->string('peneliti');
             $table->integer('tahun')->length(4)->unsigned();
             $table->string('gambar');
+            $table->string('hasil_luaran');
+            $table->string('tingkat_luaran');
             $table->timestamps();
         });
     }
