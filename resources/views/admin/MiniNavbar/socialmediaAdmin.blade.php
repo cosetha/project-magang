@@ -53,7 +53,7 @@
                     <input type="text" class="form-control" id="nama_web" name="nama_web">
 
                     <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" id="link_Web" name="link">
+                    <input type="text" class="form-control" id="link_Web" name="link" placeholder="https://" value="https://">
 
                     <input type="hidden" class="form-control" id="jenis" name="menu" value="sosmed">
 
@@ -94,7 +94,7 @@
                     <input type="text" class="form-control" id="edit_nama_web" name="nama_web">
 
                     <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" id="edit_link_web" name="link">
+                    <input type="text" class="form-control" id="edit_link_web" name="link" placeholder="https://">
 
 
 
