@@ -10,12 +10,12 @@
 	<style>
 		body {
 		@if ($exception instanceof \Illuminate\Foundation\Http\Exceptions\MaintenanceModeException)
-		  background-image: url('{{asset("assets/errors/maintenance.png")}}');
+		  background-image: url('{{asset("assets/errors/maintenance.svg")}}');
 		  background-size: 100%;
 		  text-align: center;
 		  background-repeat: no-repeat;
 		@else
-		  background-image: url('{{asset("assets/errors/503.png")}}');
+		  background-image: url('{{asset("assets/errors/503.svg")}}');
 		  background-size: 100%;
 		  text-align: center;
 		  background-repeat: no-repeat;
