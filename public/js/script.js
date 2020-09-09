@@ -245,7 +245,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
-			data: { _token: token, semester: name },
+			data: { _token: token, semester_tambah: name },
 			success: function(response) {
 
                 if(response.message == "gagal"){
