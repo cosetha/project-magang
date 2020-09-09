@@ -85,6 +85,12 @@ class BeritaController
         $berita->id_penulis = $penulis;
         $berita->save();
 
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan Berita '".$judul."'";
+        $history->save();
+
         if($berita) {
           return response()->json([
             'status' => 'ok'

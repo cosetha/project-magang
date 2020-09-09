@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Bidang_keahlian;
+use App\Histori;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -67,9 +68,15 @@ class BidangKeahlianController extends Controller
                     $bk->gambar= $directory."/".$nama;
                     $bk->save();
 
-                return response()->json([
-                    'message' => 'success'
-                ]);
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan BK '".$request->nama."'";
+                    $history->save();
+
+                    return response()->json([
+                        'message' => 'success'
+                    ]);
                 }
              } catch (\Exception $e) {
 
@@ -127,7 +134,7 @@ class BidangKeahlianController extends Controller
                 'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
                 'nama.required'=>'Field Nama Perlu di Isi',
             );
-    
+
             $validator = Validator::make($request->all(),[
                 'nama' => 'required|string',
                 'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -144,20 +151,41 @@ class BidangKeahlianController extends Controller
                 $nama_file = time().$file->getClientOriginalName();
                 $file->name = $nama_file;
                 $file->move($directory, $file->name);
-    
-    
+
+
                 $bk = Bidang_keahlian::find($id);
+                if($bk->nama_bk != $request->nama){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit BK '".$bk->nama_bk."' menjadi '".$request->nama."'";
+                    $history->save();
+                }
+                if($bk->deskripsi != $request->deskripsi){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk;
+                    $history->save();
+                }
+                if($bk->gambar != $directory."/".$nama_file){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar BK '".$bk->nama_bk."'";
+                    $history->save();
+                }
                 try {
                     unlink($bk->gambar);
                 } catch (\Throwable $th) {
                     echo($th);
                }
-    
+
                 $bk->nama_bk = $request->nama;
                 $bk->deskripsi = $request->deskripsi;
                 $bk->gambar= $directory."/".$nama_file;
                 $bk->save();
-    
+
                 return response()->json([
                     'message' => 'success'
                 ]);
@@ -167,7 +195,7 @@ class BidangKeahlianController extends Controller
                 'deskripsi.required'=>'Field Deskripsi Perlu di Isi',
                 'nama.required'=>'Field Nama Perlu di Isi',
             );
-    
+
             $validator = Validator::make($request->all(),[
                 'nama' => 'required|string',
                 "deskripsi" => 'required|string',
@@ -179,6 +207,20 @@ class BidangKeahlianController extends Controller
                   ]);
              }else{
             $bk = Bidang_keahlian::find($id);
+            if($bk->nama_bk != $request->nama){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit BK '".$bk->nama_bk."' menjadi '".$request->nama."'";
+                $history->save();
+            }
+            if($bk->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk;
+                $history->save();
+            }
             $bk->nama_bk = $request->nama;
             $bk->deskripsi = $request->deskripsi;
             $bk->save();
@@ -187,9 +229,9 @@ class BidangKeahlianController extends Controller
             ]);
              }
         }
- 
 
-        
+
+
     }
 
     /**
@@ -201,6 +243,11 @@ class BidangKeahlianController extends Controller
     public function destroy($id)
     {
         $bk = Bidang_keahlian::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus BK '".$bk->nama_bk."'";
+        $history->save();
         try {
             unlink($bk->gambar);
         } catch (\Throwable $th) {

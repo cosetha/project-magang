@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Headline;
+use App\Histori;
 
 use DataTables;
 use Validator;
@@ -65,17 +66,23 @@ class HeadLineController extends Controller
                 $headline->caption = $request->caption;
                 $headline->gambar= $directory."/".$nama;
                 $headline->save();
-    
+
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Tambah";
+                $history->keterangan = "Menambahkan Headline '".$request->judul."'";
+                $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -112,7 +119,7 @@ class HeadLineController extends Controller
             ]);
             return response($res);
         }
-        
+
     }
 
     /**
@@ -148,12 +155,34 @@ class HeadLineController extends Controller
 
 
             $headline = Headline::find($id);
+            if($headline->judul != $request->judul){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit BK '".$headline->judul."' menjadi '".$request->judul."'";
+                    $history->save();
+            }
+            if($headline->caption != $request->caption){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Caption Headline '".$headline->judul;
+                $history->save();
+            }
+            if($headline->gambar != $directory."/".$nama_file){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Gambar Headline '".$headline->judul."'";
+                $history->save();
+            }
+
             try {
                 unlink($headline->gambar);
             } catch (\Throwable $th) {
                 echo($th);
             }
-            
+
 
             $headline->judul = $request->judul;
             $headline->caption = $request->caption;
@@ -180,6 +209,20 @@ class HeadLineController extends Controller
               ]);
          }else{
         $headline = Headline::find($id);
+        if($headline->judul != $request->judul){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit BK '".$headline->judul."' menjadi '".$request->judul."'";
+                $history->save();
+        }
+        if($headline->caption != $request->caption){
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Mengedit Caption Headline '".$headline->judul;
+            $history->save();
+        }
         $headline->judul = $request->judul;
         $headline->caption = $request->caption;
         $headline->save();
@@ -188,7 +231,7 @@ class HeadLineController extends Controller
         ]);
         }
     }
-    
+
     }
 
     /**
@@ -201,6 +244,11 @@ class HeadLineController extends Controller
     {
         try {
             $headline = Headline::find($id);
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Hapus";
+            $history->keterangan = "Menghapus Headline '".$headline->judul."'";
+            $history->save();
             try {
                 unlink($headline->gambar);
             } catch (\Throwable $th) {
@@ -216,7 +264,7 @@ class HeadLineController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
-        
+
     }
     public function LoadTableHeadLine(){
         return view('datatable.TableHeadLine');
