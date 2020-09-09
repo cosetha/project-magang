@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>@yield('title')</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/Login-image.png') }}">
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">

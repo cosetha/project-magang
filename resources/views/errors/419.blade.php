@@ -5,7 +5,7 @@
 <body>
 	<style>
 		body {
-		  background-image: url('{{asset("assets/errors/419.png")}}');
+		  background-image: url('{{asset("assets/errors/419.svg")}}');
 		  background-size: 100%;
 		  text-align: center;
 		  background-repeat: no-repeat;
