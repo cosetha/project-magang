@@ -269,6 +269,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Fasilitas
     Route::prefix('fasilitas')->group(function () {
       Route::get('/', 'PageController@Fasilitas');
+      Route::get('show/{id}', 'Fasilitas\FasilitasController@show');
       Route::post('/', 'Fasilitas\FasilitasController@store');
       Route::get('data', 'Fasilitas\FasilitasController@index');
       Route::get('datatable', 'Fasilitas\FasilitasController@loadTable');

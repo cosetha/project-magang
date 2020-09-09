@@ -55,29 +55,47 @@ $(document).ready(function() {
         $(".btn-loading").css("display","")
         $(".btn-close").css("display","none")
         var data = $("#FormAddLayanan").serialize()
-        $.ajax({
-            type: "post",
-            url: "/tambah/layanan",
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $("#LayananModal").modal("hide")
-                $("#FormAddLayanan").trigger("reset")
-                $(".btn-submit-layanan").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Layanan',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+        var nama = $("#nama_web").val()
+        var link = $("#link_Web").val()
+
+        if(nama != '' && link != ''){
+
+            $.ajax({
+                type: "post",
+                url: "/tambah/layanan",
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $("#LayananModal").modal("hide")
+                    $("#FormAddLayanan").trigger("reset")
+                    $(".btn-submit-layanan").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-close").css("display","")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Layanan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+
+        }else{
+            $(".btn-submit-layanan").css("display","")
+            $(".btn-loading").css("display","none")
+            $(".btn-close").css("display","")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
 
     })
 
@@ -133,32 +151,49 @@ $(document).ready(function() {
         e.preventDefault()
         var id = $("#id-layanan").val()
         var data = $("#FormEditLayanan").serialize()
+        var nama = $("#edit_nama_web").val()
+        var link = $("#edit_link_web").val()
 
         $(".btn-close").css("display","none")
         $(".btn-save-layanan").css("display","none")
         $(".btn-loading").css("display","")
-        $.ajax({
-            type: "post",
-            url: "admin/edit-layanan/"+id,
-            data: data,
-            success: function(response){
-                $("#table-weblink").DataTable().page('last').draw('page');
-                $(".btn-close").css("display","")
-                $(".btn-save-layanan").css("display","none")
-                $(".btn-loading").css("display","")
-                $("#FormEditLayanan").trigger("reset")
-                $("#editLayananModal").modal("hide")
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Memperbarui Layanan',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
+
+        if(nama != '' && link != ''){
+            $.ajax({
+                type: "post",
+                url: "admin/edit-layanan/"+id,
+                data: data,
+                success: function(response){
+                    $("#table-weblink").DataTable().page('last').draw('page');
+                    $(".btn-close").css("display","")
+                    $(".btn-save-layanan").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $("#FormEditLayanan").trigger("reset")
+                    $("#editLayananModal").modal("hide")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Memperbarui Layanan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            $(".btn-close").css("display","")
+            $(".btn-save-layanan").css("display","")
+            $(".btn-loading").css("display","none")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
     })
 })
