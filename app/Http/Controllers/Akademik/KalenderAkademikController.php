@@ -31,6 +31,9 @@ class KalenderAkademikController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-delete-kalender" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-kalender" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
+          </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -84,7 +87,13 @@ class KalenderAkademikController
      */
     public function show($id)
     {
-        //
+      $data = DB::table('kalender_akademik as k')->where('k.id', $id)
+      ->join('semester as s', 'k.kode_semester', '=', 's.id')
+      ->select('k.*', 's.semester')
+      ->get();
+      return response()->json([
+        'data' => $data
+      ]);
     }
 
     /**
@@ -142,9 +151,10 @@ class KalenderAkademikController
 
     public function listSemester()
     {
-      $data = Semester::get();
+      $data = Semester::where('status', 'aktif')->get();
       return response()->json([
         'data' => $data
       ]);
     }
+
 }
