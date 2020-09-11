@@ -20,7 +20,6 @@ $(document).ready(function() {
                   {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
                   {data: 'judul',name: 'judul'},
                   {data: 'semester',name: 'semester'},
-                  {data: 'deskripsi',name: 'deskripsi'},
                   {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
               ]
           });
@@ -175,32 +174,89 @@ $(document).ready(function() {
 
   //hapus kalender
   //hapus prestasi
-  $('body').on('click', '.btn-delete-kalender', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $('input[name=hapus-id]').val(id);
-    $('#deleteKalenderModal').modal('show');
-  });
+  // $('body').on('click', '.btn-delete-kalender', function(e) {
+  //   e.preventDefault();
+  //   var id = $(this).data('id');
+  //   $('input[name=hapus-id]').val(id);
+  //   $('#deleteKalenderModal').modal('show');
+  // });
+  //
+  // $('body').on('click', '#btn-confirm-kalender', function(e) {
+  //   e.preventDefault();
+  //   var id = $('input[name=hapus-id]').val();
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'kalender/delete/' + id,
+  //     contentType: false,
+  //     processData: false,
+  //     success: function(data) {
+  //       if(data.status == 'deleted') {
+  //         Swal.fire(
+  //             'Deleted!',
+  //             'Your file has been deleted.',
+  //             )
+  //         $('#deleteKalenderModal').modal('hide');
+  //         loadDataKalenderAkademik();
+  //       }
+  //     }
+  //   });
+  // });
 
-  $('body').on('click', '#btn-confirm-kalender', function(e) {
-    e.preventDefault();
-    var id = $('input[name=hapus-id]').val();
-    $.ajax({
-      type: 'GET',
-      url: 'kalender/delete/' + id,
-      contentType: false,
-      processData: false,
-      success: function(data) {
-        if(data.status == 'deleted') {
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              )
-          $('#deleteKalenderModal').modal('hide');
-          loadDataKalenderAkademik();
-        }
-      }
-    });
-  });
+  //hapus kalender
+  $('body').on('click', '.btn-delete-kalender', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      var judul = $(this).data('nama');
+      Swal.fire({
+          title: 'Anda yakin ingin menghapus ' + judul + '?',
+          text: "Anda tidak dapat membatalkan aksi ini!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: 'kalender/delete/' + id,
+                  contentType: false,
+                  processData: false,
+                  success: function(data) {
+                      if(data.status == 'deleted') {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              )
+                              loadDataKalenderAkademik();
+                          }
+                      }
+                  });
+
+              }
+          })
+
+      });
+
+      //tampil jadwal
+      $('body').on('click', '.btn-show-kalender', function(e) {
+          e.preventDefault();
+          var id = $(this).data('id');
+          $('input[name=edit-id]').val(id);
+
+          $('#list-semester-show').empty();
+                $.ajax({
+                    type: 'GET',
+                    url: 'kalender/show/' + id,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('#showKalenderModal').modal('show');
+                        $('#nama-kegiatan-show').val(data.data[0].judul);
+                        $("#list-semester-show").append('<option value="'+data.data[0].kode_semester+'"> '+ data.data[0].semester +' </option>');
+                        tinymce.get('deskripsi-kalender-show').setContent(data.data[0].deskripsi);
+                    }
+                });
+      });
 
 });
