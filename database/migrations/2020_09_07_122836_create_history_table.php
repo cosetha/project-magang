@@ -18,6 +18,7 @@ class CreateHistoryTable extends Migration
             $table->string('nama');
             $table->string('aksi');
             $table->string('keterangan');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

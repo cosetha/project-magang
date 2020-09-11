@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Akademik;
 
 use Illuminate\Http\Request;
 use App\Semester;
+use App\Histori;
 use App\KalenderAkademik as KA;
 use Illuminate\Support\Facades\DB;
 use DataTables;
@@ -69,6 +70,13 @@ class KalenderAkademikController
         $kalender->kode_semester = $semester;
         $kalender->deskripsi = $deskripsi;
         $kalender->save();
+
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Kalender Akademik '".$nama."'";
+                    $history->save();
+
         if($kalender) {
           return response()->json([
             'status' => 'ok'
@@ -115,6 +123,28 @@ class KalenderAkademikController
       $semester = $request->semester;
 
       $kalender =  KA::find($id);
+      if($kalender->judul != $nama){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Nama Kegiatan Kalender Akademik '".$nama."'";
+        $history->save();
+      }
+      if($kalender->kode_semester != $semester){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Semester Kalender Akademik '".$nama."'";
+        $history->save();
+
+      }
+      if($kalender->deskripsi != $deskripsi){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Deskripsi Kalender Akademik '".$nama."'";
+        $history->save();
+      }
       $kalender->judul = $nama;
       $kalender->kode_semester = $semester;
       $kalender->deskripsi = $deskripsi;
@@ -134,6 +164,13 @@ class KalenderAkademikController
      */
     public function destroy($id)
     {
+        $k = KA::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Kalender Akademik '".$k->judul."'";
+        $history->save();
+
         KA::destroy($id);
         return response()->json([
           'status' => 'deleted'

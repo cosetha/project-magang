@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Riset;
 
 use Illuminate\Http\Request;
 use App\Pengabdian;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -57,6 +58,12 @@ class PengabdianController
         $data->gambar = $fileName;
         $data->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Pengabdian '".$judul."'";
+                    $history->save();
+
           if($data) {
             return response()->json([
               'status' => 'ok'
@@ -106,6 +113,34 @@ class PengabdianController
           File::delete('img/riset/pengabdian/'. $gambarPath);
 
           $data = Pengabdian::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Pengabdian '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Pengabdian '".$judul."'";
+                    $history->save();
+          }
+          if($data->tahun != $tahun){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Pengabdian '".$judul."'";
+                    $history->save();
+          }
+          if($data->gambar != $fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Pengabdian '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
           $data->tahun = $request->tahun;
@@ -125,6 +160,27 @@ class PengabdianController
       } else {
 
           $data = Pengabdian::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Pengabdian '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Pengabdian '".$judul."'";
+                    $history->save();
+          }
+          if($data->tahun != $tahun){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Pengabdian '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->tahun = $request->tahun;
           $data->deskripsi = $deskripsi;
@@ -148,6 +204,11 @@ class PengabdianController
       File::delete('img/riset/pengabdian/'. $gambarPath);
 
       $destroy = Pengabdian::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Pengabdian '".$destroy->judul."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {

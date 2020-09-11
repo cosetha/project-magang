@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use Illuminate\Http\Request;
 use App\Bidang_keahlian as BK;
 use App\Prestasi;
+use App\Histori;
 use Illuminate\Support\Facades\DB;
 use DataTables, File;
 
@@ -58,6 +59,12 @@ class PrestasiController
           $prestasi->id_bidang_keahlian = $bk;
           $prestasi->tahun = $tahun;
           $prestasi->save();
+
+          $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Prestasi '".$namaKejuaraan."'";
+                    $history->save();
 
           if($prestasi) {
             return response()->json([
@@ -114,6 +121,50 @@ class PrestasiController
           File::delete($pathDelete);
 
           $prestasi = Prestasi::find($id);
+
+            if($prestasi->nama_kejuaraan != $namaKejuaraan){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Prestasi '".$prestasi->nama_kejuaraan."' menjadi '".$namaKejuaraan."'";
+                    $history->save();
+            }
+            if($prestasi->peringkat != $peringkat){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Peringkat Prestasi '".$prestasi->nama_kejuaraan."'";
+                    $history->save();
+            }
+            if($prestasi->nama != $nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Nama Prestasi '".$prestasi->nama_kejuaraan."'";
+                    $history->save();
+            }
+            if($prestasi->id_bidang_keahlian != $bk){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit BK Prestasi '".$prestasi->nama_kejuaraan."'";
+                    $history->save();
+            }
+            if($prestasi->tahun != $tahun){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Prestasi '".$prestasi->nama_kejuaraan."'";
+                    $history->save();
+            }
+            if($prestasi->gambar != $gambarPath.'/'.$gambarName){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Prestasi '".$prestasi->nama_kejuaraan."'";
+                    $history->save();
+            }
+
           $prestasi->gambar = $gambarPath.'/'.$gambarName;
           $prestasi->nama_kejuaraan = $namaKejuaraan;
           $prestasi->peringkat = $peringkat;
@@ -135,6 +186,41 @@ class PrestasiController
 
       } else {
         $prestasi = Prestasi::find($id);
+        if($prestasi->nama_kejuaraan != $namaKejuaraan){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Prestasi '".$prestasi->nama_kejuaraan."' menjadi '".$namaKejuaraan."'";
+                $history->save();
+        }
+        if($prestasi->peringkat != $peringkat){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Peringkat Prestasi '".$prestasi->nama_kejuaraan."'";
+                $history->save();
+        }
+        if($prestasi->nama != $nama){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Nama Prestasi '".$prestasi->nama_kejuaraan."'";
+                $history->save();
+        }
+        if($prestasi->id_bidang_keahlian != $bk){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit BK Prestasi '".$prestasi->nama_kejuaraan."'";
+                $history->save();
+        }
+        if($prestasi->tahun != $tahun){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Tahun Prestasi '".$prestasi->nama_kejuaraan."'";
+                $history->save();
+        }
         $prestasi->nama_kejuaraan = $namaKejuaraan;
         $prestasi->peringkat = $peringkat;
         $prestasi->nama = $nama;
@@ -153,6 +239,14 @@ class PrestasiController
     {
       $pathDelete = Prestasi::where('id', $id)->value('gambar');
       File::delete($pathDelete);
+
+      $prestasi = Prestasi::find($id);
+      $history = new Histori;
+      $history->nama = auth()->user()->name;
+      $history->aksi = "Hapus";
+      $history->keterangan = "Menghapus Prestasi '".$prestasi->nama_kejuaraan."'";
+      $history->save();
+
       Prestasi::destroy($id);
       return response()->json([
         'status' => 'deleted'

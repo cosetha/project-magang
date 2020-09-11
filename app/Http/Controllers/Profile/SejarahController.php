@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Validator;
 use App\Konten;
+use App\Histori;
 class SejarahController extends Controller
 {
     /**
@@ -53,23 +54,29 @@ class SejarahController extends Controller
               ]);
          }else{
             try {
-                
+
                 $konten = new Konten;
                 $konten->judul = $request->judul;
                 $konten->deskripsi = $request->deskripsi;
                 $konten->menu = $request->menu;
                 $konten->save();
-    
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Sejarah '".$request->judul."'";
+                    $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -133,6 +140,20 @@ class SejarahController extends Controller
               ]);
          }else{
             $konten = Konten::find($id);
+            if($konten->judul != $request->judul){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Sejarah '".$konten->judul."' menjadi '".$request->judul."'";
+                    $history->save();
+            }
+            if($konten->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Deskripsi Sejarah '".$request->judul."'";
+                $history->save();
+            }
             $konten->judul = $request->judul;
             $konten->deskripsi = $request->deskripsi;
             $konten->menu = $request->menu;
@@ -141,7 +162,7 @@ class SejarahController extends Controller
                 'message' => 'Success'
             ]);
          }
-        
+
     }
 
     /**
@@ -154,6 +175,11 @@ class SejarahController extends Controller
     {
         try {
             $konten = Konten::find($id);
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Hapus";
+            $history->keterangan = "Menghapus Sejarah '".$konten->judul."'";
+            $history->save();
             $konten->delete();
             return response()->json([
                 "message" => "Success"

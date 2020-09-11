@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables, File;
 use App\Semester;
+use App\Histori;
 use App\Bidang_keahlian as BK;
 use App\Jadwal_kuliah as J;
 
@@ -73,6 +74,12 @@ class JadwalKuliahController
           $jadwal->kode_bk = $semester;
           $jadwal->kode_semester = $semester;
           $jadwal->save();
+
+          $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Jadwal Kuliah '".$nama."'";
+                    $history->save();
           if($jadwal) {
             return response()->json([
               'status' => 'ok'
@@ -132,9 +139,37 @@ class JadwalKuliahController
         File::delete($fileDelete);
 
         $jadwal = J::find($id);
+        if($jadwal->nama_jadwal != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Jadwal Kuliah '".$jadwal->nama_jadwal."' menjadi '".$nama."'";
+                    $history->save();
+        }
+        if($jadwal->kode_bk != $bk){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit BK Jadwal Kuliah '".$nama."'";
+                    $history->save();
+        }
+        if($jadwal->kode_semester != $semester){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Semester Jadwal Kuliah '".$nama."'";
+                    $history->save();
+        }
+        if($jadwal->file != $filePath.'/'.$fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit File Jadwal Kuliah '".$nama."'";
+                    $history->save();
+        }
         $jadwal->nama_jadwal = $nama;
         $jadwal->file = $filePath.'/'.$fileName;
-        $jadwal->kode_bk = $semester;
+        $jadwal->kode_bk = $bk;
         $jadwal->kode_semester = $semester;
         $jadwal->save();
         if($jadwal) {
@@ -158,6 +193,14 @@ class JadwalKuliahController
     public function destroy($id)
     {
         $fileDelete = J::find($id)->value('file');
+
+        $j = J::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Jadwal Kuliah '".$j->nama_jadwal."'";
+        $history->save();
+
         File::delete($fileDelete);
         J::destroy($id);
         return response()->json([

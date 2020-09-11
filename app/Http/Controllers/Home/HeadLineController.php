@@ -166,7 +166,7 @@ class HeadLineController extends Controller
                 $history = new Histori;
                 $history->nama = auth()->user()->name;
                 $history->aksi = "Edit";
-                $history->keterangan = "Mengedit Caption Headline '".$headline->judul;
+                $history->keterangan = "Mengedit Caption Headline '".$headline->judul."'";
                 $history->save();
             }
             if($headline->gambar != $directory."/".$nama_file){
@@ -220,7 +220,7 @@ class HeadLineController extends Controller
             $history = new Histori;
             $history->nama = auth()->user()->name;
             $history->aksi = "Edit";
-            $history->keterangan = "Mengedit Caption Headline '".$headline->judul;
+            $history->keterangan = "Mengedit Caption Headline '".$headline->judul."'";
             $history->save();
         }
         $headline->judul = $request->judul;

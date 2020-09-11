@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Dosen;
+use \App\Histori;
 use DataTables;
 use App\Exports\DosenExport;
 use App\Imports\DosenImport;
@@ -55,6 +56,12 @@ class DosenController extends Controller
             $dosen->gambar= $directory."/".$nama;
             $dosen->save();
 
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Dosen '".$request->nama."'";
+                    $history->save();
+
             return response()->json([
                 'message' => 'success'
             ]);
@@ -91,6 +98,27 @@ class DosenController extends Controller
             $file->move($directory, $file->name);
 
             $dosen = Dosen::find($id);
+            if($dosen->nama != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dosen '".$dosen->nama."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($dosen->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
+            if($dosen->gambar != $directory."/".$nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
 
             unlink($dosen->gambar);
 
@@ -121,6 +149,20 @@ class DosenController extends Controller
             }
 
             $dosen = Dosen::find($id);
+            if($dosen->nama != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dosen '".$dosen->nama."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($dosen->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
             $dosen->nama = $request->nama;
             $dosen->deskripsi = $request->deskripsi;
             $dosen->save();
@@ -133,6 +175,11 @@ class DosenController extends Controller
 
     public function destroy($id){
         $d = Dosen::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Dosen '".$d->nama."'";
+        $history->save();
         $d->delete();
 
         return response([
@@ -191,6 +238,12 @@ class DosenController extends Controller
     public function import_excel(Request $request){
 
 		$file = $request->file('file');
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Mengimport file Dosen";
+        $history->save();
 
 		// import data
 		Excel::import(new DosenImport, $file);

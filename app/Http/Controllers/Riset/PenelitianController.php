@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Riset;
 
 use Illuminate\Http\Request;
 use App\Penelitian;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -59,6 +60,12 @@ class PenelitianController
         $data->gambar = $fileName;
         $data->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Penelitian '".$judul."'";
+                    $history->save();
+
           if($data) {
             return response()->json([
               'status' => 'ok'
@@ -109,6 +116,41 @@ class PenelitianController
           File::delete('img/riset/penelitian/'. $gambarPath);
 
           $data = Penelitian::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Penelitian '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->peneliti != $peneliti){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Nama Peneliti '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Penelitian '".$judul."'";
+                    $history->save();
+          }
+          if($data->tahun != $tahun){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Penelitian '".$judul."'";
+                    $history->save();
+          }
+          if($data->gambar != $fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Penelitian '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
@@ -129,6 +171,34 @@ class PenelitianController
       } else {
 
           $data = Penelitian::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Penelitian '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->peneliti != $peneliti){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Nama Peneliti '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Penelitian '".$judul."'";
+                    $history->save();
+          }
+          if($data->tahun != $tahun){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Penelitian '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
@@ -153,6 +223,11 @@ class PenelitianController
       File::delete('img/riset/penelitian/'. $gambarPath);
 
       $destroy = Penelitian::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Penelitian '".$destroy->judul."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {
