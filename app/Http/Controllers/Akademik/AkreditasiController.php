@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Akreditasi;
+use App\Histori;
 use DataTables;
 use Validator;
 
@@ -50,6 +51,12 @@ class AkreditasiController extends Controller
                 $akreditasi->tanggal_mulai = $request->tanggal_mulai;
                 $akreditasi->tanggal_selesai = $request->tanggal_selesai;
                 $akreditasi->save();
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Akreditrasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                    $history->save();
 
                 return response()->json([
                     'message' => 'Success'
@@ -105,6 +112,34 @@ class AkreditasiController extends Controller
                     $file->move($directory, $file->name);
 
                     $akreditasi = Akreditasi::find($id);
+                    if($akreditasi->nilai != $request->nilai){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Nilai Akreditrasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                        $history->save();
+                    }
+                    if($akreditasi->tanggal_mulai != $request->tanggal_mulai){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Tanggal Mulai Akreditasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                        $history->save();
+                    }
+                    if($akreditasi->tanggal_selesai != $request->tanggal_selesai){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Tanggal Selesai Akreditasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                        $history->save();
+                    }
+                    if($akreditasi->file != $directory."/".$nama){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Serifikat Akreditasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                        $history->save();
+                    }
 
                     unlink($akreditasi->file);
 
@@ -135,6 +170,11 @@ class AkreditasiController extends Controller
     {
         try {
             $akreditasi = Akreditasi::find($id);
+            $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Hapus";
+                        $history->keterangan = "Menghapus Akreditasi Tahun '".$akreditasi->tanggal_mulai." - ".$akreditasi->tanggal_selesai."'";
+                        $history->save();
             $akreditasi->delete();
             return response()->json([
                 "message" => "Success"
@@ -150,6 +190,10 @@ class AkreditasiController extends Controller
         DB::table('akreditasi')->update(array('status' => 'nonaktif'));
 
         $a = Akreditasi::find($id);
+        $history->nama = auth()->user()->name;
+                        $history->aksi = "Mengaktifkan";
+                        $history->keterangan = "Mengaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
+                        $history->save();
         $a->status = "aktif";
         $a->save();
 
@@ -160,6 +204,10 @@ class AkreditasiController extends Controller
 
     public function nonAktifkan($id){
         $a = Akreditasi::find($id);
+        $history->nama = auth()->user()->name;
+                        $history->aksi = "Menonaktifkan";
+                        $history->keterangan = "Menonaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
+                        $history->save();
         $a->status = "nonaktif";
         $a->save();
 

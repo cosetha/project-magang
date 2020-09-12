@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Akademik;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Konten;
+use \App\Histori;
 use DataTables;
 
 class TugasAkhirController extends Controller
@@ -20,6 +21,12 @@ class TugasAkhirController extends Controller
         $k->deskripsi = $request->deskripsi;
         $k->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Tugas Akhir '".$request->judul."'";
+                    $history->save();
+
         return response([
             'message' => 'sukses'
         ]);
@@ -27,6 +34,11 @@ class TugasAkhirController extends Controller
 
     public function destroy($id){
         $a = Konten::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Tugas Akhir '".$a->judul."'";
+        $history->save();
         $a->delete();
 
         return response([
@@ -44,6 +56,20 @@ class TugasAkhirController extends Controller
 
     public function update(Request $request,$id){
         $a = Konten::find($id);
+        if($a->judul != $request->edit_judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tugas Akhir '".$a->judul."' menjadi '".$request->edit_judul."'";
+                    $history->save();
+        }
+        if($a->deskripsi != $request->edit_deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Tugas Akhir '".$request->edit_deskripsi."'";
+                    $history->save();
+        }
         $a->judul = $request->edit_judul;
         $a->deskripsi = $request->edit_deskripsi;
         $a->Save();

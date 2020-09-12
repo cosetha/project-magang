@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemahasiswaan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Alumni;
+use App\Histori;
 use App\Bidang_keahlian;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,7 @@ class AlumniController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -64,17 +65,23 @@ class AlumniController extends Controller
                 $alumni->kode_bk = $request->bk;
                 $alumni->tahun_angkatan = $request->angkatan;
                 $alumni->save();
-    
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Data Alumni '".$request->nama."'";
+                    $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -141,6 +148,34 @@ class AlumniController extends Controller
          }else{
             try {
                 $alumni = Alumni::find($id);
+                if($alumni->nama_alumni != $request->nama){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Data Alumni '".$alumni->nama_alumni."' menjadi '".$request->nama."'";
+                    $history->save();
+                }
+                if($alumni->tgl_lulus != $request->lulus){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tanggal Lulus Data Alumni '".$request->nama."'";
+                    $history->save();
+                }
+                if($alumni->kode_bk != $request->bk){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit BK Data Alumni '".$request->nama."'";
+                    $history->save();
+                }
+                if($alumni->tahun_angkatan != $request->angkatan){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tahun Angkatan Data Alumni '".$request->nama."'";
+                    $history->save();
+                }
                 $alumni->nama_alumni = $request->nama;
                 $alumni->tgl_lulus = $request->lulus;
                 $alumni->kode_bk = $request->bk;
@@ -149,14 +184,14 @@ class AlumniController extends Controller
                 return response()->json([
                     'message' => 'Success'
                 ]);
-                
+
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -170,6 +205,11 @@ class AlumniController extends Controller
     {
         try {
             $alumni = Alumni::find($id);
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Hapus";
+            $history->keterangan = "Menghapus Data Alumni '".$alumni->nama_alumni."'";
+            $history->save();
             $alumni->delete();
             return response()->json([
                 "message" => "Success"

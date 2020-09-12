@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\StrukturOrganisasiProdi;
+use \App\Histori;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Storage;
@@ -48,9 +49,15 @@ class StrukturOrganisasiController extends Controller
             $so->gambar= $directory."/".$nama;
             $so->save();
 
-        return response()->json([
-            'message' => 'success'
-        ]);
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Struktur Organisasi '".$request->nama."'";
+                    $history->save();
+
+            return response()->json([
+                'message' => 'success'
+            ]);
         }
     }
 
@@ -85,6 +92,29 @@ class StrukturOrganisasiController extends Controller
             $file->move($directory, $file->name);
 
             $so = StrukturOrganisasiProdi::find($id);
+
+            if($so->judul != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Struktur Organisasi '".$so->judul."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($so->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Struktur Organisasi '".$so->judul."'";
+                    $history->save();
+            }
+            if($so->gambar != $directory."/".$nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Logo Struktur Organisasi '".$so->judul."'";
+                    $history->save();
+            }
+
             try {
                 unlink($so->gambar);
             } catch (\Throwable $th) {
@@ -117,6 +147,20 @@ class StrukturOrganisasiController extends Controller
             }
 
             $so = StrukturOrganisasiProdi::find($id);
+            if($so->judul != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Struktur Organisasi '".$so->judul."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($so->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Struktur Organisasi '".$so->judul."'";
+                    $history->save();
+            }
             $so->judul = $request->nama;
             $so->deskripsi = $request->deskripsi;
             $so->save();
@@ -129,6 +173,11 @@ class StrukturOrganisasiController extends Controller
 
     public function destroy($id){
         $so = StrukturOrganisasiProdi::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Struktur Organisasi '".$so->judul."'";
+        $history->save();
         $so->delete();
 
         return response([

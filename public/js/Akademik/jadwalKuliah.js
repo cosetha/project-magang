@@ -211,32 +211,68 @@ $(document).ready(function() {
 
   //hapus jadwal
   //hapus prestasi
-  $('body').on('click', '.btn-delete-jadwal', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $('input[name=hapus-id]').val(id);
-    $('#deleteJadwalModal').modal('show');
-  });
+  // $('body').on('click', '.btn-delete-jadwal', function(e) {
+  //   e.preventDefault();
+  //   var id = $(this).data('id');
+  //   $('input[name=hapus-id]').val(id);
+  //   $('#deleteJadwalModal').modal('show');
+  // });
+  //
+  // $('body').on('click', '#btn-confirm-hapus', function(e) {
+  //   e.preventDefault();
+  //   var id = $('input[name=hapus-id]').val();
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'jadwal/delete/' + id,
+  //     contentType: false,
+  //     processData: false,
+  //     success: function(data) {
+  //       if(data.status == 'deleted') {
+  //         Swal.fire(
+  //             'Deleted!',
+  //             'Your file has been deleted.',
+  //             )
+  //         $('#deleteJadwalModal').modal('hide');
+  //         loadDataJadwalKuliah();
+  //       }
+  //     }
+  //   });
+  // });
 
-  $('body').on('click', '#btn-confirm-hapus', function(e) {
-    e.preventDefault();
-    var id = $('input[name=hapus-id]').val();
-    $.ajax({
-      type: 'GET',
-      url: 'jadwal/delete/' + id,
-      contentType: false,
-      processData: false,
-      success: function(data) {
-        if(data.status == 'deleted') {
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              )
-          $('#deleteJadwalModal').modal('hide');
-          loadDataJadwalKuliah();
-        }
-      }
-    });
-  });
+  //hapus jadwal
+  $('body').on('click', '.btn-delete-jadwal', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      var judul = $(this).data('nama');
+      Swal.fire({
+          title: 'Anda yakin ingin menghapus ' + judul + '?',
+          text: "Anda tidak dapat membatalkan aksi ini!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: 'jadwal/delete/' + id,
+                  contentType: false,
+                  processData: false,
+                  success: function(data) {
+                      if(data.status == 'deleted') {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              )
+                              loadDataJadwalKuliah();
+                          }
+                      }
+                  });
+
+              }
+          })
+
+      });
 
 });

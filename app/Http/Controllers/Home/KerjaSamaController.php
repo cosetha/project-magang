@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Validator;
 use App\KerjaSama;
+use App\Histori;
 
 class KerjaSamaController extends Controller
 {
@@ -68,17 +69,23 @@ class KerjaSamaController extends Controller
                 $kerjasama->caption = $request->caption;
                 $kerjasama->gambar= $directory."/".$nama;
                 $kerjasama->save();
-    
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Kerja Sama '".$request->perusahaan."'";
+                    $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -149,21 +156,50 @@ class KerjaSamaController extends Controller
                 $nama_file = time().$file->getClientOriginalName();
                 $file->name = $nama_file;
                 $file->move($directory, $file->name);
-    
-    
+
+
                 $kerjasama = KerjaSama::find($id);
+                if($kerjasama->perusahaan != $request->perusahaan){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Kerja Sama '".$kerjasama->perusahaan."' menjadi '".$request->perusahaan."'";
+                    $history->save();
+                }
+                if($kerjasama->link != $request->link){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Link Kerja Sama '".$request->perusahaan."'";
+                    $history->save();
+                }
+                if($kerjasama->caption != $request->caption){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Caption Kerja Sama '".$request->perusahaan."'";
+                    $history->save();
+                }
+                if($kerjasama->gambar != $directory."/".$nama_file){
+                    $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Logo Kerja Sama '".$request->perusahaan."'";
+                    $history->save();
+                }
+
                 try {
                     unlink($kerjasama->gambar);
                 } catch (\Throwable $th) {
                     echo($th);
                 }
-    
+
                 $kerjasama->perusahaan = $request->perusahaan;
                 $kerjasama->link = $request->link;
                 $kerjasama->caption = $request->caption;
                 $kerjasama->gambar= $directory."/".$nama_file;
                 $kerjasama->save();
-    
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
@@ -185,6 +221,27 @@ class KerjaSamaController extends Controller
                   ]);
              }else{
             $kerjasama = KerjaSama::find($id);
+            if($kerjasama->perusahaan != $request->perusahaan){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Kerja Sama '".$kerjasama->perusahaan."' menjadi '".$request->perusahaan."'";
+                $history->save();
+            }
+            if($kerjasama->link != $request->link){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Link Kerja Sama '".$request->perusahaan."'";
+                $history->save();
+            }
+            if($kerjasama->caption != $request->caption){
+                $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Caption Kerja Sama '".$request->perusahaan."'";
+                $history->save();
+            }
             $kerjasama->perusahaan = $request->perusahaan;
             $kerjasama->link = $request->link;
             $kerjasama->caption = $request->caption;
@@ -194,14 +251,14 @@ class KerjaSamaController extends Controller
             ]);
              }
         }
-       
-           
 
-                
-           
-              
-            
-         
+
+
+
+
+
+
+
     }
 
     /**

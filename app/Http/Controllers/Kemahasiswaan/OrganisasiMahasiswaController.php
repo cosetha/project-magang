@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemahasiswaan;
 
 use Illuminate\Http\Request;
 use App\OrganisasiMahasiswa;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -57,6 +58,12 @@ class OrganisasiMahasiswaController
         $data->logo = $fileName;
         $data->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Organisasi '".$nama."'";
+                    $history->save();
+
           if($data) {
             return response()->json([
               'status' => 'ok'
@@ -104,6 +111,27 @@ class OrganisasiMahasiswaController
           File::delete('img/kemahasiswaan/organisasi/'. $logoPath);
 
           $data = OrganisasiMahasiswa::find($id);
+          if($data->nama != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Organisasi '".$data->nama."' menjadi '".$nama."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Organisasi '".$nama."'";
+                    $history->save();
+          }
+          if($data->logo != $fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Logo Organisasi '".$nama."'";
+                    $history->save();
+          }
           $data->nama = $nama;
           $data->deskripsi = $deskripsi;
           $data->logo = $fileName;
@@ -122,6 +150,20 @@ class OrganisasiMahasiswaController
       } else {
 
           $data = OrganisasiMahasiswa::find($id);
+          if($data->nama != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Organisasi '".$data->nama."' menjadi '".$nama."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Organisasi '".$nama."'";
+                    $history->save();
+          }
           $data->nama = $nama;
           $data->deskripsi = $deskripsi;
           $data->save();
@@ -144,6 +186,11 @@ class OrganisasiMahasiswaController
       File::delete('img/kemahasiswaan/organisasi/'. $logoPath);
 
       $destroy = OrganisasiMahasiswa::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Organisasi '".$destroy->nama."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {

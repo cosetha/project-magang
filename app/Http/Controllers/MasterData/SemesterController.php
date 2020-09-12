@@ -105,13 +105,12 @@ class SemesterController extends Controller
             ]);
         }
 
+        $semester = Semester::find($id);
         $history = new Histori;
         $history->nama = auth()->user()->name;
         $history->aksi = "Edit";
-        $history->keterangan = "Mengedit Semester '".$s->semester."' menjadi '".$request->semester."'";
+        $history->keterangan = "Mengedit Semester '".$semester->semester."' menjadi '".$request->semester."'";
         $history->save();
-
-        $semester = Semester::find($id);
         $semester->semester = $request->semester;
         $semester->save();
 

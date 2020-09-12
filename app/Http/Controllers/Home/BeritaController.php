@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Berita;
+use App\Histori;
 use DataTables;
 use Illuminate\Support\Facades\DB;
 use File;
@@ -172,6 +173,29 @@ class BeritaController
           $gambar->move($gambarPath, $gambarName, "public");
 
           $berita = Berita::find($id);
+
+            if($berita->judul != $judul){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Berita '".$berita->judul."' menjadi '".$judul."'";
+                    $history->save();
+            }
+            if($berita->deskripsi != $deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Berita '".$judul."'";
+                    $history->save();
+            }
+            if($berita->gambar != $gambarPath."/".$gambarName){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Berita '".$judul."'";
+                    $history->save();
+            }
+
           $berita->judul = $judul;
           $berita->gambar = $gambarPath."/".$gambarName;
           $berita->deskripsi = $deskripsi;
@@ -194,6 +218,22 @@ class BeritaController
         }
       } else {
         $berita = Berita::find($id);
+
+        if($berita->judul != $judul){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Berita '".$berita->judul."' menjadi '".$judul."'";
+                $history->save();
+        }
+        if($berita->deskripsi != $deskripsi){
+            $history = new Histori;
+                $history->nama = auth()->user()->name;
+                $history->aksi = "Edit";
+                $history->keterangan = "Mengedit Deskripsi Berita '".$judul."'";
+                $history->save();
+        }
+
         $berita->judul = $judul;
         $berita->deskripsi = $deskripsi;
         $berita->id_penulis = $penulis;
@@ -223,6 +263,11 @@ class BeritaController
       File::delete($gambarPath);
 
         $del = Berita::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Berita '".$del->judul."'";
+        $history->save();
         $del->delete();
         return response()->json([
           'status' => 'deleted'

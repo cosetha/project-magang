@@ -165,7 +165,7 @@ class BidangKeahlianController extends Controller
                     $history = new Histori;
                     $history->nama = auth()->user()->name;
                     $history->aksi = "Edit";
-                    $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk;
+                    $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk."'";
                     $history->save();
                 }
                 if($bk->gambar != $directory."/".$nama_file){
@@ -218,7 +218,7 @@ class BidangKeahlianController extends Controller
                 $history = new Histori;
                 $history->nama = auth()->user()->name;
                 $history->aksi = "Edit";
-                $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk;
+                $history->keterangan = "Mengedit Deskripsi BK '".$bk->nama_bk."'";
                 $history->save();
             }
             $bk->nama_bk = $request->nama;

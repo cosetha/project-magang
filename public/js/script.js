@@ -725,7 +725,7 @@ $(document).ready(function() {
 
 		formData.append('gambar', files);
 		formData.append('nama', name);
-		formData.append('email', email);
+        formData.append('email', email);
 
 		$.ajax({
 			type: 'POST',
@@ -734,6 +734,7 @@ $(document).ready(function() {
 			contentType: false,
 			processData: false,
 			success: function(data) {
+
 				if (data.status == '1') {
 					Swal.fire({
 						icon: 'success',
@@ -760,7 +761,10 @@ $(document).ready(function() {
 						showConfirmButton: false
 					});
 				}
-			}
+            },
+            error: function(err){
+                console.log(err)
+            }
 		});
 	});
 
@@ -1035,6 +1039,262 @@ $(document).ready(function() {
     });
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
+
+    //ALERT HISTORY COUNT
+    AlertCount()
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total)
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    }
+
+    //OPEN ALERT HISTORY
+    $("#alertsDropdown").on("click", function(e){
+        e.preventDefault
+        AlertHistory()
+    })
+
+    $(document).on('click', '#dm', function (e) {
+        e.stopPropagation();
+      });
+
+    //LIST ALERT HISTORY;
+    function AlertHistory(){
+        $.ajax({
+            type: "get",
+            url: "/today-history-alert",
+            success: function(response){
+                $('#list-alert-history').html('');
+                let history = response.data
+
+                $.each(history,function (i, data){
+                    // console.log(history[i].nama)
+                    // console.log(response.user)
+                    if(history[i].nama == response.user){
+                        if(history[i].aksi == "Tambah"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }else if(history[i].aksi == "Hapus"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">Anda</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }
+
+                    }else{
+                        if(history[i].aksi == "Tambah"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }else if(history[i].aksi == "Hapus"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }
+
+                    }
+
+                })
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    }
+
+    //KLIK HISTORY
+    $("body").on("click",".btn-history", function(e){
+        e.preventDefault()
+        var id = $(this).attr("data-id")
+        console.log(id)
+
+        $.ajax({
+            type: "get",
+            url: "/history-clicked/"+id,
+            success: function(response){
+                AlertCount()
+                AlertHistory()
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
 	$.getScript('/js/Home/headline.js');
 	$.getScript('/js/Home/kerjasama.js');
