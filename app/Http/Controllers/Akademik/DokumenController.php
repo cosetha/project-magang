@@ -55,6 +55,11 @@ class DokumenController
     public function store(Request $request)
     {
         $nama = $request->nama;
+        // $validatedData = $request->validateWithBag('post', [
+        //     // 'title' => ['required', 'unique:posts', 'max:255'],
+        //     'file' => 'required|max:10000|mimes:doc,docx,pdf,xls,xlsx'
+        // ]);
+
         $file = $request->file('file');
         $namaOriFile = $file->getClientOriginalName();
         $fileName = time().'_'.$namaOriFile;
@@ -173,7 +178,7 @@ class DokumenController
      */
     public function destroy($id)
     {
-        $fileDelete = Dokumen::find($id)->value('file');
+        $fileDelete = Dokumen::where('id', $id)->value('file');
         File::delete($fileDelete);
 
         $d = Dokumen::find($id);

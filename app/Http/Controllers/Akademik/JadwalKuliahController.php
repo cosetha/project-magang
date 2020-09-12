@@ -36,7 +36,11 @@ class JadwalKuliahController
           </a>';
           return $btn;
         })
-      ->rawColumns(['aksi'])
+        ->addColumn('file_jadwal', function($row){
+            $file = '<a href="'.$row->file.'" >'.$row->file.'</a>';
+            return $file;
+          })
+      ->rawColumns(['aksi', 'file_jadwal'])
       ->make(true);
     }
 

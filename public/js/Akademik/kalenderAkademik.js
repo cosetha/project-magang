@@ -173,36 +173,6 @@ $(document).ready(function() {
   });
 
   //hapus kalender
-  //hapus prestasi
-  // $('body').on('click', '.btn-delete-kalender', function(e) {
-  //   e.preventDefault();
-  //   var id = $(this).data('id');
-  //   $('input[name=hapus-id]').val(id);
-  //   $('#deleteKalenderModal').modal('show');
-  // });
-  //
-  // $('body').on('click', '#btn-confirm-kalender', function(e) {
-  //   e.preventDefault();
-  //   var id = $('input[name=hapus-id]').val();
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'kalender/delete/' + id,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function(data) {
-  //       if(data.status == 'deleted') {
-  //         Swal.fire(
-  //             'Deleted!',
-  //             'Your file has been deleted.',
-  //             )
-  //         $('#deleteKalenderModal').modal('hide');
-  //         loadDataKalenderAkademik();
-  //       }
-  //     }
-  //   });
-  // });
-
-  //hapus kalender
   $('body').on('click', '.btn-delete-kalender', function(e) {
       e.preventDefault();
       var id = $(this).data('id');

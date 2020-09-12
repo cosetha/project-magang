@@ -21,7 +21,7 @@ $(document).ready(function() {
                   {data: 'nama_jadwal',name: 'nama_jadwal'},
                   {data: 'semester',name: 'semester'},
                   {data: 'nama_bk',name: 'nama_bk'},
-                  {data: 'file',name: 'file'},
+                  {data: 'file_jadwal',name: 'file_jadwal'},
                   {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
               ]
           });
@@ -208,36 +208,6 @@ $(document).ready(function() {
     });
   }
   });
-
-  //hapus jadwal
-  //hapus prestasi
-  // $('body').on('click', '.btn-delete-jadwal', function(e) {
-  //   e.preventDefault();
-  //   var id = $(this).data('id');
-  //   $('input[name=hapus-id]').val(id);
-  //   $('#deleteJadwalModal').modal('show');
-  // });
-  //
-  // $('body').on('click', '#btn-confirm-hapus', function(e) {
-  //   e.preventDefault();
-  //   var id = $('input[name=hapus-id]').val();
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'jadwal/delete/' + id,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function(data) {
-  //       if(data.status == 'deleted') {
-  //         Swal.fire(
-  //             'Deleted!',
-  //             'Your file has been deleted.',
-  //             )
-  //         $('#deleteJadwalModal').modal('hide');
-  //         loadDataJadwalKuliah();
-  //       }
-  //     }
-  //   });
-  // });
 
   //hapus jadwal
   $('body').on('click', '.btn-delete-jadwal', function(e) {
