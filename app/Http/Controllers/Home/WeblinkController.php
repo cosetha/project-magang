@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use \App\WebLink;
+use \App\Histori;
 use DataTables;
 
 class WeblinkController extends Controller
@@ -28,6 +29,12 @@ class WeblinkController extends Controller
     }
 
     public function store(Request $request){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan ".$request->menu." '".$request->nama_web."'";
+        $history->save();
+
         WebLink::create($request->all());
 
         return response([
@@ -36,6 +43,13 @@ class WeblinkController extends Controller
     }
 
     public function destroy($id){
+        $w = WebLink::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus ".$w->menu." '".$w->nama_web."'";
+        $history->save();
+
         $weblink = WebLink::find($id);
         $weblink->delete();
 
@@ -45,6 +59,23 @@ class WeblinkController extends Controller
     }
 
     public function update(Request $request, $id){
+
+        $w = WebLink::find($id);
+        if($w->nama_web != $request->nama_web){
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Mengedit ".$w->menu." '".$w->nama_web."' menjadi '".$request->nama_web."'";
+            $history->save();
+        }
+        if($w->link != $request->link){
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Mengedit ".$w->menu." '".$w->link."' menjadi '".$request->link."'";
+            $history->save();
+        }
+
         $weblink = WebLink::find($id);
         $weblink->nama_web = $request->nama_web;
         $weblink->link = $request->link;
@@ -57,14 +88,6 @@ class WeblinkController extends Controller
 
     public function LoadTableWebLink(){
         return view("datatable.TableWeblink");
-    }
-
-    public function RedirectLayanan($data){
-        // dd($data);
-        $url = 'http://'.$data;
-        Redirect::to($url);
-
-        return redirect($url);
     }
 
     public function LoadDataSosmed(){

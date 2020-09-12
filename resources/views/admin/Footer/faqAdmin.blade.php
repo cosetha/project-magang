@@ -51,11 +51,11 @@
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-faq">
                     @csrf
 
-                    <label for="Pertanyaan">Pertanyaan</label>
-                    <input type="text" class="form-control" name="pertanyaan" required>
+                    <label for="pertanyaan">Pertanyaan</label>
+                    <input type="text" class="form-control" id="pertanyaan" name="pertanyaan">
 
-                    <label for="Jawaban">Jawaban</label>
-                    <input type="text" class="form-control" name="jawaban" required>
+                    <label for="jawaban">Jawaban</label>
+                    <input type="text" class="form-control" id="jawaban" name="jawaban">
 
             </div>
             <div class="modal-footer">
@@ -89,12 +89,13 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-faq">
                     @csrf
 
+                    <input type="hidden" id="id-faq">
                     <label for="pertanyaan_edit">Pertanyaan</label>
-                    <input type="text" class="form-control" id="kolom-pertanyaan" name="pertanyaan_edit" required>
+                    <input type="text" class="form-control" id="kolom-pertanyaan" name="pertanyaan_edit">
 
                     <label for="jawaban_edit">Jawaban</label>
-                    <input type="text" class="form-control" id="kolom-jawaban" name="jawaban_edit" required>
-                
+                    <input type="text" class="form-control" id="kolom-jawaban" name="jawaban_edit">
+
 
             </div>
             <div class="modal-footer">

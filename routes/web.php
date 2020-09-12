@@ -111,13 +111,20 @@ Route::group(['middleware' => 'guest'],function(){
 //ROUTER KHUSUS SUPER-ADMIN
 Route::group(['middleware' => ['auth','checkRole:1']],function(){
 
+    //Data Pengguna
     Route::get('/datapengguna', 'Pengguna\PenggunaController@index');
     Route::get('/load/table-pengguna','Pengguna\PenggunaController@LoadTablePengguna');
     Route::get('/load/data-pengguna','Pengguna\PenggunaController@LoadDataPengguna');
     Route::get('/hapus-pengguna/{id}','Pengguna\PenggunaController@destroy');
     Route::post('/tambah-pengguna','Pengguna\PenggunaController@store');
 
+    //History
     Route::get('/history','HistoryController@index');
+    Route::get('/load/table-history','HistoryController@LoadTableHistory');
+    Route::get('/load/data-history','HistoryController@LoadDataHistory');
+    Route::get('/today-history-alert','HistoryController@TodayHistory');
+    Route::get('/history-clicked/{id}','HistoryController@HistoryClicked');
+    Route::get('/count-today-history-alert','HistoryController@CountTodayHistory');
 
     Route::get('/datapengguna/export','Pengguna\PenggunaController@export');
 
@@ -135,6 +142,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
 
     //CEK PASSWORD UPDATE UNTUK ADMIN BARU
     Route::get('/cek-update-pass','PengaturanAkun\ProfileController@CekUpdatePassword');
+
 
     //Master Data
     Route::get('/jabatan','MasterData\JabatanController@index');
@@ -238,6 +246,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::get('edit/{id}', 'Akademik\KalenderAkademikController@edit');
       Route::post('update/{id}', 'Akademik\KalenderAkademikController@update');
       Route::get('delete/{id}', 'Akademik\KalenderAkademikController@destroy');
+      Route::get('show/{id}', 'Akademik\KalenderAkademikController@show');
     });
 
     Route::get('kegiatan', 'Akademik\KegiatanAkademikController@index');
@@ -269,6 +278,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     //Fasilitas
     Route::prefix('fasilitas')->group(function () {
       Route::get('/', 'PageController@Fasilitas');
+      Route::get('show/{id}', 'Fasilitas\FasilitasController@show');
       Route::post('/', 'Fasilitas\FasilitasController@store');
       Route::get('data', 'Fasilitas\FasilitasController@index');
       Route::get('datatable', 'Fasilitas\FasilitasController@loadTable');
@@ -294,7 +304,6 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('/admin/edit-faq/{id}','Footer\FaqController@update');
 
     Route::get('/layanan', 'Home\WeblinkController@indexLayanan');
-    Route::get('/layanan/{data}', 'Home\WeblinkController@RedirectLayanan');
     Route::get('/load/table-layanan', 'Home\WeblinkController@LoadTableWebLink');
     Route::get('/load/data-layanan', 'Home\WeblinkController@LoadDataLayanan');
     Route::get('/admin/delete-layanan/{id}', 'Home\WeblinkController@destroy');

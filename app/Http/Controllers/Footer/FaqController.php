@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Faq;
+use App\Histori;
 use DataTables;
 
 class FaqController extends Controller
@@ -21,6 +22,12 @@ class FaqController extends Controller
         $faq->jawaban = $request->jawaban;
         $faq->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan FAQ '".$request->pertanyaan."'";
+                    $history->save();
+
         return response()->json([
             'message' => 'success'
         ]);
@@ -29,6 +36,20 @@ class FaqController extends Controller
     public function update(Request $request, $id)
     {
         $faq = Faq::find($id);
+        if($faq->pertanyaan != $request->pertanyaan_edit){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit FAQ '".$faq->pertanyaan."' menjadi '".$request->pertanyaan_edit."'";
+                    $history->save();
+        }
+        if($faq->jawaban != $request->jawaban_edit){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Jawaban FAQ '".$request->pertanyaan_edit."'";
+                    $history->save();
+        }
         $faq->pertanyaan = $request->pertanyaan_edit;
         $faq->jawaban = $request->jawaban_edit;
         $faq->save();
@@ -41,6 +62,11 @@ class FaqController extends Controller
     public function destroy($id)
     {
         $faq = Faq::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus FAQ '".$faq->pertanyaan."'";
+        $history->save();
         $faq->delete();
 
         return response()->json([

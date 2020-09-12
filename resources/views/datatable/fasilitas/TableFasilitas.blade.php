@@ -3,7 +3,6 @@
     <tr>
       <th>No</th>
       <th>Fasilitas</th>
-      <th>Deskripsi</th>
       <th>Gambar</th>
       <th>Action</th>
     </tr>

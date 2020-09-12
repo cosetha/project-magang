@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Akademik;
 
 use Illuminate\Http\Request;
 use App\Semester;
+use App\Histori;
 use App\KalenderAkademik as KA;
 use Illuminate\Support\Facades\DB;
 use DataTables;
@@ -30,6 +31,9 @@ class KalenderAkademikController
           </a>';
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-delete-kalender" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
+          </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-kalender" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
           </a>';
           return $btn;
         })
@@ -69,6 +73,13 @@ class KalenderAkademikController
         $kalender->kode_semester = $semester;
         $kalender->deskripsi = $deskripsi;
         $kalender->save();
+
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Kalender Akademik '".$nama."'";
+                    $history->save();
+
         if($kalender) {
           return response()->json([
             'status' => 'ok'
@@ -84,7 +95,13 @@ class KalenderAkademikController
      */
     public function show($id)
     {
-        //
+      $data = DB::table('kalender_akademik as k')->where('k.id', $id)
+      ->join('semester as s', 'k.kode_semester', '=', 's.id')
+      ->select('k.*', 's.semester')
+      ->get();
+      return response()->json([
+        'data' => $data
+      ]);
     }
 
     /**
@@ -115,6 +132,28 @@ class KalenderAkademikController
       $semester = $request->semester;
 
       $kalender =  KA::find($id);
+      if($kalender->judul != $nama){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Nama Kegiatan Kalender Akademik '".$nama."'";
+        $history->save();
+      }
+      if($kalender->kode_semester != $semester){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Semester Kalender Akademik '".$nama."'";
+        $history->save();
+
+      }
+      if($kalender->deskripsi != $deskripsi){
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Deskripsi Kalender Akademik '".$nama."'";
+        $history->save();
+      }
       $kalender->judul = $nama;
       $kalender->kode_semester = $semester;
       $kalender->deskripsi = $deskripsi;
@@ -134,6 +173,13 @@ class KalenderAkademikController
      */
     public function destroy($id)
     {
+        $k = KA::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Kalender Akademik '".$k->judul."'";
+        $history->save();
+
         KA::destroy($id);
         return response()->json([
           'status' => 'deleted'
@@ -142,9 +188,10 @@ class KalenderAkademikController
 
     public function listSemester()
     {
-      $data = Semester::get();
+      $data = Semester::where('status', 'aktif')->get();
       return response()->json([
         'data' => $data
       ]);
     }
+
 }

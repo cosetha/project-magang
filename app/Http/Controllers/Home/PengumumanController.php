@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Pengumuman;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -56,6 +57,12 @@ class PengumumanController
         $data->lampiran = 'file/pengumuman/'.$fileName;
         $data->save();
 
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Pengumuman '".$judul."'";
+                    $history->save();
+
           if($data) {
             return response()->json([
               'status' => 'ok'
@@ -103,6 +110,27 @@ class PengumumanController
           File::delete($lampiranPath);
 
           $data = Pengumuman::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Pengumuman '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Pengumuman '".$judul."'";
+                    $history->save();
+          }
+          if($data->lampiran != 'file/pengumuman/'.$fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Lampiran Pengumuman '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
           $data->lampiran = 'file/pengumuman/'.$fileName;
@@ -120,6 +148,20 @@ class PengumumanController
 
       } else {
           $data = Pengumuman::find($id);
+          if($data->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Pengumuman '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Pengumuman '".$judul."'";
+                    $history->save();
+          }
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
           $data->save();
@@ -142,6 +184,11 @@ class PengumumanController
       File::delete($lampiranPath);
 
       $destroy = Pengumuman::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Pengumuman '".$destroy->judul."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemahasiswaan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Lowongan;
+use App\Histori;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -29,7 +30,7 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -72,17 +73,23 @@ class LowonganController extends Controller
                 $lowongan->jenis = $request->jenis;
                 $lowongan->gambar = $directory."/".$nama;
                 $lowongan->save();
-    
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Lowongan '".$request->nama."'";
+                    $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -155,40 +162,90 @@ class LowonganController extends Controller
                     $nama_file = time().$file->getClientOriginalName();
                     $file->name = $nama_file;
                     $file->move($directory, $file->name);
-        
-        
+
+
                     $lowongan = Lowongan::find($id);
+                    if($lowongan->nama_lowongan != $request->nama){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Lowongan '".$lowongan->nama_lowongan."' menjadi '".$request->nama."'";
+                        $history->save();
+                    }
+                    if($lowongan->deskripsi != $request->deskripsi){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Deskripsi Lowongan '".$request->nama."'";
+                        $history->save();
+                    }
+                    if($lowongan->jenis != $request->jenis){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Jenis Lowongan '".$request->nama."'";
+                        $history->save();
+                    }
+                    if($lowongan->gambar != $directory."/".$nama_file){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Gambar Lowongan '".$request->nama."'";
+                        $history->save();
+                    }
+
                     try {
                         unlink($lowongan->gambar);
                     } catch (\Throwable $th) {
                         echo($th);
                     }
-        
+
                     $lowongan->nama_lowongan = $request->nama;
                     $lowongan->deskripsi = $request->deskripsi;
                     $lowongan->jenis=$request->jenis;
-        
+
                     $lowongan->gambar= $directory."/".$nama_file;
                     $lowongan->save();
-        
+
                     return response()->json([
                         'message' => 'success'
                     ]);
                 }else{
                     $lowongan = Lowongan::find($id);
+                    if($lowongan->nama_lowongan != $request->nama){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Lowongan '".$lowongan->nama_lowongan."' menjadi '".$request->nama."'";
+                        $history->save();
+                    }
+                    if($lowongan->deskripsi != $request->deskripsi){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Deskripsi Lowongan '".$request->nama."'";
+                        $history->save();
+                    }
+                    if($lowongan->jenis != $request->jenis){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Jenis Lowongan '".$request->nama."'";
+                        $history->save();
+                    }
                     $lowongan->nama_lowongan = $request->nama;
                     $lowongan->deskripsi = $request->deskripsi;
                     $lowongan->jenis=$request->jenis;
                     $lowongan->save();
                 }
-                
+
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -202,6 +259,11 @@ class LowonganController extends Controller
     {
         try {
             $lowongan = Lowongan::find($id);
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Hapus";
+            $history->keterangan = "Menghapus Lowongan '".$lowongan->nama_lowongan."'";
+            $history->save();
             try {
                 unlink($lowongan->gambar);
             } catch (\Throwable $th) {

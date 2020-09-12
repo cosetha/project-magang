@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\User;
+use App\Histori;
 use App\Exports\PenggunaExport;
 use DataTables;
 use Validator;
@@ -44,6 +45,7 @@ class PenggunaController extends Controller
 
     public function destroy($id){
         $u = User::find($id);
+        Histori::where('nama',$u->name)->delete();
         $u->delete();
 
         return response([

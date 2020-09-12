@@ -11,6 +11,6 @@ class KalenderAkademik extends Model
 
   public function semester()
   {
-    return $this->hasMany(Semester::class);
+      return $this->hasMany('App\Semester', 'kode_semester');
   }
 }

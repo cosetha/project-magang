@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Agenda;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -76,6 +77,12 @@ class AgendaController
 
           $agenda->save();
 
+          $history = new Histori;
+          $history->nama = auth()->user()->name;
+          $history->aksi = "Tambah";
+          $history->keterangan = "Menambahkan Agenda '".$judul."'";
+          $history->save();
+
           if($agenda) {
             return response()->json([
               'status' => 'ok'
@@ -130,6 +137,50 @@ class AgendaController
       $lokasi = $request->lokasi;
 
           $agenda = Agenda::find($id);
+
+        if($agenda->judul != $judul){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Agenda '".$bk->judul."' menjadi '".$judul."'";
+                    $history->save();
+        }
+        if($agenda->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Agenda '".$judul."'";
+                    $history->save();
+        }
+        if($agenda->jam_agenda != $jam){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Jam Agenda '".$judul."'";
+                    $history->save();
+        }
+        if($agenda->tanggal_mulai != $tanggalMulai){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tanggal Mulai Agenda '".$judul."'";
+                    $history->save();
+        }
+        if($agenda->tanggal_selesai != $tanggalSelesi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tanggal Selesai Agenda '".$judul."'";
+                    $history->save();
+        }
+        if($agenda->lokasi != $lokasi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Lokasi Agenda '".$judul."'";
+                    $history->save();
+        }
+
           $agenda->judul = $judul;
           $agenda->deskripsi = $deskripsi;
           $agenda->jam_agenda = $jam;
@@ -159,6 +210,11 @@ class AgendaController
     public function destroy($id)
     {
         $agenda = Agenda::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Agenda '".$agenda->judul."'";
+        $history->save();
         $agenda->delete();
         if($agenda) {
           return response()->json([

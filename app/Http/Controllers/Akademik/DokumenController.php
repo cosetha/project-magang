@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Akademik;
 use Illuminate\Http\Request;
 use DataTables, File;
 use App\Dokumen;
+use App\Histori;
 
 class DokumenController
 {
@@ -64,6 +65,12 @@ class DokumenController
         $dokumen->nama_dokumen = $nama;
         $dokumen->file = $filePath.'/'.$fileName;
         $dokumen->save();
+
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Dokumen '".$nama."'";
+                    $history->save();
         if($dokumen) {
           return response()->json([
             'status' => 'ok'
@@ -116,6 +123,20 @@ class DokumenController
         File::delete($fileDelete);
 
         $dokumen = Dokumen::find($id);
+        if($dokumen->nama_dokumen != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dokumen '".$dokumen->nama_dokumen."' menjadi '".$nama."'";
+                    $history->save();
+        }
+        if($dokumen->file != $filePath.'/'.$fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit File Dokumen '".$nama."'";
+                    $history->save();
+        }
         $dokumen->nama_dokumen = $nama;
         $dokumen->file = $filePath.'/'.$fileName;
         $dokumen->save();
@@ -126,6 +147,13 @@ class DokumenController
         }
       } else {
         $dokumen = Dokumen::find($id);
+        if($dokumen->nama_dokumen != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dokumen '".$dokumen->nama_dokumen."' menjadi '".$nama."'";
+                    $history->save();
+        }
         $dokumen->nama_dokumen = $nama;
         $dokumen->save();
         if($dokumen) {
@@ -147,6 +175,14 @@ class DokumenController
     {
         $fileDelete = Dokumen::find($id)->value('file');
         File::delete($fileDelete);
+
+        $d = Dokumen::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus BK '".$d->nama_dokumen."'";
+        $history->save();
+
         Dokumen::destroy($id);
         return response()->json([
           'status' => 'deleted'

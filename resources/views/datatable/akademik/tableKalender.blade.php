@@ -4,7 +4,6 @@
         <th>No</th>
         <th>Nama Kegiatan</th>
         <th>Semester</th>
-        <th>Deskripsi</th>
         <th>Action</th>
     </tr>
   </thead>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use \App\Jabatan;
+use \App\Histori;
 use DataTables;
 use Validator;
 
@@ -46,6 +47,12 @@ class JabatanController extends Controller
                 'message' => 'gagal'
             ]);
         }
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan Jabatan '".$request->nama_jabatan."'";
+        $history->save();
 
         $jabatan = new Jabatan;
         $jabatan->nama_jabatan = $request->nama_jabatan;
@@ -96,6 +103,13 @@ class JabatanController extends Controller
             ]);
         }
 
+        $j = Jabatan::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Jabatan '".$j->nama_jabatan."' menjadi '".$request->nama_jabatan_edit."'";
+        $history->save();
+
         $jabatan = Jabatan::find($id);
         $jabatan->nama_jabatan = $request->nama_jabatan_edit;
         $jabatan->save();
@@ -113,6 +127,13 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
+        $j = Jabatan::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Jabatan '".$j->nama_jabatan;
+        $history->save();
+
         $jabatan = Jabatan::find($id);
         $jabatan->delete();
 

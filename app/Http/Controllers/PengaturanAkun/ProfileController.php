@@ -4,7 +4,9 @@ namespace App\Http\Controllers\PengaturanAkun;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \App\User;
+use \App\Histori;
 use Validator;
 use File;
 use Hash;
@@ -72,6 +74,10 @@ class ProfileController extends Controller
         $filePath = $request->file('gambar')->move('img/profile', $fileName, 'public');
         File::delete('img/profile/'. auth()->user()->gambar);
         $user = User::find($id);
+        $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
         $user->name = $request->nama;
         $user->email = $request->email;
         $user->gambar = $fileName;
@@ -87,6 +93,10 @@ class ProfileController extends Controller
         $cekNama = $this->cekNama($request->nama);
         if($cek==false && $cekNama==false) {
           $user = User::find($id);
+          $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
           $user->name = $request->nama;
           $user->email = $request->email;
           $user->save();
@@ -97,6 +107,10 @@ class ProfileController extends Controller
           }
         } else if($cekNama==false) {
           $user = User::find($id);
+          $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
           $user->name = $request->nama;
           $user->save();
           if($user) {

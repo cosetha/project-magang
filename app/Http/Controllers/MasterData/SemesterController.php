@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Semester;
+use App\Histori;
 use DataTables;
 use Validator;
 class SemesterController extends Controller
@@ -48,9 +49,15 @@ class SemesterController extends Controller
         }
 
         $semester = new Semester;
-        $semester->semester = $request->semester;
+        $semester->semester = $request->semester_tambah;
         $semester->status = "nonaktif";
         $semester->save();
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan Semester '".$request->semester_tambah."'";
+        $history->save();
 
         return response()->json([
             'message' => 'success',
@@ -99,6 +106,11 @@ class SemesterController extends Controller
         }
 
         $semester = Semester::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Edit";
+        $history->keterangan = "Mengedit Semester '".$semester->semester."' menjadi '".$request->semester."'";
+        $history->save();
         $semester->semester = $request->semester;
         $semester->save();
 
@@ -116,6 +128,13 @@ class SemesterController extends Controller
      */
     public function destroy($id)
     {
+        $s = Semester::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Semester '".$s->semester."'";
+        $history->save();
+
         $semester = Semester::find($id);
         $semester->delete();
 
@@ -128,6 +147,13 @@ class SemesterController extends Controller
         DB::table('semester')->update(array('status' => 'nonaktif'));
 
         $s = Semester::find($id);
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Mengaktifkan";
+        $history->keterangan = "Mengaktifkan Semester '".$s->semester."'";
+        $history->save();
+
         $s->status = "aktif";
         $s->save();
 
@@ -139,6 +165,13 @@ class SemesterController extends Controller
     public function NonAktifkanSemester($id){
 
         $s = Semester::find($id);
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Menonaktifkan";
+        $history->keterangan = "Menonaktifkan Semester '".$s->semester."'";
+        $history->save();
+
         $s->status = "nonaktif";
         $s->save();
 
