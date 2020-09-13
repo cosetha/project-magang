@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DataTables, File;
 use App\Dokumen;
 use App\Histori;
+use Validator;
 
 class DokumenController
 {
@@ -55,32 +56,36 @@ class DokumenController
     public function store(Request $request)
     {
         $nama = $request->nama;
-        // $validatedData = $request->validateWithBag('post', [
-        //     // 'title' => ['required', 'unique:posts', 'max:255'],
-        //     'file' => 'required|max:10000|mimes:doc,docx,pdf,xls,xlsx'
-        // ]);
+        $validator = Validator::make($request->all(), [
+          'file' => 'required|max:8192|mimes:doc,docx,pdf,xls,xlsx'
+        ]);
+        if ($validator->passes()) {
+          $file = $request->file('file');
+          $namaOriFile = $file->getClientOriginalName();
+          $fileName = time().'_'.$namaOriFile;
+          $filePath = "file/dokumen";
+          $file->move($filePath, $fileName, "public");
 
-        $file = $request->file('file');
-        $namaOriFile = $file->getClientOriginalName();
-        $fileName = time().'_'.$namaOriFile;
-        $filePath = "file/dokumen";
-        $file->move($filePath, $fileName, "public");
+          $dokumen = new Dokumen;
+          $dokumen->nama_dokumen = $nama;
+          $dokumen->file = $filePath.'/'.$fileName;
+          $dokumen->save();
 
-        $dokumen = new Dokumen;
-        $dokumen->nama_dokumen = $nama;
-        $dokumen->file = $filePath.'/'.$fileName;
-        $dokumen->save();
-
-        $history = new Histori;
-                    $history->nama = auth()->user()->name;
-                    $history->aksi = "Tambah";
-                    $history->keterangan = "Menambahkan Dokumen '".$nama."'";
-                    $history->save();
-        if($dokumen) {
-          return response()->json([
-            'status' => 'ok'
-          ]);
+          $history = new Histori;
+                      $history->nama = auth()->user()->name;
+                      $history->aksi = "Tambah";
+                      $history->keterangan = "Menambahkan Dokumen '".$nama."'";
+                      $history->save();
+          if($dokumen) {
+            return response()->json([
+              'status' => 'ok'
+            ]);
+          }
         }
+        return response()->json([
+            'status' => $validator->errors()->first()
+        ]);
+
     }
 
     /**

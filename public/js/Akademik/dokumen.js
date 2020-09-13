@@ -63,6 +63,30 @@ $(document).ready(function() {
             $('#form-tambah-dokumen').trigger('reset');
             $('#DokumenModal .close').click();
             loadDataDokumen();
+        } else if(data.status == "validation.mimes"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Format dokumen harus doc,docx,pdf,xls,xlsx!',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else if(data.status == "validation.max.file"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Ukuran file tidak boleh lebih 8 MB',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Terjadi kesalahan!' + data.status,
+              timer: 1200,
+              showConfirmButton: false
+          });
         }
 
       }

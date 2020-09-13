@@ -77,6 +77,14 @@ $(document).ready(function() {
           timer: 1200,
           showConfirmButton: false
       });
+    } else if(file == null) {
+      Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: 'File tidak boleh kosong!',
+          timer: 1200,
+          showConfirmButton: false
+      });
     } else {
     $.ajax({
       type: 'POST',
@@ -96,14 +104,30 @@ $(document).ready(function() {
             $('#form-tambah-jadwal').trigger('reset');
             $('#JadwalModal .close').click();
             loadDataJadwalKuliah();
-        } else if(data.status == "empty_file") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
-                text: 'File tidak boleh kosong!',
-                timer: 1200,
-                showConfirmButton: false
-            });
+        } else if(data.status == "validation.mimes"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Format dokumen harus doc,docx,pdf,xls,xlsx!',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else if(data.status == "validation.max.file"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Ukuran file tidak boleh lebih 8 MB',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Terjadi kesalahan! ' + data.status,
+              timer: 1200,
+              showConfirmButton: false
+          });
         }
 
       }
