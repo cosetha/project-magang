@@ -138,6 +138,42 @@
     </div>
 </div>
 
+<!-- show lomba -->
+<div class="modal fade" id="showLombaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Lomba / Seminar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form accept-charset="utf-8" enctype="multipart/form-data" action="" id="show-form">
+                <div class="modal-body">
+                @csrf
+
+                    <label for="edit-judul">Judul Lomba / Seminar</label>
+                    <input type="text" class="form-control" id="show-judul" name="edit-judul" disabled>
+
+                    <label for="edit-deskripsi" class="mt-2" id="show-deskripsi">Deskripsi</label>
+                    <!-- <p>okok</p> -->
+                    <!-- <textarea type="text" class="form-control" id="show-deskripsi" name="edit-deskripsi"></textarea> -->
+                    <br>
+                    <label for="edit-lokasi" class="mt-2">Lokasi</label>
+                    <input type="text" class="form-control" id="show-lokasi" name="edit-lokasi" disabled>
+
+                    <label for="edit-tanggal" class="mt-2">Tanggal</label>
+                    <input type="date" class="form-control" id="show-tanggal" name="edit-tanggal" disabled>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/Kemahasiswaan/infoLomba.js') }}"></script>

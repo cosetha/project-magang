@@ -207,4 +207,27 @@ $(document).ready(function() {
 
     });
 
+    //show info lomba
+    $('body').on('click', '.btn-show-lomba', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      console.log(id)
+      $("#show-form").trigger("reset");
+      $("#show-deskripsi").empty();
+      $.ajax({
+        type: 'GET',
+        url: 'lomba-seminar/edit/' + id,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $('#showLombaModal').modal('show');
+            $('#show-judul').val(data.data.judul);
+            // tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
+            $('#show-deskripsi').append(data.data.deskripsi);
+            $('#show-lokasi').val(data.data.lokasi);
+            $('#show-tanggal').val(data.data.tanggal);
+        }
+      });
+    });
+
 });
