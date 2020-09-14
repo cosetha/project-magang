@@ -1081,20 +1081,6 @@ $(document).ready(function() {
                         if(history[i].aksi == "Tambah"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-plus text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-black-500">Anda</div>
-                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
-                                    </div>
-                                </button>
-                                `)
-                            }else{
-                                $("#list-alert-history").append(`
                                 <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
@@ -1102,7 +1088,21 @@ $(document).ready(function() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Anda</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
@@ -1111,20 +1111,6 @@ $(document).ready(function() {
                         }else if(history[i].aksi == "Hapus"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-danger">
-                                            <i class="fas fa-trash text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-black-500">Anda</div>
-                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
-                                    </div>
-                                </button>
-                                `)
-                            }else{
-                                $("#list-alert-history").append(`
                                 <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-danger">
@@ -1132,7 +1118,21 @@ $(document).ready(function() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Anda</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
@@ -1142,20 +1142,6 @@ $(document).ready(function() {
                         }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-black-500">Anda</div>
-                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
-                                    </div>
-                                </button>
-                                `)
-                            }else{
-                                $("#list-alert-history").append(`
                                 <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
@@ -1163,7 +1149,21 @@ $(document).ready(function() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">Anda</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
@@ -1176,7 +1176,7 @@ $(document).ready(function() {
                         if(history[i].aksi == "Tambah"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
                                             <i class="fas fa-plus text-white"></i>
@@ -1190,14 +1190,14 @@ $(document).ready(function() {
                                 `)
                             }else{
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
                                             <i class="fas fa-plus text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
@@ -1207,7 +1207,7 @@ $(document).ready(function() {
                         }else if(history[i].aksi == "Hapus"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-danger">
                                             <i class="fas fa-trash text-white"></i>
@@ -1221,14 +1221,14 @@ $(document).ready(function() {
                                 `)
                             }else{
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-danger">
                                             <i class="fas fa-trash text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
@@ -1237,7 +1237,7 @@ $(document).ready(function() {
                         }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
                             if(history[i].status == "clicked"){
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" style="background-color: #b0cbd9;" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -1252,14 +1252,14 @@ $(document).ready(function() {
                             }else{
 
                                 $("#list-alert-history").append(`
-                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">`+ data.nama +`</div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
                                         <span class="font-weight-bold">`+ data.keterangan +`</span>
                                     </div>
                                 </button>
