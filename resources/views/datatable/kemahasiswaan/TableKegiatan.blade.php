@@ -4,8 +4,6 @@
       <th>No</th>
       <th>Judul Kegiatan</th>
       <th>Lokasi</th>
-      <th>Thumbnail</th>
-      <th>Gambar</th>
       <th>Tanggal</th>
       <th>Action</th>
     </tr>

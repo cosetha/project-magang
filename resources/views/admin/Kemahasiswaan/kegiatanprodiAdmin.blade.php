@@ -151,6 +151,50 @@
     </div>
 </div>
 
+<!-- detail kegiatan -->
+<div class="modal fade" id="showKegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail kegiatan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-show-kegiatan">
+                <div class="modal-body">
+                @csrf
+
+                    <label for="edit-judul">Judul Kegiatan</label>
+                    <input type="text" class="form-control" id="show-judul" name="edit-judul">
+
+                    <label for="edit-lokasi" class="mt-2">Lokasi</label>
+                    <input type="text" class="form-control" id="show-lokasi" name="edit-lokasi">
+
+                    <label for="edit-tanggal" class="mt-2">Tanggal</label>
+                    <input type="date" class="form-control" id="show-tanggal" name="edit-tanggal">
+
+                    <label for="edit-gambar" class="mt-2">View Gambar</label>
+                    <textarea class="form-control" id="show-gambar" name="edit-gambar"> </textarea>
+
+                    <div class="form-group mt-3">
+                        <img id="image-show" src="" style="width: 70%; height: 70%; border-radius: 10px;" alt="">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit" id="btn-edit-kegiatan">Submit</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 @section('js-ajax')
     <script type="text/javascript" src="{{asset('js/Kemahasiswaan/kegiatanProdi.js')}}"></script>

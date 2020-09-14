@@ -155,9 +155,8 @@
                     <label for="edit-judul">Judul Lomba / Seminar</label>
                     <input type="text" class="form-control" id="show-judul" name="edit-judul" disabled>
 
-                    <label for="edit-deskripsi" class="mt-2" id="show-deskripsi">Deskripsi</label>
-                    <!-- <p>okok</p> -->
-                    <!-- <textarea type="text" class="form-control" id="show-deskripsi" name="edit-deskripsi"></textarea> -->
+                    <label for="edit-deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="show-deskripsi" name="edit-deskripsi"></textarea>
                     <br>
                     <label for="edit-lokasi" class="mt-2">Lokasi</label>
                     <input type="text" class="form-control" id="show-lokasi" name="edit-lokasi" disabled>

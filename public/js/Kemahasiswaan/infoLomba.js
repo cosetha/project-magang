@@ -73,7 +73,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {data: 'lokasi',name: 'lokasi'},
           {data: 'tanggal',name: 'tanggal'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
@@ -222,8 +221,7 @@ $(document).ready(function() {
         success: function(data) {
             $('#showLombaModal').modal('show');
             $('#show-judul').val(data.data.judul);
-            // tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
-            $('#show-deskripsi').append(data.data.deskripsi);
+            tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
             $('#show-lokasi').val(data.data.lokasi);
             $('#show-tanggal').val(data.data.tanggal);
         }
