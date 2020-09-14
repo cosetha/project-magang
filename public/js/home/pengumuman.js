@@ -68,6 +68,7 @@ $(document).ready(function() {
 
   //tampil pengumuman
   function loadDataPengumuman() {
+    AlertCount();
     $('#datatable-pengumuman').load('/pengumuman/datatable', function() {
       $('#pengumuman-table').DataTable({
         processing: true,
@@ -196,7 +197,7 @@ $(document).ready(function() {
           });
 
         }
-      })
+      });
 
     });
 
@@ -217,5 +218,19 @@ $(document).ready(function() {
   			}
   		});
     });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

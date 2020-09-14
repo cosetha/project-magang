@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataTenaga();
   //load data tenaga_kependidikan
   function loadDataTenaga() {
+    AlertCount();
       $('#datatable-tenaga').load('/tenaga/datatable', function() {
           var host = window.location.origin;
           $('#tenaga-table').DataTable({
@@ -287,5 +288,19 @@ $(document).ready(function() {
               }
           })
       });
+
+  //ALERT HISTORY COUNT
+  function AlertCount(){
+      $.ajax({
+          type: "get",
+          url: "/count-today-history-alert",
+          success: function(response){
+              $("#jumlah_history_today").html(response.total);
+          },
+          error: function(err){
+              console.log(err);
+          }
+      });
+  }
 
 });

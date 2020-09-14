@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Dosen;
 use \App\Histori;
+use File;
 use DataTables;
 use App\Exports\DosenExport;
 use App\Imports\DosenImport;
@@ -174,6 +175,9 @@ class DosenController extends Controller
     }
 
     public function destroy($id){
+        $pathDelete = Dosen::where('id', $id)->value('gambar');
+        File::delete($pathDelete);
+
         $d = Dosen::find($id);
         $history = new Histori;
         $history->nama = auth()->user()->name;
@@ -229,9 +233,7 @@ class DosenController extends Controller
     }
 
     public function download_format(){
-        // return response([
-        //     'message' => "downloaded!"
-        // ]);
+
         return response()->download('EXCEL/dosen/example-dosen-format.xlsx');
     }
 

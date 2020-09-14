@@ -178,6 +178,11 @@ class StrukturOrganisasiController extends Controller
         $history->aksi = "Hapus";
         $history->keterangan = "Menghapus Struktur Organisasi '".$so->judul."'";
         $history->save();
+        try {
+            unlink($so->gambar);
+        } catch (\Throwable $th) {
+            echo($th);
+        }
         $so->delete();
 
         return response([

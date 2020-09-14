@@ -2,6 +2,7 @@ $(document).ready(function() {
 	LoadTableAkreditasi();
 	// Show Akreditasi
 	function LoadTableAkreditasi() {
+		AlertCount();
 		$('#datatable-akreditasi').load('/load/table-akreditasi', function() {
 			$('#akreditasi-table').DataTable({
 				columnDefs: [ { className: 'align-middle', targets: '_all' } ],
@@ -137,14 +138,13 @@ $(document).ready(function() {
 			url: '/admin/edit-akreditasi/' + id,
 			type: 'GET',
 			success: function(res) {
-                // console.log(res.values)
 
                 if(res.values.status == "nonaktif"){
-                    $(".btn-aktifkan-akreditasi").css("display","")
-                    $(".btn-nonaktifkan-akreditasi").css("display","none")
+                    $(".btn-aktifkan-akreditasi").css("display","");
+                    $(".btn-nonaktifkan-akreditasi").css("display","none");
                 }else{
-                    $(".btn-aktifkan-akreditasi").css("display","none")
-                    $(".btn-nonaktifkan-akreditasi").css("display","")
+                    $(".btn-aktifkan-akreditasi").css("display","none");
+                    $(".btn-nonaktifkan-akreditasi").css("display","");
                 }
 
 				if (res.hasOwnProperty('error')) {
@@ -177,11 +177,11 @@ $(document).ready(function() {
 
     //Nonaktifkan
     $("body").on("click",'.btn-nonaktifkan-akreditasi', function(e){
-        e.preventDefault()
+        e.preventDefault();
         $('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
         $('#btn-save-akreditasi').css('display', 'none');
-        $(".btn-nonaktifkan-akreditasi").css("display","none")
+        $(".btn-nonaktifkan-akreditasi").css("display","none");
         var id = $("#id-edit").val();
 
         $.ajax({
@@ -193,7 +193,7 @@ $(document).ready(function() {
                 $('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
                 $('#btn-save-akreditasi').css('display', '');
-                $(".btn-nonaktifkan-akreditasi").css("display","")
+                $(".btn-nonaktifkan-akreditasi").css("display","");
                 LoadTableAkreditasi();
                 Swal.fire({
                     icon: 'success',
@@ -204,18 +204,18 @@ $(document).ready(function() {
                 });
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
         })
     })
 
     //Aktifkan
     $("body").on("click",".btn-aktifkan-akreditasi", function(e){
-        e.preventDefault()
+        e.preventDefault();
         $('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
         $('#btn-save-akreditasi').css('display', 'none');
-        $(".btn-aktifkan-akreditasi").css("display","none")
+        $(".btn-aktifkan-akreditasi").css("display","none");
         var id = $("#id-edit").val();
 
         $.ajax({
@@ -227,7 +227,7 @@ $(document).ready(function() {
                 $('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
                 $('#btn-save-akreditasi').css('display', '');
-                $(".btn-aktifkan-akreditasi").css("display","")
+                $(".btn-aktifkan-akreditasi").css("display","");
                 LoadTableAkreditasi();
                 Swal.fire({
                     icon: 'success',
@@ -238,7 +238,7 @@ $(document).ready(function() {
                 });
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
         })
     })
@@ -352,4 +352,19 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });

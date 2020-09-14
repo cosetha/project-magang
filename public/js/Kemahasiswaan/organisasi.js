@@ -68,6 +68,7 @@ $(document).ready(function() {
 
   //tampil organisasi
   function loadDataOrganisasi() {
+    AlertCount();
     $('#datatable-organisasi').load('/organisasi/datatable', function() {
       var host = window.location.origin;
       $('#organisasi-table').DataTable({
@@ -235,6 +236,20 @@ $(document).ready(function() {
                 tinymce.get('detail-deskripsi').setMode('readonly');
             }
           });
-    })
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

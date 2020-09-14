@@ -2,6 +2,7 @@ $(document).ready(function() {
     //DATATABLE TA
 	LoadTableTA();
 	function LoadTableTA() {
+        AlertCount();
 		$('#datatable-ta').load('/load/table-tugas-akhir', function() {
 			$('#table-tugas-akhir').DataTable({
 				processing: true,
@@ -33,26 +34,26 @@ $(document).ready(function() {
 
     //SUBMIT TA
     $('body').on("submit","#FormTambahTA", function(e){
-        e.preventDefault()
+        e.preventDefault();
 
-        var deskripsi = $("#deskripsi").val()
+        var deskripsi = $("#deskripsi").val();
         if(deskripsi.length != 0){
-            var data = $("#FormTambahTA").serialize()
-            $(".btn-loading").css("display","")
-            $(".btn-close").css("display","none")
-            $(".btn-submit-to").css("display","none")
+            var data = $("#FormTambahTA").serialize();
+            $(".btn-loading").css("display","");
+            $(".btn-close").css("display","none");
+            $(".btn-submit-to").css("display","none");
 
             $.ajax({
                 type: "post",
                 url: "/store-ta",
                 data: data,
                 success: function(response){
-                    $(".btn-loading").css("display","none")
-                    $(".btn-close").css("display","")
-                    $(".btn-submit-to").css("display","")
-                    $("#FormTambahTA").trigger("reset")
-                    $("#TaModal").modal("hide")
-                    $("#table-tugas-akhir").DataTable().page('last').draw('page');
+                    $(".btn-loading").css("display","none");
+                    $(".btn-close").css("display","");
+                    $(".btn-submit-to").css("display","");
+                    $("#FormTambahTA").trigger("reset");
+                    $("#TaModal").modal("hide");
+                    LoadTableTA();
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -76,7 +77,7 @@ $(document).ready(function() {
 
     //DELETE
     $("body").on("click",".btn-delete-ta", function(e){
-        e.preventDefault()
+        e.preventDefault();
         var id = $(this).attr('data-id');
 		var nama = $(this).attr('data-judul');
 		Swal.fire({
@@ -94,7 +95,7 @@ $(document).ready(function() {
 					url: '/delete-ta/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#table-tugas-akhir").DataTable().page('last').draw('page');
+						LoadTableTA();
 					},
 					error: function(err) {
 						console.log(err);
@@ -106,48 +107,46 @@ $(document).ready(function() {
 
     //OPEN MODAL EDIT
     $("body").on("click",".btn-edit-ta", function(){
-        $("#editTaModal").modal("show")
-        var id = $(this).attr("data-id")
-
-        $("#id-ta").val(id)
+        $("#editTaModal").modal("show");
+        var id = $(this).attr("data-id");
+        $("#id-ta").val(id);
 
         $.ajax({
             type: "get",
             url: "/get-ta/"+id,
             success: function(response){
-                $("#edit_judul").val(response.data.judul)
+                $("#edit_judul").val(response.data.judul);
                 tinymce.get('edit_deskripsi').setContent(response.data.deskripsi);
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
         })
     })
 
     //SAVE EDIT TA
     $('body').on('submit','#FormEditTA', function(e){
-        e.preventDefault()
-        var id = $("#id-ta").val()
-        // console.log("dwadwaddwaw")
-        var edit_deskripsi = $("#edit_deskripsi").val()
+        e.preventDefault();
+        var id = $("#id-ta").val();
+        var edit_deskripsi = $("#edit_deskripsi").val();
         if(edit_deskripsi.length != 0){
 
-            var data = $("#FormEditTA").serialize()
-            $(".btn-loading").css("display","")
-            $(".btn-close").css("display","none")
-            $(".btn-save-ta").css("display","none")
+            var data = $("#FormEditTA").serialize();
+            $(".btn-loading").css("display","");
+            $(".btn-close").css("display","none");
+            $(".btn-save-ta").css("display","none");
 
             $.ajax({
                 type: "post",
                 url: "/update-ta/"+id,
                 data: data,
                 success: function(response){
-                    $(".btn-loading").css("display","none")
-                    $(".btn-close").css("display","")
-                    $(".btn-save-ta").css("display","")
-                    $("#FormEditTA").trigger("reset")
-                    $("#editTaModal").modal("hide")
-                    $("#table-tugas-akhir").DataTable().page('last').draw('page');
+                    $(".btn-loading").css("display","none");
+                    $(".btn-close").css("display","");
+                    $(".btn-save-ta").css("display","");
+                    $("#FormEditTA").trigger("reset");
+                    $("#editTaModal").modal("hide");
+                    LoadTableTA();
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -157,7 +156,7 @@ $(document).ready(function() {
                     });
                 },
                 error: function(err){
-                    console.log(err)
+                    console.log(err);
                 }
             })
 
@@ -172,21 +171,36 @@ $(document).ready(function() {
 
     //SHOW
     $("body").on("click", ".btn-show-ta", function(e){
-        e.preventDefault()
-        var id = $(this).attr("data-id")
-        $("#showTaModal").modal("show")
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        $("#showTaModal").modal("show");
 
         $.ajax({
             type: "get",
             url: "/get-ta/"+id,
             success: function(response){
-                $("#show_judul").val(response.data.judul)
+                $("#show_judul").val(response.data.judul);
                 tinymce.get('show_deskripsi').setContent(response.data.deskripsi);
                 tinymce.get('show_deskripsi').setMode('readonly');
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
-        })
-    })
-})
+        });
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
+});

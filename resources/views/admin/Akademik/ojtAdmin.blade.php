@@ -4,7 +4,7 @@
 @section('content')
 
 <script type="text/javascript">
-    document.getElementById('profile').classList.add('active');
+    document.getElementById('akademik').classList.add('active');
 </script>
 
 <!-- Begin Page Content -->
@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Ojt</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -31,17 +30,10 @@
                 <div id="datatable-ojt"></div>
             </div>
         </div>
-        <!-- <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item"  src="{{ asset('assets/upload/file/1597728219Petemuan 5.pdf') }}" ></iframe>
-        </div> -->
-        <!-- <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item"   src="{{ action('FileController@retrieve') }}" type='application/pdf'></iframe>
-        </div> -->
     </div>
 </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add ojt Modal-->
 <div class="modal fade" id="OjtModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -11,32 +11,11 @@ use DataTables;
 use Validator;
 class HeadLineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin/Home/headlineAdmin');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $messsages = array(
@@ -86,23 +65,6 @@ class HeadLineController extends Controller
          }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = Headline::find($id);
@@ -122,13 +84,6 @@ class HeadLineController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if($request->hasFile('gambar')){
@@ -213,7 +168,7 @@ class HeadLineController extends Controller
             $history = new Histori;
                 $history->nama = auth()->user()->name;
                 $history->aksi = "Edit";
-                $history->keterangan = "Mengedit BK '".$headline->judul."' menjadi '".$request->judul."'";
+                $history->keterangan = "Mengedit Judul '".$headline->judul."' menjadi '".$request->judul."'";
                 $history->save();
         }
         if($headline->caption != $request->caption){
@@ -234,12 +189,6 @@ class HeadLineController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {
