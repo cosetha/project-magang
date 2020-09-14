@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE
 	LoadPengguna();
 	function LoadPengguna() {
+        AlertCount();
 		$('#datatable-pengguna').load('/load/table-pengguna', function() {
 			$('#tbl-pengguna').DataTable({
 				processing: true,
@@ -106,7 +107,7 @@ $(document).ready(function() {
 					url: "/hapus-pengguna/"+id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#tbl-pengguna").DataTable().page('last').draw('page');
+						LoadPengguna();
 					},
 					error: function(err) {
 						console.log(err);
@@ -114,6 +115,20 @@ $(document).ready(function() {
 				});
 			}
 		});
-    })
+    });
+    
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
-})
+});

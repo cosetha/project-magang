@@ -2,6 +2,7 @@ $(document).ready(function() {
 	//DATATABLE
 	LoadStrukturOrganisasi();
 	function LoadStrukturOrganisasi() {
+		AlertCount();
 		$('#datatable-struktur-organisasi').load('/load/table-so', function() {
 			$('#tbl-struktur-organisasi').DataTable({
 				processing: true,
@@ -81,7 +82,7 @@ $(document).ready(function() {
                     $('.btn-close').css('display', '');
                     $('.btn-loading').css('display', 'none');
                     $('#btn-submit-so').css('display', '');
-                    $('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
+                    LoadStrukturOrganisasi();
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -188,7 +189,7 @@ $(document).ready(function() {
                     $('.btn-save-so').css('display', '');
                     $('#FormEditSO').trigger('reset');
                     $('#editStrukturorganisasiModal').modal('hide');
-                    $('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
+                    LoadStrukturOrganisasi();
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -225,7 +226,7 @@ $(document).ready(function() {
 					url: '/admin/delete-struktur-organisasi/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$('#tbl-struktur-organisasi').DataTable().page('last').draw('page');
+						LoadStrukturOrganisasi();
 					},
 					error: function(err) {
 						console.log(err);
@@ -234,4 +235,18 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 });

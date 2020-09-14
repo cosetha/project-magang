@@ -38,6 +38,12 @@ class PenggunaController extends Controller
         $u->remember_token = '';
         $u->save();
 
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan Akun '".$request->email."'";
+        $history->save();
+
         return response([
             'message' => 'sukses',
         ]);
@@ -47,6 +53,12 @@ class PenggunaController extends Controller
         $u = User::find($id);
         Histori::where('nama',$u->name)->delete();
         $u->delete();
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Akun '".$u->email."' beserta Historynya";
+        $history->save();
 
         return response([
             'message' => "delete sukses"

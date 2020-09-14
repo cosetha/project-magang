@@ -3,7 +3,6 @@
     <tr>
       <th>No</th>
       <th>Judul</th>
-      <th>Menu</th>
       <th>Action</th>
     </tr>
   </thead>

@@ -72,6 +72,7 @@ $(document).ready(function() {
 
   //tampil kegiatan
   function loadDataKegiatan() {
+    AlertCount();
     $('#datatable-kegiatan').load('/kegiatanProdi/datatable', function() {
       var host = window.location.origin;
       $('#kegiatan-table').DataTable({
@@ -232,6 +233,20 @@ $(document).ready(function() {
 
     });
 
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });
 
 

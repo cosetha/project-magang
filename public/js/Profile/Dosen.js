@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE
 	LoadDosen();
 	function LoadDosen() {
+        AlertCount();
 		$('#datatable-dosen').load('/load/table-dosen', function() {
 			$('#tbl-dosen').DataTable({
 				processing: true,
@@ -77,7 +78,7 @@ $(document).ready(function() {
                         $(".btn-submit-dosen").css('display','')
                         $("#DosenModal").modal("hide")
                         $("#FormTambahDosen").trigger("reset")
-                        $("#tbl-dosen").DataTable().page('last').draw('page');
+                        LoadDosen();
                         Swal.fire({
                             icon: 'success',
                             title: 'Sukses',
@@ -157,7 +158,7 @@ $(document).ready(function() {
                         $(".btn-save").css('display','')
                         $("#editDosenModal").modal("hide")
                         $("#FormEditDosen").trigger("reset")
-                        $("#tbl-dosen").DataTable().page('last').draw('page');
+                        LoadDosen();
                         Swal.fire({
                             icon: 'success',
                             title: 'Sukses',
@@ -195,7 +196,7 @@ $(document).ready(function() {
 					url: '/delete-dosen/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#tbl-dosen").DataTable().page('last').draw('page');
+						LoadDosen();
 					},
 					error: function(err) {
 						console.log(err);
@@ -274,5 +275,19 @@ $(document).ready(function() {
             }
         })
     })
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 })

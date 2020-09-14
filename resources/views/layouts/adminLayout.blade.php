@@ -321,7 +321,7 @@
                                 @if(auth()->user()->gambar == !NULL)
                                     <img class="img-profile rounded-circle" src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}">
                                 @else
-                                    <img class="img-profile rounded-circle" src="{{ asset('img/Login-image.png') }}">
+                                    <img class="img-profile rounded-circle" src="{{ asset('img/no-image.png') }}">
                                 @endif
                             </a>
                             <!-- Dropdown - User Information -->

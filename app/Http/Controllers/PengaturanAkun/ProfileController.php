@@ -43,6 +43,13 @@ class ProfileController extends Controller
                 $user->save();
 
                 if($user) {
+
+                  $history = new Histori;
+                  $history->nama = auth()->user()->name;
+                  $history->aksi = "Edit";
+                  $history->keterangan = "Akun '".auth()->user()->email."' mengubah passwordnya'";
+                  $history->save();
+
                   return response()->json([
                     'status' => '1'
                   ]);
@@ -64,7 +71,6 @@ class ProfileController extends Controller
             }
         }
 
-
     }
 
     public function updateProfile(Request $request, $id)
@@ -83,6 +89,13 @@ class ProfileController extends Controller
         $user->gambar = $fileName;
         $user->save();
         if($user) {
+
+          $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui profilenya";
+            $history->save();
+
           return response()->json([
             'status' => '1',
           ]);
@@ -101,6 +114,13 @@ class ProfileController extends Controller
           $user->email = $request->email;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Nama & Email menjadi '".$request->nama."' & '".$request->email."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);
@@ -114,6 +134,13 @@ class ProfileController extends Controller
           $user->name = $request->nama;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Nama menjadi '".$request->nama."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);
@@ -123,6 +150,13 @@ class ProfileController extends Controller
           $user->email = $request->email;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Email menjadi '".$request->email."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);

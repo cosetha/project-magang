@@ -70,6 +70,7 @@ $(document).ready(function() {
 
   //tampil pengabdian
   function loadDataPengabdian() {
+    AlertCount();
     $('#datatable-pengabdian').load('/pengabdian/datatable', function() {
       var host = window.location.origin;
       $('#pengabdian-table').DataTable({
@@ -231,6 +232,20 @@ $(document).ready(function() {
       })
 
     });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 
 });

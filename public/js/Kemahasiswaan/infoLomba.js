@@ -62,6 +62,7 @@ $(document).ready(function() {
 
   //tampil Lomba Seminar
   function loadDataLomba() {
+    AlertCount();
     $('#datatable-infoLomba').load('/lomba-seminar/datatable', function() {
       $('#infoLomba-table').DataTable({
         processing: true,
@@ -206,5 +207,19 @@ $(document).ready(function() {
       })
 
     });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

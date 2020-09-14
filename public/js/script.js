@@ -1045,7 +1045,6 @@ $(document).ready(function() {
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
     //ALERT HISTORY COUNT
-    AlertCount()
     function AlertCount(){
         $.ajax({
             type: "get",
@@ -1284,21 +1283,21 @@ $(document).ready(function() {
     //KLIK HISTORY
     $("body").on("click",".btn-history", function(e){
         e.preventDefault()
-        var id = $(this).attr("data-id")
-        console.log(id)
+        var id = $(this).attr("data-id");
+        console.log(id);
 
         $.ajax({
             type: "get",
             url: "/history-clicked/"+id,
             success: function(response){
-                AlertCount()
-                AlertHistory()
+                AlertCount();
+                AlertHistory();
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
-        })
-    })
+        });
+    });
 
 	$.getScript('/js/Home/headline.js');
 	$.getScript('/js/Home/kerjasama.js');
