@@ -308,9 +308,8 @@
                                 </h6>
                                 <div class="scroll-history">
                                     <div id="list-alert-history"></div>
-
-                                    <a class="dropdown-item text-center small btn-all-history" href="{{url('history')}}">Show All History</a>
                                 </div>
+                                <a class="dropdown-item text-center small btn-all-history" href="{{url('history')}}">Show All History</a>
                             </div>
                         </li>
                         @endif

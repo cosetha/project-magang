@@ -28,6 +28,7 @@ $(document).ready(function() {
 	//DATATABLE JABATAN
 	LoadTableJabatan();
 	function LoadTableJabatan() {
+		AlertCount();
 		$('#datatable-jabatan').load('/load/table-jabatan', function() {
 			$('#tbl-jabatan').DataTable({
 				processing: true,
@@ -196,6 +197,7 @@ $(document).ready(function() {
 	LoadTableSemester();
 
 	function LoadTableSemester() {
+		AlertCount();
 		$('#datatable-semester').load('/load/table-semester', function() {
 			$('#tbl-semester').DataTable({
 				processing: true,
@@ -451,6 +453,7 @@ $(document).ready(function() {
 
 	LoadTableBK();
 	function LoadTableBK() {
+		AlertCount();
 		$('#datatable-bk').load('/load/table-bk', function() {
 			$('#tbl-bk').DataTable({
 				processing: true,
@@ -857,6 +860,7 @@ $(document).ready(function() {
 	LoadTableFaq();
 
 	function LoadTableFaq() {
+		AlertCount();
 		$('#datatable-faq').load('/load/table-faq', function() {
 			$('#tbl-faq').DataTable({
 				processing: true,
@@ -1047,7 +1051,7 @@ $(document).ready(function() {
             type: "get",
             url: "/count-today-history-alert",
             success: function(response){
-                $("#jumlah_history_today").html(response.total)
+                $("#jumlah_history_today").html(response.total);
             },
             error: function(err){
                 console.log(err)
