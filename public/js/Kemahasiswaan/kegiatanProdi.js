@@ -86,16 +86,6 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
           {data: 'lokasi',name: 'lokasi'},
-          {
-            data: 'thumbnail',
-            name: 'thumbnail',
-            "render": function(data, type, row) {
-                return '<img src=" ' + host + '/img/kemahasiswaan/kegiatan/'+ data + ' " class = "rounded mx-auto d-block" height="100px"/>';
-            },
-            searchable: false,
-            orderable: false
-          },
-          {data: 'gambar',name: 'gambar', searchable: false, orderable: false},
           {data: 'tanggal',name: 'tanggal'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
@@ -233,6 +223,28 @@ $(document).ready(function() {
 
     });
 
+    //show detail kegiatan
+    $('body').on('click', '.btn-show-kegiatan', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      var host = window.location.origin;
+      console.log(id)
+      $.ajax({
+        type: 'GET',
+        url: 'kegiatanProdi/edit/' + id,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $('#showKegiatanModal').modal('show');
+            $('#show-judul').val(data.data.judul);
+            $('#show-lokasi').val(data.data.lokasi);
+            $('#show-tanggal').val(data.data.tanggal);
+            tinymce.get('show-gambar').setContent(data.data.gambar);
+            $('#image-show').attr('src', host + '/img/kemahasiswaan/kegiatan/' + data.data.thumbnail);
+        }
+      });
+    });
+
     //ALERT HISTORY COUNT
     function AlertCount(){
         $.ajax({
@@ -250,3 +262,4 @@ $(document).ready(function() {
 });
 
 
+});
