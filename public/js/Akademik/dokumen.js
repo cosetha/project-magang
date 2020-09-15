@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataDokumen();
   //load data dokumen
   function loadDataDokumen() {
+    AlertCount();
       $('#datatable-dokumen').load('/dokumen/datatable', function() {
           var host = window.location.origin;
           $('#dokumen-table').DataTable({
@@ -191,5 +192,19 @@ $(document).ready(function() {
           })
 
       });
+
+  //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

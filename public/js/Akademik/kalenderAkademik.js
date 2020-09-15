@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataKalenderAkademik();
   //load data kalender Akademik
   function loadDataKalenderAkademik() {
+    AlertCount();
       $('#datatable-kalender').load('/kalender/datatable', function() {
           var host = window.location.origin;
           $('#kalender-table').DataTable({
@@ -228,5 +229,19 @@ $(document).ready(function() {
                     }
                 });
       });
+
+      //ALERT HISTORY COUNT
+      function AlertCount(){
+          $.ajax({
+              type: "get",
+              url: "/count-today-history-alert",
+              success: function(response){
+                  $("#jumlah_history_today").html(response.total);
+              },
+              error: function(err){
+                  console.log(err);
+              }
+          });
+      }
 
 });

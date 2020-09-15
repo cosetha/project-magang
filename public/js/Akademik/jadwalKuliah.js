@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataJadwalKuliah();
   //load data jadwalkuliah
   function loadDataJadwalKuliah() {
+    AlertCount();
       $('#datatable-jadwal').load('/jadwal/datatable', function() {
           var host = window.location.origin;
           $('#jadwal-table').DataTable({
@@ -257,7 +258,7 @@ $(document).ready(function() {
                       if(data.status == 'deleted') {
                           Swal.fire(
                               'Deleted!',
-                              'Your file has been deleted.',
+                              'Berhasil Menghapus Jadwal',
                               )
                               loadDataJadwalKuliah();
                           }
@@ -265,8 +266,22 @@ $(document).ready(function() {
                   });
 
               }
-          })
+          });
 
       });
+
+    //ALERT HISTORY COUNT
+      function AlertCount(){
+          $.ajax({
+              type: "get",
+              url: "/count-today-history-alert",
+              success: function(response){
+                  $("#jumlah_history_today").html(response.total);
+              },
+              error: function(err){
+                  console.log(err);
+              }
+          });
+      }
 
 });

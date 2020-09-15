@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE BLOG
 	LoadTableWeblink();
 	function LoadTableWeblink() {
+        AlertCount();
 		$('#datatable-weblink').load('/load/table-blog', function() {
 			$('#table-weblink').DataTable({
 				processing: true,
@@ -41,22 +42,22 @@ $(document).ready(function() {
 
     //OPEN MODAL TAMBAH BLOG
     $("#btn-modal-blog").on("click",function(e){
-        e.preventDefault()
-        $(".btn-close").css("display","")
-        $(".btn-submit-blog").css("display","")
-        $(".btn-loading").css("display","none")
-        $("#BlogModal").modal("show")
+        e.preventDefault();
+        $(".btn-close").css("display","");
+        $(".btn-submit-blog").css("display","");
+        $(".btn-loading").css("display","none");
+        $("#BlogModal").modal("show");
     })
 
     //SUBMIT BLOG
     $("body").on("submit","#FormAddBlog", function(e){
-        e.preventDefault()
-        $(".btn-submit-blog").css("display","none")
-        $(".btn-loading").css("display","")
-        $(".btn-close").css("display","none")
-        var data = $("#FormAddBlog").serialize()
-        var nama = $("#nama_web").val()
-        var link = $("#link_Web").val()
+        e.preventDefault();
+        $(".btn-submit-blog").css("display","none");
+        $(".btn-loading").css("display","");
+        $(".btn-close").css("display","none");
+        var data = $("#FormAddBlog").serialize();
+        var nama = $("#nama_web").val();
+        var link = $("#link_Web").val();
 
         if(nama != '' && link != ''){
             $.ajax({
@@ -64,12 +65,12 @@ $(document).ready(function() {
                 url: "/tambah/blog",
                 data: data,
                 success: function(response){
-                    $("#table-weblink").DataTable().page('last').draw('page');
-                    $("#BlogModal").modal("hide")
-                    $("#FormAddBlog").trigger("reset")
-                    $(".btn-submit-blog").css("display","")
-                    $(".btn-loading").css("display","none")
-                    $(".btn-close").css("display","")
+                    LoadTableWeblink();
+                    $("#BlogModal").modal("hide");
+                    $("#FormAddBlog").trigger("reset");
+                    $(".btn-submit-blog").css("display","");
+                    $(".btn-loading").css("display","none");
+                    $(".btn-close").css("display","");
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -79,13 +80,13 @@ $(document).ready(function() {
                     });
                 },
                 error: function(err){
-                    console.log(err)
+                    console.log(err);
                 }
             })
         }else{
-            $(".btn-submit-blog").css("display","")
-            $(".btn-loading").css("display","none")
-            $(".btn-close").css("display","")
+            $(".btn-submit-blog").css("display","");
+            $(".btn-loading").css("display","none");
+            $(".btn-close").css("display","");
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -99,9 +100,9 @@ $(document).ready(function() {
 
     //DELETE BLOG
     $("body").on("click",".btn-delete-blog", function(e){
-        e.preventDefault()
-        var id = $(this).attr("data-id")
-        var nama = $(this).attr("data-nama")
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var nama = $(this).attr("data-nama");
 
         Swal.fire({
 			title: 'Hapus ' + nama + '?',
@@ -118,7 +119,7 @@ $(document).ready(function() {
 					url: '/admin/delete-blog/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#table-weblink").DataTable().page('last').draw('page');
+						LoadTableWeblink();
 					},
 					error: function(err) {
 						console.log(err);
@@ -130,31 +131,31 @@ $(document).ready(function() {
 
     //OPEN MODAL EDIT BLOG
     $("body").on("click",".btn-edit-blog",function(e){
-        e.preventDefault()
-        $(".btn-close").css("display","")
-        $(".btn-save-blog").css("display","")
-        $(".btn-loading").css("display","none")
-        $("#editBlogModal").modal("show")
-        var id = $(this).attr("data-id")
-        var nama = $(this).attr("data-nama")
-        var link = $(this).attr("data-link")
+        e.preventDefault();
+        $(".btn-close").css("display","");
+        $(".btn-save-blog").css("display","");
+        $(".btn-loading").css("display","none");
+        $("#editBlogModal").modal("show");
+        var id = $(this).attr("data-id");
+        var nama = $(this).attr("data-nama");
+        var link = $(this).attr("data-link");
 
-        $("#id-blog").val(id)
-        $("#edit_nama_web").val(nama)
-        $("#edit_link_web").val(link)
+        $("#id-blog").val(id);
+        $("#edit_nama_web").val(nama);
+        $("#edit_link_web").val(link);
     })
 
     //SAVE EDIT BLOG
     $("body").on("submit","#FormEditBlog", function(e){
-        e.preventDefault()
-        var id = $("#id-blog").val()
-        var data = $("#FormEditBlog").serialize()
-        var nama = $("#edit_nama_web").val()
-        var link = $("#edit_link_web").val()
+        e.preventDefault();
+        var id = $("#id-blog").val();
+        var data = $("#FormEditBlog").serialize();
+        var nama = $("#edit_nama_web").val();
+        var link = $("#edit_link_web").val();
 
-        $(".btn-close").css("display","none")
-        $(".btn-save-blog").css("display","none")
-        $(".btn-loading").css("display","")
+        $(".btn-close").css("display","none");
+        $(".btn-save-blog").css("display","none");
+        $(".btn-loading").css("display","");
 
         if(nama != '' && link != ''){
             $.ajax({
@@ -162,12 +163,12 @@ $(document).ready(function() {
                 url: "admin/edit-blog/"+id,
                 data: data,
                 success: function(response){
-                    $("#table-weblink").DataTable().page('last').draw('page');
-                    $(".btn-close").css("display","")
-                    $(".btn-save-blog").css("display","")
-                    $(".btn-loading").css("display","none")
-                    $("#FormEditBlog").trigger("reset")
-                    $("#editBlogModal").modal("hide")
+                    LoadTableWeblink();
+                    $(".btn-close").css("display","");
+                    $(".btn-save-blog").css("display","");
+                    $(".btn-loading").css("display","none");
+                    $("#FormEditBlog").trigger("reset");
+                    $("#editBlogModal").modal("hide");
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
@@ -181,9 +182,9 @@ $(document).ready(function() {
                 }
             })
         }else{
-            $(".btn-close").css("display","")
-            $(".btn-save-blog").css("display","")
-            $(".btn-loading").css("display","none")
+            $(".btn-close").css("display","");
+            $(".btn-save-blog").css("display","");
+            $(".btn-loading").css("display","none");
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -193,5 +194,20 @@ $(document).ready(function() {
             });
         }
 
-    })
-})
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+});

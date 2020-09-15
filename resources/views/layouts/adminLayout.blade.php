@@ -308,9 +308,8 @@
                                 </h6>
                                 <div class="scroll-history">
                                     <div id="list-alert-history"></div>
-
-                                    <a class="dropdown-item text-center small btn-all-history" href="{{url('history')}}">Show All History</a>
                                 </div>
+                                <a class="dropdown-item text-center small btn-all-history" href="{{url('history')}}">Show All History</a>
                             </div>
                         </li>
                         @endif
@@ -322,7 +321,7 @@
                                 @if(auth()->user()->gambar == !NULL)
                                     <img class="img-profile rounded-circle" src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}">
                                 @else
-                                    <img class="img-profile rounded-circle" src="{{ asset('img/Login-image.png') }}">
+                                    <img class="img-profile rounded-circle" src="{{ asset('img/no-image.png') }}">
                                 @endif
                             </a>
                             <!-- Dropdown - User Information -->
