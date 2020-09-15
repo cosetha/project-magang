@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Akademik;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DataTables, File;
+use DataTables, File, Validator;
 use App\Semester;
 use App\Histori;
 use App\Bidang_keahlian as BK;
@@ -36,7 +36,11 @@ class JadwalKuliahController
           </a>';
           return $btn;
         })
-      ->rawColumns(['aksi'])
+        ->addColumn('file_jadwal', function($row){
+            $file = '<a href="'.$row->file.'" >'.$row->file.'</a>';
+            return $file;
+          })
+      ->rawColumns(['aksi', 'file_jadwal'])
       ->make(true);
     }
 
@@ -61,8 +65,11 @@ class JadwalKuliahController
         $nama = $request->nama;
         $semester = $request->semester;
         $bk = $request->bk;
+        $validator = Validator::make($request->all(), [
+          'file' => 'required|max:8192|mimes:doc,docx,pdf,xls,xlsx'
+        ]);
+        if ($validator->passes()) {
         $file = $request->file('file');
-        if($file != null) {
           $fileNameOri = $file->getClientOriginalName();
           $fileName = time().'_'.$fileNameOri;
           $filePath = "file/jadwal_kuliah";
@@ -85,11 +92,10 @@ class JadwalKuliahController
               'status' => 'ok'
             ]);
           }
-        } else {
-          return response()->json([
-            'status' => 'empty_file'
-          ]);
-        }
+      }
+      return response()->json([
+          'status' => $validator->errors()->first()
+      ]);
     }
 
     /**

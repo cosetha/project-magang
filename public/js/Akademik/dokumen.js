@@ -64,6 +64,30 @@ $(document).ready(function() {
             $('#form-tambah-dokumen').trigger('reset');
             $('#DokumenModal .close').click();
             loadDataDokumen();
+        } else if(data.status == "validation.mimes"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Format dokumen harus doc,docx,pdf,xls,xlsx!',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else if(data.status == "validation.max.file"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Ukuran file tidak boleh lebih 8 MB',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Terjadi kesalahan!' + data.status,
+              timer: 1200,
+              showConfirmButton: false
+          });
         }
 
       }
@@ -134,34 +158,40 @@ $(document).ready(function() {
   }
   });
 
-  //hapus dokumen
   $('body').on('click', '.btn-delete-dokumen', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $('input[name=hapus-id]').val(id);
-    $('#deleteDokumenModal').modal('show');
-  });
+      e.preventDefault();
+      var id = $(this).data('id');
+      var judul = $(this).data('nama');
+      Swal.fire({
+          title: 'Anda yakin ingin menghapus ' + judul + '?',
+          text: "Anda tidak dapat membatalkan aksi ini!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: 'dokumen/delete/' + id,
+                  contentType: false,
+                  processData: false,
+                  success: function(data) {
+                      if(data.status == 'deleted') {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              )
+                              loadDataDokumen();
+                          }
+                      }
+                  });
 
-  $('body').on('click', '#btn-confirm-hapus', function(e) {
-    e.preventDefault();
-    var id = $('input[name=hapus-id]').val();
-    $.ajax({
-      type: 'GET',
-      url: 'dokumen/delete/' + id,
-      contentType: false,
-      processData: false,
-      success: function(data) {
-        if(data.status == 'deleted') {
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              )
-          $('#deleteDokumenModal').modal('hide');
-          loadDataDokumen();
-        }
-      }
-    });
-  });
+              }
+          })
+
+      });
 
   //ALERT HISTORY COUNT
     function AlertCount(){
