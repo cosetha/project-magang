@@ -37,12 +37,19 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'host' => 'smtp.gmail.com',
-            'port' => 587,
-            'encryption' => 'tls',
-            'username' => 'Ti.vokasi.ub@gmail.com',
-            'password' => 'prodi_ti2020',
+            'port' => env('MAIL_PORT'),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
+            'stream' => [
+            'ssl' => [
+                'allow_self_signed' => true,
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+            ],
         ],
 
         'ses' => [
