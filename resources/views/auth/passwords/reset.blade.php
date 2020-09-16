@@ -26,32 +26,20 @@
                 @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="form-group">
-
-                        <input id="email" type="hidden" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="Masukkan Email">
-
-                        @error('email')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
+                        <input id="email" type="hidden" class="form-control form-control-user" name="email" value="{{ $email ?? old('email') }}" placeholder="Masukkan Email">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password Baru</label>
 
                         <div class="input-group" id="show_hide_password">
-                          <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password Baru" required autocomplete="new-password" minlength="8" autofocus>
+                          <input id="password" type="password" class="form-control form-control-user" name="password" placeholder="Masukkan Password Baru" required autocomplete="new-password" minlength="8" autofocus>
                           <!-- Show Hide Password Component -->
                           <a href=""><div class="input-group-addon eye">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
                           </div></a>
                           <!-- Show Hide Password Component -->
                         </div>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <div class="form-group">
