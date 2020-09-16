@@ -22,7 +22,7 @@
                 <form class="user" method="POST" action="{{ route('login') }}">
                 @csrf
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     @error('email')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group" id="show_hide_password">
-                      <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="inputPassword" placeholder="Password" name="password" required autocomplete="current-password">
+                      <input type="password" class="form-control form-control-user" id="inputPassword" placeholder="Password" name="password" required autocomplete="current-password">
                       <!-- Show Hide Password Component -->
                       <a href=""><div class="input-group-addon eye">
                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
