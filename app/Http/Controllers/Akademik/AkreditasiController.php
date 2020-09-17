@@ -55,10 +55,10 @@ class AkreditasiController extends Controller
                 $akreditasi->save();
 
                 $history = new Histori;
-                $history->nama = auth()->user()->name;
-                $history->aksi = "Tambah";
-                $history->keterangan = "Menambahkan Akreditrasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
-                $history->save();
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Akreditrasi Tahun '".$request->tanggal_mulai." - ".$request->tanggal_selesai."'";
+                    $history->save();
 
                 return response()->json([
                     'message' => 'Success'
@@ -180,10 +180,10 @@ class AkreditasiController extends Controller
 
             $akreditasi = Akreditasi::find($id);
             $history = new Histori;
-            $history->nama = auth()->user()->name;
-            $history->aksi = "Hapus";
-            $history->keterangan = "Menghapus Akreditasi Tahun '".$akreditasi->tanggal_mulai." - ".$akreditasi->tanggal_selesai."'";
-            $history->save();
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Hapus";
+                        $history->keterangan = "Menghapus Akreditasi Tahun '".$akreditasi->tanggal_mulai." - ".$akreditasi->tanggal_selesai."'";
+                        $history->save();
             $akreditasi->delete();
             return response()->json([
                 "message" => "Success"
@@ -200,9 +200,9 @@ class AkreditasiController extends Controller
 
         $a = Akreditasi::find($id);
         $history->nama = auth()->user()->name;
-        $history->aksi = "Mengaktifkan";
-        $history->keterangan = "Mengaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
-        $history->save();
+                        $history->aksi = "Mengaktifkan";
+                        $history->keterangan = "Mengaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
+                        $history->save();
         $a->status = "aktif";
         $a->save();
 
@@ -214,9 +214,9 @@ class AkreditasiController extends Controller
     public function nonAktifkan($id){
         $a = Akreditasi::find($id);
         $history->nama = auth()->user()->name;
-        $history->aksi = "Menonaktifkan";
-        $history->keterangan = "Menonaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
-        $history->save();
+                        $history->aksi = "Menonaktifkan";
+                        $history->keterangan = "Menonaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
+                        $history->save();
         $a->status = "nonaktif";
         $a->save();
 
