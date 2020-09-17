@@ -49,10 +49,6 @@
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-akreditasi">
                 <div class="modal-body">
                 @csrf
-
-                    <!-- <label for="lembaga">Nama Lembaga</label>
-                    <input type="text" class="form-control" id="lembaga" name="lembaga" required> -->
-
                     <div class="form-group">
                     <label for="nilai" class="mt-2">Nilai Akreditasi</label>
                       <select class="form-control" id="nilai" name="nilai">
@@ -71,7 +67,7 @@
 
                     <div class="form-group mt-3">
                         <label for="file">Upload Sertifikat Akreditas</label>
-                        <input id="file-upload" type="file" name="file" accept="image/*">
+                        <input id="file-upload" type="file" name="file" accept="image/png, image/jpeg, image/jpg">
                     </div>
 
                 </div>
@@ -123,7 +119,7 @@
 
                     <div class="form-group mt-3">
                         <label for="file-upload-edit">Upload Sertifikat Akreditas</label>
-                        <input id="file-upload-edit" type="file" name="file" accept="image/*">
+                        <input id="file-upload-edit" type="file" name="file" accept="image/png, image/jpeg, image/jpg">
                     </div>
 
                 </div>

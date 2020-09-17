@@ -190,7 +190,7 @@ class DokumenController
         $history = new Histori;
         $history->nama = auth()->user()->name;
         $history->aksi = "Hapus";
-        $history->keterangan = "Menghapus BK '".$d->nama_dokumen."'";
+        $history->keterangan = "Menghapus Dokumen '".$d->nama_dokumen."'";
         $history->save();
 
         Dokumen::destroy($id);

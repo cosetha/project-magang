@@ -7,6 +7,9 @@ use \App\Histori;
 use \App\User;
 use DataTables;
 use Carbon\Carbon;
+use App\Exports\HistoryExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class HistoryController extends Controller
 {
@@ -51,5 +54,15 @@ class HistoryController extends Controller
         return response([
             'total' => $total,
         ]);
+    }
+
+    public function export_excel(){
+        return Excel::download(new HistoryExport, 'History - '.now()->locale('id')->isoFormat('LLLL').'.xlsx');
+    }
+
+    public function export_pdf(){
+        $history = Histori::all();
+        $pdf = PDF::loadview('PDF/HistoryPdf',['history'=>$history]);
+        return $pdf->download('History - '.now()->locale('id')->isoFormat('LLLL').'.pdf');
     }
 }

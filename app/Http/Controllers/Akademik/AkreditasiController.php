@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Akreditasi;
 use App\Histori;
+use File;
 use DataTables;
 use Validator;
 
@@ -24,10 +25,11 @@ class AkreditasiController extends Controller
     public function store(Request $request)
     {
         $messages = array(
-            'file.mimes' => 'File akreditasi Perlu di Isi dengan Format: jpeg,jpg,png'
+            'file.mimes' => 'File akreditasi Perlu di Isi dengan Format: jpeg,jpg,png',
+            'file.max' => 'Ukuran File Maksimal 8 MB'
         );
         $validator = Validator::make($request->all(),[
-            "file" => 'required|mimes:jpeg,jpg,png,gif|required|max:10000',
+            "file" => 'required|mimes:jpeg,jpg,png|max:8192',
             'nilai' => 'required',
             "tanggal_mulai" => 'required',
         	"tanggal_selesai" => 'required'], $messages);
@@ -91,16 +93,20 @@ class AkreditasiController extends Controller
     public function update(Request $request, $id)
     {
     	$akreditasi = Akreditasi::find($id);
+        $messages = array(
+            'file.mimes' => 'File akreditasi Perlu di Isi dengan Format: jpeg,jpg,png',
+            'file.max' => 'Ukuran File Maksimal 8 MB'
+        );
         $validator = Validator::make($request->all(),[
+            "file" => 'required|mimes:jpeg,jpg,png|max:8192',
             'nilai' => 'required',
             "tanggal_mulai" => 'required',
-            "tanggal_selesai" => 'required']
-        );
-        if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
-            return response()->json([
-                'error' => $error,
-              ]);
+            "tanggal_selesai" => 'required'], $messages);
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
          }else{
             try {
                 if($request->hasFile('file')){
@@ -169,6 +175,9 @@ class AkreditasiController extends Controller
     public function destroy($id)
     {
         try {
+            $fileDelete = Akreditasi::where('id', $id)->value('file');
+            File::delete($fileDelete);
+
             $akreditasi = Akreditasi::find($id);
             $history = new Histori;
                         $history->nama = auth()->user()->name;
