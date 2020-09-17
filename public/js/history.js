@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    $.ajax({
+        url: '/load/data-history',
+        type: 'get',
+        success: function(response){
+            console.log(response)
+        }
+    })
+
+
     //DATATABLE JABATAN
 	LoadTableHistory();
 	function LoadTableHistory() {
