@@ -25,7 +25,7 @@ class HistoryController extends Controller
         $history = Histori::orderBy('id','desc')->get();
 
             return Datatables::of($history)->addIndexColumn()->editColumn('created_at', function($history){
-                return date('d-m-Y', strtotime($history->created_at));
+                return date('h:i:s | d-m-Y', strtotime($history->created_at));
             })->make(true);
     }
 
