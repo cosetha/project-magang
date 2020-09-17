@@ -7,6 +7,7 @@ use App\Mahasiswa;
 use App\SearchMenu;
 use App\Histori;
 use DB;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -17,39 +18,31 @@ class PageController extends Controller
       $dosen = Dosen::count();
       $tenaga = DB::table('tenaga_kependidikan')->count();
 
-    //   dd($mhs);
+      //UNTUK CHART
+      $tahun = Mahasiswa::orderBy('angkatan','asc')->get();
+      $mahasiswa = DB::table('mahasiswa')
+               ->select(DB::raw('count(*) as total'))
+               ->groupBy('angkatan')
+               ->get();
 
-        //UNTUK CHART
-        $tahun = Mahasiswa::orderBy('angkatan','asc')->get();
-        $mahasiswa = DB::table('mahasiswa')
-                 ->select(DB::raw('count(*) as total'))
-                 ->groupBy('angkatan')
-                 ->get();
+      $angkatan = [];
+      foreach($tahun as $t){
+          $angkatan[] = $t->angkatan;
+      }
+      $angkatan_fix = array_values(array_unique($angkatan));
 
-        $angkatan = [];
-        foreach($tahun as $t){
-            $angkatan[] = $t->angkatan;
-        }
-        $angkatan_fix = array_values(array_unique($angkatan));
+      $total = [];
+      foreach($mahasiswa as $m){
+          $total[] = $m->total;
+      }
 
-        $total = [];
-        foreach($mahasiswa as $m){
-            $total[] = $m->total;
-        }
+      $lainnya = [];
+      $lainnya[] = $admin;
+      $lainnya[] = $tenaga;
+      $lainnya[] = $dosen;
 
-        $lainnya = [];
-        $lainnya[] = $admin;
-        $lainnya[] = $tenaga;
-        $lainnya[] = $dosen;
-
-        //COBA MULTI DELETE HISTORY 
-        $history = Histori::orderBy('created_at', 'DESC')
-      ->whereDate('created_at', '<', \Carbon\Carbon::now()->subMonth())
-      ->delete();
-
-      // print_r($history);
-        // dd(json_encode($angkatan_fix));
-        // dd(json_encode($lainnya));
+      //Delete History 30 Hari Sekali 
+      Histori::where('created_at', '<', Carbon::now()->subDays(30))->delete();
 
       return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga','angkatan_fix','total','lainnya'));
     }
