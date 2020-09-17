@@ -199,7 +199,8 @@ class AkreditasiController extends Controller
         DB::table('akreditasi')->update(array('status' => 'nonaktif'));
 
         $a = Akreditasi::find($id);
-        $history->nama = auth()->user()->name;
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
                         $history->aksi = "Mengaktifkan";
                         $history->keterangan = "Mengaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
                         $history->save();
@@ -213,7 +214,8 @@ class AkreditasiController extends Controller
 
     public function nonAktifkan($id){
         $a = Akreditasi::find($id);
-        $history->nama = auth()->user()->name;
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
                         $history->aksi = "Menonaktifkan";
                         $history->keterangan = "Menonaktifkan Akreditasi Tahun '".$a->tanggal_mulai." - ".$a->tanggal_selesai."'";
                         $history->save();
