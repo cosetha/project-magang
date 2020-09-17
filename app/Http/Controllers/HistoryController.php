@@ -24,7 +24,9 @@ class HistoryController extends Controller
     public function LoadDataHistory(){
         $history = Histori::orderBy('id','desc')->get();
 
-            return Datatables::of($history)->addIndexColumn()->make(true);
+            return Datatables::of($history)->addIndexColumn()->editColumn('created_at', function($history){
+                return date('d-m-Y', strtotime($history->created_at));
+            })->make(true);
     }
 
     public function TodayHistory(){
