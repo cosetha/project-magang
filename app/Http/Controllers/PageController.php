@@ -5,6 +5,7 @@ use App\User;
 use App\Dosen;
 use App\Mahasiswa;
 use App\SearchMenu;
+use App\Histori;
 use DB;
 
 use Illuminate\Http\Request;
@@ -41,7 +42,12 @@ class PageController extends Controller
         $lainnya[] = $tenaga;
         $lainnya[] = $dosen;
 
+        //COBA MULTI DELETE HISTORY 
+        $history = Histori::orderBy('created_at', 'DESC')
+      ->whereDate('created_at', '<', \Carbon\Carbon::now()->subMonth())
+      ->delete();
 
+      // print_r($history);
         // dd(json_encode($angkatan_fix));
         // dd(json_encode($lainnya));
 

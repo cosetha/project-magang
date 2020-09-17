@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	LoadTableLowongan();
 	function LoadTableLowongan() {
+		AlertCount();
 		$('#datatable-lowongan').load('/load/table-lowongan', function() {
 			$('#tbl-lowongan').DataTable({
 				columnDefs: [ { className: 'align-middle', targets: '_all' } ],
@@ -275,4 +276,19 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });

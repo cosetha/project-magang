@@ -7,6 +7,7 @@ $(document).ready(function() {
         loadDataBerita();
         //tampil Berita
         function loadDataBerita() {
+            AlertCount();
             $('#datatable-berita').load('/berita/datatable', function() {
                 var host = window.location.origin;
                 $('#berita-table').DataTable({
@@ -37,9 +38,9 @@ $(document).ready(function() {
         $('body').on('click', '#btn-tambah-berita', function(e) {
             e.preventDefault();
             var formData = new FormData();
-            $(".btn-loading").css("display","")
-            $(".btn-close").css("display","none")
-            $("#btn-tambah-berita").css("display","none")
+            $(".btn-loading").css("display","");
+            $(".btn-close").css("display","none");
+            $("#btn-tambah-berita").css("display","none");
 
             var judul = $('input[name=judul]').val();
             var deskripsi = tinymce.get('deskripsi-berita').getContent();
@@ -52,9 +53,9 @@ $(document).ready(function() {
             formData.append('gambar', gambar);
 
             if(judul == "" || deskripsi == "" || penulis == "" || gambar == "") {
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                $("#btn-tambah-berita").css("display","")
+                $(".btn-loading").css("display","none");
+                $(".btn-close").css("display","");
+                $("#btn-tambah-berita").css("display","");
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
@@ -103,7 +104,7 @@ $(document).ready(function() {
                         }
                     },
                     error: function(err){
-                        console.log(err)
+                        console.log(err);
                     }
                 });
             }
@@ -132,9 +133,9 @@ $(document).ready(function() {
             e.preventDefault();
             var formData = new FormData();
 
-            $(".btn-loading").css("display","")
-            $(".btn-close").css("display","none")
-            $("#btn-edit-berita").css("display","none")
+            $(".btn-loading").css("display","");
+            $(".btn-close").css("display","none");
+            $("#btn-edit-berita").css("display","none");
 
             var judul = $('input[name=judul-berita-edit]').val();
             var deskripsi = tinymce.get('deskripsi-berita-edit').getContent();
@@ -147,9 +148,9 @@ $(document).ready(function() {
             formData.append('gambar', gambar);
 
             if(judul == "" || deskripsi == "" || penulis == "") {
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                $("#btn-edit-berita").css("display","")
+                $(".btn-loading").css("display","none");
+                $(".btn-close").css("display","");
+                $("#btn-edit-berita").css("display","");
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
@@ -165,9 +166,9 @@ $(document).ready(function() {
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        $(".btn-loading").css("display","none")
-                        $(".btn-close").css("display","")
-                        $("#btn-edit-berita").css("display","")
+                        $(".btn-loading").css("display","none");
+                        $(".btn-close").css("display","");
+                        $("#btn-edit-berita").css("display","");
                         if(data.status == "ok") {
                             Swal.fire({
                                 icon: 'success',
@@ -230,16 +231,16 @@ $(document).ready(function() {
                                     timer: 1200,
                                     showConfirmButton: false
                                 });
-                                    loadDataBerita();
-                                }
+                                loadDataBerita();
                             }
-                        });
+                        }
+                    });
 
-                    }
-                })
+                }
+            })
+        });
 
-            });
-        // }
+        // Show Detail
         $('body').on('click', '.btn-show-berita', function(e) {
           e.preventDefault();
           var id = $(this).data('id');
@@ -258,4 +259,18 @@ $(document).ready(function() {
               }
           });
         });
-    });
+
+        //ALERT HISTORY COUNT
+        function AlertCount(){
+            $.ajax({
+                type: "get",
+                url: "/count-today-history-alert",
+                success: function(response){
+                    $("#jumlah_history_today").html(response.total);
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        }
+});

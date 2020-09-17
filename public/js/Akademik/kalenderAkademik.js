@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataKalenderAkademik();
   //load data kalender Akademik
   function loadDataKalenderAkademik() {
+    AlertCount();
       $('#datatable-kalender').load('/kalender/datatable', function() {
           var host = window.location.origin;
           $('#kalender-table').DataTable({
@@ -173,36 +174,6 @@ $(document).ready(function() {
   });
 
   //hapus kalender
-  //hapus prestasi
-  // $('body').on('click', '.btn-delete-kalender', function(e) {
-  //   e.preventDefault();
-  //   var id = $(this).data('id');
-  //   $('input[name=hapus-id]').val(id);
-  //   $('#deleteKalenderModal').modal('show');
-  // });
-  //
-  // $('body').on('click', '#btn-confirm-kalender', function(e) {
-  //   e.preventDefault();
-  //   var id = $('input[name=hapus-id]').val();
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'kalender/delete/' + id,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function(data) {
-  //       if(data.status == 'deleted') {
-  //         Swal.fire(
-  //             'Deleted!',
-  //             'Your file has been deleted.',
-  //             )
-  //         $('#deleteKalenderModal').modal('hide');
-  //         loadDataKalenderAkademik();
-  //       }
-  //     }
-  //   });
-  // });
-
-  //hapus kalender
   $('body').on('click', '.btn-delete-kalender', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
@@ -258,5 +229,19 @@ $(document).ready(function() {
                     }
                 });
       });
+
+      //ALERT HISTORY COUNT
+      function AlertCount(){
+          $.ajax({
+              type: "get",
+              url: "/count-today-history-alert",
+              success: function(response){
+                  $("#jumlah_history_today").html(response.total);
+              },
+              error: function(err){
+                  console.log(err);
+              }
+          });
+      }
 
 });

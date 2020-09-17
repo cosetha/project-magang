@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE QUICK MENU
 	LoadTableWeblink();
 	function LoadTableWeblink() {
+        AlertCount();
 		$('#datatable-weblink').load('/load/table-quick-menu', function() {
 			$('#table-weblink').DataTable({
 				processing: true,
@@ -64,7 +65,7 @@ $(document).ready(function() {
                 url: "/tambah/quick-menu",
                 data: data,
                 success: function(response){
-                    $("#table-weblink").DataTable().page('last').draw('page');
+                    LoadTableWeblink();
                     $("#QuickMenuModal").modal("hide")
                     $("#FormAddQuickMenu").trigger("reset")
                     $(".btn-submit-quick-menu").css("display","")
@@ -118,7 +119,7 @@ $(document).ready(function() {
 					url: '/admin/delete-quick-menu/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#table-weblink").DataTable().page('last').draw('page');
+						LoadTableWeblink();
 					},
 					error: function(err) {
 						console.log(err);
@@ -166,7 +167,7 @@ $(document).ready(function() {
                 url: "admin/edit-quick-menu/"+id,
                 data: data,
                 success: function(response){
-                    $("#table-weblink").DataTable().page('last').draw('page');
+                    LoadTableWeblink();
                     $(".btn-close").css("display","")
                     $(".btn-save-quick-menu").css("display","")
                     $(".btn-loading").css("display","none")
@@ -197,5 +198,20 @@ $(document).ready(function() {
             });
         }
 
-    })
-})
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
+});

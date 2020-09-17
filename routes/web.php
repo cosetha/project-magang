@@ -125,6 +125,8 @@ Route::group(['middleware' => ['auth','checkRole:1']],function(){
     Route::get('/today-history-alert','HistoryController@TodayHistory');
     Route::get('/history-clicked/{id}','HistoryController@HistoryClicked');
     Route::get('/count-today-history-alert','HistoryController@CountTodayHistory');
+    Route::get('/history/export-excel','HistoryController@export_excel');
+    Route::get('/history/export-pdf','HistoryController@export_pdf');
 
     Route::get('/datapengguna/export','Pengguna\PenggunaController@export');
 

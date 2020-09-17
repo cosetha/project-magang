@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataJadwalKuliah();
   //load data jadwalkuliah
   function loadDataJadwalKuliah() {
+    AlertCount();
       $('#datatable-jadwal').load('/jadwal/datatable', function() {
           var host = window.location.origin;
           $('#jadwal-table').DataTable({
@@ -21,7 +22,7 @@ $(document).ready(function() {
                   {data: 'nama_jadwal',name: 'nama_jadwal'},
                   {data: 'semester',name: 'semester'},
                   {data: 'nama_bk',name: 'nama_bk'},
-                  {data: 'file',name: 'file'},
+                  {data: 'file_jadwal',name: 'file_jadwal'},
                   {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
               ]
           });
@@ -77,6 +78,14 @@ $(document).ready(function() {
           timer: 1200,
           showConfirmButton: false
       });
+    } else if(file == null) {
+      Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: 'File tidak boleh kosong!',
+          timer: 1200,
+          showConfirmButton: false
+      });
     } else {
     $.ajax({
       type: 'POST',
@@ -96,14 +105,30 @@ $(document).ready(function() {
             $('#form-tambah-jadwal').trigger('reset');
             $('#JadwalModal .close').click();
             loadDataJadwalKuliah();
-        } else if(data.status == "empty_file") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
-                text: 'File tidak boleh kosong!',
-                timer: 1200,
-                showConfirmButton: false
-            });
+        } else if(data.status == "validation.mimes"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Format dokumen harus doc,docx,pdf,xls,xlsx!',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else if(data.status == "validation.max.file"){
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Ukuran file tidak boleh lebih 8 MB',
+              timer: 1200,
+              showConfirmButton: false
+          });
+        } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Terjadi kesalahan! ' + data.status,
+              timer: 1200,
+              showConfirmButton: false
+          });
         }
 
       }
@@ -210,36 +235,6 @@ $(document).ready(function() {
   });
 
   //hapus jadwal
-  //hapus prestasi
-  // $('body').on('click', '.btn-delete-jadwal', function(e) {
-  //   e.preventDefault();
-  //   var id = $(this).data('id');
-  //   $('input[name=hapus-id]').val(id);
-  //   $('#deleteJadwalModal').modal('show');
-  // });
-  //
-  // $('body').on('click', '#btn-confirm-hapus', function(e) {
-  //   e.preventDefault();
-  //   var id = $('input[name=hapus-id]').val();
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'jadwal/delete/' + id,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function(data) {
-  //       if(data.status == 'deleted') {
-  //         Swal.fire(
-  //             'Deleted!',
-  //             'Your file has been deleted.',
-  //             )
-  //         $('#deleteJadwalModal').modal('hide');
-  //         loadDataJadwalKuliah();
-  //       }
-  //     }
-  //   });
-  // });
-
-  //hapus jadwal
   $('body').on('click', '.btn-delete-jadwal', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
@@ -263,7 +258,7 @@ $(document).ready(function() {
                       if(data.status == 'deleted') {
                           Swal.fire(
                               'Deleted!',
-                              'Your file has been deleted.',
+                              'Berhasil Menghapus Jadwal',
                               )
                               loadDataJadwalKuliah();
                           }
@@ -271,8 +266,22 @@ $(document).ready(function() {
                   });
 
               }
-          })
+          });
 
       });
+
+    //ALERT HISTORY COUNT
+      function AlertCount(){
+          $.ajax({
+              type: "get",
+              url: "/count-today-history-alert",
+              success: function(response){
+                  $("#jumlah_history_today").html(response.total);
+              },
+              error: function(err){
+                  console.log(err);
+              }
+          });
+      }
 
 });
