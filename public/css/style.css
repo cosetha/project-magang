@@ -11,28 +11,13 @@ body {
     background-color: #002F59;
 }
 
-
-.carousel-indicators li {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-  }
-
 .background-sec {
     background-color: #CE9C3C;
-}
-
-.navbar-color{
-    background-color: #565c58;
 }
 
 .nav-quick{
     height: 10px;
     padding: 20px;
-}
-
-.quick-margin{
-    margin-left: 60px;
 }
 
 
@@ -41,71 +26,6 @@ body {
     flex: 1 1 auto;
 }
 
-
-::placeholder {
-    color: white;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color: white;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-   color: white;
-  }
-
-
-
-/* Search bar */
-.search{
-    position: absolute;
-    right: 10%;
-    height: 50px;
-    border-radius: 40px;
-    background: #CE9C3C ;
-    padding: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    }
-
-
-.search:hover > .search-text {
-    width: 240px;
-    padding: 0 6px;
-}
-
-.search:hover > .search-btn {
-    background: #002F59;
-}
-
-.search-btn{
-    color: white;
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background:  #CE9C3C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-}
-
-.search-text{
-    border: none;
-    background: none;
-    float: left;
-    outline: none;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 40px;
-    width: 0px;
-}
 
 /* Social Media Css */
 .fab {
@@ -157,34 +77,6 @@ body {
 }
 
 
-
-
-/* prestasi di home*/
-.prestasi{
-    width: 100%;
-    height: 450px;
-    margin-bottom: 100px;
-    background-image: url("/public/img/rog.jpg"); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.judul-prestasi{
-    background-color: #CE9C3C;
-    width: 200px;
-    margin-top: 20px;
-}
-
-.col-prestasi{
-    margin: 25px;
-    background-color:#99abaeb0;
-    color: black;
-    height: 200px;
-    margin-top: 60px;
-
-}
-
 /* CSS Image Text */
 .img-full-width {
     width: 100%;
@@ -192,7 +84,7 @@ body {
 }
 
 .img-rounded{
-  border-radius: 15px;
+  border-radius: 20px;
 }
 
 .caption {
@@ -256,10 +148,6 @@ body {
 /* css untuk navbar */
 #navbar .navbar {
     padding: .8rem;
-    margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 10px;
-    background-color:#CE9C3C;
 }
 
 #navbar .navbar-nav li {
@@ -280,7 +168,7 @@ body {
     position: absolute;
     height: 33.33%;
     width: 0;
-    background-color: #002F59;
+    background-color: #CE9C3C;
     right: 0;
     z-index: 0;
     top: 33.33%;
@@ -292,7 +180,7 @@ body {
     position: absolute;
     height: 33.33%;
     width: 0;
-    background-color: #002F59;
+    background-color: #CE9C3C;
     left: 0;
     z-index: 0;
     bottom: 0;
@@ -304,7 +192,7 @@ body {
     content: "";
     height: 33.33%;
     width: 0;
-    background-color: #002F59;
+    background-color: #CE9C3C;
     bottom: 66.66%;
     left: 0;
     transition: all 0.5s;
@@ -345,19 +233,16 @@ body {
 
 
 .background-card {
-    background-size:contain;
+    background-color: #002F59;
     height: 200px;
 }
 
 .kotak {
     max-height: 150px;
-    margin-left: 60px;
-    margin-right: 60px;
 }
 
 .mt-card {
     margin-top: 100pt;
-    border-radius: 0;
 }
 
 .mb-row {
@@ -385,8 +270,8 @@ body {
 .overflow {
     overflow: scroll;
     width: 100%;
-    height: 650px;
-    overflow: hidden;
+    height: 600px;
+    overflow-x: hidden;
 }
 
 .col h2 {
@@ -398,21 +283,15 @@ body {
 .tgl-agenda {
     text-align: center;
     width: 100px;
-}
-
-.border-agenda{
-    border-color: pink !important;
-    border-radius: 20px !important;
-    border-width: 2px !important;
-    border-style: solid !important;
-  
+    border-color: pink;
+    border-radius: 20px;
 }
 
 .col-info {
     width: 100px;
     height: 170px;
     border: solid;
-    border-color: #002F59;
+    border-color: black;
     text-align: center;
     border-radius: 20px;
     margin: 20px;
@@ -448,15 +327,10 @@ body {
     color: white;
 }
 
-.kotak-footer{
-    height: 500px;
-}
-
 .copy-text{
   padding: 10px;
   font-size: 20px;
-  color: white;
-  text-align: center;
+  color: black;
 }
 
 .pengabdian-con {
@@ -641,8 +515,6 @@ body .no-padding {
   background: #002F59;
   border-radius: 6px;
 }
-
-
 
 /* Mobile version */
 @media screen and (max-width: 600px) {
