@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fasilitas;
 
 use Illuminate\Http\Request;
 use App\Fasilitas;
+use App\Histori;
 use DataTables;
 use File;
 
@@ -23,10 +24,13 @@ class FasilitasController
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas="'.$row->nama_fasilitas.'" class="btn-edit-fasilitas" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas="'.$row->nama_fasilitas.'"  class="btn-delete-fasilitas" style="font-size: 18pt; text-decoration: none; color:red;">
 
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama_fasilitas="'.$row->nama_fasilitas.'"  class="btn-delete-fasilitas" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
+          </a>';
+
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-show-fasilitas" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
           </a>';
           return $btn;
         })
@@ -54,6 +58,12 @@ class FasilitasController
         $data->deskripsi = $deskripsi;
         $data->gambar = $fileName;
         $data->save();
+
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Fasilitas '".$nama_fasilitas."'";
+                    $history->save();
 
           if($data) {
             return response()->json([
@@ -102,6 +112,27 @@ class FasilitasController
           File::delete('img/fasilitas/'. $gambarPath);
 
           $data = Fasilitas::find($id);
+          if($data->nama_fasilitas != $nama_fasilitas){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Fasilitas '".$data->nama_fasilitas."' menjadi '".$nama_fasilitas."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Fasilitas '".$nama_fasilitas."'";
+                    $history->save();
+          }
+          if($data->gambar != $fileName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Fasilitas '".$nama_fasilitas."'";
+                    $history->save();
+          }
           $data->nama_fasilitas = $nama_fasilitas;
           $data->deskripsi = $deskripsi;
           $data->gambar = $fileName;
@@ -119,6 +150,20 @@ class FasilitasController
 
       } else {
           $data = Fasilitas::find($id);
+          if($data->nama_fasilitas != $nama_fasilitas){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Fasilitas '".$data->nama_fasilitas."' menjadi '".$nama_fasilitas."'";
+                    $history->save();
+          }
+          if($data->deskripsi != $deskripsi){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Fasilitas '".$nama_fasilitas."'";
+                    $history->save();
+          }
           $data->nama_fasilitas = $nama_fasilitas;
           $data->deskripsi = $deskripsi;
           $data->save();
@@ -141,6 +186,11 @@ class FasilitasController
       File::delete('img/fasilitas/'. $gambarPath);
 
       $destroy = Fasilitas::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Fasilitas '".$history->nama_fasilitas."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {
@@ -152,7 +202,11 @@ class FasilitasController
 
     public function show($id)
     {
+        $data = Fasilitas::find($id);
 
+        return response([
+            'data' => $data
+        ]);
     }
 
 }

@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	LoadTableAlumni();
 	function LoadTableAlumni() {
+		AlertCount();
 		$('#datatable-alumni').load('/load/table-alumni', function() {
 			$('#tbl-alumni').DataTable({
 				columnDefs: [ { className: 'align-middle', targets: '_all' } ],
@@ -72,8 +73,7 @@ $(document).ready(function() {
 		formData.append('angkatan', angkatan);
 		formData.append('bk', bk);
 		var c = lulus - angkatan;
-		if (c <= 0) {
-			$('#form-alumni').trigger('reset');
+		if (c < 0) {
 			$('.btn-close').css('display', '');
 			$('.btn-loading').css('display', 'none');
 			$('#btn-submit-alumni').css('display', '');
@@ -86,8 +86,7 @@ $(document).ready(function() {
 				showConfirmButton: false
 			});
 			return false;
-		}
-		if (nama != '' && nim != '' && angkatan != '' && bk != '') {
+		} else {
 			$.ajax({
 				type: 'post',
 				url: '/admin/tambah-alumni',
@@ -96,12 +95,9 @@ $(document).ready(function() {
 				contentType: false,
 				accepts: 'application / json',
 				success: function(response) {
-					$('#AlumniModal').modal('hide');
-					$('#form-alumni').trigger('reset');
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-alumni').css('display', '');
-					LoadTableAlumni();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
 							icon: 'error',
@@ -111,6 +107,9 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#AlumniModal').modal('hide');
+						$('#form-alumni').trigger('reset');
+						LoadTableAlumni();
 						Swal.fire({
 							icon: 'success',
 							title: response.message,
@@ -123,18 +122,6 @@ $(document).ready(function() {
 				error: function(err) {
 					console.log(err);
 				}
-			});
-		} else {
-			$('.btn-close').css('display', '');
-			$('.btn-loading').css('display', 'none');
-			$('#btn-submit-alumni').css('display', '');
-			LoadTableAlumni();
-			Swal.fire({
-				icon: 'error',
-				title: 'Ooopss...',
-				text: 'Semua Field Harus di Isi',
-				timer: 3000,
-				showConfirmButton: false
 			});
 		}
 	});
@@ -235,7 +222,19 @@ $(document).ready(function() {
 		formData.append('lulus', lulus);
 		formData.append('angkatan', angkatan);
 		formData.append('bk', bk);
-		if (nama != '' && nim != '' && angkatan != '' && bk != '') {
+		var c = lulus - angkatan;
+		if (c < 0) {
+			$('.btn-close-edit').css('display', '');
+			$('.btn-loading-edit').css('display', 'none');
+			$('#btn-save-alumni').css('display', '');
+			Swal.fire({
+				icon: 'error',
+				title: 'Ooopss...',
+				text: 'Tahun Lulus tidak valid',
+				timer: 2000,
+				showConfirmButton: false
+			});
+		} else {
 			$.ajax({
 				type: 'POST',
 				url: '/admin/konfirmasi-edit-alumni/' + id,
@@ -243,8 +242,6 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#editAlumniModal').modal('hide');
-					$('#form-alumni-edit').trigger('reset');
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-alumni').css('display', '');
@@ -253,10 +250,12 @@ $(document).ready(function() {
 							icon: 'error',
 							title: 'Ooopss...',
 							text: response.error,
-							timer: 1200,
+							timer: 1800,
 							showConfirmButton: false
 						});
 					} else {
+						$('#editAlumniModal').modal('hide');
+						$('#form-alumni-edit').trigger('reset');
 						LoadTableAlumni();
 						Swal.fire({
 							icon: 'success',
@@ -271,22 +270,23 @@ $(document).ready(function() {
 					console.log(err);
 				}
 			});
-		} else {
-			$('#editAlumniModal').modal('hide');
-			$('#form-alumni-edit').trigger('reset');
-			$('.btn-close-edit').css('display', '');
-			$('.btn-loading-edit').css('display', 'none');
-			$('#btn-save-alumni').css('display', '');
-			LoadTableAlumni();
-			Swal.fire({
-				icon: 'error',
-				title: 'Ooopss...',
-				text: 'Semua Field Harus di Isi',
-				timer: 3000,
-				showConfirmButton: false
-			});
 		}
 
 		return false;
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });

@@ -1,9 +1,34 @@
 $(document).ready(function() {
+
+    //CEK PASSWORD UPDATE UNTUK ADMIN BARU
+    $.ajax({
+        url: "/cek-update-pass",
+        type: "get",
+        success: function(response){
+            // console.log(response.user.created_at)
+            if(response.user.created_at == response.user.updated_at && response.user.id_role == 2){
+                Swal.fire({
+					icon: 'info',
+					title: 'Ganti Password',
+                    text: 'Untuk Admin baru wajib mengganti password untuk menggunakan fitur pada portal ini',
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    allowOutsideClick: true,
+					footer: '<a href="/editpassword"><button class="btn btn-primary">Ganti Password</button></a>'
+				});
+            }
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+
 	//------------------------------------------FITUR JABATAN------------------------------------------
 
 	//DATATABLE JABATAN
 	LoadTableJabatan();
 	function LoadTableJabatan() {
+		AlertCount();
 		$('#datatable-jabatan').load('/load/table-jabatan', function() {
 			$('#tbl-jabatan').DataTable({
 				processing: true,
@@ -45,20 +70,33 @@ $(document).ready(function() {
 			url: '/admin/tambah-jabatan',
 			data: data,
 			success: function(response) {
-				$('.modal-title-jabatan').html();
-				$('#TambahJabatanModal').modal('hide');
-				$('#form-tambah-jabatan').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-jabatan').css('display', '');
-				LoadTableJabatan();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('.modal-title-jabatan').html();
+                    $('#TambahJabatanModal').modal('hide');
+                    $('#form-tambah-jabatan').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -101,47 +139,65 @@ $(document).ready(function() {
 		var id = $(this).attr('data-id');
 		var nama = $(this).attr('data-nama');
 		$('#EditJabatanModal').modal('show');
-		$('#btn-submit-jabatan').css('display', 'none');
 		$('#btn-save-jabatan').css('display', '');
-		$('#kolom-jabatan').val(nama);
+        $('#kolom-jabatan').val(nama);
+        $("#jabatan-id").val(id)
+    });
 
-		$('body').on('submit', '#form-edit-jabatan', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-jabatan').css('display', 'none');
-			var data = $('#form-edit-jabatan').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-jabatan/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditJabatanModal').modal('hide');
-					$('#form-edit-jabatan').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-jabatan').css('display', '');
-					LoadTableJabatan();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
+    $('body').on('submit', '#form-edit-jabatan', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-jabatan').css('display', 'none');
+        var data = $('#form-edit-jabatan').serialize();
+        var id = $("#jabatan-id").val()
+        console.log(id)
+        $.ajax({
+            type: 'post',
+            url: '/admin/edit-jabatan/' + id,
+            data: data,
+            success: function(response) {
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+                    $('#EditJabatanModal').modal('hide');
+                    $('#form-edit-jabatan').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-jabatan').css('display', '');
+                    LoadTableJabatan();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+
+
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
 
 	LoadTableSemester();
 
 	function LoadTableSemester() {
+		AlertCount();
 		$('#datatable-semester').load('/load/table-semester', function() {
 			$('#tbl-semester').DataTable({
 				processing: true,
@@ -191,22 +247,36 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'post',
 			url: '/admin/tambah-semester',
-			data: { _token: token, semester: name },
+			data: { _token: token, semester_tambah: name },
 			success: function(response) {
-				$('.modal-title-semester').html();
-				$('#TambahSemesterModal').modal('hide');
-				$('#form-tambah-semester').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+                    });
+                }else{
+
+                    $('.modal-title-semester').html();
+                    $('#TambahSemesterModal').modal('hide');
+                    $('#form-tambah-semester').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -246,44 +316,43 @@ $(document).ready(function() {
 	$('body').on('click', '.btn-edit-semester', function(e) {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
-        var semester = $(this).attr('data-semester');
-        var status = $(this).attr('data-status');
+		var semester = $(this).attr('data-semester');
+		var status = $(this).attr('data-status');
 		$('input[name=id-edit]').val(id);
 		$('#editSemesterModal').modal('show');
 		$('#btn-submit-semester').css('display', 'none');
 		$('#btn-save-semester').css('display', '');
-        $('#semester-edit').val(semester);
+		$('#semester-edit').val(semester);
 
-        if(status == "aktif"){
-            $(".btn-aktifkan").css("display","none")
-            $(".btn-nonaktifkan").css("display","")
-        }else{
-            $(".btn-aktifkan").css("display","")
-            $(".btn-nonaktifkan").css("display","none")
-        }
+		if (status == 'aktif') {
+			$('.btn-aktifkan').css('display', 'none');
+			$('.btn-nonaktifkan').css('display', '');
+		} else {
+			$('.btn-aktifkan').css('display', '');
+			$('.btn-nonaktifkan').css('display', 'none');
+		}
+	});
 
-    });
+	//AKTIFKAN SEMESTER
+	$('body').on('click', '.btn-aktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-    //AKTIFKAN SEMESTER
-    $("body").on("click",".btn-aktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
-
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-aktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-aktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-aktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -291,33 +360,33 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
-    //NONAKTIFKAN SEMESTER
-    $("body").on("click",".btn-nonaktifkan", function(e){
-        e.preventDefault()
-        var id = $("#id-edit").val()
+	//NONAKTIFKAN SEMESTER
+	$('body').on('click', '.btn-nonaktifkan', function(e) {
+		e.preventDefault();
+		var id = $('#id-edit').val();
 
-        $('.btn-close-edit').css('display', 'none');
-        $('.btn-nonaktifkan').css('display', 'none');
+		$('.btn-close-edit').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
 		$('#btn-save-semester').css('display', 'none');
 
-        $.ajax({
-            type: "get",
-            url: "/non-aktifkan-semester/"+id,
-            success: function(response){
-                $('#editSemesterModal').modal('hide');
-                $('.btn-close-edit').css('display', '');
-                $('.btn-nonaktifkan').css('display', '');
-                $('.btn-loading-edit').css('display', 'none');
-                $('#btn-save-semester').css('display', '');
-                LoadTableSemester();
+		$.ajax({
+			type: 'get',
+			url: '/non-aktifkan-semester/' + id,
+			success: function(response) {
+				$('#editSemesterModal').modal('hide');
+				$('.btn-close-edit').css('display', '');
+				$('.btn-nonaktifkan').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-semester').css('display', '');
+				LoadTableSemester();
 				Swal.fire({
 					icon: 'success',
 					title: 'Sukses',
@@ -325,20 +394,20 @@ $(document).ready(function() {
 					timer: 1200,
 					showConfirmButton: false
 				});
-            },
-            error: function(err){
-                console.log(err)
-            }
-        })
-    })
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
 
 	$('body').on('submit', '#form-edit-semester', function(e) {
 		e.preventDefault();
 		$('.btn-close-edit').css('display', 'none');
 		$('.btn-loading-edit').css('display', '');
-        $('#btn-save-semester').css('display', 'none');
-        $(".btn-aktifkan").css("display","none")
-        $(".btn-nonaktifkan").css("display","none")
+		$('#btn-save-semester').css('display', 'none');
+		$('.btn-aktifkan').css('display', 'none');
+		$('.btn-nonaktifkan').css('display', 'none');
 		var name = $('input[name=semester-edit]').val();
 		var token = $('input[name=token-edit]').val();
 		var id = $('input[name=id-edit]').val();
@@ -348,28 +417,43 @@ $(document).ready(function() {
 			url: '/admin/edit-semester/' + id,
 			data: { _token: token, semester: name },
 			success: function(response) {
-				$('#editSemesterModal').modal('hide');
-				$('#form-edit-semester').trigger('reset');
-				$('.btn-close-edit').css('display', '');
-				$('.btn-loading-edit').css('display', 'none');
-				$('#btn-save-semester').css('display', '');
-				LoadTableSemester();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Mengedit Semester',
-					timer: 1200,
-					showConfirmButton: false
-				});
+
+                if(response.message == "gagal"){
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Form tidak boleh kosong!',
+
+                    });
+                }else{
+                    $('#editSemesterModal').modal('hide');
+                    $('#form-edit-semester').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-semester').css('display', '');
+                    LoadTableSemester();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Semester',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
 			},
 			error: function(err) {
 				console.log(err);
 			}
 		});
-    });
+	});
 
 	LoadTableBK();
 	function LoadTableBK() {
+		AlertCount();
 		$('#datatable-bk').load('/load/table-bk', function() {
 			$('#tbl-bk').DataTable({
 				processing: true,
@@ -440,13 +524,9 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('.modal-title-semester').html();
-					$('#BKModal').modal('hide');
-					$('#form-tambah-bk').trigger('reset');
 					$('.btn-close').css('display', '');
 					$('.btn-loading').css('display', 'none');
 					$('#btn-submit-bk').css('display', '');
-					$('#blah').attr('src', '');
 					LoadTableBK();
 					if (response.hasOwnProperty('error')) {
 						Swal.fire({
@@ -457,6 +537,9 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#BKModal').modal('hide');
+						$('#form-tambah-bk').trigger('reset');
+						$('#blah').attr('src', '');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',
@@ -594,8 +677,6 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#editBKModal').modal('hide');
-					$('#form-edit-bk').trigger('reset');
 					$('.btn-close-edit').css('display', '');
 					$('.btn-loading-edit').css('display', 'none');
 					$('#btn-save-bk').css('display', '');
@@ -609,6 +690,8 @@ $(document).ready(function() {
 							showConfirmButton: false
 						});
 					} else {
+						$('#editBKModal').modal('hide');
+						$('#form-edit-bk').trigger('reset');
 						LoadTableBK();
 						Swal.fire({
 							icon: 'success',
@@ -645,7 +728,7 @@ $(document).ready(function() {
 
 		formData.append('gambar', files);
 		formData.append('nama', name);
-		formData.append('email', email);
+        formData.append('email', email);
 
 		$.ajax({
 			type: 'POST',
@@ -654,6 +737,7 @@ $(document).ready(function() {
 			contentType: false,
 			processData: false,
 			success: function(data) {
+
 				if (data.status == '1') {
 					Swal.fire({
 						icon: 'success',
@@ -680,7 +764,10 @@ $(document).ready(function() {
 						showConfirmButton: false
 					});
 				}
-			}
+            },
+            error: function(err){
+                console.log(err)
+            }
 		});
 	});
 
@@ -700,56 +787,69 @@ $(document).ready(function() {
 				showConfirmButton: false
 			});
 		} else {
-			$.ajax({
-				type: 'POST',
-				url: 'editpassword/' + id,
-				data: {
-					password: password,
-					password_confirmation: password_confirm,
-					id: id,
-					password_lama: password_lama
-				},
-				dataType: 'json',
-				success: function(data) {
-					if (data.status == '1') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'success',
-							title: 'Sukses',
-							text: 'Sukses ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == '0') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Gagal ganti password',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else if (data.status == 'salah') {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password anda salah!',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					} else {
-						$('.form-edit-password')[0].reset();
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: 'Password harus sama!',
-							timer: 1200,
-							showConfirmButton: false
-						});
-					}
-				}
-			});
+
+            if(password_lama == password){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password Lama dan Password baru harus beda!',
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+            }else{
+                $.ajax({
+                    type: 'POST',
+                    url: 'editpassword/' + id,
+                    data: {
+                        password: password,
+                        password_confirmation: password_confirm,
+                        id: id,
+                        password_lama: password_lama
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status == '1') {
+                            $('.form-edit-password')[0].reset();
+                            window.location.href = '/dashboard';
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Sukses ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == '0') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Gagal ganti password',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else if (data.status == 'salah') {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password anda salah!',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Password harus sama!',
+                                timer: 1200,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
+            }
+
 		}
 	});
 	//--END PENGATURAN PROFILE ----
@@ -760,6 +860,7 @@ $(document).ready(function() {
 	LoadTableFaq();
 
 	function LoadTableFaq() {
+		AlertCount();
 		$('#datatable-faq').load('/load/table-faq', function() {
 			$('#tbl-faq').DataTable({
 				processing: true,
@@ -799,31 +900,48 @@ $(document).ready(function() {
 		$('.btn-close').css('display', 'none');
 		$('.btn-loading').css('display', '');
 		$('#btn-submit-faq').css('display', 'none');
-		var data = $('#form-tambah-faq').serialize();
-		$.ajax({
-			type: 'post',
-			url: '/admin/tambah-faq',
-			data: data,
-			success: function(response) {
-				$('.modal-title-faq').html();
-				$('#TambahFaqModal').modal('hide');
-				$('#form-tambah-faq').trigger('reset');
-				$('.btn-close').css('display', '');
-				$('.btn-loading').css('display', 'none');
-				$('#btn-submit-faq').css('display', '');
-				LoadTableFaq();
-				Swal.fire({
-					icon: 'success',
-					title: 'Sukses',
-					text: 'Berhasil Menambahkan Jabatan',
-					timer: 1200,
-					showConfirmButton: false
-				});
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
+        var data = $('#form-tambah-faq').serialize();
+        var pertanyaan = $("#pertanyaan").val()
+        var jawaban = $("#jawaban").val()
+
+        if(pertanyaan != '' && jawaban != ''){
+            $.ajax({
+                type: 'post',
+                url: '/admin/tambah-faq',
+                data: data,
+                success: function(response) {
+                    $('.modal-title-faq').html();
+                    $('#TambahFaqModal').modal('hide');
+                    $('#form-tambah-faq').trigger('reset');
+                    $('.btn-close').css('display', '');
+                    $('.btn-loading').css('display', 'none');
+                    $('#btn-submit-faq').css('display', '');
+                    LoadTableFaq();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }else{
+            $('.btn-close').css('display', '');
+            $('.btn-loading').css('display', 'none');
+            $('#btn-submit-faq').css('display', '');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
 	});
 
 	//DELETE FAQ
@@ -844,7 +962,13 @@ $(document).ready(function() {
 					type: 'get',
 					url: '/admin/delete-faq/' + id,
 					success: function(response) {
-						Swal.fire('Deleted!, data telah dihapus.', 'success');
+						Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menghapus FAQ',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
 						LoadTableFaq();
 					},
 					error: function(err) {
@@ -865,40 +989,315 @@ $(document).ready(function() {
 		$('#btn-save-faq').css('display', '');
 		$('#kolom-pertanyaan').val(pertanyaan);
 		$('#kolom-jawaban').val(jawaban);
+		$('#id-faq').val(id);
 
-		$('body').on('submit', '#form-edit-faq', function(e) {
-			e.preventDefault();
-			$('.btn-close-edit').css('display', 'none');
-			$('.btn-loading-edit').css('display', '');
-			$('#btn-save-faq').css('display', 'none');
-			var data = $('#form-edit-faq').serialize();
-			$.ajax({
-				type: 'post',
-				url: '/admin/edit-faq/' + id,
-				data: data,
-				success: function(response) {
-					$('#EditFaqModal').modal('hide');
-					$('#form-edit-faq').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-faq').css('display', '');
-					LoadTableFaq();
-					Swal.fire({
-						icon: 'success',
-						title: 'Sukses',
-						text: 'Berhasil Mengedit Jabatan',
-						timer: 1200,
-						showConfirmButton: false
-					});
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
-		});
-	});
+    });
+
+    $('body').on('submit', '#form-edit-faq', function(e) {
+        e.preventDefault();
+        $('.btn-close-edit').css('display', 'none');
+        $('.btn-loading-edit').css('display', '');
+        $('#btn-save-faq').css('display', 'none');
+        var data = $('#form-edit-faq').serialize();
+        var id = $("#id-faq").val()
+        var pertanyaan = $("#kolom-pertanyaan").val()
+        var jawaban = $("#kolom-jawaban").val()
+
+        if(pertanyaan != '' && jawaban != ''){
+            $.ajax({
+                type: 'post',
+                url: '/admin/edit-faq/' + id,
+                data: data,
+                success: function(response) {
+                    $('#EditFaqModal').modal('hide');
+                    $('#form-edit-faq').trigger('reset');
+                    $('.btn-close-edit').css('display', '');
+                    $('.btn-loading-edit').css('display', 'none');
+                    $('#btn-save-faq').css('display', '');
+                    LoadTableFaq();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Mengedit Jabatan',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }else{
+            $('.btn-close-edit').css('display', '');
+            $('.btn-loading-edit').css('display', 'none');
+            $('#btn-save-faq').css('display', '');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Form tidak boleh kosong!',
+                timer: 1200,
+                showConfirmButton: false
+            });
+        }
+
+    });
 
 	//------------------------------------------END FITUR JABATAN-----------------------------------------
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    }
+
+    //OPEN ALERT HISTORY
+    $("#alertsDropdown").on("click", function(e){
+        e.preventDefault
+        AlertHistory()
+    })
+
+    $(document).on('click', '#dm', function (e) {
+        e.stopPropagation();
+      });
+
+    //LIST ALERT HISTORY;
+    function AlertHistory(){
+        $.ajax({
+            type: "get",
+            url: "/today-history-alert",
+            success: function(response){
+                $('#list-alert-history').html('');
+                let history = response.data
+
+                $.each(history,function (i, data){
+                    // console.log(history[i].nama)
+                    // console.log(response.user)
+                    if(history[i].nama == response.user){
+                        if(history[i].aksi == "Tambah"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }else if(history[i].aksi == "Hapus"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }
+
+                    }else{
+                        if(history[i].aksi == "Tambah"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-plus text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+
+                        }else if(history[i].aksi == "Hapus"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }else if(history[i].aksi == "Edit" || history[i].aksi == "Mengaktifkan" || history[i].aksi == "Menonaktifkan"){
+                            if(history[i].status == "clicked"){
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }else{
+
+                                $("#list-alert-history").append(`
+                                <button class="dropdown-item d-flex align-items-center btn-history unclicked" data-id=`+data.id+`>
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-black-500">`+ data.nama +`</div>
+                                        <span class="font-weight-bold">`+ data.keterangan +`</span>
+                                    </div>
+                                </button>
+                                `)
+                            }
+                        }
+
+                    }
+
+                })
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    }
+
+    //KLIK HISTORY
+    $("body").on("click",".btn-history", function(e){
+        e.preventDefault()
+        var id = $(this).attr("data-id");
+        console.log(id);
+
+        $.ajax({
+            type: "get",
+            url: "/history-clicked/"+id,
+            success: function(response){
+                AlertCount();
+                AlertHistory();
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    });
 
 	$.getScript('/js/Home/headline.js');
 	$.getScript('/js/Home/kerjasama.js');

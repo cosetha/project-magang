@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	LoadTableHeadLine();
 	function LoadTableHeadLine() {
+		AlertCount();
 		$('#datatable-headline').load('/load/table-headline', function() {
 			$('#tbl-headline').DataTable({
 				columnDefs: [ { className: 'align-middle', targets: '_all' } ],
@@ -64,13 +65,9 @@ $(document).ready(function() {
 			contentType: false,
 			accepts: 'application / json',
 			success: function(response) {
-				$('.modal-title-semester').html();
-				$('#HeadlineModal').modal('hide');
-				$('#form-headline').trigger('reset');
 				$('.btn-close').css('display', '');
 				$('.btn-loading').css('display', 'none');
 				$('#btn-submit-headline').css('display', '');
-				$('#blah').attr('src', '');
 				LoadTableHeadLine();
 				if (response.hasOwnProperty('error')) {
 					Swal.fire({
@@ -81,6 +78,9 @@ $(document).ready(function() {
 						showConfirmButton: false
 					});
 				} else {
+					$('#HeadlineModal').modal('hide');
+					$('#form-headline').trigger('reset');
+					$('#blah').attr('src', '');
 					Swal.fire({
 						icon: 'success',
 						title: response.message,
@@ -185,19 +185,30 @@ $(document).ready(function() {
 			processData: false,
 			contentType: false,
 			success: function(response) {
-				$('#HeadlineModalEdit').modal('hide');
-				$('#form-headline-edit').trigger('reset');
 				$('.btn-close-edit').css('display', '');
 				$('.btn-loading-edit').css('display', 'none');
 				$('#btn-save-headline').css('display', '');
-				LoadTableHeadLine();
-				Swal.fire({
-					icon: 'success',
-					title: response.message,
-					text: 'Berhasil Mengedit Headline',
-					timer: 1200,
-					showConfirmButton: false
-				});
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 1200,
+						showConfirmButton: false
+					});
+				} else {
+					$('#HeadlineModalEdit').modal('hide');
+					$('#form-headline-edit').trigger('reset');
+					$('#blah-edit').attr('src', '');
+					LoadTableHeadLine();
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Mengedit Headline',
+						timer: 1200,
+						showConfirmButton: false
+					});
+				}
 			},
 			error: function(err) {
 				console.log(err);
@@ -205,4 +216,19 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });

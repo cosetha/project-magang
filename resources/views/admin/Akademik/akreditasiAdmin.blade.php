@@ -49,10 +49,6 @@
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-akreditasi">
                 <div class="modal-body">
                 @csrf
-
-                    <label for="lembaga">Nama Lembaga</label>
-                    <input type="text" class="form-control" id="lembaga" name="lembaga" required>
-
                     <div class="form-group">
                     <label for="nilai" class="mt-2">Nilai Akreditasi</label>
                       <select class="form-control" id="nilai" name="nilai">
@@ -64,11 +60,16 @@
                     </div>
 
                     <label for="tanggal_mulai">Tanggal Mulai</label>
-                    <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
-            
+                    <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+
                     <label for="tanggal_selesai">Tanggal Akhir</label>
-                    <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
-            
+                    <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+
+                    <div class="form-group mt-3">
+                        <label for="file">Upload Sertifikat Akreditas</label>
+                        <input id="file-upload" type="file" name="file" accept="image/png, image/jpeg, image/jpg">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -101,9 +102,6 @@
 
                     <input type="hidden" name="id-edit" id="id-edit">
 
-                    <label for="lembaga-edit">Nama Lembaga</label>
-                    <input type="text" class="form-control" id="lembaga-edit" name="lembaga-edit" required>
-
                     <div class="form-group">
                     <label for="nilai-edit" class="mt-2">Nilai Akreditasi</label>
                       <select class="form-control" id="nilai-edit" name="nilai-edit">
@@ -114,11 +112,16 @@
                     </div>
 
                     <label for="tanggal_mulai-edit">Tanggal Mulai</label>
-                    <input type="date" class="form-control" id="tanggal_mulai-edit" name="tanggal_mulai-edit" required>
+                    <input type="date" class="form-control" id="tanggal_mulai-edit" name="tanggal_mulai-edit">
 
                     <label for="tanggal_selesai-edit">Tanggal Akhir</label>
-                    <input type="date" class="form-control" id="tanggal_selesai-edit" name="tanggal_selesai-edit" required>
-           
+                    <input type="date" class="form-control" id="tanggal_selesai-edit" name="tanggal_selesai-edit">
+
+                    <div class="form-group mt-3">
+                        <label for="file-upload-edit">Upload Sertifikat Akreditas</label>
+                        <input id="file-upload-edit" type="file" name="file" accept="image/png, image/jpeg, image/jpg">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
@@ -127,6 +130,8 @@
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Memproses...
                     </button>
+                    <button type="button" class="btn btn-success btn-aktifkan-akreditasi" style="display: none">Aktifkan</button>
+                    <button type="button" class="btn btn-warning btn-nonaktifkan-akreditasi" style="display: none">Non-Aktifkan</button>
                 </div>
             </form>
         </div>

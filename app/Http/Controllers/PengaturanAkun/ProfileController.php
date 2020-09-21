@@ -4,7 +4,9 @@ namespace App\Http\Controllers\PengaturanAkun;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \App\User;
+use \App\Histori;
 use Validator;
 use File;
 use Hash;
@@ -41,6 +43,13 @@ class ProfileController extends Controller
                 $user->save();
 
                 if($user) {
+
+                  $history = new Histori;
+                  $history->nama = auth()->user()->name;
+                  $history->aksi = "Edit";
+                  $history->keterangan = "Akun '".auth()->user()->email."' mengubah passwordnya'";
+                  $history->save();
+
                   return response()->json([
                     'status' => '1'
                   ]);
@@ -62,7 +71,6 @@ class ProfileController extends Controller
             }
         }
 
-
     }
 
     public function updateProfile(Request $request, $id)
@@ -72,11 +80,22 @@ class ProfileController extends Controller
         $filePath = $request->file('gambar')->move('img/profile', $fileName, 'public');
         File::delete('img/profile/'. auth()->user()->gambar);
         $user = User::find($id);
+        $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
         $user->name = $request->nama;
         $user->email = $request->email;
         $user->gambar = $fileName;
         $user->save();
         if($user) {
+
+          $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui profilenya";
+            $history->save();
+
           return response()->json([
             'status' => '1',
           ]);
@@ -87,19 +106,41 @@ class ProfileController extends Controller
         $cekNama = $this->cekNama($request->nama);
         if($cek==false && $cekNama==false) {
           $user = User::find($id);
+          $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
           $user->name = $request->nama;
           $user->email = $request->email;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Nama & Email menjadi '".$request->nama."' & '".$request->email."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);
           }
         } else if($cekNama==false) {
           $user = User::find($id);
+          $histori = Histori::where('nama',$user->name)->get();
+          if($histori){
+              DB::table('history')->where('nama','=',auth()->user()->name)->update(array('nama' => $request->nama));
+          }
           $user->name = $request->nama;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Nama menjadi '".$request->nama."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);
@@ -109,6 +150,13 @@ class ProfileController extends Controller
           $user->email = $request->email;
           $user->save();
           if($user) {
+
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Edit";
+            $history->keterangan = "Akun '".auth()->user()->email."' memperbarui Email menjadi '".$request->email."'";
+            $history->save();
+
             return response()->json([
               'status' => '1',
             ]);
@@ -139,5 +187,13 @@ class ProfileController extends Controller
         return false;
       }
       return true;
+    }
+
+    public function CekUpdatePassword(){
+        $user = User::find(auth()->user()->id);
+
+        return response([
+            'user' => $user
+        ]);
     }
 }

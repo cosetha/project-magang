@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataTenaga();
   //load data tenaga_kependidikan
   function loadDataTenaga() {
+    AlertCount();
       $('#datatable-tenaga').load('/tenaga/datatable', function() {
           var host = window.location.origin;
           $('#tenaga-table').DataTable({
@@ -219,35 +220,6 @@ $(document).ready(function() {
     }
   });
 
-  //hapus tenaga TenagaKependidikan
-  $('body').on('click', '.btn-delete-tenaga_kependidikan', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $('input[name=hapus-id]').val(id);
-    $('#deleteTenagaModal').modal('show');
-  });
-
-  $('body').on('click', '#confirm-delete-tenaga', function(e) {
-    e.preventDefault();
-    var id = $('input[name=hapus-id]').val();
-    $.ajax({
-      type: 'GET',
-      url: 'tenaga/delete/' + id,
-      contentType: false,
-      processData: false,
-      success: function(data) {
-        if(data.status == 'ok') {
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              )
-          $('#deleteTenagaModal').modal('hide');
-          loadDataTenaga();
-        }
-      }
-    });
-  });
-
   $('body').on('click', '#btn-import', function(e) {
     e.preventDefault();
     $("#importExcel").modal("show");
@@ -282,5 +254,53 @@ $(document).ready(function() {
       }
     });
   });
+
+  //hapus tenaga kerja
+  $('body').on('click', '.btn-delete-tenaga_kependidikan', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      var judul = $(this).data('nama');
+      Swal.fire({
+          title: 'Anda yakin ingin menghapus ' + judul + '?',
+          text: "Anda tidak dapat membatalkan aksi ini!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: 'tenaga/delete/' + id,
+                  contentType: false,
+                  processData: false,
+                  success: function(data) {
+                      if(data.status == 'deleted') {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              )
+                              loadDataTenaga();
+                          }
+                      }
+                  });
+              }
+          })
+      });
+
+  //ALERT HISTORY COUNT
+  function AlertCount(){
+      $.ajax({
+          type: "get",
+          url: "/count-today-history-alert",
+          success: function(response){
+              $("#jumlah_history_today").html(response.total);
+          },
+          error: function(err){
+              console.log(err);
+          }
+      });
+  }
 
 });

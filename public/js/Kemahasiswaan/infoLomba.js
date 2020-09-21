@@ -62,6 +62,7 @@ $(document).ready(function() {
 
   //tampil Lomba Seminar
   function loadDataLomba() {
+    AlertCount();
     $('#datatable-infoLomba').load('/lomba-seminar/datatable', function() {
       $('#infoLomba-table').DataTable({
         processing: true,
@@ -73,7 +74,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {data: 'lokasi',name: 'lokasi'},
           {data: 'tanggal',name: 'tanggal'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
@@ -206,5 +206,41 @@ $(document).ready(function() {
       })
 
     });
+
+    //show info lomba
+    $('body').on('click', '.btn-show-lomba', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      console.log(id)
+      $("#show-form").trigger("reset");
+      $("#show-deskripsi").empty();
+      $.ajax({
+        type: 'GET',
+        url: 'lomba-seminar/edit/' + id,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $('#showLombaModal').modal('show');
+            $('#show-judul').val(data.data.judul);
+            tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
+            $('#show-lokasi').val(data.data.lokasi);
+            $('#show-tanggal').val(data.data.tanggal);
+        }
+      });
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

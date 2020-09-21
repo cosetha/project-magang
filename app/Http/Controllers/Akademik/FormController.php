@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Akademik;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Form;
+use App\Histori;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -27,7 +28,7 @@ class FormController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -38,12 +39,17 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        $messsages = array(
+            'nama.required'=>'Field Nama Perlu di Isi',
+            'file.required'=>'Field File Perlu di Isi',
+            'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+        );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'file'   => 'required||mimes:doc,pdf,docx,zip,csv, xls, xlsx']
+            'file'   => 'required||mimes:doc,pdf,docx,zip,csv, xls, xlsx'],$messsages
         );
         if ($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
               ]);
@@ -58,17 +64,23 @@ class FormController extends Controller
                 $form->nama_form = $request->nama;
                 $form->file = $directory."/".$nama_file;
                 $form->save();
-    
+
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Form '".$request->nama."'";
+                    $history->save();
+
                 return response()->json([
                     'message' => 'Success'
                 ]);
             } catch (\Exception $e) {
-               
+
                 return response()->json([
                     'error' => $e->getMessage()
                 ]);
             }
-           
+
          }
     }
 
@@ -116,53 +128,89 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
-            'nama' => 'required',
-            'file'   => 'mimes:doc,pdf,docx,zip,csv, xls, xlsx']
-        );
-        if ($validator->fails()) {
-            $error = $validator->messages()->get('*');
-            return response()->json([
-                'error' => $error,
-              ]);
-         }else{
-            try {
+
+
+
                 if($request->hasFile('file')){
-                    $directory = 'assets/upload/file';
-                    $file = request()->file('file');
-                    $nama_file = time().$file->getClientOriginalName();
-                    $file->name = $nama_file;
-                    $file->move($directory, $file->name);
+                    $messsages = array(
+                        'nama.required'=>'Field Nama Perlu di Isi',
+                        'file.required'=>'Field File Perlu di Isi',
+                        'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+                    );
+                    $validator = Validator::make($request->all(),[
+                        'nama' => 'required',
+                        'file'   => 'mimes:doc,pdf,docx,zip,csv,xls,xlsx'],$messsages
+                    );
+                    if ($validator->fails()) {
+                        $error = $validator->errors()->first();
+                        return response()->json([
+                            'error' => $error,
+                          ]);
+                    }else{
+                        $directory = 'assets/upload/file';
+                        $file = request()->file('file');
+                        $nama_file = time().$file->getClientOriginalName();
+                        $file->name = $nama_file;
+                        $file->move($directory, $file->name);
+                        $form = Form::find($id);
+                        if($form->nama_form != $request->nama){
+                            $history = new Histori;
+                            $history->nama = auth()->user()->name;
+                            $history->aksi = "Edit";
+                            $history->keterangan = "Mengedit Form '".$form->nama_form."' menjadi '".$request->nama."'";
+                            $history->save();
+                        }
+                        if($form->file != $directory."/".$nama_file){
+                            $history = new Histori;
+                            $history->nama = auth()->user()->name;
+                            $history->aksi = "Edit";
+                            $history->keterangan = "Mengedit File Form '".$request->nama."'";
+                            $history->save();
+                        }
+
+                        try {
+                            unlink($form->file);
+                        } catch (\Throwable $th) {
+                            //throw $th;
+                        }
+                        $form->nama_form = $request->nama;
+                        $form->file = $directory."/".$nama_file;
+                        $form->save();
+                        return response()->json([
+                            'message' => 'Success'
+                        ]);
+                    }
+
+                }else{
+                    $messsages = array(
+                        'nama.required'=>'Field Nama Perlu di Isi',
+                    );
+                    $validator = Validator::make($request->all(),[
+                        'nama' => 'required',
+                        ],$messsages
+                    );
+                    if ($validator->fails()) {
+                        $error = $validator->errors()->first();
+                        return response()->json([
+                            'error' => $error,
+                          ]);
+                    }else{
                     $form = Form::find($id);
-                    try {
-                        unlink($form->file);
-                    } catch (\Throwable $th) {
-                        //throw $th;
+                    if($form->nama_form != $request->nama){
+                        $history = new Histori;
+                        $history->nama = auth()->user()->name;
+                        $history->aksi = "Edit";
+                        $history->keterangan = "Mengedit Form '".$form->nama_form."' menjadi '".$request->nama."'";
+                        $history->save();
                     }
                     $form->nama_form = $request->nama;
-                    $form->file = $directory."/".$nama_file;
-                    $form->save();
-                    return response()->json([
-                        'message' => 'Success'
-                    ]);
-                }else{
-                    $form = Form::find($id);
-                    $form->nama = $request->nama;
                     $form->save();
                     return response()->json([
                         'message' => 'Success'
                     ]);
                 }
-               
-                
-            } catch (\Exception $e) {
-               
-                return response()->json([
-                    'error' => $e->getMessage()
-                ]);
             }
-           
-         }
+
     }
 
     /**
@@ -175,6 +223,11 @@ class FormController extends Controller
     {
         try {
             $form = Form::find($id);
+            $history = new Histori;
+            $history->nama = auth()->user()->name;
+            $history->aksi = "Hapus";
+            $history->keterangan = "Menghapus Form '".$form->nama_form."'";
+            $history->save();
             try {
                 unlink($form->file);
             } catch (\Throwable $th) {

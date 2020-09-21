@@ -22,21 +22,10 @@
                   <h1 class="h4 text-gray-900 mb-2">Forgot Your Password ?</h1>
                   <p class="mb-4">Harap masukkan Email anda yang terdaftar, Kami akan mengirimkan anda sebuah Email untuk melakukan proses Verifikasi.</p>
                 </div>
-                @if (session('status'))
-                  <div class="alert alert-success" role="alert">
-                      {{ session('status') }}
-                  </div>
-                @endif
                 <form class="user" method="POST" action="{{ route('password.email') }}">
                         @csrf
                   <div class="form-group">
-                    <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Email" required autocomplete="email" autofocus>
-
-                    @error('email')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                    @enderror
+                    <input id="email" type="email" class="form-control form-control-user" name="email" value="{{ old('email') }}" placeholder="Masukkan Email" required autocomplete="email" autofocus>
                   </div>
                   <button type="submit" class="btn btn-primary btn-user btn-block">
                     Kirim Link Reset Password

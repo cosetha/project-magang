@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Dosen;
+use App\Mahasiswa;
+use App\SearchMenu;
+use App\Histori;
 use DB;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +17,50 @@ class PageController extends Controller
       $admin = User::count();
       $dosen = Dosen::count();
       $tenaga = DB::table('tenaga_kependidikan')->count();
-      return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga'));
+
+      //UNTUK CHART
+      $tahun = Mahasiswa::orderBy('angkatan','asc')->get();
+      $mahasiswa = DB::table('mahasiswa')
+               ->select(DB::raw('count(*) as total'))
+               ->groupBy('angkatan')
+               ->get();
+
+      $angkatan = [];
+      foreach($tahun as $t){
+          $angkatan[] = $t->angkatan;
+      }
+      $angkatan_fix = array_values(array_unique($angkatan));
+
+      $total = [];
+      foreach($mahasiswa as $m){
+          $total[] = $m->total;
+      }
+
+      $lainnya = [];
+      $lainnya[] = $admin;
+      $lainnya[] = $tenaga;
+      $lainnya[] = $dosen;
+
+      //Delete History 30 Hari Sekali 
+      Histori::where('created_at', '<', Carbon::now()->subDays(30))->delete();
+
+      return view('admin.dashboardAdmin', compact('admin', 'dosen', 'tenaga','angkatan_fix','total','lainnya'));
+    }
+
+    public function SearchMenu($menu){
+        $data = SearchMenu::where('menu',$menu)->first();
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
+    public function CekRole(){
+        $data = auth()->user()->id_role;
+
+        return response([
+            'data' => $data
+        ]);
     }
 
     public function SosialMedia(){

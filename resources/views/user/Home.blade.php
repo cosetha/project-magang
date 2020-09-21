@@ -1,4 +1,6 @@
+
 @extends('layout/userlayout')
+
 @section('title', 'Home')
 
 @section('content')

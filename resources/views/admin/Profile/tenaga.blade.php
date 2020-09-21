@@ -141,7 +141,7 @@
 
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <input type="submit" name="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" name="submit" value="Submit">
                     </div>
 
 
@@ -206,17 +206,18 @@
 
 							<label>Pilih file excel</label>
 							<div class="form-group">
-								<input type="file" name="file" id="file" required="required">
+								<input type="file" name="file" id="file" required="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 							</div>
 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-primary btn-save">Import</button>
-              <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  Import Data ...
-              </button>
+                            <a href="{{url('/tenaga/download-format-excel')}}" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Import Data ...
+                            </button>
 						</div>
 					</div>
 				</form>

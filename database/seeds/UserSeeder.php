@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 		        'email' => 'superadmin@gmail.com',
 		        'password' => bcrypt('rahasia_superadmin'), // password
 		        'id_role' => '1',
-		        'remember_token' => Str::random(10)
+		        'remember_token' => ''
         	],
         	[
 	            'gambar' => '',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 		        'email' => 'admin@gmail.com',
 		        'password' => bcrypt('rahasia_admin'), // password
 		        'id_role' => '2',
-		        'remember_token' => Str::random(10)
+		        'remember_token' => ''
         	]
         ];
 

@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE
 	LoadPengguna();
 	function LoadPengguna() {
+        AlertCount();
 		$('#datatable-pengguna').load('/load/table-pengguna', function() {
 			$('#tbl-pengguna').DataTable({
 				processing: true,
@@ -49,19 +50,35 @@ $(document).ready(function() {
             url: "/tambah-pengguna",
             data: data,
             success: function(response){
-                $(".btn-close").css("display","")
-                $(".btn-loading").css("display","none")
-                $(".btn-submit-pengguna").css("display","")
-                $("#PenggunaModal").modal("hide")
-                $("#FormPengguna").trigger("reset")
-                LoadPengguna()
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sukses',
-                    text: 'Berhasil Menambahkan Pengguna',
-                    timer: 1200,
-                    showConfirmButton: false
-                });
+
+                if(response.message == "sukses"){
+                    $(".btn-close").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-submit-pengguna").css("display","")
+                    $("#PenggunaModal").modal("hide")
+                    $("#FormPengguna").trigger("reset")
+                    LoadPengguna()
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Pengguna',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }else{
+                    $("#FormPengguna").trigger("reset")
+                    $(".btn-close").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-submit-pengguna").css("display","")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'Email Telah digunakan!',
+                    });
+                }
+
+                // console.log(response)
+
             },
             error: function(err){
                 console.log(err)
@@ -90,7 +107,7 @@ $(document).ready(function() {
 					url: "/hapus-pengguna/"+id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#tbl-pengguna").DataTable().page('last').draw('page');
+						LoadPengguna();
 					},
 					error: function(err) {
 						console.log(err);
@@ -98,6 +115,20 @@ $(document).ready(function() {
 				});
 			}
 		});
-    })
+    });
+    
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
-})
+});

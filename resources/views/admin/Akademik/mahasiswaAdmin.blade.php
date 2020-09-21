@@ -24,6 +24,8 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export </a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import </a>
         </div>
 
         <div class="card-body">
@@ -53,14 +55,14 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa">
                     @csrf
 
-                    <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim" name="nim" required>
+                    <label for="nim">NIM</label>
+                    <input type="text" class="form-control" id="nim" name="nim" pattern="\d*" maxlength="15">
 
                     <label for="nama" class="mt-2">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <input type="text" class="form-control" id="nama" name="nama" >
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly required>
+                    <input type="text" class="form-control years-picker" id="angkatan" name="angkatan" readonly >
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -104,14 +106,14 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa-edit">
                     @csrf
 
-                    <label for="nim">Nim</label>
-                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" required>
+                    <label for="nim">NIM</label>
+                    <input type="text" class="form-control" id="nim-edit" name="nim-edit" pattern="\d*" maxlength="15">
 
                     <label for="nama" class="mt-2">Nama</label>
-                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" required>
+                    <input type="text" class="form-control" id="nama-edit" name="nama-edit" >
 
                     <label for="nama" class="mt-2">Tahun Angkatan</label>
-                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan-edit" readonly required>
+                    <input type="text" class="form-control years-picker" id="angkatan-edit" name="angkatan-edit" readonly >
 
                     <div class="form-group">
                         <label for="bk" class="mt-2">Bidang Keahlian</label>
@@ -139,8 +141,72 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="importMahasiswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Mahasiswa</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-mahasiswa-export" action="/admin/import-mahasiswa">
+                    @csrf
+                    <div class="form-group">
+                        <label for="bk" class="mt-2">Mahasiswa</label>
+                        <input type="file" name="file" id="file">
+                    </div>
+            </div>
+            <div class="modal-footer">
+             <a href="/download-format-excel-mahasiswa" class="btn btn-success btn-download">Download Format</a>
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Import</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exportMahasiswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Export Mahasiswa</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="get" id="form-mahasiswa-export" action="/admin/export-mahasiswa">
+                    @csrf
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="bk" class="mt-2">Bidang Keahlian</label>
+                                <select class="form-control" id="bk" name="bk">
+                                    @foreach($bidang as $b)
+                                    <option value="{{$b->id}}">{{$b->nama_bk}}</option>
+                                    @endforeach
+                                    <option value="0">Semua</option>
+                                </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="bk" class="mt-2">Tipe File</label>
+                                <select class="form-control" id="type" name="type">
+                                        <option value="Excel">Excel</option>
+                                        <option value="Pdf">Pdf</option>
+                                </select>
+                        </div>    
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Export</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
-      <script src="{{ asset('js/akademik/mahasiswa.js') }}"></script>
+      <script src="{{ asset('js/Akademik/mahasiswa.js') }}"></script>
 @endsection

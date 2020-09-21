@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	LoatTableSejarah();
 	function LoatTableSejarah() {
+		AlertCount();
 		$('#datatable-sejarah').load('/load/table-sejarah', function() {
 			$('#tbl-sejarah').DataTable({
 				columnDefs: [ { className: 'align-middle', targets: '_all' } ],
@@ -19,12 +20,6 @@ $(document).ready(function() {
 					{
 						data: 'judul',
 						name: 'judul'
-					},
-					{
-						data: 'menu',
-						name: 'menu',
-						searchable: false,
-						orderable: false
 					},
 					{
 						data: 'aksi',
@@ -52,56 +47,43 @@ $(document).ready(function() {
 		formData.append('judul', judul);
 		formData.append('deskripsi', deskripsi);
 		formData.append('menu', menu);
-		if (tinymce.get('deskripsi').getContent() == '') {
-			$('.btn-close').css('display', '');
-			$('.btn-loading').css('display', 'none');
-			$('#btn-submit-sejarah').css('display', '');
-			Swal.fire({
-				icon: 'error',
-				title: 'Error',
-				text: 'Field Deksripsi perlu di isi',
-				timer: 1200,
-				showConfirmButton: false
-			});
-		} else {
-			$.ajax({
-				type: 'post',
-				url: '/admin/tambah-sejarah',
-				data: formData,
-				processData: false,
-				contentType: false,
-				accepts: 'application / json',
-				success: function(response) {
+		$.ajax({
+			type: 'post',
+			url: '/admin/tambah-sejarah',
+			data: formData,
+			processData: false,
+			contentType: false,
+			accepts: 'application / json',
+			success: function(response) {
+				$('.btn-close').css('display', '');
+				$('.btn-loading').css('display', 'none');
+				$('#btn-submit-sejarah').css('display', '');
+
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 2200,
+						showConfirmButton: false
+					});
+				} else {
 					$('#SejarahModal').modal('hide');
 					$('#form-sejarah').trigger('reset');
-					$('.btn-close').css('display', '');
-					$('.btn-loading').css('display', 'none');
-					$('#btn-submit-sejarah').css('display', '');
 					LoatTableSejarah();
-					if (response.hasOwnProperty('error')) {
-						Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: Object.keys(response.error),
-							timer: 2200,
-							showConfirmButton: false
-						});
-						console.log(Object.keys(response.error));
-					} else {
-						Swal.fire({
-							icon: 'success',
-							title: response.message,
-							text: 'Berhasil MenambahkanSejarah',
-							timer: 1000,
-							showConfirmButton: false
-						});
-					}
-				},
-				error: function(err) {
-					console.log(err);
+					Swal.fire({
+						icon: 'success',
+						title: response.message,
+						text: 'Berhasil Menambahkan Sejarah',
+						timer: 1000,
+						showConfirmButton: false
+					});
 				}
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 	});
 
 	$('body').on('click', '.btn-delete-sejarah', function(e) {
@@ -135,7 +117,7 @@ $(document).ready(function() {
 							Swal.fire({
 								icon: 'success',
 								title: response.message,
-								text: 'Berhasil MenghapusSejarah ' + nama,
+								text: 'Berhasil Menghapus Sejarah ' + nama,
 								timer: 2000,
 								showConfirmButton: false
 							});
@@ -215,45 +197,57 @@ $(document).ready(function() {
 		formData.append('judul', judul);
 		formData.append('deskripsi', deskripsi);
 		formData.append('menu', menu);
-		if (tinymce.get('deskripsi-edit').getContent() == '') {
-			$('.btn-close-edit').css('display', '');
-			$('.btn-loading-edit').css('display', 'none');
-			$('#btn-save-sejarah').css('display', '');
-			Swal.fire({
-				icon: 'error',
-				title: 'Error',
-				text: 'Field Deksripsi perlu di isi',
-				timer: 1200,
-				showConfirmButton: false
-			});
-		} else {
-			$.ajax({
-				type: 'POST',
-				url: '/admin/konfirmasi-edit-sejarah/' + id,
-				data: formData,
-				processData: false,
-				contentType: false,
-				success: function(response) {
+		$.ajax({
+			type: 'POST',
+			url: '/admin/konfirmasi-edit-sejarah/' + id,
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function(response) {
+				$('.btn-close-edit').css('display', '');
+				$('.btn-loading-edit').css('display', 'none');
+				$('#btn-save-sejarah').css('display', '');
+				if (response.hasOwnProperty('error')) {
+					Swal.fire({
+						icon: 'error',
+						title: 'Ooopss...',
+						text: response.error,
+						timer: 1200,
+						showConfirmButton: false
+					});
+				} else {
 					$('#editSejarahModal').modal('hide');
 					$('#form-sejarah-edit').trigger('reset');
-					$('.btn-close-edit').css('display', '');
-					$('.btn-loading-edit').css('display', 'none');
-					$('#btn-save-sejarah').css('display', '');
 					LoatTableSejarah();
 					Swal.fire({
 						icon: 'success',
 						title: response.message,
-						text: 'Berhasil MengeditSejarah',
+						text: 'Berhasil Mengedit Sejarah',
 						timer: 1200,
 						showConfirmButton: false
 					});
-				},
-				error: function(err) {
-					console.log(err);
 				}
-			});
-		}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 
 		return false;
 	});
+
+	//ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+    
 });

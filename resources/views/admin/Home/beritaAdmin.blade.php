@@ -49,7 +49,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Berita</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -76,8 +76,12 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary" id="btn-tambah-berita" type="button" data-penulis="{{ auth()->user()->id }}">Submit</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                </button>
             </div>
         </div>
     </div>
@@ -90,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -119,8 +123,12 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" id="btn-edit-berita" type="hidden" data-penulis="{{ auth()->user()->id }}">Submit</button>
+                        <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Memproses...
+                        </button>
                     </div>
 
                 </form>

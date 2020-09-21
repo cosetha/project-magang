@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\User;
+use App\Histori;
 use App\Exports\PenggunaExport;
 use DataTables;
+use Validator;
 
 class PenggunaController extends Controller
 {
@@ -16,21 +18,47 @@ class PenggunaController extends Controller
     }
 
     public function store(Request $request){
+
+        //CEK EMAIL UNIQUE
+        $validator = Validator::make($request->all(),[
+                'email' => 'required|unique:users,email'
+            ]);
+
+        if($validator->fails()) {
+            return response([
+                'message' => 'gagal'
+            ]);
+        }
+
         $u = new User;
         $u->name = $request->name;
         $u->email = $request->email;
         $u->password = bcrypt('rahasia_admin');
         $u->id_role = 2;
+        $u->remember_token = '';
         $u->save();
 
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Menambahkan Akun '".$request->email."'";
+        $history->save();
+
         return response([
-            'message' => 'sukses'
+            'message' => 'sukses',
         ]);
     }
 
     public function destroy($id){
         $u = User::find($id);
+        Histori::where('nama',$u->name)->delete();
         $u->delete();
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Akun '".$u->email."' beserta Historynya";
+        $history->save();
 
         return response([
             'message' => "delete sukses"

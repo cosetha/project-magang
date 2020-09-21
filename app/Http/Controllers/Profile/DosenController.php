@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Dosen;
+use \App\Histori;
+use File;
 use DataTables;
 use App\Exports\DosenExport;
 use App\Imports\DosenImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Validator;
 
 class DosenController extends Controller
 {
@@ -20,6 +23,27 @@ class DosenController extends Controller
     }
 
     public function store(Request $request){
+
+        $messages = array(
+            'nama.required' => 'Kolom nama tidak boleh kosong!',
+            'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+            'gambar.required' => 'Harap masukkan gambar!',
+            'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+        );
+
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required|string',
+            'deskripsi' => 'required|string',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+        ],$messages);
+
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
+        }
+
         if($request->hasFile('gambar')){
             $directory = 'assets/upload/dosen';
             $file = request()->file('gambar');
@@ -33,6 +57,12 @@ class DosenController extends Controller
             $dosen->gambar= $directory."/".$nama;
             $dosen->save();
 
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Dosen '".$request->nama."'";
+                    $history->save();
+
             return response()->json([
                 'message' => 'success'
             ]);
@@ -41,6 +71,27 @@ class DosenController extends Controller
 
     public function update(Request $request, $id){
         if($request->hasFile('gambar')){
+
+            $messages = array(
+                'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+                'gambar.required' => 'Harap masukkan gambar!',
+                'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string',
+                'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                    return response()->json([
+                        'error' => $error,
+                    ]);
+            }
+
             $directory = 'assets/upload/dosen';
             $file = request()->file('gambar');
             $nama = time().$file->getClientOriginalName();
@@ -48,6 +99,30 @@ class DosenController extends Controller
             $file->move($directory, $file->name);
 
             $dosen = Dosen::find($id);
+            if($dosen->nama != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dosen '".$dosen->nama."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($dosen->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
+            if($dosen->gambar != $directory."/".$nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
+
+            unlink($dosen->gambar);
+
             $dosen->nama = $request->nama;
             $dosen->deskripsi = $request->deskripsi;
             $dosen->gambar= $directory."/".$nama;
@@ -57,7 +132,38 @@ class DosenController extends Controller
                 'message' => 'success'
             ]);
         }else{
+            $messages = array(
+                'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
+            );
+
+            $validator = Validator::make($request->all(),[
+                'nama' => 'required|string',
+                'deskripsi' => 'required|string',
+            ],$messages);
+
+            if($validator->fails()){
+                $error = $validator->errors()->first();
+                    return response()->json([
+                        'error' => $error,
+                    ]);
+            }
+
             $dosen = Dosen::find($id);
+            if($dosen->nama != $request->nama){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Dosen '".$dosen->nama."' menjadi '".$request->nama."'";
+                    $history->save();
+            }
+            if($dosen->deskripsi != $request->deskripsi){
+                $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Dosen '".$dosen->nama."'";
+                    $history->save();
+            }
             $dosen->nama = $request->nama;
             $dosen->deskripsi = $request->deskripsi;
             $dosen->save();
@@ -69,7 +175,15 @@ class DosenController extends Controller
     }
 
     public function destroy($id){
+        $pathDelete = Dosen::where('id', $id)->value('gambar');
+        File::delete($pathDelete);
+
         $d = Dosen::find($id);
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Dosen '".$d->nama."'";
+        $history->save();
         $d->delete();
 
         return response([
@@ -118,14 +232,20 @@ class DosenController extends Controller
 	    return $pdf->download('laporan-dosen.pdf');
     }
 
-    public function download_excel(){
+    public function download_format(){
 
-	    return response()->download('EXCEL/Dosen/example-dosen.xlsx');
+        return response()->download('EXCEL/dosen/example-dosen-format.xlsx');
     }
 
     public function import_excel(Request $request){
 
 		$file = $request->file('file');
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Mengimport file Dosen";
+        $history->save();
 
 		// import data
 		Excel::import(new DosenImport, $file);

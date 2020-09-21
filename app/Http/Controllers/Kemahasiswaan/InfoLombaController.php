@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemahasiswaan;
 
 use Illuminate\Http\Request;
 use App\InfoLombaSeminar;
+use App\Histori;
 use DataTables;
 
 class InfoLombaController
@@ -26,6 +27,9 @@ class InfoLombaController
           $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-judul="'.$row->judul.'"  class="btn-delete-lomba" style="font-size: 18pt; text-decoration: none; color:red;">
 
           <i class="fas fa-trash"></i>
+          </a>';
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-show-lomba" style="font-size: 18pt; text-decoration: none; color:green;">
+          <i class="fas fa-eye"></i>
           </a>';
           return $btn;
         })
@@ -52,6 +56,12 @@ class InfoLombaController
         $data->lokasi = $request->lokasi;
         $data->tanggal = $request->tanggal;
         $data->save();
+
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Lomba / Seminar '".$judul."'";
+                    $history->save();
 
           if($data) {
             return response()->json([
@@ -82,7 +92,7 @@ class InfoLombaController
       $deskripsi = $request->deskripsi;
       $lokasi = $request->lokasi;
       $tanggal = $request->tanggal;
-      
+
       if($judul == "" || $deskripsi == "" || $lokasi = "" || $tanggal = "") {
         return response()->json([
             'status' => 'no_empty'
@@ -90,6 +100,34 @@ class InfoLombaController
       }
 
       $data = InfoLombaSeminar::find($id);
+      if($data->judul != $judul){
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Lomba / Seminar '".$data->judul."' menjadi '".$judul."'";
+                    $history->save();
+      }
+      if($data->deskripsi != $deskripsi){
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Deskripsi Lomba / Seminar '".$judul."'";
+                    $history->save();
+      }
+      if($data->lokasi != $lokasi){
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Lokasi Lomba / Seminar '".$judul."'";
+                    $history->save();
+      }
+      if($data->tanggal != $tanggal){
+        $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tanggal Lomba / Seminar '".$judul."'";
+                    $history->save();
+      }
       $data->judul = $judul;
       $data->deskripsi = $deskripsi;
       $data->lokasi = $request->lokasi;
@@ -110,6 +148,11 @@ class InfoLombaController
     public function destroy($id)
     {
       $destroy = InfoLombaSeminar::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Lomba / Seminar '".$destroy->judul."'";
+        $history->save();
       $destroy->delete();
 
       if($destroy) {

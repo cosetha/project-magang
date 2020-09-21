@@ -7,6 +7,7 @@ $(document).ready(function() {
   loadDataPrestasi();
   //load DataTable
   function loadDataPrestasi() {
+    AlertCount();
       $('#datatable-prestasi').load('/prestasi/datatable', function() {
           var host = window.location.origin;
           $('#prestasi-table').DataTable({
@@ -226,33 +227,54 @@ $(document).ready(function() {
   }
   });
 
-  //hapus prestasi
+  //hapus Prestasi
   $('body').on('click', '.btn-delete-prestasi', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    $('input[name=hapus-id]').val(id);
-    $('#deletePrestasiModal').modal('show');
-  });
+      e.preventDefault();
+      var id = $(this).data('id');
+      var judul = $(this).data('nama');
+      Swal.fire({
+          title: 'Anda yakin ingin menghapus ' + judul + '?',
+          text: "Anda tidak dapat membatalkan aksi ini!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: 'prestasi/delete/' + id,
+                  contentType: false,
+                  processData: false,
+                  success: function(data) {
+                      if(data.status == 'deleted') {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              )
+                              loadDataPrestasi();
+                          }
+                      }
+                  });
 
-  $('body').on('click', '#btn-confirm-hapus', function(e) {
-    e.preventDefault();
-    var id = $('input[name=hapus-id]').val();
-    $.ajax({
-      type: 'GET',
-      url: 'prestasi/delete/' + id,
-      contentType: false,
-      processData: false,
-      success: function(data) {
-        if(data.status == 'deleted') {
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              )
-          $('#deletePrestasiModal').modal('hide');
-          loadDataPrestasi();
-        }
-      }
-    });
-  });
+              }
+          })
+
+      });
+
+  //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

@@ -46,7 +46,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Fasilitas</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -73,8 +73,12 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
-                <button class="btn btn-primary" type="button" id="btn-tambah-fasilitas">Submit</button>
+                <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary btn-submit" type="button" id="btn-tambah-fasilitas">Submit</button>
+                <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Memproses...
+                </button>
             </div>
         </div>
     </div>
@@ -87,7 +91,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Fasilitas</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -115,28 +119,48 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="btn-edit-fasilitas" type="submit">Submit</button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary btn-save" id="btn-edit-fasilitas" type="submit">Save</button>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Delete Fasilitas Modal-->
-<div class="modal fade" id="deleteFasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- show berita Modal-->
+<div class="modal fade" id="showFasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Fasilitas</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus Fasilitas?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+            <div class="modal-body">
+
+
+                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
+                    @csrf
+
+                    <label for="judulBerita" class="mt-2">Nama Fasilitas</label>
+                    <input type="text" class="form-control" id="nama-fasilitas-show" disabled>
+
+
+                    <label for="deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea type="text" class="form-control" id="deskripsi-fasilitas-show" name="deskripsi-fasilitas-show"> </textarea>
+
+
+                    <div class="form-group mt-3">
+                        <img id="image-fasilitas-show" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;" >
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ $(document).ready(function() {
   loadDataFasilitas();
 // ---- tambah fasilitas
   $('body').on('click', '#btn-tambah-fasilitas', function(e) {
-		e.preventDefault();
+	e.preventDefault();
     var formData = new FormData();
     var nama_fasilitas = $('input[name=nama_fasilitas]').val();
     var deskripsi = tinymce.get('deskripsi-tambah').getContent();
@@ -18,6 +18,10 @@ $(document).ready(function() {
     formData.append('deskripsi', deskripsi);
     formData.append('gambar', gambar);
 
+    $(".btn-close").css("display","none");
+    $(".btn-loading").css("display","");
+    $(".btn-submit").css("display","none");
+
     $.ajax({
 			type: 'POST',
 			url: 'fasilitas',
@@ -26,17 +30,23 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				if(data.status == 'ok') {
-          Swal.fire({
+                Swal.fire({
   					icon: 'success',
   					title: 'Sukses',
   					text: 'Berhasil Menambahkan Fasilitas',
   					timer: 1200,
   					showConfirmButton: false
-  				});
-          $('#form-tambah-fasilitas').trigger('reset');
-          $('#FasilitasModal .close').click();
-          loadDataFasilitas();
+                  });
+                  $(".btn-close").css("display","");
+                  $(".btn-loading").css("display","none");
+                  $(".btn-submit").css("display","");
+                  $('#form-tambah-fasilitas').trigger('reset');
+                  $('#FasilitasModal .close').click();
+                  loadDataFasilitas();
         } else if(data.status == 'no_insert') {
+            $(".btn-close").css("display","");
+                  $(".btn-loading").css("display","none");
+                  $(".btn-submit").css("display","");
           Swal.fire({
   					icon: 'error',
   					title: 'Gagal',
@@ -45,6 +55,9 @@ $(document).ready(function() {
   					showConfirmButton: false
   				});
         } else if(data.status == "no_gambar"){
+            $(".btn-close").css("display","");
+                  $(".btn-loading").css("display","none");
+                  $(".btn-submit").css("display","");
           Swal.fire({
   					icon: 'error',
   					title: 'Gagal',
@@ -53,6 +66,9 @@ $(document).ready(function() {
   					showConfirmButton: false
   				});
         } else {
+            $(".btn-close").css("display","");
+                  $(".btn-loading").css("display","none");
+                  $(".btn-submit").css("display","");
           Swal.fire({
   					icon: 'error',
   					title: 'Gagal',
@@ -68,6 +84,7 @@ $(document).ready(function() {
 
   //tampil fasilitas
   function loadDataFasilitas() {
+    AlertCount();
     $('#datatable-fasilitas').load('/fasilitas/datatable', function() {
       var host = window.location.origin;
       $('#fasilitas-table').DataTable({
@@ -80,7 +97,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'nama_fasilitas',name: 'nama_fasilitas'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {
             data: 'gambar',
             name: 'gambar',
@@ -101,7 +117,7 @@ $(document).ready(function() {
         e.preventDefault();
     var id = $(this).data('id');
     var host = window.location.origin;
-    console.log(id)
+    console.log(id);
     $.ajax({
 			type: 'GET',
 			url: 'fasilitas/edit/' + id,
@@ -132,6 +148,10 @@ $(document).ready(function() {
       formData.append('deskripsi', deskripsi);
       formData.append('gambar', gambar);
 
+      $(".btn-close").css("display","none");
+      $(".btn-save").css("display","none");
+      $(".btn-loading").css("display","");
+
       $.ajax({
         type: 'POST',
         url: 'fasilitas/update/' + id,
@@ -139,9 +159,12 @@ $(document).ready(function() {
         contentType: false,
         processData: false,
         success: function(data) {
-          $('#editFasilitasModal').modal('hide');
-          $('#form-edit-fasilitas').trigger('reset');
           if(data.status == 'ok') {
+            $('#editFasilitasModal').modal('hide');
+            $('#form-edit-fasilitas').trigger('reset');
+            $(".btn-close").css("display","");
+            $(".btn-save").css("display","");
+            $(".btn-loading").css("display","none");
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
@@ -154,6 +177,9 @@ $(document).ready(function() {
             });
             loadDataFasilitas();
           } else if(data.status == 'no_insert') {
+            $(".btn-close").css("display","");
+            $(".btn-save").css("display","");
+            $(".btn-loading").css("display","none");
             Swal.fire({
               icon: 'error',
               title: 'Gagal',
@@ -162,6 +188,9 @@ $(document).ready(function() {
               showConfirmButton: false
             });
           } else if(data.status == 'no_empty'){
+            $(".btn-close").css("display","");
+            $(".btn-save").css("display","");
+            $(".btn-loading").css("display","none");
             Swal.fire({
               icon: 'error',
               title: 'Gagal',
@@ -173,7 +202,7 @@ $(document).ready(function() {
 
         },
         error: function(err){
-            console.log(err)
+            console.log(err);
         }
       });
 
@@ -186,10 +215,9 @@ $(document).ready(function() {
       e.preventDefault();
       var id = $(this).data('id');
       var nama_fasilitas = $(this).attr('data-nama_fasilitas');
-      console.log(nama_fasilitas);
-      console.log(id);
+
       Swal.fire({
-        title: 'Anda yakin ingin menghapus ' + nama_fasilitas + '?',
+        title: 'Hapus ' + nama_fasilitas + '?',
         text: "Anda tidak dapat membatalkan aksi ini!",
         icon: 'warning',
         showCancelButton: true,
@@ -205,11 +233,14 @@ $(document).ready(function() {
             processData: false,
             success: function(data) {
               if(data.status == 'deleted') {
-                Swal.fire(
-                  'Deleted!',
-                  'Berhasil Menghapus ' + nama_fasilitas+'.',
-                )
-                loadDataFasilitas();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: nama_fasilitas+' Dihapus!',
+                    timer: 1200,
+                    showConfirmButton: false
+                  });
+                  loadDataFasilitas();
               }
             }
           });
@@ -219,5 +250,40 @@ $(document).ready(function() {
 
     });
 
+    //show
+    $("body").on("click",".btn-show-fasilitas", function(e){
+        e.preventDefault();
+        $("#showFasilitasModal").modal("show");
+
+        var id = $(this).attr("data-id");
+        console.log(id);
+        $.ajax({
+            type: "get",
+            url: "fasilitas/show/"+id,
+            success: function(response){
+                console.log(response.data);
+                $("#nama-fasilitas-show").val(response.data.nama_fasilitas);
+                tinymce.get('deskripsi-fasilitas-show').setContent(response.data.deskripsi);
+                tinymce.get('deskripsi-fasilitas-show').setMode('readonly');
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    });
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 });

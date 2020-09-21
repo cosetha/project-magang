@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jabatan;
+use App\Histori;
 use App\TenagaKependidikan as TK;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -33,7 +34,7 @@ class TenagaKependidikanController extends Controller
           $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-edit-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none;" class="mr-3">
           <i class="fas fa-pen-square"></i>
           </a>';
-          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-delete-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none; color:red;">
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn-delete-tenaga_kependidikan" style="font-size: 18pt; text-decoration: none; color:red;">
           <i class="fas fa-trash"></i>
           </a>';
           return $btn;
@@ -87,6 +88,12 @@ class TenagaKependidikanController extends Controller
           $tenaga->alamat = $alamat;
           $tenaga->no_tlp = $telepon;
           $tenaga->save();
+
+          $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Tambah";
+                    $history->keterangan = "Menambahkan Tenaga Kerja '".$nama."'";
+                    $history->save();
 
           if($tenaga) {
             return response()->json([
@@ -165,6 +172,43 @@ class TenagaKependidikanController extends Controller
           $gambar->move($gambarPath, $gambarName, "public");
 
           $tenaga = TK::find($id);
+
+        if($tenaga->nama != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tenaga Kerja '".$tenaga->nama."' menjadi '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->kode_jabatan != $jabatan){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Kode Jabatan Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->alamat != $alamat){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Alamat Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->no_telp != $telepon){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit No.Telpon Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->gambar != $gambarPath.'/'.$gambarName){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Gambar Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+
           $tenaga->gambar = $gambarPath.'/'.$gambarName;
           $tenaga->nama = $nama;
           $tenaga->kode_jabatan = $jabatan;
@@ -185,6 +229,34 @@ class TenagaKependidikanController extends Controller
       } else {
 
         $tenaga = TK::find($id);
+        if($tenaga->nama != $nama){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Tenaga Kerja '".$tenaga->nama."' menjadi '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->kode_jabatan != $jabatan){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Kode Jabatan Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->alamat != $alamat){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit Alamat Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
+        if($tenaga->no_telp != $telepon){
+            $history = new Histori;
+                    $history->nama = auth()->user()->name;
+                    $history->aksi = "Edit";
+                    $history->keterangan = "Mengedit No.Telpon Tenaga Kerja '".$nama."'";
+                    $history->save();
+        }
         $tenaga->nama = $nama;
         $tenaga->kode_jabatan = $jabatan;
         $tenaga->alamat = $alamat;
@@ -209,9 +281,15 @@ class TenagaKependidikanController extends Controller
     {
       $gambarDelete = TK::where('id', $id)->value('gambar');
       File::delete($gambarDelete);
+      $t = TK::find($id);
+      $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Hapus";
+        $history->keterangan = "Menghapus Tenaga Kerja '".$t->nama."'";
+        $history->save();
         $tenaga = TK::destroy($id);
           return response()->json([
-            'status' => 'ok'
+            'status' => 'deleted'
           ]);
     }
 
@@ -239,7 +317,13 @@ class TenagaKependidikanController extends Controller
   			'file' => 'required|mimes:csv,xls,xlsx'
   		]);
 
-  		$file = $request->file('file');
+          $file = $request->file('file');
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Tambah";
+        $history->keterangan = "Mengimport file Tenaga Kerja";
+        $history->save();
 
   		// import data
   		Excel::import(new TenagaImport, $file);
@@ -262,5 +346,10 @@ class TenagaKependidikanController extends Controller
         ->get();
         $pdf = PDF::loadview('PDF/TenagaKependidikanPDF',['tenaga'=>$data]);
 	    return $pdf->download('Tenaga Kependidikan.pdf');
+    }
+
+    public function download_excel(){
+
+      return response()->download('EXCEL/TenagaKerja/example-tenaga-kerja.xlsx');
     }
 }

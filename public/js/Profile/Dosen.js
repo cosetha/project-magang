@@ -3,6 +3,7 @@ $(document).ready(function() {
     //DATATABLE
 	LoadDosen();
 	function LoadDosen() {
+        AlertCount();
 		$('#datatable-dosen').load('/load/table-dosen', function() {
 			$('#tbl-dosen').DataTable({
 				processing: true,
@@ -61,19 +62,32 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    $(".btn-close").css('display','')
-                    $(".btn-loading").css('display','none')
-                    $(".btn-submit-dosen").css('display','')
-                    $("#DosenModal").modal("hide")
-                    $("#FormTambahDosen").trigger("reset")
-                    $("#tbl-dosen").DataTable().page('last').draw('page');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: 'Berhasil Menambahkan Dosen',
-                        timer: 1200,
-                        showConfirmButton: false
-                    });
+
+                    if(response.hasOwnProperty('error')){
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-submit-dosen").css('display','')
+                        Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error
+						});
+                    }else{
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-submit-dosen").css('display','')
+                        $("#DosenModal").modal("hide")
+                        $("#FormTambahDosen").trigger("reset")
+                        LoadDosen();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menambahkan Dosen',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                    }
+
                 },
                 error: function(err){
                     console.log(err)
@@ -128,19 +142,32 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    $(".btn-close").css('display','')
-                    $(".btn-loading").css('display','none')
-                    $(".btn-save").css('display','')
-                    $("#editDosenModal").modal("hide")
-                    $("#FormEditDosen").trigger("reset")
-                    $("#tbl-dosen").DataTable().page('last').draw('page');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: 'Berhasil Edit Dosen',
-                        timer: 1200,
-                        showConfirmButton: false
-                    });
+
+                    if(response.hasOwnProperty('error')){
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-save").css('display','')
+                        Swal.fire({
+							icon: 'error',
+							title: 'Ooopss...',
+							text: response.error
+						});
+                    }else{
+                        $(".btn-close").css('display','')
+                        $(".btn-loading").css('display','none')
+                        $(".btn-save").css('display','')
+                        $("#editDosenModal").modal("hide")
+                        $("#FormEditDosen").trigger("reset")
+                        LoadDosen();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Edit Dosen',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                    }
+
                 },
                 error: function(err){
                     console.log(err)
@@ -169,7 +196,7 @@ $(document).ready(function() {
 					url: '/delete-dosen/' + id,
 					success: function(response) {
 						Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
-						$("#tbl-dosen").DataTable().page('last').draw('page');
+						LoadDosen();
 					},
 					error: function(err) {
 						console.log(err);
@@ -248,5 +275,19 @@ $(document).ready(function() {
             }
         })
     })
+
+    //ALERT HISTORY COUNT
+    function AlertCount(){
+        $.ajax({
+            type: "get",
+            url: "/count-today-history-alert",
+            success: function(response){
+                $("#jumlah_history_today").html(response.total);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
 
 })

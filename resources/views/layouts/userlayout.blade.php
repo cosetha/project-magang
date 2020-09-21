@@ -72,7 +72,7 @@
           </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/bk">Bidang Keahlian</a>
+            <a class="nav-link" href="/gbk">Bidang Keahlian</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

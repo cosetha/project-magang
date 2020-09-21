@@ -3,7 +3,6 @@
     <tr align="center">
       <th>No</th>
       <th>Judul</th>
-      <th>Deskripsi</th>
       <th>Lokasi</th>
       <th>Tanggal</th>
       <th>Action</th>
