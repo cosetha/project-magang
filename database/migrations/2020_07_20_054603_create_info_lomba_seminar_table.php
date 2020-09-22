@@ -18,7 +18,6 @@ class CreateInfoLombaSeminarTable extends Migration
             $table->string('judul');
             $table->mediumText('deskripsi');
             $table->string('lokasi');
-            $table->date('tanggal');
             $table->timestamps();
         });
     }
