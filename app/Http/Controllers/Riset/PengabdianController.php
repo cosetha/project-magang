@@ -29,6 +29,10 @@ class PengabdianController
 
           <i class="fas fa-trash"></i>
           </a>';
+
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-pengabdian" style="font-size: 18pt; text-decoration: none; color:green;">
+                <i class="fas fa-eye"></i>
+            </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -41,7 +45,7 @@ class PengabdianController
         $judul = $request->judul;
         $deskripsi = $request->deskripsi;
         $tahun = $request->tahun;
-        if($judul == "" || $deskripsi == "" || $tahun == "") {
+        if($judul == "" || $deskripsi == "" || $request->luaran == "" || $tahun == "") {
           return response()->json([
             'status' => 'no_empty'
           ]);
@@ -54,6 +58,7 @@ class PengabdianController
         $data = new Pengabdian;
         $data->judul = $judul;
         $data->deskripsi = $deskripsi;
+        $data->hasil_luaran = $request->luaran;
         $data->tahun = $tahun;
         $data->gambar = $fileName;
         $data->save();
@@ -100,7 +105,7 @@ class PengabdianController
       $tahun = $request->tahun;
       $deskripsi = $request->deskripsi;
       $gambar = $request->file('gambar');
-      if($judul == "" || $deskripsi == "" || $tahun = "") {
+      if($judul == "" || $deskripsi == "" || $request->luaran == "" || $tahun = "") {
         return response()->json([
             'status' => 'no_empty'
           ]);
@@ -143,6 +148,7 @@ class PengabdianController
           }
           $data->judul = $judul;
           $data->deskripsi = $deskripsi;
+          $data->hasil_luaran = $request->luaran;
           $data->tahun = $request->tahun;
           $data->gambar = $fileName;
           $data->save();
@@ -184,6 +190,7 @@ class PengabdianController
           $data->judul = $judul;
           $data->tahun = $request->tahun;
           $data->deskripsi = $deskripsi;
+          $data->hasil_luaran = $request->luaran;
           $data->save();
 
             if($data) {

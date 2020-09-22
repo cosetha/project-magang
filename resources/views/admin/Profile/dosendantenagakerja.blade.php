@@ -26,7 +26,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#DosenModal">+ Add Dosen</button>&nbsp;<button data-toggle="modal" data-target="#importExcel" type="button" class="btn btn-dark">Import</button>&nbsp;<button id="btn-export-dosen" type="button" class="btn btn-dark">Export</button>
+            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#DosenModal">+ Add Dosen</button>&nbsp;<button data-toggle="modal" data-target="#importExcel" type="button" class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>&nbsp;<button id="btn-export-dosen" type="button" class="btn btn-dark"><i class="fas fa-file-export"></i> Export</button>
         </div>
         <div class="card-body">
             <div id="datatable-dosen"></div>
@@ -166,8 +166,8 @@
             </div>
             <div class="modal-body">Pilih Format Laporan untuk di Export</div>
             <div class="modal-footer">
-                <a href="/dosen/export-excel" class="btn btn-outline-success">Excel</a>
-                <a href="/dosen/export-pdf" class="btn btn-outline-danger">PDF</a>
+                <a href="/dosen/export-excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="/dosen/export-pdf" class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> PDF</a>
             </div>
         </div>
     </div>
@@ -194,8 +194,8 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary btn-import">Import</button>
-                            <a href="/download-format-excel-dosen" class="btn btn-success btn-download">Download Format</a>
+                            <button type="submit" class="btn btn-primary btn-import"><i class="fas fa-file-import"></i> Import</button>
+                            <a href="/download-format-excel-dosen" class="btn btn-success btn-download"><i class="fas fa-file-download"></i> Download Format</a>
                             <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Memproses...

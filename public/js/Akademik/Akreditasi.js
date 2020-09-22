@@ -75,6 +75,9 @@ $(document).ready(function() {
         formData.append('tanggal_selesai', tanggal_selesai);
         formData.append('file', file);
 
+        console.log(tanggal_mulai)
+        console.log(tanggal_selesai)
+
 		if (nilai != '' && tanggal_mulai != '' && tanggal_selesai != '') {
 			$.ajax({
 				type: 'post',
@@ -92,8 +95,8 @@ $(document).ready(function() {
 							icon: 'error',
 							title: 'Ooopss...',
 							text: response.error,
-							timer: 3000,
-							showConfirmButton: false
+							// timer: 3000,
+							// showConfirmButton: false
 						});
 					} else {
                         $('#AkreditasiModal').modal('hide');
@@ -366,5 +369,5 @@ $(document).ready(function() {
             }
         });
     }
-    
+
 });

@@ -4,7 +4,6 @@
       <th>No</th>
       <th>Judul Penelitian</th>
       <th>Nama Peneliti</th>
-      <th>Deskripsi</th>
       <th>Tahun</th>
       <th>Gambar</th>
       <th>Action</th>

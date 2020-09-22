@@ -29,6 +29,10 @@ class PenelitianController
 
           <i class="fas fa-trash"></i>
           </a>';
+
+          $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-penelitian" style="font-size: 18pt; text-decoration: none; color:green;">
+                <i class="fas fa-eye"></i>
+        </a>';
           return $btn;
         })
       ->rawColumns(['aksi'])
@@ -42,7 +46,7 @@ class PenelitianController
         $peneliti = $request->peneliti;
         $deskripsi = $request->deskripsi;
         $tahun = $request->tahun;
-        if($judul == "" || $peneliti = "" || $deskripsi == "" || $tahun == "") {
+        if($judul == "" || $peneliti = "" || $deskripsi == "" || $request->luaran == "" || $tahun == "") {
           return response()->json([
             'status' => 'no_empty'
           ]);
@@ -56,6 +60,7 @@ class PenelitianController
         $data->judul = $judul;
         $data->peneliti = $request->peneliti;
         $data->deskripsi = $deskripsi;
+        $data->hasil_luaran = $request->luaran;
         $data->tahun = $tahun;
         $data->gambar = $fileName;
         $data->save();
@@ -103,7 +108,7 @@ class PenelitianController
       $deskripsi = $request->deskripsi;
       $tahun = $request->tahun;
       $gambar = $request->file('gambar');
-      if($judul == "" || $deskripsi == "" || $tahun = "") {
+      if($judul == "" || $deskripsi == "" || $request->luaran == "" || $tahun = "") {
         return response()->json([
             'status' => 'no_empty'
           ]);
@@ -154,6 +159,7 @@ class PenelitianController
           $data->judul = $judul;
           $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
+          $data->hasil_luaran = $request->luaran;
           $data->tahun = $request->tahun;
           $data->gambar = $fileName;
           $data->save();
@@ -202,6 +208,7 @@ class PenelitianController
           $data->judul = $judul;
           $data->peneliti = $request->peneliti;
           $data->deskripsi = $deskripsi;
+          $data->hasil_luaran = $request->luaran;
           $data->tahun = $request->tahun;
           $data->save();
 
