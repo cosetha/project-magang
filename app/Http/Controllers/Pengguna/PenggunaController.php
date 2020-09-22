@@ -10,6 +10,7 @@ use App\Histori;
 use App\Exports\PenggunaExport;
 use DataTables;
 use Validator;
+use File;
 
 class PenggunaController extends Controller
 {
@@ -50,6 +51,9 @@ class PenggunaController extends Controller
     }
 
     public function destroy($id){
+        $gambarPath = User::where('id', $id)->value('gambar');
+        File::delete('img/profile/'. $gambarPath);
+
         $u = User::find($id);
         Histori::where('nama',$u->name)->delete();
         $u->delete();
