@@ -50,9 +50,9 @@ $(document).ready(function() {
             formData.append('deskripsi', deskripsi);
             formData.append('gambar', $('input[type=file]')[0].files[0]);
 
-            $(".btn-close").css('display','none')
-            $(".btn-loading").css('display','')
-            $(".btn-submit-dosen").css('display','none')
+            $(".btn-close").css('display','none');
+            $(".btn-loading").css('display','');
+            $(".btn-submit-dosen").css('display','none');
 
 
             $.ajax({
@@ -64,20 +64,20 @@ $(document).ready(function() {
                 success: function(response){
 
                     if(response.hasOwnProperty('error')){
-                        $(".btn-close").css('display','')
-                        $(".btn-loading").css('display','none')
-                        $(".btn-submit-dosen").css('display','')
+                        $(".btn-close").css('display','');
+                        $(".btn-loading").css('display','none');
+                        $(".btn-submit-dosen").css('display','');
                         Swal.fire({
 							icon: 'error',
 							title: 'Ooopss...',
 							text: response.error
 						});
                     }else{
-                        $(".btn-close").css('display','')
-                        $(".btn-loading").css('display','none')
-                        $(".btn-submit-dosen").css('display','')
-                        $("#DosenModal").modal("hide")
-                        $("#FormTambahDosen").trigger("reset")
+                        $(".btn-close").css('display','');
+                        $(".btn-loading").css('display','none');
+                        $(".btn-submit-dosen").css('display','');
+                        $("#DosenModal").modal("hide");
+                        $("#FormTambahDosen").trigger("reset");
                         LoadDosen();
                         Swal.fire({
                             icon: 'success',
@@ -90,37 +90,37 @@ $(document).ready(function() {
 
                 },
                 error: function(err){
-                    console.log(err)
+                    console.log(err);
                 }
-            })
-        })
+            });
+        });
     }
 
 
     //OPEN MODAL EDIT
     $("body").on("click",".btn-edit-dosen", function(e){
-        e.preventDefault()
-        $("#editDosenModal").modal("show")
+        e.preventDefault();
+        $("#editDosenModal").modal("show");
 
-        var id = $(this).attr("data-id")
+        var id = $(this).attr("data-id");
 
         $.ajax({
             type: "get",
             url: "/get-dosen/"+id,
             success: function(response){
-                $("#id-dosen").val(response.data.id)
-                $("#edit-nama-dosen").val(response.data.nama)
+                $("#id-dosen").val(response.data.id);
+                $("#edit-nama-dosen").val(response.data.nama);
                 tinymce.get('edit_deskripsi').setContent(response.data.deskripsi);
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
-        })
-    })
+        });
+    });
 
     //SAVE EDIT
     $("body").on("submit","#FormEditDosen", function(e){
-        e.preventDefault()
+        e.preventDefault();
         var formData = new FormData();
             var id = $("#id-dosen").val();
             var nama = $('input[name=edit_nama]').val();
@@ -131,9 +131,9 @@ $(document).ready(function() {
             formData.append('deskripsi', deskripsi);
             formData.append('gambar', $('input[type=file]')[1].files[0]);
 
-            $(".btn-close").css('display','none')
-            $(".btn-loading").css('display','')
-            $(".btn-save").css('display','none')
+            $(".btn-close").css('display','none');
+            $(".btn-loading").css('display','');
+            $(".btn-save").css('display','none');
 
             $.ajax({
                 type: "post",
@@ -144,20 +144,20 @@ $(document).ready(function() {
                 success: function(response){
 
                     if(response.hasOwnProperty('error')){
-                        $(".btn-close").css('display','')
-                        $(".btn-loading").css('display','none')
-                        $(".btn-save").css('display','')
+                        $(".btn-close").css('display','');
+                        $(".btn-loading").css('display','none');
+                        $(".btn-save").css('display','');
                         Swal.fire({
 							icon: 'error',
 							title: 'Ooopss...',
 							text: response.error
 						});
                     }else{
-                        $(".btn-close").css('display','')
-                        $(".btn-loading").css('display','none')
-                        $(".btn-save").css('display','')
-                        $("#editDosenModal").modal("hide")
-                        $("#FormEditDosen").trigger("reset")
+                        $(".btn-close").css('display','');
+                        $(".btn-loading").css('display','none');
+                        $(".btn-save").css('display','');
+                        $("#editDosenModal").modal("hide");
+                        $("#FormEditDosen").trigger("reset");
                         LoadDosen();
                         Swal.fire({
                             icon: 'success',
@@ -170,16 +170,16 @@ $(document).ready(function() {
 
                 },
                 error: function(err){
-                    console.log(err)
+                    console.log(err);
                 }
-            })
-    })
+            });
+    });
 
     //DELETE DOSEN
     $("body").on("click",".btn-delete-dosen", function(e){
-        e.preventDefault()
-        var id = $(this).attr("data-id")
-        var nama = $(this).attr("data-nama")
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var nama = $(this).attr("data-nama");
 
         Swal.fire({
 			title: 'Hapus ' + nama + '?',
@@ -204,49 +204,47 @@ $(document).ready(function() {
 				});
 			}
 		});
-    })
+    });
 
     //SHOW
     $("body").on("click",'.btn-show-dosen',function(e){
-        e.preventDefault()
-        $("#ShowDosen").modal("show")
+        e.preventDefault();
+        $("#ShowDosen").modal("show");
         tinymce.get('show-deskripsi').setMode('readonly');
 
-        var id = $(this).attr("data-id")
+        var id = $(this).attr("data-id");
 
         $.ajax({
             type: "get",
             url: "/get-dosen/"+id,
             success: function(response){
-                $("#show-nama").val(response.data.nama)
+                $("#show-nama").val(response.data.nama);
                 tinymce.get('show-deskripsi').setContent(response.data.deskripsi);
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
-        })
-    })
+        });
+    });
 
     //OPEN EXPORT MODAL
     $("body").on("click","#btn-export-dosen",function(e){
-        e.preventDefault()
-        $("#ExportDosenModal").modal("show")
-    })
+        e.preventDefault();
+        $("#ExportDosenModal").modal("show");
+    });
 
     //IMPORT EXCEL
     $("body").on("submit","#FormExcelDosen", function(e){
-        e.preventDefault()
-        $(".btn-loading").css("display","")
-        $(".btn-close").css("display","none")
-        $(".btn-import").css("display","none")
-        $(".btn-download").css("display","none")
+        e.preventDefault();
+        $(".btn-loading").css("display","");
+        $(".btn-close").css("display","none");
+        $(".btn-import").css("display","none");
+        $(".btn-download").css("display","none");
 
         var formData = new FormData();
         var file = $('#file-excel')[0].files[0];
         formData.append('file', file);
         formData.append('_token', $('input[name=_token]').val());
-
-        // console.log($('#file-excel'))
 
         $.ajax({
             type: "post",
@@ -255,13 +253,13 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response){
-                $(".btn-loading").css("display","none")
-                $(".btn-close").css("display","")
-                $(".btn-import").css("display","")
-                $(".btn-download").css("display","")
-                $("#FormExcelDosen").trigger("reset")
-                $("#importExcel").modal("hide")
-                LoadDosen()
+                $(".btn-loading").css("display","none");
+                $(".btn-close").css("display","");
+                $(".btn-import").css("display","");
+                $(".btn-download").css("display","");
+                $("#FormExcelDosen").trigger("reset");
+                $("#importExcel").modal("hide");
+                LoadDosen();
                 Swal.fire({
                     icon: 'success',
                     title: 'Sukses',
@@ -271,10 +269,10 @@ $(document).ready(function() {
                 });
             },
             error: function(err){
-                console.log(err)
+                console.log(err);
             }
-        })
-    })
+        });
+    });
 
     //ALERT HISTORY COUNT
     function AlertCount(){
@@ -290,4 +288,4 @@ $(document).ready(function() {
         });
     }
 
-})
+});
