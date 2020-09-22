@@ -18,7 +18,7 @@ class CreateKontensTable extends Migration
             $table->string('judul');
             $table->longText('deskripsi');
             $table->string('menu');
-            $table->string('status');
+            $table->enum('status', ['aktif', 'nonaktif'])->nullable();
             $table->timestamps();
         });
     }
