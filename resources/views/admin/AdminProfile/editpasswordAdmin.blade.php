@@ -10,7 +10,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Password</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -23,7 +22,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password Lama:</label>
                     <div class="col-md-8 input-group" id="show_hide_password">
-                        <input class="form-control" type="password" id="password-lama" placeholder="Masukkan Password Lama...">
+                        <input class="form-control" type="password" id="password-lama" autocomplete="off" placeholder="Masukkan Password Lama...">
                         <!-- Show Hide Password Component -->
                         <a href=""><div class="input-group-addon eye">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
@@ -34,7 +33,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Password Baru:</label>
                     <div class="col-md-8 input-group" id="show_hide_password-2">
-                        <input class="form-control" type="password" id="password" placeholder="Masukkan Password Baru...">
+                        <input class="form-control" type="password" id="password" autocomplete="off" placeholder="Masukkan Password Baru...">
                         <!-- Show Hide Password Component -->
                         <a href=""><div class="input-group-addon eye">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
@@ -45,7 +44,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Konfirmasi Password Baru:</label>
                     <div class="col-md-8 input-group" id="show_hide_password-3">
-                        <input class="form-control" type="password" placeholder="Masukkan Konfirmasi Password..." id="password-confirm">
+                        <input class="form-control" type="password" id="password-confirm" autocomplete="off" placeholder="Masukkan Konfirmasi Password...">
                         <!-- Show Hide Password Component -->
                         <a href=""><div class="input-group-addon eye">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>

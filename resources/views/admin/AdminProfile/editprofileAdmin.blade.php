@@ -29,7 +29,7 @@
                             @if(auth()->user()->gambar == NULL)
                                 <img src="{{ asset('img/no-image.png')}}">
                             @else
-                                <img src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}" class="w-50 p-3">
+                                <img src="{{ asset('img/profile') }}/{{ auth()->user()->gambar }}" class="w-50 p-3 profile-pic">
                             @endif
                             <h6>Upload a different photo...</h6>
                             <div class="form-group" style="margin-left:80pt;">
