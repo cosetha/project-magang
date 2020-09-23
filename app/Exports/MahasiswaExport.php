@@ -19,8 +19,44 @@ class MahasiswaExport implements FromCollection,WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        if($this->request->bk == 0 ){
-            $data = Mahasiswa::all();
+        if($this->request->bk == 0 && $this->request->angkatan == 0 ){
+            $mahasiswa = Mahasiswa::all();
+            $data = $mahasiswa->sortBy(function ($mhs, $key) {
+                return $mhs['angkatan'].$mhs['nim'];
+            });
+            $output = [];
+            foreach ($data as $mhs)
+            {
+            $output[] = [
+                $mhs->nim,
+                $mhs->nama,
+                $mhs->bidangKeahlian()->first()->nama_bk,
+                $mhs->angkatan
+            ];
+            }
+            return collect($output);
+        }else if($this->request->bk == 0 && $this->request->angkatan != 0 ){
+            $mahasiswa = Mahasiswa::where('angkatan', $this->request->angkatan)->get();
+            $data = $mahasiswa->sortBy(function ($mhs, $key) {
+                return $mhs['angkatan'].$mhs['nim'];
+            });
+            $output = [];
+            foreach ($data as $mhs)
+            {
+            $output[] = [
+                $mhs->nim,
+                $mhs->nama,
+                $mhs->bidangKeahlian()->first()->nama_bk,
+                $mhs->angkatan
+            ];
+            }
+            return collect($output);
+
+        }else if($this->request->bk != 0 && $this->request->angkatan == 0 ){
+            $mahasiswa = Mahasiswa::where('kode_bk', $this->request->bk)->get();
+            $data = $mahasiswa->sortBy(function ($mhs, $key) {
+                return $mhs['angkatan'].$mhs['nim'];
+            });
             $output = [];
             foreach ($data as $mhs)
             {
@@ -33,7 +69,10 @@ class MahasiswaExport implements FromCollection,WithHeadings, ShouldAutoSize
             }
             return collect($output);
         }else{
-            $data = Mahasiswa::where('kode_bk', $this->request->bk)->get();
+            $mahasiswa = Mahasiswa::where('kode_bk', $this->request->bk)->where('angkatan', $this->request->angkatan)->get();
+            $data = $mahasiswa->sortBy(function ($mhs, $key) {
+                return $mhs['angkatan'].$mhs['nim'];
+            });
             $output = [];
             foreach ($data as $mhs)
             {

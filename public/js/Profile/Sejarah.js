@@ -22,6 +22,10 @@ $(document).ready(function() {
 						name: 'judul'
 					},
 					{
+						data: 'status',
+						name: 'status'
+					},
+					{
 						data: 'aksi',
 						name: 'aksi',
 						searchable: false,
@@ -236,18 +240,60 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('body').on('click', '.btn-aktifkan-sejarah', function(e) {
+		e.preventDefault();
+		var id = $(this).data('id');
+		$.ajax({
+			type: 'get',
+			url: '/aktifkan-sejarah/' + id,
+			success: function(response) {
+				LoatTableSejarah();
+				Swal.fire({
+					icon: 'success',
+					title: response.message,
+					text: 'Sejarah di aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
+	$('body').on('click', '.btn-non-aktifkan-sejarah', function(e) {
+		e.preventDefault();
+		var id = $(this).data('id');
+		$.ajax({
+			type: 'get',
+			url: '/non-aktifkan-sejarah/' + id,
+			success: function(response) {
+				LoatTableSejarah();
+				Swal.fire({
+					icon: 'success',
+					title: response.message,
+					text: 'Sejarah di Non-Aktifkan',
+					timer: 1200,
+					showConfirmButton: false
+				});
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	});
+
 	//ALERT HISTORY COUNT
-    function AlertCount(){
-        $.ajax({
-            type: "get",
-            url: "/count-today-history-alert",
-            success: function(response){
-                $("#jumlah_history_today").html(response.total);
-            },
-            error: function(err){
-                console.log(err);
-            }
-        });
-    }
-    
+	function AlertCount() {
+		$.ajax({
+			type: 'get',
+			url: '/count-today-history-alert',
+			success: function(response) {
+				$('#jumlah_history_today').html(response.total);
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	}
 });

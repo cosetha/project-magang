@@ -183,10 +183,19 @@
                         <div class="form-row">
                             <label for="bk" class="mt-2">Bidang Keahlian</label>
                                 <select class="form-control" id="bk" name="bk">
+                                    <option value="0">Semua</option>
                                     @foreach($bidang as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bk}}</option>
-                                    @endforeach
+                                    @endforeach                                  
+                                </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="bk" class="mt-2">Tahun Angkatan</label>
+                                <select class="form-control" id="angkatan" name="angkatan">
                                     <option value="0">Semua</option>
+                                    @foreach($tahun as $t)
+                                    <option value="{{$t->angkatan}}">{{$t->angkatan}}</option>
+                                    @endforeach                                   
                                 </select>
                         </div>
                         <div class="form-row">

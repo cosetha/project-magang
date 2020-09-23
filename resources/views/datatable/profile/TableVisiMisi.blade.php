@@ -3,6 +3,7 @@
     <tr>
       <th>No</th>
       <th>Judul</th>
+      <th>Status</th>
       <th>Action</th>
     </tr>
   </thead>
