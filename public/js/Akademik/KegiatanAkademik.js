@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //DAKAKABLE 
+    //DAKAKABLE
 	LoadTableKA();
 	function LoadTableKA() {
         AlertCount();
@@ -35,9 +35,9 @@ $(document).ready(function() {
     //SUBMIT KA
     $('body').on("submit","#FormAddKA", function(e){
         e.preventDefault();
-
+        var judul = $("#judul").val()
         var deskripsi = $("#deskripsi").val();
-        if(deskripsi.length != 0){
+        if(deskripsi.length != 0 && judul != 0){
             var data = $("#FormAddKA").serialize();
             $(".btn-loading").css("display","");
             $(".btn-close").css("display","none");
@@ -57,7 +57,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'success',
                         title: 'Sukses',
-                        text: 'Berhasil Menambahkan Tugas Akhir',
+                        text: 'Berhasil Menambahkan Kegiatan Akademik',
                         timer: 1200,
                         showConfirmButton: false
                     });
@@ -70,7 +70,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops',
-                text: 'Deskripsi tidak boleh kosong',
+                text: 'Form tidak boleh ada yang kosong',
             });
         }
     })
@@ -130,7 +130,8 @@ $(document).ready(function() {
         var id = $("#ka-id").val();
         console.log(id);
         var edit_deskripsi = $("#edit_deskripsi").val();
-        if(edit_deskripsi.length != 0){
+        var edit_judul = $("#edit_judul").val();
+        if(edit_deskripsi.length != 0 && edit_judul != ""){
 
             var data = $("#FormEditKA").serialize();
             $(".btn-loading").css("display","");
@@ -165,7 +166,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops',
-                text: 'Deskripsi tidak boleh kosong',
+                text: 'Form tidak boleh ada yang kosong',
             });
         }
     })
@@ -203,5 +204,5 @@ $(document).ready(function() {
             }
         });
     }
-    
+
 });

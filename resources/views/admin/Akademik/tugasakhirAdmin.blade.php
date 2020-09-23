@@ -38,7 +38,7 @@
 
       <!-- Add ta Modal-->
       <div class="modal fade" id="TaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Add Tugas Akhir</h5>
@@ -53,7 +53,7 @@
             @csrf
 
                     <label for="judulta">Judul Tugas Akhir</label>
-                    <input type="text" class="form-control" id="judul" name="judul" required>
+                    <input type="text" class="form-control" id="judul" name="judul">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
@@ -76,7 +76,7 @@
 
       <!-- Edit ta Modal-->
       <div class="modal fade" id="editTaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Edit Tugas Akhir</h5>
@@ -91,7 +91,7 @@
             @csrf
                     <input type="hidden" id="id-ta" val="">
                     <label for="judulta">Judul Tugas Akhir</label>
-                    <input type="text" class="form-control" id="edit_judul" name="edit_judul" required>
+                    <input type="text" class="form-control" id="edit_judul" name="edit_judul">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="edit_deskripsi" name="edit_deskripsi"> </textarea>
@@ -112,7 +112,7 @@
 
       <!-- Show ta Modal-->
       <div class="modal fade" id="showTaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Detail Tugas Akhir</h5>

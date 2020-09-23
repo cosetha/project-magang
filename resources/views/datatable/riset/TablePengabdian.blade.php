@@ -3,7 +3,6 @@
     <tr align="center">
       <th>No</th>
       <th>Judul Pengabdian</th>
-      <th>Deskripsi</th>
       <th>Tahun</th>
       <th>Gambar</th>
       <th>Action</th>

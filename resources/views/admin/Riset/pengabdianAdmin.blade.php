@@ -41,7 +41,7 @@
 
 <!-- Add Pengabdian Modal-->
 <div class="modal fade" id="PengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Pengabdian</h5>
@@ -58,6 +58,9 @@
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
+
+                    <label for="hasil_luaran" class="mt-2">Hasil Luaran</label>
+                    <textarea type="text" class="form-control" id="hasil_luaran" name="hasil_luaran"></textarea>
 
                     <label for="tahun" class="mt-2">Tahun</label>
                     <input type="text" class="form-control years-picker" id="tahun" name="tahun" readonly/>
@@ -84,7 +87,7 @@
 
 <!-- Edit Pengabdian Modal-->
 <div class="modal fade" id="editPengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Pengabdian</h5>
@@ -102,11 +105,14 @@
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="edit-deskripsi" name="deskripsi"> </textarea>
 
+                    <label for="edit_hasil_luaran" class="mt-2">Hasil Luaran</label>
+                    <textarea type="text" class="form-control" id="edit_hasil_luaran" name="edit_hasil_luaran"> </textarea>
+
                     <label for="tahun-edit" class="mt-2">Tahun</label>
                     <input type="text" class="form-control years-picker" id="tahun-edit" name="tahun_edit" readonly/>
 
                     <div class="form-group mt-3">
-                        <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                        <img id="image-edit" src="" style="height: 200px; border-radius: 10px;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
@@ -128,25 +134,45 @@
     </div>
 </div>
 
-<!-- Delete Pengabdian Modal-->
-<div class="modal fade" id="deletePengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Show Penelitian Modal-->
+<div class="modal fade" id="showPengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Pengabdian</h5>
+                <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data Pengabdian?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
-            </div>
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
+                <div class="modal-body">
+                @csrf
+
+                    <label for="edit-judul">Judul Penelitian</label>
+                    <input type="text" class="form-control" id="show-judul" name="show-judul" readonly>
+
+                    <label for="show-deskripsi" class="mt-2">Deskripsi</label>
+                    <textarea class="form-control" id="show-deskripsi" name="show-deskripsi"> </textarea>
+
+                    <label for="show_hasil_luaran" class="mt-2">Hasil Luaran</label>
+                    <textarea type="text" class="form-control" id="show_hasil_luaran" name="show_hasil_luaran"> </textarea>
+
+                    <label for="show-tahun">Tahun</label>
+                    <input type="text" class="form-control" id="show-tahun" name="show-tahun" readonly>
+
+                    <div class="form-group mt-3">
+                        <img id="show-image" src="" style="height: 200px; border-radius: 10px;" alt="">
+                    </div>
+
+                    <input type="hidden" name="edit-id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 @endsection
 @section('js-ajax')
       <script src="{{ asset('js/datepicker.js') }}"></script>
