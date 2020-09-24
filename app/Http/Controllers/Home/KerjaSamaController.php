@@ -50,7 +50,7 @@ class KerjaSamaController extends Controller
             'link' => 'required|string|min:1|max:255',
             'gambar' => 'mimes:jpeg,jpg,png,gif|required',
             "caption" => 'required|string',
-            "perusahaan" => 'required|string']);
+            "perusahaan" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([

@@ -301,6 +301,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('admin/edit-blog/{id}', 'Home\WeblinkController@update');
 
     Route::get('/faq','Footer\FaqController@index');
+    Route::get('/faq-get/{id}','Footer\FaqController@get');
     Route::get('/load/table-faq','Footer\FaqController@LoadTableFaq');
     Route::get('/load/data-faq','Footer\FaqController@LoadDataFaq');
     Route::get('/admin/delete-faq/{id}','Footer\FaqController@destroy');
@@ -457,6 +458,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     });
 
     Route::get('/sejarah', 'Profile\SejarahController@index');
+    Route::get('/aktifkan-sejarah/{id}','Profile\SejarahController@AktifkanSejarah');
+    Route::get('/non-aktifkan-sejarah/{id}','Profile\SejarahController@NonAktifkanSejarah');
     Route::post('/admin/tambah-sejarah','Profile\SejarahController@store');
     Route::get('/load/table-sejarah','Profile\SejarahController@LoadTableKonten');
     Route::get('/load/data-sejarah','Profile\SejarahController@LoadDataKonten');
@@ -473,6 +476,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::get('/get-data-so/{id}','Profile\StrukturOrganisasiController@get');
 
     Route::get('/visimisi', 'Profile\VisimisiController@index');
+    Route::get('/aktifkan-visi/{id}','Profile\VisimisiController@AktifkanVisi');
+    Route::get('/non-aktifkan-visi/{id}','Profile\VisimisiController@NonAktifkanVisi');
     Route::post('/admin/tambah-visimisi','Profile\VisimisiController@store');
     Route::get('/load/table-visimisi','Profile\VisimisiController@LoadTableKonten');
     Route::get('/load/data-visimisi','Profile\VisimisiController@LoadDataKonten');

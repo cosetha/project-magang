@@ -23,7 +23,8 @@ class MahasiswaController extends Controller
     public function index()
     {
         $bk = Bidang_keahlian::all();
-        return view('admin/Akademik/mahasiswaAdmin',['bidang'=>$bk]);
+        $tahun = Mahasiswa::select('angkatan')->distinct()->get();
+        return view('admin/Akademik/mahasiswaAdmin',['bidang'=>$bk,'tahun'=>$tahun]);
     }
 
     /**

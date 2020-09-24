@@ -23,8 +23,8 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary btn-modal-faq ml-2" href="#" data-toggle="modal" data-target="#TambahFaqModal">+
-                Add FAQ</a>
+            <button class="btn btn-primary btn-modal-faq ml-2">+
+                Add FAQ</button>
         </div>
 
         <div class="card-body">
@@ -38,10 +38,10 @@
 
 <!-- FAQ Modal-->
 <div class="modal fade" id="TambahFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title modal-title-faq" id="exampleModalLabel">Tambah Frequently Asked Questions</h5>
+                <h5 class="modal-title modal-title-faq" id="exampleModalLabel">Tambah Frequently Asked Questions (FAQ)</h5>
                 <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -56,7 +56,7 @@
                     <input type="text" class="form-control" id="pertanyaan" name="pertanyaan">
 
                     <label for="jawaban">Jawaban</label>
-                    <input type="text" class="form-control" id="jawaban" name="jawaban">
+                    <textarea type="text" class="form-control" id="jawaban" name="jawaban"></textarea>
 
             </div>
             <div class="modal-footer">
@@ -76,10 +76,10 @@
 
 <!-- Edit FAQ Modal-->
 <div class="modal fade" id="EditFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Frequently Asked Questions</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Frequently Asked Questions (FAQ)</h5>
                 <button class="close btn-close-edit" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -95,7 +95,7 @@
                     <input type="text" class="form-control" id="kolom-pertanyaan" name="pertanyaan_edit">
 
                     <label for="jawaban_edit">Jawaban</label>
-                    <input type="text" class="form-control" id="kolom-jawaban" name="jawaban_edit">
+                    <textarea type="text" class="form-control" id="jawaban_edit" name="jawaban_edit"></textarea>
 
 
             </div>
@@ -113,21 +113,31 @@
     </div>
 </div>
 
-<!-- Delete FAQ Modal-->
-<div class="modal fade" id="deleteFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+<!-- Show FAQ Modal-->
+<div class="modal fade" id="ShowFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Frequently Asked Questions (FAQ)</h5>
+                <button class="close btn-close-edit" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Apakah anda yakin ingin menghapus data FAQ ?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+            <div class="modal-body">
+
+                    <input type="hidden" id="id-faq">
+                    <label for="show_pertanyaan">Pertanyaan</label>
+                    <input type="text" class="form-control" id="show_pertanyaan" disabled>
+
+                    <label for="show_jawaban">Jawaban</label>
+                    <textarea type="text" class="form-control" id="show_jawaban" name="show_jabatan"></textarea>
+
             </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+
         </div>
     </div>
 </div>

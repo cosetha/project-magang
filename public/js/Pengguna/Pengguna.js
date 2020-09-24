@@ -51,7 +51,16 @@ $(document).ready(function() {
             data: data,
             success: function(response){
 
-                if(response.message == "sukses"){
+                if(response.hasOwnProperty('error')){
+                    $(".btn-close").css("display","")
+                    $(".btn-loading").css("display","none")
+                    $(".btn-submit-pengguna").css("display","")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooopss...',
+                        text: response.error
+                    });
+                }else{
                     $(".btn-close").css("display","")
                     $(".btn-loading").css("display","none")
                     $(".btn-submit-pengguna").css("display","")
@@ -65,19 +74,7 @@ $(document).ready(function() {
                         timer: 1200,
                         showConfirmButton: false
                     });
-                }else{
-                    $("#FormPengguna").trigger("reset")
-                    $(".btn-close").css("display","")
-                    $(".btn-loading").css("display","none")
-                    $(".btn-submit-pengguna").css("display","")
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops!',
-                        text: 'Email Telah digunakan!',
-                    });
                 }
-
-                // console.log(response)
 
             },
             error: function(err){
@@ -116,7 +113,7 @@ $(document).ready(function() {
 			}
 		});
     });
-    
+
     //ALERT HISTORY COUNT
     function AlertCount(){
         $.ajax({

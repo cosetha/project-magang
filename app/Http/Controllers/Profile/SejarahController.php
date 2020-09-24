@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use DataTables;
 use Validator;
@@ -59,6 +59,7 @@ class SejarahController extends Controller
                 $konten->judul = $request->judul;
                 $konten->deskripsi = $request->deskripsi;
                 $konten->menu = $request->menu;
+                $konten->status = 'nonaktif';
                 $konten->save();
 
                 $history = new Histori;
@@ -190,6 +191,43 @@ class SejarahController extends Controller
                 ]);
             }
     }
+   
+    public function AktifkanSejarah($id){
+        DB::table('kontens')->where('menu','=','Sejarah')->update(array('status' => 'nonaktif'));
+
+        $k = Konten::find($id);
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Mengaktifkan";
+        $history->keterangan = "Mengaktifkan Visimisi '".$k->judul."'";
+        $history->save();
+
+        $k->status = "aktif";
+        $k->save();
+
+        return response([
+            'message' => 'Success'
+        ]);
+    }
+
+    public function NonAktifkanSejarah($id){
+
+        $k = Konten::find($id);
+
+        $history = new Histori;
+        $history->nama = auth()->user()->name;
+        $history->aksi = "Menonaktifkan";
+        $history->keterangan = "Menonaktifkan Visimisi '".$k->judul."'";
+        $history->save();
+
+        $k->status = "nonaktif";
+        $k->save();
+
+        return response([
+            'message' => 'Success'
+        ]);
+    }
     public function LoadTableKonten(){
         return view('datatable.profile.TableSejarah');
     }
@@ -198,15 +236,20 @@ class SejarahController extends Controller
         $headline = Konten::where('menu','Sejarah')->orderBy('id','desc')->get();
             return Datatables::of($headline)->addIndexColumn()
             ->addColumn('aksi', function($row){
-                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-edit-sejarah" style="font-size: 18pt; text-decoration: none;" class="mr-3">
-                <i class="fas fa-pen-square"></i>
+                $btn = '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn btn-edit-sejarah">
+                <i class="fas fa-pen-square" style="color:#3385ff"> Edit </i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-delete-sejarah" style="font-size: 18pt; text-decoration: none; color:red;">
-                <i class="fas fa-trash"></i>
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn btn-delete-sejarah">
+                <i class="fas fa-trash" style="color:red"> Hapus </i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn-show-sejarah" style="font-size: 18pt; text-decoration: none; color:green;">
-                <i class="fas fa-eye"></i>
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->judul.'" class="btn btn-show-sejarah">
+                <i class="fas fa-eye" style="color:#666666"> Detail </i>
                 </a>';
+                if ($row->status=='nonaktif') {
+                    $btn = $btn.'<a href="javascript:void(0)" type="button" class="btn btn-aktifkan-sejarah" data-id="'.$row->id.'"> <i class="fas fa-check" style="color:green">Aktifkan</i></a>';
+                } else {
+                    $btn = $btn. '<a href="javascript:void(0)" type="button" class="btn btn-non-aktifkan-sejarah" data-id="'.$row->id.'"><i class="fas fa-times" style="color:red"> Non-Aktifkan</i></a>';
+                }
                 return $btn;
          })
          ->rawColumns(['aksi'])

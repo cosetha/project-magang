@@ -33,6 +33,14 @@ class FaqController extends Controller
         ]);
     }
 
+    public function get($id){
+        $data = Faq::find($id);
+
+        return response([
+            'data' => $data
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
         $faq = Faq::find($id);
@@ -88,6 +96,10 @@ class FaqController extends Controller
                 </a>';
                 $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-pertanyaan="'.$row->pertanyaan.'" data-jawaban="'.$row->jawaban.'" class="btn-delete-faq" style="font-size: 18pt; text-decoration: none; color:red;">
                 <i class="fas fa-trash"></i>
+                </a>';
+
+                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" class="btn-show-faq" style="font-size: 18pt; text-decoration: none; color:green;">
+                <i class="fas fa-eye"></i>
                 </a>';
                 return $btn;
          })
