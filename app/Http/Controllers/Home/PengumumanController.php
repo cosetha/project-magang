@@ -32,7 +32,11 @@ class PengumumanController
           </a>';
           return $btn;
         })
-      ->rawColumns(['aksi'])
+        ->addColumn('file', function($row){
+          $file = '<a href="'.$row->lampiran.'" >'.$row->lampiran.'</a>';
+          return $file;
+        })
+      ->rawColumns(['aksi', 'file'])
       ->make(true);
     }
 
