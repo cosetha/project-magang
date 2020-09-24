@@ -112,7 +112,8 @@ $(document).ready(function() {
 			url: '/get-data-so/' + id,
 			success: function(response) {
 				console.log(response.data.id);
-				$('#id-so').val(response.data.id);
+                $('#id-so').val(response.data.id);
+                $('#judulso').html("Edit Struktur Organisasi");
 				$('#edit-nama-so').val(response.data.judul);
 				tinymce.get('edit-deskripsi').setContent(response.data.deskripsi);
 				$('#blah').attr('src', '');
@@ -121,32 +122,8 @@ $(document).ready(function() {
 				console.log(err);
 			}
 		});
-	});
-	$('body').on('click', '.btn-show-so', function() {
-		$('#editStrukturorganisasiModal').modal('show');
-		var id = $(this).attr('data-id');
-		$.ajax({
-			type: 'get',
-			url: '/get-data-so/' + id,
-			success: function(response) {
-				console.log(response.data.id);
-				$('#id-so').val(response.data.id);
-				$('#edit-nama-so').val(response.data.judul);
-				tinymce.get('edit-deskripsi').setContent(response.data.deskripsi);
-				$('#edit-nama-so').attr('disabled', true);
-				$('#file-upload-edit').css('display', 'none');
-				tinymce.get('edit-deskripsi').setMode('readonly');
-				$('.btn-save-so').css('display', 'none');
-				if (response.data.gambar) {
-					$('#blah').show();
-					$('#blah').attr('src', response.data.gambar);
-				}
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
-	});
+    });
+
 	//SAVE EDIT
 	$('body').on('submit', '#FormEditSO', function(e) {
 		e.preventDefault();
@@ -204,7 +181,35 @@ $(document).ready(function() {
 				console.log(err);
 			}
 		});
-	});
+    });
+
+    //SHOW
+	$('body').on('click', '.btn-show-so', function() {
+		$('#editStrukturorganisasiModal').modal('show');
+		var id = $(this).attr('data-id');
+		$.ajax({
+			type: 'get',
+			url: '/get-data-so/' + id,
+			success: function(response) {
+				console.log(response.data.id);
+				$('#id-so').val(response.data.id);
+				$('#judulso').html("Detail Struktur Organisasi");
+				$('#edit-nama-so').val(response.data.judul);
+				tinymce.get('edit-deskripsi').setContent(response.data.deskripsi);
+				$('#edit-nama-so').attr('disabled', true);
+				$('#file-upload-edit').css('display', 'none');
+				tinymce.get('edit-deskripsi').setMode('readonly');
+				$('.btn-save-so').css('display', 'none');
+				if (response.data.gambar) {
+					$('#blah').show();
+					$('#blah').attr('src', response.data.gambar);
+				}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+    });
 
 	//DELETE
 	$('body').on('click', '.btn-delete-so', function() {
