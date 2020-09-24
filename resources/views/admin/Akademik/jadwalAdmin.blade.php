@@ -39,7 +39,7 @@
 
 <!-- Add Jadwal Modal-->
 <div class="modal fade" id="JadwalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal Kuliah</h5>
@@ -77,6 +77,8 @@
                     </div>
 
                     <div class="form-group mt-3">
+                    <label for="file">File harus doc,docx,pdf,xls,xlsx</label>
+                    <br>
                         <label for="file">File</label>
                         <input input id="file-upload" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
@@ -95,9 +97,9 @@
 </div>
 
 
-<!-- Edit Sosmed Modal-->
+<!-- Edit jadwal Modal-->
 <div class="modal fade" id="editJadwalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit jadwal</h5>
@@ -127,7 +129,11 @@
 
                         </select>
                     </div>
-
+                    <div class="form-group mt-3">
+                        <label for="file">View File</label>
+                        <br>
+                        <a href="" id="file"></a>
+                    </div>
                     <div class="form-group mt-3">
                         <label for="file">File</label>
                         <input input id="file-upload-edit" type="file" name="pdf" accept="application/pdf" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">

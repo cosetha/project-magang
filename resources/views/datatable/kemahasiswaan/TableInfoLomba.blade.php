@@ -4,7 +4,6 @@
       <th>No</th>
       <th>Judul</th>
       <th>Lokasi</th>
-      <th>Tanggal</th>
       <th>Action</th>
     </tr>
   </thead>

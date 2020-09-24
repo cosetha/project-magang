@@ -103,7 +103,11 @@
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
-
+                    <div class="form-group mt-3">
+                        <label for="file">View Lampiran</label>
+                        <br>
+                        <a href="" id="lampiran"></a>
+                    </div>
                     <div class="form-group mt-3">
                         <label for="file">Lampiran</label>
                         <input id="file-upload-edit" type="file" name="file" accept="file/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">

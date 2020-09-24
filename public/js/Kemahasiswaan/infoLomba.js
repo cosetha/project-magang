@@ -13,12 +13,10 @@ $(document).ready(function() {
     var judul = $('input[name=judul]').val();
     var deskripsi = tinymce.get('deskripsi').getContent();
     var lokasi = $('input[name=lokasi]').val();
-    var tanggal = $('input[name=tanggal]').val();
 
     formData.append('judul', judul);
     formData.append('deskripsi', deskripsi);
     formData.append('lokasi', lokasi);
-    formData.append('tanggal', tanggal);
 
     $.ajax({
       type: 'POST',
@@ -75,7 +73,6 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
           {data: 'lokasi',name: 'lokasi'},
-          {data: 'tanggal',name: 'tanggal'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
       });
@@ -97,7 +94,6 @@ $(document).ready(function() {
           $('#edit-judul').val(data.data.judul);
           tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
           $('#edit-lokasi').val(data.data.lokasi);
-          $('#edit-tanggal').val(data.data.tanggal);
           $('input[name=edit-id]').val(id);
       }
     });
@@ -110,7 +106,6 @@ $(document).ready(function() {
       var judul = $('input[name=edit-judul]').val();
       var deskripsi = tinymce.get('edit-deskripsi').getContent();
       var lokasi = $('input[name=edit-lokasi]').val();
-      var tanggal = $('input[name=edit-tanggal]').val();
       var id = $('input[name=edit-id]').val();
 
       formData.append('judul', judul);
@@ -224,7 +219,7 @@ $(document).ready(function() {
             $('#show-judul').val(data.data.judul);
             tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
             $('#show-lokasi').val(data.data.lokasi);
-            $('#show-tanggal').val(data.data.tanggal);
+            tinymce.get('show-deskripsi').setMode('readonly');
         }
       });
     });

@@ -53,14 +53,16 @@ $(document).ready(function() {
                     $(".btn-submit-ka").css("display","");
                     $("#FormAddKA").trigger("reset");
                     $("#KegiatanakaModal").modal("hide");
-                    LoadTableKA();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: 'Berhasil Menambahkan Kegiatan Akademik',
-                        timer: 1200,
-                        showConfirmButton: false
-                    });
+                    if(data.status == "ok") {
+                        LoadTableKA();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menambahkan Kegiatan Akademik',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                    }
                 },
                 error: function(err){
                     console.log(err);
@@ -71,6 +73,8 @@ $(document).ready(function() {
                 icon: 'error',
                 title: 'Oops',
                 text: 'Form tidak boleh ada yang kosong',
+                showConfirmButton: false,
+                timer: 1200
             });
         }
     })
