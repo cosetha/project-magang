@@ -184,7 +184,7 @@ class PengumumanController
 
     public function destroy($id)
     {
-      $lampiranPath = Pengumuman::find($id)->value('lampiran');
+      $lampiranPath = Pengumuman::where('id', $id)->value('lampiran');
       File::delete($lampiranPath);
 
       $destroy = Pengumuman::find($id);

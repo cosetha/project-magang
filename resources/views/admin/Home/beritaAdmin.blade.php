@@ -113,7 +113,7 @@
 
 
                     <div class="form-group mt-3">
-                        <img id="image-edit-berita" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                        <img id="image-edit-berita" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
