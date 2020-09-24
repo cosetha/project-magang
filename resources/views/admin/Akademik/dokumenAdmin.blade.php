@@ -37,7 +37,7 @@
 <!-- End of Main Content -->
 
 
-<!-- Add Sosmed Modal-->
+<!-- Add dokumen Modal-->
 <div class="modal fade" id="DokumenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -57,6 +57,8 @@
                     <input type="text" class="form-control" id="" name="nama-dokumen">
 
                     <div class="form-group mt-3">
+                    <label for="file">File harus doc,docx,pdf,xls,xlsx</label>
+                    <br>
                         <label for="file">File</label>
                         <input input id="file-upload" type="file" name="file" accept="file/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
