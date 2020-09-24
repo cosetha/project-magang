@@ -57,7 +57,7 @@ class DokumenController
     {
         $nama = $request->nama;
         $validator = Validator::make($request->all(), [
-          'file' => 'required|max:8192|mimes:doc,docx,pdf,xls,xlsx'
+          'file' => 'required|max:8000|mimes:doc,docx,pdf,xls,xlsx'
         ]);
         if ($validator->passes()) {
           $file = $request->file('file');

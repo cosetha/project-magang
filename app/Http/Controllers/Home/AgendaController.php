@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Agenda;
 use App\Histori;
 use DataTables;
-use File;
 
 class AgendaController
 {

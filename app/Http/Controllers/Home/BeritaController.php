@@ -7,7 +7,7 @@ use App\Berita;
 use App\Histori;
 use DataTables;
 use Illuminate\Support\Facades\DB;
-use File;
+use File, Validator;
 
 class BeritaController
 {
@@ -68,13 +68,15 @@ class BeritaController
       $judul = $request->judul;
       $deskripsi = $request->deskripsi;
       $penulis = $request->penulis;
+      $validator = Validator::make($request->all(), [
+        'gambar' => 'required|max:8000|mimes:jpg,jpeg,svg,gif,png'
+      ]);
+      if ($validator->passes()) {
       $gambar = $request->file('gambar');
-      if($gambar != null) {
       $fileEx = $gambar->getClientOriginalName();
       $fileArr = explode(".", $fileEx);
       $panjangArray = count($fileArr);
       $indexTerakhir = $panjangArray - 1;
-      if($this->checkGambar($fileArr[$indexTerakhir])) {
         $gambarName = time().'_'.$fileEx;
         $gambarPath = "img/berita";
         $gambar->move($gambarPath, $gambarName, "public");
@@ -101,16 +103,11 @@ class BeritaController
             'status' => 'no'
           ]);
         }
-      } else {
-        return response()->json([
-          'status' => 'not_valid'
-        ]);
       }
-    } else {
       return response()->json([
-        'status' => 'not_valid'
+        'status' => 'error_validation',
+        'message' => $validator->errors()->first()
       ]);
-    }
 
     }
 

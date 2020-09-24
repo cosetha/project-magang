@@ -239,7 +239,11 @@ $(document).ready(function() {
             $('#show-judul').val(data.data.judul);
             $('#show-lokasi').val(data.data.lokasi);
             $('#show-tanggal').val(data.data.tanggal);
+            $('#show-judul').attr('disabled', true);
+            $('#show-lokasi').attr('disabled', true);
+            $('#show-tanggal').attr('disabled', true);
             tinymce.get('show-gambar').setContent(data.data.gambar);
+            tinymce.get('show-gambar').setMode('readonly');
             $('#image-show').attr('src', host + '/img/kemahasiswaan/kegiatan/' + data.data.thumbnail);
         }
       });
@@ -259,7 +263,4 @@ $(document).ready(function() {
         });
     }
     
-});
-
-
 });

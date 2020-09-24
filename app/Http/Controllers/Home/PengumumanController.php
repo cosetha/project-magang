@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Pengumuman;
 use App\Histori;
-use DataTables;
-use File;
+use File, Validator, DataTables;
 
 class PengumumanController
 {
@@ -42,14 +41,14 @@ class PengumumanController
 
     public function store(Request $request)
     {
-      if($request->hasFile('lampiran')) {
+      $validator = Validator::make($request->all(), [
+        'judul' => 'required',
+        'deskripsi' => 'required',
+        'lampiran' => 'required|max:50|mimes:jpg,jpeg,png,svg,gif,doc,docx,pdf,xls,xlsx'
+      ]);
+      if ($validator->passes()) {
         $judul = $request->judul;
         $deskripsi = $request->deskripsi;
-        if($judul == "" || $deskripsi == "") {
-          return response()->json([
-            'status' => 'no_empty'
-          ]);
-        } else {
         $lampiran = $request->file('lampiran');
 
         $fileName = time().'_'.$lampiran->getClientOriginalName();
@@ -78,11 +77,10 @@ class PengumumanController
           }
         }
 
-      } else {
         return response()->json([
-          'status' => 'no_lampiran'
+          'status' => 'error_validation',
+          'message' => $validator->errors()->first()
         ]);
-      }
 
     }
 
