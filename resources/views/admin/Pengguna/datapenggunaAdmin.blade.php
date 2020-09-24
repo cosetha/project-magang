@@ -56,13 +56,13 @@
                     @csrf
 
                     <label for="namapengguna" class="mt-2">Nama pengguna</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name">
 
                     <label for="email" class="mt-2">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" required>
+                    <input type="text" class="form-control" id="email" name="email">
 
                     <label for="password" class="mt-2">Default Password</label>
-                    <input type="text" id="password" name="password" class="form-control" value="rahasia_admin" disabled>
+                    <input type="text" id="password" name="password" class="form-control">
 
 
 

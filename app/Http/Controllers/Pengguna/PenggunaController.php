@@ -20,15 +20,25 @@ class PenggunaController extends Controller
 
     public function store(Request $request){
 
-        //CEK EMAIL UNIQUE
-        $validator = Validator::make($request->all(),[
-                'email' => 'required|unique:users,email'
-            ]);
 
-        if($validator->fails()) {
-            return response([
-                'message' => 'gagal'
-            ]);
+        $messages = array(
+            'name.required' => 'Kolom nama tidak boleh kosong!',
+            'email.required' => 'Kolom Email tidak boleh kosong!',
+            'email.unique' => 'Email telah digunakan!',
+            'password.required' => 'Kolom Password tidak boleh kosong!',
+        );
+
+        $validator = Validator::make($request->all(),[
+                'name' => 'required|string',
+                'email' => 'required|unique:users,email',
+                'password' => 'required'
+        ],$messages);
+
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+                return response()->json([
+                    'error' => $error,
+                ]);
         }
 
         $u = new User;
