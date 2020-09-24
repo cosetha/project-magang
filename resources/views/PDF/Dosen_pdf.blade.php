@@ -17,6 +17,8 @@
 			<tr>
 				<th>No</th>
 				<th>Nama</th>
+				<th>NIK</th>
+				<th>NIDN</th>
 				<th>Deskripsi</th>
 				<th>Foto</th>
 			</tr>
@@ -26,6 +28,8 @@
 			<tr>
 				<td>{{ $loop->iteration }}</td>
 				<td>{{$d->nama}}</td>
+				<td>{{$d->nik}}</td>
+				<td>{{$d->nidn}}</td>
 				<td>{!! $d->deskripsi !!}</td>
 				<td><img height="200px" src="{{$d->gambar}}"/></td>
 			</tr>

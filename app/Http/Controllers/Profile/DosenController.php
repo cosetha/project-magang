@@ -26,6 +26,10 @@ class DosenController extends Controller
 
         $messages = array(
             'nama.required' => 'Kolom nama tidak boleh kosong!',
+            'nik.required' => 'Kolom NIK tidak boleh kosong!',
+            'nidn.required' => 'Kolom NIDN tidak boleh kosong!',
+            'nik.unique' => 'NIK telah digunakan!',
+            'nidn.unique' => 'NIDN telah digunakan!',
             'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
             'gambar.required' => 'Harap masukkan gambar!',
             'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
@@ -33,6 +37,8 @@ class DosenController extends Controller
 
         $validator = Validator::make($request->all(),[
             'nama' => 'required|string',
+            'nik' => 'required|integer|unique:dosen,nik',
+            'nidn' => 'required|integer|unique:dosen,nidn',
             'deskripsi' => 'required|string',
             'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
         ],$messages);
@@ -53,6 +59,8 @@ class DosenController extends Controller
 
             $dosen = new Dosen;
             $dosen->nama = $request->nama;
+            $dosen->nik = $request->nik;
+            $dosen->nidn = $request->nidn;
             $dosen->deskripsi = $request->deskripsi;
             $dosen->gambar= $directory."/".$nama;
             $dosen->save();
@@ -70,10 +78,15 @@ class DosenController extends Controller
     }
 
     public function update(Request $request, $id){
+
         if($request->hasFile('gambar')){
 
             $messages = array(
                 'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'nik.required' => 'Kolom NIK tidak boleh kosong!',
+                'nidn.required' => 'Kolom NIDN tidak boleh kosong!',
+                'nik.unique' => 'NIK telah digunakan!',
+                'nidn.unique' => 'NIDN telah digunakan!',
                 'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
                 'gambar.required' => 'Harap masukkan gambar!',
                 'gambar.mimes' => 'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png'
@@ -81,6 +94,8 @@ class DosenController extends Controller
 
             $validator = Validator::make($request->all(),[
                 'nama' => 'required|string',
+                'nik' => 'required|integer|unique:dosen,nik,'.$id,
+                'nidn' => 'required|integer|unique:dosen,nidn,'.$id,
                 'deskripsi' => 'required|string',
                 'gambar' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
             ],$messages);
@@ -134,11 +149,17 @@ class DosenController extends Controller
         }else{
             $messages = array(
                 'nama.required' => 'Kolom nama tidak boleh kosong!',
+                'nik.required' => 'Kolom NIK tidak boleh kosong!',
+                'nidn.required' => 'Kolom NIDN tidak boleh kosong!',
+                'nik.unique' => 'NIK telah digunakan!',
+                'nidn.unique' => 'NIDN telah digunakan!',
                 'deskripsi.required' => 'Kolom deskripsi tidak boleh kosong!',
             );
 
             $validator = Validator::make($request->all(),[
                 'nama' => 'required|string',
+                'nik' => 'required|integer|unique:dosen,nik,'.$id,
+                'nidn' => 'required|integer|unique:dosen,nidn,'.$id,
                 'deskripsi' => 'required|string',
             ],$messages);
 
