@@ -226,6 +226,7 @@ $(document).ready(function() {
                         $('#nama-kegiatan-show').val(data.data[0].judul);
                         $("#list-semester-show").append('<option value="'+data.data[0].kode_semester+'"> '+ data.data[0].semester +' </option>');
                         tinymce.get('deskripsi-kalender-show').setContent(data.data[0].deskripsi);
+                        tinymce.get('deskripsi-kalender-show').setMode('readonly');
                     }
                 });
       });

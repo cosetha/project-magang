@@ -39,7 +39,7 @@
 
 <!-- Add kalender Modal-->
 <div class="modal fade" id="KalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
@@ -85,7 +85,7 @@
 
 <!-- Edit kalender Modal-->
 <div class="modal fade" id="editKalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Kegiatan</h5>
@@ -127,53 +127,9 @@
     </div>
 </div>
 
-<!-- Edit kalender Modal-->
-<div class="modal fade" id="editKalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Kegiatan</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-kalender">
-                    @csrf
-
-                    <label for="namakalender">Nama kalender</label>
-                    <input type="text" class="form-control" id="nama-kegiatan-edit" name="nama-kegiatan-edit">
-
-                    <div class="form-group">
-                        <label for="semester" class="mt-2">Semester</label>
-                        <select class="form-control" id="list-semester-edit" name="">
-                            <option value="" hidden> -- Pilih Semester -- </option>
-
-                            <option value=""></option>
-                        </select>
-                    </div>
-
-                    <label for="tanggalmulai" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi-kalender-edit" name=""></textarea>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
-                        <input type="hidden" name="edit-id" value="">
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit kalender Modal-->
+<!-- show kalender Modal-->
 <div class="modal fade" id="showKalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detail Kegiatan</h5>
