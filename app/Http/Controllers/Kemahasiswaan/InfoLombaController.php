@@ -42,9 +42,8 @@ class InfoLombaController
     	$judul = $request->judul;
     	$deskripsi = $request->deskripsi;
         $lokasi = $request->lokasi;
-        $tanggal = $request->tanggal;
 
-    	if($judul == "" || $deskripsi == "" || $lokasi = "" || $tanggal = "") {
+    	if($judul == "" || $deskripsi == "" || $lokasi = "") {
         return response()->json([
             'status' => 'no_empty'
           ]);
@@ -54,7 +53,6 @@ class InfoLombaController
         $data->judul = $request->judul;
         $data->deskripsi = $request->deskripsi;
         $data->lokasi = $request->lokasi;
-        $data->tanggal = $request->tanggal;
         $data->save();
 
         $history = new Histori;

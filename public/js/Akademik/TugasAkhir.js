@@ -37,7 +37,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         var deskripsi = $("#deskripsi").val();
-        if(deskripsi.length != 0){
+        var judul = $("#judul").val();
+        if(deskripsi.length != 0 && judul != ""){
             var data = $("#FormTambahTA").serialize();
             $(".btn-loading").css("display","");
             $(".btn-close").css("display","none");
@@ -70,7 +71,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops',
-                text: 'Deskripsi tidak boleh kosong',
+                text: 'Form tidak boleh ada yang kosong',
             });
         }
     })
@@ -129,7 +130,8 @@ $(document).ready(function() {
         e.preventDefault();
         var id = $("#id-ta").val();
         var edit_deskripsi = $("#edit_deskripsi").val();
-        if(edit_deskripsi.length != 0){
+        var edit_judul = $("#edit_judul").val();
+        if(edit_deskripsi.length != 0 && edit_judul != ""){
 
             var data = $("#FormEditTA").serialize();
             $(".btn-loading").css("display","");
@@ -164,7 +166,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops',
-                text: 'Deskripsi tidak boleh kosong',
+                text: 'Form tidak boleh ada yang kosong',
             });
         }
     })
@@ -202,5 +204,5 @@ $(document).ready(function() {
             }
         });
     }
-    
+
 });

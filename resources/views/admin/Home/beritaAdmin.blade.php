@@ -45,7 +45,7 @@
 
 <!-- Add Berita Modal-->
 <div class="modal fade" id="BeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Berita</h5>
@@ -90,7 +90,7 @@
 
 <!-- Edit berita Modal-->
 <div class="modal fade" id="editBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
@@ -113,7 +113,7 @@
 
 
                     <div class="form-group mt-3">
-                        <img id="image-edit-berita" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                        <img id="image-edit-berita" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
@@ -241,7 +241,7 @@
 
 <!-- show berita Modal-->
 <div class="modal fade" id="showBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>

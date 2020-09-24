@@ -38,7 +38,7 @@
 
 <!-- Add Kegiatan Akademik Modal-->
 <div class="modal fade" id="KegiatanakaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Kegiatan Akademik</h5>
@@ -53,7 +53,7 @@
                     @csrf
 
                     <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
-                    <input type="text" class="form-control" id="judul" name="judul" required>
+                    <input type="text" class="form-control" id="judul" name="judul">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
@@ -78,7 +78,7 @@
 
 <!-- Edit Kegiatan Akademik Modal-->
 <div class="modal fade" id="editKegiatanakaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Kegiatan Akademik</h5>
@@ -93,7 +93,7 @@
                     @csrf
                     <input type="hidden" id="ka-id" value="">
                     <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
-                    <input type="text" class="form-control" id="edit_judul" name="edit_judul" required>
+                    <input type="text" class="form-control" id="edit_judul" name="edit_judul">
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="edit_deskripsi" name="edit_deskripsi"> </textarea>
@@ -117,7 +117,7 @@
 
 <!-- Show ka Modal-->
 <div class="modal fade" id="showKaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Detail Tugas Akhir</h5>

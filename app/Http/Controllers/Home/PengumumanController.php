@@ -32,7 +32,11 @@ class PengumumanController
           </a>';
           return $btn;
         })
-      ->rawColumns(['aksi'])
+        ->addColumn('file', function($row){
+          $file = '<a href="'.$row->lampiran.'" >'.$row->lampiran.'</a>';
+          return $file;
+        })
+      ->rawColumns(['aksi', 'file'])
       ->make(true);
     }
 
@@ -180,7 +184,7 @@ class PengumumanController
 
     public function destroy($id)
     {
-      $lampiranPath = Pengumuman::find($id)->value('lampiran');
+      $lampiranPath = Pengumuman::where('id', $id)->value('lampiran');
       File::delete($lampiranPath);
 
       $destroy = Pengumuman::find($id);

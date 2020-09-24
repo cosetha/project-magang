@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Akreditasi;
 use App\Histori;
+use Carbon\Carbon;
 use File;
 use DataTables;
 use Validator;
@@ -45,6 +46,7 @@ class AkreditasiController extends Controller
                 $nama = time().$file->getClientOriginalName();
                 $file->name = $nama;
                 $file->move($directory, $file->name);
+
 
                 $akreditasi = new Akreditasi;
                 $akreditasi->file = $directory."/".$nama;
@@ -243,7 +245,10 @@ class AkreditasiController extends Controller
                 </a>';
                 return $btn;
          })
-         ->rawColumns(['aksi'])
-            ->make(true);
+         ->rawColumns(['aksi'])->editColumn('tanggal_mulai',function($akreditasi){
+            return date('d-m-Y', strtotime($akreditasi->tanggal_mulai));
+         })->editColumn('tanggal_selesai',function($akreditasi){
+            return date('d-m-Y', strtotime($akreditasi->tanggal_selesai));
+         })->make(true);
     }
 }

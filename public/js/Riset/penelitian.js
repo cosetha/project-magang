@@ -13,14 +13,20 @@ $(document).ready(function() {
     var judul = $('input[name=judul]').val();
     var peneliti = $('input[name=peneliti]').val();
     var deskripsi = tinymce.get('deskripsi').getContent();
+    var luaran = tinymce.get('hasil_luaran').getContent();
     var tahun = $('input[name=tahun]').val();
     var gambar = $('#file-upload')[0].files[0];
 
     formData.append('judul', judul);
     formData.append('peneliti', peneliti);
     formData.append('deskripsi', deskripsi);
+    formData.append('luaran', luaran);
     formData.append('tahun', tahun);
     formData.append('gambar', gambar);
+
+    $("#btn-tambah-penelitian").css("display","none")
+    $(".btn-close").css("display","none")
+    $(".btn-loading").css("display","")
 
     $.ajax({
       type: 'POST',
@@ -60,11 +66,17 @@ $(document).ready(function() {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',
-            text: 'Judul Penelitian, Nama Peneliti, Deskripsi, dan Tahun tidak boleh kosong!',
+            text: 'Form tidak boleh ada yang kosong!',
             timer: 1200,
             showConfirmButton: false
           });
         }
+        $("#btn-tambah-penelitian").css("display","")
+        $(".btn-close").css("display","")
+        $(".btn-loading").css("display","none")
+      },
+      error: function(err){
+          console.log(err)
       }
     });
 
@@ -86,7 +98,6 @@ $(document).ready(function() {
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
           {data: 'peneliti',name: 'peneliti'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {data: 'tahun',name: 'tahun'},
           {
             data: 'gambar',
@@ -119,6 +130,7 @@ $(document).ready(function() {
           $('#edit-judul').val(data.data.judul);
           $('#edit-peneliti').val(data.data.peneliti);
           tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
+          tinymce.get('edit_hasil_luaran').setContent(data.data.hasil_luaran);
           $('#tahun-edit').val(data.data.tahun);
           $('#image-edit').attr('src', host + '/img/riset/penelitian/' + data.data.gambar);
           $('input[name=edit-id]').val(id);
@@ -134,15 +146,21 @@ $(document).ready(function() {
       var judul = $('input[name=edit-judul]').val();
       var peneliti = $('input[name=edit-peneliti]').val();
       var deskripsi = tinymce.get('edit-deskripsi').getContent();
+      var luaran = tinymce.get('edit_hasil_luaran').getContent();
       var tahun = parseInt($('input[name=tahun_edit]').val());
       var gambar = $('#file-upload-edit')[0].files[0];
       var id = $('input[name=edit-id]').val();
 
       console.log(tahun)
 
+      $("#btn-edit-penelitian").css("display","none")
+    $(".btn-close").css("display","none")
+    $(".btn-loading").css("display","")
+
       formData.append('judul', judul);
       formData.append('peneliti', peneliti);
       formData.append('deskripsi', deskripsi);
+      formData.append('luaran', luaran);
       formData.append('tahun', tahun);
       formData.append('gambar', gambar);
 
@@ -153,10 +171,10 @@ $(document).ready(function() {
         contentType: false,
         processData: false,
         success: function(data) {
-          $('#editPenelitianModal').modal('hide');
-          $('#form-edit-penelitian').trigger('reset');
 
           if(data.status == 'ok') {
+            $('#editPenelitianModal').modal('hide');
+            $('#form-edit-penelitian').trigger('reset');
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
@@ -180,11 +198,14 @@ $(document).ready(function() {
             Swal.fire({
               icon: 'error',
               title: 'Gagal',
-              text: 'Judul Penelitian, Nama Peneliti, Deskripsi, dan Tahun tidak boleh kosong!',
+              text: 'Form tidak boleh ada yang kosong!',
               timer: 1200,
               showConfirmButton: false
             });
           }
+          $("#btn-edit-penelitian").css("display","")
+        $(".btn-close").css("display","")
+        $(".btn-loading").css("display","none")
 
         },
         error: function(err){
@@ -224,6 +245,7 @@ $(document).ready(function() {
                 Swal.fire(
                   'Deleted!',
                   'Berhasil Menghapus ' + judul+'.',
+                  'success'
                 )
                 loadDataPenelitian();
               }
@@ -234,6 +256,32 @@ $(document).ready(function() {
       })
 
     });
+
+    //SHOW DETAIL
+    $("body").on("click",".btn-show-penelitian", function(e){
+        e.preventDefault()
+        $("#showPenelitianModal").modal("show")
+
+        var id = $(this).attr("data-id")
+        var host = window.location.origin;
+        $.ajax({
+            type: "get",
+            url: "penelitian/edit/" + id,
+            success: function(response){
+                $("#show-judul").val(response.data.judul)
+                $("#show-peneliti").val(response.data.peneliti)
+                tinymce.get('show-deskripsi').setContent(response.data.deskripsi);
+                tinymce.get('show-deskripsi').setMode('readonly');
+                tinymce.get('show_hasil_luaran').setContent(response.data.hasil_luaran);
+                tinymce.get('show_hasil_luaran').setMode('readonly');
+                $("#show-tahun").val(response.data.tahun)
+                $('#show-image').attr('src', host + '/img/riset/penelitian/' + response.data.gambar);
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
     //ALERT HISTORY COUNT
     function AlertCount(){

@@ -12,13 +12,19 @@ $(document).ready(function() {
     var formData = new FormData();
     var judul = $('input[name=judul]').val();
     var deskripsi = tinymce.get('deskripsi').getContent();
+    var luaran = tinymce.get('hasil_luaran').getContent();
     var tahun = $('input[name=tahun]').val();
     var gambar = $('#file-upload')[0].files[0];
 
     formData.append('judul', judul);
     formData.append('deskripsi', deskripsi);
+    formData.append('luaran', luaran);
     formData.append('tahun', tahun);
     formData.append('gambar', gambar);
+
+    $("#btn-tambah-pengabdian").css("display","none")
+    $(".btn-close").css("display","none")
+    $(".btn-loading").css("display","")
 
     $.ajax({
 			type: 'POST',
@@ -28,43 +34,50 @@ $(document).ready(function() {
 			processData: false,
 			success: function(data) {
 				if(data.status == 'ok') {
-          Swal.fire({
-  					icon: 'success',
-  					title: 'Sukses',
-  					text: 'Berhasil Menambahkan Pengabdian',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
-          $('#form-tambah-pengabdian').trigger('reset');
-          $('#PengabdianModal .close').click();
-          loadDataPengabdian();
-        } else if(data.status == 'no_insert') {
-          Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Gagal Menambahkan Pengabdian',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
-        } else if(data.status == "no_gambar"){
-          Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Tidak ada gambar!',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
-        } else {
-          Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Judul Pengabdian, Deskripsi, dan Tahun tidak boleh kosong!',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
-        }
-			}
-		});
+                Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Berhasil Menambahkan Pengabdian',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                $('#form-tambah-pengabdian').trigger('reset');
+                $('#PengabdianModal .close').click();
+                loadDataPengabdian();
+                } else if(data.status == 'no_insert') {
+                Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Gagal Menambahkan Pengabdian',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                } else if(data.status == "no_gambar"){
+                Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Tidak ada gambar!',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                } else {
+                Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Form tidak boleh ada yang kosong!',
+                            timer: 1200,
+                            showConfirmButton: false
+                        });
+                }
+
+                $("#btn-tambah-pengabdian").css("display","")
+                $(".btn-close").css("display","")
+                $(".btn-loading").css("display","none")
+            }
+
+        });
+
+
 
 	});
 
@@ -83,7 +96,6 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
-          {data: 'deskripsi',name: 'deskripsi'},
           {data: 'tahun',name: 'tahun'},
           {
             data: 'gambar',
@@ -115,6 +127,7 @@ $(document).ready(function() {
 			    $('#editPengabdianModal').modal('show');
           $('#edit-judul').val(data.data.judul);
           tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
+          tinymce.get('edit_hasil_luaran').setContent(data.data.hasil_luaran);
           $('#tahun-edit').val(data.data.tahun);
           $('#image-edit').attr('src', host + '/img/riset/pengabdian/' + data.data.gambar);
           $('input[name=edit-id]').val(id);
@@ -130,16 +143,22 @@ $(document).ready(function() {
       var formData = new FormData();
       var judul = $('input[name=edit-judul]').val();
       var deskripsi = tinymce.get('edit-deskripsi').getContent();
+      var luaran = tinymce.get('edit_hasil_luaran').getContent();
       var tahun = parseInt($('input[name=tahun_edit]').val());
       var gambar = $('#file-upload-edit')[0].files[0];
       var id = $('input[name=edit-id]').val();
 
       console.log(tahun)
 
+      $("#btn-edit-pengabdian").css("display","none")
+      $(".btn-close").css("display","none")
+      $(".btn-loading").css("display","")
+
     //   console.log(tahun)
 
       formData.append('judul', judul);
       formData.append('deskripsi', deskripsi);
+      formData.append('luaran', luaran);
       formData.append('tahun', tahun);
       formData.append('gambar', gambar);
 
@@ -150,11 +169,10 @@ $(document).ready(function() {
         contentType: false,
         processData: false,
         success: function(data) {
-          $('#editPengabdianModal').modal('hide');
-          $('#form-edit-pengabdian').trigger('reset');
-
 
           if(data.status == 'ok') {
+            $('#editPengabdianModal').modal('hide');
+            $('#form-edit-pengabdian').trigger('reset');
             Swal.fire({
               icon: 'success',
               title: 'Sukses',
@@ -178,11 +196,15 @@ $(document).ready(function() {
             Swal.fire({
               icon: 'error',
               title: 'Gagal',
-              text: 'Judul Pengabdian, Deskripsi, dan Tahun tidak boleh kosong!',
+              text: 'Form tidak boleh ada yang kosong!',
               timer: 1200,
               showConfirmButton: false
             });
           }
+
+          $("#btn-edit-pengabdian").css("display","")
+          $(".btn-close").css("display","")
+          $(".btn-loading").css("display","none")
 
         },
         error: function(err){
@@ -222,6 +244,7 @@ $(document).ready(function() {
                 Swal.fire(
                   'Deleted!',
                   'Berhasil Menghapus ' + judul+'.',
+                  'success'
                 )
                 loadDataPengabdian();
               }
@@ -232,6 +255,31 @@ $(document).ready(function() {
       })
 
     });
+
+    //SHOW DETAIL
+    $("body").on("click",".btn-show-pengabdian", function(e){
+        e.preventDefault()
+        $("#showPengabdianModal").modal("show")
+        var id = $(this).attr("data-id")
+        var host = window.location.origin;
+
+        $.ajax({
+            type: "get",
+            url: 'pengabdian/edit/' + id,
+            success: function(response){
+                $("#show-judul").val(response.data.judul)
+                tinymce.get('show-deskripsi').setContent(response.data.deskripsi);
+                tinymce.get('show-deskripsi').setMode('readonly');
+                tinymce.get('show_hasil_luaran').setContent(response.data.hasil_luaran);
+                tinymce.get('show_hasil_luaran').setMode('readonly');
+                $("#show-tahun").val(response.data.tahun)
+                $('#show-image').attr('src', host + '/img/riset/pengabdian/' + response.data.gambar);
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
     //ALERT HISTORY COUNT
     function AlertCount(){

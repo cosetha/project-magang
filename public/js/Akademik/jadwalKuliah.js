@@ -146,6 +146,7 @@ $(document).ready(function() {
       $('#list-bk-edit').append('<option value=""> -- Pilih Bidang Keahlian -- </option>');
       $('#list-semester-edit').empty();
       $('#list-semester-edit').append('<option value=""> -- Pilih Semester -- </option>');
+      $('#file').empty();
       $.ajax({
           type: 'GET',
           url: 'jadwal/get-list',
@@ -170,6 +171,8 @@ $(document).ready(function() {
                     $('#nama-jadwal-edit').val(data.data.nama_jadwal);
                     $('#list-semester-edit option[value="'+data.data.kode_semester+'"]').attr('selected','selected');
                     $('#list-bk-edit option[value='+data.data.kode_bk+']').attr('selected','selected');
+                    $('#file').append(data.data.file);
+                    $('#file').attr('href', data.data.file);
                 }
             });
           }

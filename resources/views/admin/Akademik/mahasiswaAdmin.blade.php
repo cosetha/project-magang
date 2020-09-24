@@ -24,8 +24,8 @@
 
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
-            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal">Export </a>
-            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal">Import </a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal"><i class="fas fa-file-export"></i> Export </a>
+            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal"><i class="fas fa-file-import"></i> Import </a>
         </div>
 
         <div class="card-body">
@@ -74,7 +74,7 @@
                         </select>
                     </div>
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
-               
+
 
             </div>
             <div class="modal-footer">
@@ -125,7 +125,7 @@
                     </div>
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
                     <input type="hidden" name="id-edit" value=""/>
-               
+
 
             </div>
             <div class="modal-footer">
@@ -160,8 +160,8 @@
                     </div>
             </div>
             <div class="modal-footer">
-             <a href="/download-format-excel-mahasiswa" class="btn btn-success btn-download">Download Format</a>
-                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Import</button>
+             <a href="/download-format-excel-mahasiswa" class="btn btn-success btn-download"><i class="fas fa-file-download"></i> Download Format</a>
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa"><i class="fas fa-file-import"></i> Import</button>
             </div>
             </form>
         </div>
@@ -204,11 +204,11 @@
                                         <option value="Excel">Excel</option>
                                         <option value="Pdf">Pdf</option>
                                 </select>
-                        </div>    
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa">Export</button>
+                <button type="submit" class="btn btn-primary" id="btn-export-mahasiswa"><i class="fas fa-file-export"></i> Export</button>
             </div>
             </form>
         </div>

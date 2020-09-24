@@ -38,7 +38,7 @@
 
 <!-- Add Lomba Modal-->
 <div class="modal fade" id="LombaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Lomba / Seminar</h5>
@@ -59,9 +59,6 @@
                     <label for="lokasi" class="mt-2">Lokasi</label>
                     <input type="text" class="form-control" id="lokasi" name="lokasi">
 
-                    <label for="tanggal" class="mt-2">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal">
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal" id="close-modal-tambah">Cancel</button>
@@ -79,7 +76,7 @@
 
 <!-- Edit Lomba Modal-->
 <div class="modal fade" id="editLombaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Lomba / Seminar</h5>
@@ -99,9 +96,6 @@
 
                     <label for="edit-lokasi" class="mt-2">Lokasi</label>
                     <input type="text" class="form-control" id="edit-lokasi" name="edit-lokasi">
-
-                    <label for="edit-tanggal" class="mt-2">Tanggal</label>
-                    <input type="date" class="form-control" id="edit-tanggal" name="edit-tanggal">
 
                     <input type="hidden" id="edit-id" name="edit-id" value="">
 
@@ -160,9 +154,6 @@
                     <br>
                     <label for="edit-lokasi" class="mt-2">Lokasi</label>
                     <input type="text" class="form-control" id="show-lokasi" name="edit-lokasi" disabled>
-
-                    <label for="edit-tanggal" class="mt-2">Tanggal</label>
-                    <input type="date" class="form-control" id="show-tanggal" name="edit-tanggal" disabled>
 
                 </div>
                 <div class="modal-footer">

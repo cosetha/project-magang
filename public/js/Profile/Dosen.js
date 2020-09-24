@@ -38,69 +38,85 @@ $(document).ready(function() {
 			});
         });
 
-        //TAMBAH DOSEN
-        $("body").on("submit","#FormTambahDosen", function(e){
-            e.preventDefault()
-            var formData = new FormData();
-            var nama = $('input[name=nama]').val();
-            var deskripsi = tinymce.get('deskripsi').getContent();
-            var token = $('input[name=token]').val();
-            formData.append('_token', token);
-            formData.append('nama', nama);
-            formData.append('deskripsi', deskripsi);
-            formData.append('gambar', $('input[type=file]')[0].files[0]);
 
-            $(".btn-close").css('display','none');
-            $(".btn-loading").css('display','');
-            $(".btn-submit-dosen").css('display','none');
-
-
-            $.ajax({
-                type: "post",
-                url: "/tambah-dosen",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response){
-
-                    if(response.hasOwnProperty('error')){
-                        $(".btn-close").css('display','');
-                        $(".btn-loading").css('display','none');
-                        $(".btn-submit-dosen").css('display','');
-                        Swal.fire({
-							icon: 'error',
-							title: 'Ooopss...',
-							text: response.error
-						});
-                    }else{
-                        $(".btn-close").css('display','');
-                        $(".btn-loading").css('display','none');
-                        $(".btn-submit-dosen").css('display','');
-                        $("#DosenModal").modal("hide");
-                        $("#FormTambahDosen").trigger("reset");
-                        LoadDosen();
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Sukses',
-                            text: 'Berhasil Menambahkan Dosen',
-                            timer: 1200,
-                            showConfirmButton: false
-                        });
-                    }
-
-                },
-                error: function(err){
-                    console.log(err);
-                }
-            });
-        });
     }
+
+    //OPEN MODAL TAMBAH DOSEN
+    $("body").on("click",".btn-add-dosen", function(e){
+        e.preventDefault()
+        $("#DosenModal").modal("show")
+        $("#FormTambahDosen").trigger("reset")
+
+    })
+
+
+    //TAMBAH DOSEN
+    $("body").on("submit","#FormTambahDosen", function(e){
+        e.preventDefault()
+        var formData = new FormData();
+        var nama = $('input[name=nama]').val();
+        var nik = $('#nik').val();
+        var nidn = $('#nidn').val();
+        var deskripsi = tinymce.get('deskripsi').getContent();
+        var token = $('input[name=token]').val();
+        formData.append('_token', token);
+        formData.append('nama', nama);
+        formData.append('nik', nik);
+        formData.append('nidn', nidn);
+        formData.append('deskripsi', deskripsi);
+        formData.append('gambar', $('input[type=file]')[0].files[0]);
+
+        $(".btn-close").css('display','none');
+        $(".btn-loading").css('display','');
+        $(".btn-submit-dosen").css('display','none');
+
+
+        $.ajax({
+            type: "post",
+            url: "/tambah-dosen",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response){
+
+                if(response.hasOwnProperty('error')){
+                    $(".btn-close").css('display','');
+                    $(".btn-loading").css('display','none');
+                    $(".btn-submit-dosen").css('display','');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooopss...',
+                        text: response.error
+                    });
+                }else{
+                    $(".btn-close").css('display','');
+                    $(".btn-loading").css('display','none');
+                    $(".btn-submit-dosen").css('display','');
+                    $("#DosenModal").modal("hide");
+                    $("#FormTambahDosen").trigger("reset");
+                    LoadDosen();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: 'Berhasil Menambahkan Dosen',
+                        timer: 1200,
+                        showConfirmButton: false
+                    });
+                }
+
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    });
 
 
     //OPEN MODAL EDIT
     $("body").on("click",".btn-edit-dosen", function(e){
         e.preventDefault();
         $("#editDosenModal").modal("show");
+        $("#FormEditDosen").trigger("reset")
 
         var id = $(this).attr("data-id");
 
@@ -110,6 +126,8 @@ $(document).ready(function() {
             success: function(response){
                 $("#id-dosen").val(response.data.id);
                 $("#edit-nama-dosen").val(response.data.nama);
+                $("#nik-edit").val(response.data.nik);
+                $("#nidn-edit").val(response.data.nidn);
                 tinymce.get('edit_deskripsi').setContent(response.data.deskripsi);
             },
             error: function(err){
@@ -124,10 +142,14 @@ $(document).ready(function() {
         var formData = new FormData();
             var id = $("#id-dosen").val();
             var nama = $('input[name=edit_nama]').val();
+            var nik = $('#nik-edit').val();
+            var nidn = $('#nidn-edit').val();
             var deskripsi = tinymce.get('edit_deskripsi').getContent();
             var token = $('input[name=token]').val();
             formData.append('_token', token);
             formData.append('nama', nama);
+            formData.append('nik', nik);
+            formData.append('nidn', nidn);
             formData.append('deskripsi', deskripsi);
             formData.append('gambar', $('input[type=file]')[1].files[0]);
 
@@ -219,6 +241,8 @@ $(document).ready(function() {
             url: "/get-dosen/"+id,
             success: function(response){
                 $("#show-nama").val(response.data.nama);
+                $("#nik-show").val(response.data.nik);
+                $("#nidn-show").val(response.data.nidn);
                 tinymce.get('show-deskripsi').setContent(response.data.deskripsi);
             },
             error: function(err){
