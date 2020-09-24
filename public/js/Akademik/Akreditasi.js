@@ -95,8 +95,8 @@ $(document).ready(function() {
 							icon: 'error',
 							title: 'Ooopss...',
 							text: response.error,
-							// timer: 3000,
-							// showConfirmButton: false
+							timer: 3000,
+							showConfirmButton: false
 						});
 					} else {
                         $('#AkreditasiModal').modal('hide');
