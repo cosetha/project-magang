@@ -80,7 +80,7 @@ $(document).ready(function() {
         columns: [
           {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
           {data: 'judul',name: 'judul'},
-          {data: 'lampiran',name: 'lampiran'},
+          {data: 'file',name: 'file'},
           {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
         ]
       });
@@ -91,6 +91,7 @@ $(document).ready(function() {
   $('body').on('click', '.btn-edit-pengumuman', function(e) {
 		e.preventDefault();
     var id = $(this).data('id');
+    $('#lampiran').empty();
     $.ajax({
 			type: 'GET',
 			url: 'pengumuman/edit/' + id,
@@ -102,11 +103,13 @@ $(document).ready(function() {
         tinymce.get('edit-deskripsi').setContent(data.data.deskripsi);
         $('input[name=edit-id]').val(id);
         $('#file-upload-edit').val('');
+        $('#lampiran').append(data.data.lampiran);
+        $('#lampiran').attr('href', data.data.lampiran);
 			}
 		});
   });
 
-
+  //update pengumuman
     $('body').on('submit', '#form-edit-pengumuman', function(e) {
       e.preventDefault();
       var formData = new FormData();
@@ -200,7 +203,7 @@ $(document).ready(function() {
       });
 
     });
-
+    //detail pengumuman
     $('body').on('click', '.btn-show-pengumuman', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
@@ -215,6 +218,8 @@ $(document).ready(function() {
           $('#show-judul').val(data.data.judul);
           tinymce.get('show-deskripsi').setContent(data.data.deskripsi);
           $('#file-pengumuman').append(data.data.lampiran).attr('href', data.data.lampiran);
+          $('#show-judul').attr('disabled', true);
+				  tinymce.get('show-deskripsi').setMode('readonly');
   			}
   		});
     });

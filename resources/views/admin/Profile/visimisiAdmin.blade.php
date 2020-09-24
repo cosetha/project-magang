@@ -39,7 +39,7 @@
 
 <!-- Add visimisi Modal-->
 <div class="modal fade" id="VisimisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Visi dan Misi</h5>
@@ -81,7 +81,7 @@
 
 <!-- Edit visimisi Modal-->
 <div class="modal fade" id="editVisimisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title-visimisi-edit">Edit Visi dan Misi</h5>
