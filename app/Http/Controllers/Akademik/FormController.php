@@ -43,10 +43,11 @@ class FormController extends Controller
             'nama.required'=>'Field Nama Perlu di Isi',
             'file.required'=>'Field File Perlu di Isi',
             'file.mimes'=>'Field File Perlu di Isi dengan Format: doc,pdf,docx,zip,csv,xls,xlsx',
+            'file.max'=> 'Size File Upload Maksimal 8MB'
         );
         $validator = Validator::make($request->all(),[
             'nama' => 'required',
-            'file'   => 'required||mimes:doc,pdf,docx,zip,csv, xls, xlsx'],$messsages
+            'file'   => 'required|mimes:doc,pdf,docx,zip,csv,xls,xlsx|max:8192'],$messsages
         );
         if ($validator->fails()) {
             $error = $validator->errors()->first();

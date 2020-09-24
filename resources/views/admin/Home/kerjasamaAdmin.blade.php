@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" id="caption" name="caption" >
 
                         <label for="link" class="mt-2">Link</label>
-                        <input type="text" class="form-control" id="link" name="link" >
+                        <input type="text" class="form-control" id="link" name="link" placeholder="https://www.example.com/">
 
                         <div class="form-group mt-3">
                             <label for="file">Logo</label>
