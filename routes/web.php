@@ -299,6 +299,7 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
     Route::post('admin/edit-blog/{id}', 'Home\WeblinkController@update');
 
     Route::get('/faq','Footer\FaqController@index');
+    Route::get('/faq-get/{id}','Footer\FaqController@get');
     Route::get('/load/table-faq','Footer\FaqController@LoadTableFaq');
     Route::get('/load/data-faq','Footer\FaqController@LoadDataFaq');
     Route::get('/admin/delete-faq/{id}','Footer\FaqController@destroy');

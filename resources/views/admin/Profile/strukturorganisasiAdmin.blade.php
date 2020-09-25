@@ -40,7 +40,7 @@
 
 <!-- Add Sosmed Modal-->
 <div class="modal fade" id="StrukturorganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Struktur Organisasi</h5>
@@ -85,10 +85,10 @@
 
 <!-- Edit Sosmed Modal-->
 <div class="modal fade" id="editStrukturorganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Struktur Organisasi</h5>
+                <h5 class="modal-title" id="judulso"></h5>
                 <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
