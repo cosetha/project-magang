@@ -42,7 +42,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kalender Akademik</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -53,7 +53,7 @@
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-kalender">
                     @csrf
 
-                    <label for="namakegiatan">Nama Kegiatan</label>
+                    <label for="namakegiatan">Nama Kalender</label>
                     <input type="text" class="form-control" id="" name="nama-kegiatan">
 
                     <div class="form-group">
@@ -88,7 +88,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Kalender Akademik</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -132,7 +132,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Kalender</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

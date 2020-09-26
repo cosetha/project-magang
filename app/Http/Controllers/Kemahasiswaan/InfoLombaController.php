@@ -43,7 +43,7 @@ class InfoLombaController
     	$deskripsi = $request->deskripsi;
         $lokasi = $request->lokasi;
 
-    	if($judul == "" || $deskripsi == "" || $lokasi = "") {
+    	if($judul == "" || $deskripsi == "" || $lokasi == "") {
         return response()->json([
             'status' => 'no_empty'
           ]);

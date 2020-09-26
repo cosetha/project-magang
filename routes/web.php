@@ -249,6 +249,8 @@ Route::group(['middleware' => ['auth','checkRole:1,2']],function(){
       Route::post('update/{id}', 'Akademik\KalenderAkademikController@update');
       Route::get('delete/{id}', 'Akademik\KalenderAkademikController@destroy');
       Route::get('show/{id}', 'Akademik\KalenderAkademikController@show');
+      Route::get('aktif/{id}', 'Akademik\KalenderAkademikController@setAktif');
+      Route::get('nonaktif/{id}', 'Akademik\KalenderAkademikController@setNonaktif');
     });
 
     Route::get('kegiatan', 'Akademik\KegiatanAkademikController@index');
