@@ -2,8 +2,9 @@
   <thead>
     <tr>
         <th>No</th>
-        <th>Nama Kegiatan</th>
+        <th>Nama Kalender</th>
         <th>Semester</th>
+        <th>Status</th>
         <th>Action</th>
     </tr>
   </thead>

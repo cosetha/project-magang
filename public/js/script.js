@@ -818,6 +818,17 @@ $(document).ready(function() {
                                 timer: 1000,
                                 showConfirmButton: false
                             });
+                        } else if(data.status == '2'){
+
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Panjang Password baru minimal 8 Karakter',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+
                         } else if (data.status == '0') {
                             $('.form-edit-password')[0].reset();
                             Swal.fire({
@@ -880,10 +891,6 @@ $(document).ready(function() {
 						name: 'pertanyaan'
 					},
 					{
-						data: 'jawaban',
-						name: 'jawaban'
-					},
-					{
 						data: 'aksi',
 						name: 'aksi',
 						searchable: false,
@@ -893,6 +900,13 @@ $(document).ready(function() {
 			});
 		});
 	}
+
+    //OPEN MODAL TAMBAH FAQ
+    $("body").on("click",".btn-modal-faq", function(e){
+        e.preventDefault()
+        $("#form-tambah-faq").trigger("reset")
+        $("#TambahFaqModal").modal("show")
+    })
 
 	//TAMBAH FAQ
 	$('body').on('submit', '#form-tambah-faq', function(e) {
@@ -942,7 +956,27 @@ $(document).ready(function() {
             });
         }
 
-	});
+    });
+
+    //SHOW FAQ
+    $("body").on("click",".btn-show-faq",function(e){
+        e.preventDefault()
+        $("#ShowFaqModal").modal("show")
+        var id = $(this).attr("data-id")
+
+        $.ajax({
+            type: "get",
+            url: "/faq-get/"+id,
+            success: function(response){
+                $("#show_pertanyaan").val(response.data.pertanyaan)
+                tinymce.get('show_jawaban').setContent(response.data.jawaban);
+                tinymce.get('show_jawaban').setMode('readonly');
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
 
 	//DELETE FAQ
 	$('body').on('click', '.btn-delete-faq', function(e) {
@@ -983,13 +1017,24 @@ $(document).ready(function() {
 		e.preventDefault();
 		var id = $(this).attr('data-id');
 		var pertanyaan = $(this).attr('data-pertanyaan');
-		var jawaban = $(this).attr('data-jawaban');
-		$('#EditFaqModal').modal('show');
-		$('#btn-submit-faq').css('display', 'none');
-		$('#btn-save-faq').css('display', '');
-		$('#kolom-pertanyaan').val(pertanyaan);
-		$('#kolom-jawaban').val(jawaban);
-		$('#id-faq').val(id);
+
+        $.ajax({
+            type: "get",
+            url: "/faq-get/"+id,
+            success: function(response){
+                // console.log()
+                $('#EditFaqModal').modal('show');
+                $('#btn-submit-faq').css('display', 'none');
+                $('#btn-save-faq').css('display', '');
+                $('#kolom-pertanyaan').val(pertanyaan);
+                tinymce.get('jawaban_edit').setContent(response.data.jawaban);
+                $('#id-faq').val(id);
+
+            },
+            error: function(err){
+                console.log(err)
+            }
+        })
 
     });
 
@@ -1001,7 +1046,7 @@ $(document).ready(function() {
         var data = $('#form-edit-faq').serialize();
         var id = $("#id-faq").val()
         var pertanyaan = $("#kolom-pertanyaan").val()
-        var jawaban = $("#kolom-jawaban").val()
+        var jawaban = tinymce.get('jawaban_edit').getContent();
 
         if(pertanyaan != '' && jawaban != ''){
             $.ajax({

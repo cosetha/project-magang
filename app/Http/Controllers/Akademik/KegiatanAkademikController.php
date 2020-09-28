@@ -21,6 +21,11 @@ class KegiatanAkademikController extends Controller
         $k->judul = $request->judul;
         $k->deskripsi = $request->deskripsi;
         $k->save();
+        if($save) {
+            return response([
+                'status' => 'ok'
+            ]); 
+        }
 
         $history = new Histori;
                     $history->nama = auth()->user()->name;

@@ -22,11 +22,12 @@ class HeadLineController extends Controller
             'judul.required'=>'Field Judul Perlu di Isi',
             'gambar.required'=>'Field Gambar Perlu di Isi',
             'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'gambar.max' => 'Gambar maksimal berukuran 8 Mb',
             'caption.required'=>'Field Caption Perlu di Isi',
         );
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|min:1|max:255',
-            'gambar' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+            'gambar' => 'required|mimes:jpeg,jpg,png,gif|max:8000',
             "caption" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
@@ -90,11 +91,12 @@ class HeadLineController extends Controller
         $messsages = array(
             'judul.required'=>'Field Judul Perlu di Isi',
             'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
+            'gambar.max' => 'Gambar maksimal berukuran 8 Mb',
             'caption.required'=>'Field Caption Perlu di Isi',
         );
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|min:1|max:255',
-            'gambar' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'gambar' => 'mimes:jpeg,jpg,png,gif|max:8000',
             "caption" => 'required|string'],$messsages);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
