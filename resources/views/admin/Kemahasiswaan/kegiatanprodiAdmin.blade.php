@@ -39,7 +39,7 @@
 
 <!-- Add Kegiatan Modal-->
 <div class="modal fade" id="KegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
@@ -85,7 +85,7 @@
 
 <!-- Edit Kegiatan Modal-->
 <div class="modal fade" id="editKegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit kegiatan</h5>
@@ -110,7 +110,7 @@
                     <textarea class="form-control" id="edit-gambar" name="edit-gambar"> </textarea>
 
                     <div class="form-group mt-3">
-                        <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                        <img id="image-edit" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
@@ -178,7 +178,7 @@
                     <textarea class="form-control" id="show-gambar" name="edit-gambar"> </textarea>
 
                     <div class="form-group mt-3">
-                        <img id="image-show" src="" style="width: 70%; height: 70%; border-radius: 10px;" alt="">
+                        <img id="image-show" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                 </div>
