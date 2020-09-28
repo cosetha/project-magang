@@ -24,11 +24,14 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request, $id)
     {
-      $validator = Validator::make($request->all(),[
-            'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|string|min:8'
-          ]);
-        if ($validator->fails()) {
+
+        $validator = Validator::make($request->all(),[
+                'password_lama' => 'required|string',
+                'password' => 'required|string',
+                'password_confirmation' => 'required|string'
+        ]);
+
+        if($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
                 'error' => $error,
@@ -37,33 +40,42 @@ class ProfileController extends Controller
             if(Hash::check($request->password_lama, auth()->user()->password)) {
               $password = $request->password;
               $passwordConfirm = $request->password_confirmation;
-              if($password == $passwordConfirm){
-                $user = User::find($id);
-                $user->password = bcrypt($passwordConfirm);
-                $user->save();
+              $length = strlen($password);
 
-                if($user) {
+                if($length < 8){
+                    return response([
+                        'status' => '2'
+                    ]);
+                }else{
+                    if($password == $passwordConfirm){
+                        $user = User::find($id);
+                        $user->password = bcrypt($passwordConfirm);
+                        $user->save();
 
-                  $history = new Histori;
-                  $history->nama = auth()->user()->name;
-                  $history->aksi = "Edit";
-                  $history->keterangan = "Akun '".auth()->user()->email."' mengubah passwordnya'";
-                  $history->save();
+                        if($user) {
 
-                  return response()->json([
-                    'status' => '1'
-                  ]);
-                } else {
-                  return response()->json([
-                    'status' => '0'
-                  ]);
+                          $history = new Histori;
+                          $history->nama = auth()->user()->name;
+                          $history->aksi = "Edit";
+                          $history->keterangan = "Akun '".auth()->user()->email."' mengubah passwordnya'";
+                          $history->save();
+
+                          return response()->json([
+                            'status' => '1'
+                          ]);
+                        } else {
+                          return response()->json([
+                            'status' => '0'
+                          ]);
+                        }
+
+                      } else {
+                        return response()->json([
+                          'status' => 'invalid_password'
+                        ]);
+                      }
                 }
 
-              } else {
-                return response()->json([
-                  'status' => 'invalid_password'
-                ]);
-              }
             } else {
               return response()->json([
                 'status' => 'salah'
