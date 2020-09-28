@@ -17,7 +17,15 @@ $(document).ready(function() {
     formData.append('judul', judul);
     formData.append('deskripsi', deskripsi);
     formData.append('lampiran', lampiran);
-
+    if(judul == "" || deskripsi == null || lampiran == null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal',
+        text: 'Judul, Deskripsi dan Lampiran tidak boleh kosong!',
+        timer: 1200,
+        showConfirmButton: false
+      });
+    } else {
     $.ajax({
 			type: 'POST',
 			url: 'pengumuman',
@@ -44,25 +52,37 @@ $(document).ready(function() {
   					timer: 1200,
   					showConfirmButton: false
   				});
-        } else if(data.status == "no_lampiran"){
-          Swal.fire({
-  					icon: 'error',
-  					title: 'Gagal',
-  					text: 'Tidak ada lampiran!',
-  					timer: 1200,
-  					showConfirmButton: false
-  				});
+        } else if(data.status == "error_validation"){
+          if(data.message == "validation.mimes") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Lampiran harus jpg,jpeg,png,svg,gif,doc,docx,pdf,xls,xlsx',
+              timer: 1200,
+              showConfirmButton: false
+            });
+          } else if(data.message == "validation.max.file") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Lampiran tidak boleh lebih 8 MB!',
+              timer: 1200,
+              showConfirmButton: false
+            });
+          }
+          
         } else {
           Swal.fire({
   					icon: 'error',
   					title: 'Gagal',
-  					text: 'Judul dan Deskripsi tidak boleh kosong!',
+  					text: 'Terjadi Kesalahan!',
   					timer: 1200,
   					showConfirmButton: false
   				});
         }
 			}
-		});
+    });
+  }
 
 	});
 

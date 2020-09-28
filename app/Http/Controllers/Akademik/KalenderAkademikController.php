@@ -37,7 +37,21 @@ class KalenderAkademikController
           </a>';
           return $btn;
         })
-      ->rawColumns(['aksi'])
+        ->addColumn('status', function($row){
+          $stateAktif = null;
+          $stateNonaktif = null;
+          if($row->status == "aktif") {
+            $stateAktif = 'disabled';
+            $stateNonaktif = '';
+          } else {
+            $stateAktif = '';
+            $stateNonaktif = 'disabled';
+          }
+          $btn = '<button class="btn btn-success" data-id="'.$row->id.'" id="btn-aktif" '.$stateAktif.'>Aktifkan</button> &nbsp;';
+          $btn = $btn. '<button class="btn btn-success" data-id="'.$row->id.'" id="btn-nonaktif" '.$stateNonaktif.'>Non-aktifkan</button>';
+          return $btn;
+        })
+      ->rawColumns(['aksi', 'status'])
       ->make(true);
     }
 
@@ -72,6 +86,7 @@ class KalenderAkademikController
         $kalender->judul = $nama;
         $kalender->kode_semester = $semester;
         $kalender->deskripsi = $deskripsi;
+        $kalender->status = 'nonaktif';
         $kalender->save();
 
         $history = new Histori;
@@ -184,6 +199,30 @@ class KalenderAkademikController
         return response()->json([
           'status' => 'deleted'
         ]);
+    }
+
+    public function setAktif($id)
+    {
+      $k = KA::find($id);
+      $k->status = 'aktif';
+      $k->save();
+      if($k) {
+        return response()->json([
+          'status' => 'ok'
+        ]);
+      }
+    }
+
+    public function setNonaktif($id)
+    {
+      $k = KA::find($id);
+      $k->status = 'nonaktif';
+      $k->save();
+      if($k) {
+        return response()->json([
+          'status' => 'ok'
+        ]);
+      }
     }
 
     public function listSemester()
