@@ -44,7 +44,7 @@ class PenggunaController extends Controller
         $u = new User;
         $u->name = $request->name;
         $u->email = $request->email;
-        $u->password = bcrypt('rahasia_admin');
+        $u->password = bcrypt($request->password);
         $u->id_role = 2;
         $u->remember_token = '';
         $u->save();

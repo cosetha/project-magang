@@ -818,6 +818,17 @@ $(document).ready(function() {
                                 timer: 1000,
                                 showConfirmButton: false
                             });
+                        } else if(data.status == '2'){
+
+                            $('.form-edit-password')[0].reset();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ooopss...',
+                                text: 'Panjang Password baru minimal 8 Karakter',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+
                         } else if (data.status == '0') {
                             $('.form-edit-password')[0].reset();
                             Swal.fire({
