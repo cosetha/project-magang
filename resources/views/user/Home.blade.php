@@ -1,6 +1,4 @@
-
-@extends('layouts/userlayout')
-
+@extends('layout/userlayout')
 @section('title', 'Home')
 
 @section('content')
@@ -236,61 +234,51 @@
 
 
 
-    <div class="box_alumni">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img class="box_alumni" src="{{ asset('img/rog.jpg') }}">
-                <div class="carousel-caption caption-alumni">
-                    <h1>First slide label</h1>
-                    <h3>Nulla vitae elit libero, a pharetra augue mollis interdum.</h3>
+    <!-- <div class="box_alumni">
+        <div id="carouselContent" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active text-center p-4">
+                    <p>lorem ipsum (imagine longer text)</p>
                 </div>
-                </div>
-                <div class="carousel-item">
-                <img class="box_alumni" src="{{ asset('img/gambar 2.jpg') }}" >
-                <div class="carousel-caption ">
-                    <h1>First slide label</h1>
-                    <h3>Nulla vitae elit libero, a pharetra augue mollis interdum.</h3>
-                </div>
-                </div>
-                <div class="carousel-item">
-                <img class="box_alumni" src="{{ asset('img/rog.jpg') }}" >
-                <div class="carousel-caption ">
-                    <h1>First slide label</h1>
-                    <h3>Nulla vitae elit libero, a pharetra augue mollis interdum.</h3>
-                </div>
+                <div class="carousel-item text-center p-4">
+                    
+                    <p>lorem ipsum (imagine longer text)</p>
                 </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </div>
+    </div> -->
 
-    <div class="box_content">
+
+<div class="box_content">
     <div class="judul_bagian">
-        Galeri Kegiatan
+        Kerja Sama
     </div>
 
     <div class="hr"></div>  
     <div class="box_kegiatan">
       <div class="box_gambar">
       <img class="gambar_kegiatan" src="{{ asset('img/gambar 2.jpg') }}" >
-      <div class="frame_judul">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ,</div></div>
+      </div>
       <div class="box_gambar">
       <img class="gambar_kegiatan" src="{{ asset('img/gambar 2.jpg') }}" >
-      <div class="frame_judul">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ,</div></div>
+      </div>
       <div class="box_gambar">
       <img class="gambar_kegiatan" src="{{ asset('img/gambar 2.jpg') }}" >
-      <div class="frame_judul">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ,</div></div>
+      </div>
       <div class="box_gambar">
       <img class="gambar_kegiatan" src="{{ asset('img/gambar 2.jpg') }}" >
-      <div class="frame_judul">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ,</div></div>
+      </div>
       <div class="box_gambar">
       <img class="gambar_kegiatan" src="{{ asset('img/gambar 2.jpg') }}" >
-      <div class="frame_judul">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ,</div></div>
+      </div>
     </div>
 </div>
 
