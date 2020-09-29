@@ -53,7 +53,7 @@
                     @csrf
 
                     <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-tambah" name="semester-tambah">
+                    <input type="number" class="form-control" id="semester-tambah" min="1" name="semester-tambah">
 
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
             </div>
@@ -88,7 +88,7 @@
                     @csrf
 
                     <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-edit" name="semester-edit">
+                    <input type="number" class="form-control" id="semester-edit" min="1" name="semester-edit">
 
                     <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
                     <input type="hidden" name="id-edit" id="id-edit" value="">
