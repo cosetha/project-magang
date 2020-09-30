@@ -181,8 +181,8 @@
             </div>
             <div class="modal-body">Pilih Format Laporan untuk di Export</div>
             <div class="modal-footer">
-                <a href="tenaga/export-excel" class="btn btn-outline-success">Excel</a>
-                <a href="tenaga/export-pdf" class="btn btn-outline-danger">PDF</a>
+                <a href="tenaga/export-excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="tenaga/export-pdf" class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> PDF</a>
             </div>
         </div>
     </div>
