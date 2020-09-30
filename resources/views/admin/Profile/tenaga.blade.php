@@ -1,5 +1,5 @@
 @extends('layouts/adminLayout')
-@section('title', 'Dosen dan Tenaga Kerja')
+@section('title', 'Tenaga Kerja')
 
 @section('content')
 
@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tenaga Kerja</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -26,9 +24,9 @@
         <div class="d-sm-flex align-items-center m-3">
             <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
             &nbsp;
-            <button id="btn-import" type="button" class="btn btn-dark">Import</button>
+            <button id="btn-import" type="button" class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>
             &nbsp;
-            <button id="btn-export" type="button" class="btn btn-dark">Export</button>
+            <button id="btn-export" type="button" class="btn btn-dark"><i class="fas fa-file-export"></i> Export</button>
         </div>
 
         <div class="card-body">
@@ -39,8 +37,6 @@
     </div>
 </div>
 </div>
-
-
 <!-- End of Main Content -->
 
 
