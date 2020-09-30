@@ -62,7 +62,7 @@
                     <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
 
                     <div class="form-group mt-3">
-                        <label for="file">Logo</label>
+                        <label for="file">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
                     </div>
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
@@ -108,7 +108,7 @@
                     <textarea type="text" class="form-control" id="edit-deskripsi" name="edit-deskripsi"> </textarea>
 
                     <div class="form-group mt-3">
-                        <label for="file">Logo</label>
+                        <label for="file">Gambar</label>
                         <input input id="file-upload-edit" type="file" name="gambar" accept="image/png"  aria-describedby="inputGroupFileAddon01">
                     </div>
                     <img id="blah" class = "rounded mx-auto d-block" height="200px" src="" alt=""" />

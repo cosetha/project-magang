@@ -41,7 +41,11 @@ $(document).ready(function() {
 		var lokasi = $('input[name=lokasi]').val();
 		var jamMulai = $('input[name=jam-mulai]').val();
 		var jamSelesai = $('input[name=jam-selesai]').val();
-		var jam = jamMulai + '-' + jamSelesai;
+		if(jamMulai == jamSelesai){
+			var jam = jamMulai + '-Selesai';
+		}else{
+			var jam = jamMulai + '-' + jamSelesai;
+		}
 		formData.append('judul', judul);
 		formData.append('deskripsi', deskripsi);
 		formData.append('tanggal_mulai', tanggalMulai);
@@ -125,7 +129,11 @@ $(document).ready(function() {
 				var jam = data.data.jam_agenda;
 				var jamArr = jam.split('-');
 				$('#jam-mulai-edit').val(jamArr[0]);
-				$('#jam_selesai_edit').val(jamArr[1]);
+				if(jamArr[1] == 'Selesai'){
+					$('#jam_selesai_edit').val(jamArr[0]);
+				}else{
+					$('#jam_selesai_edit').val(jamArr[1]);
+				}
 				$('#tanggal_mulai_edit').val(data.data.tanggal_mulai);
 				$('#tanggal_selesai_edit').val(data.data.tanggal_selesai);
 				$('#lokasi-edit').val(data.data.lokasi);
@@ -149,7 +157,11 @@ $(document).ready(function() {
 				var jam = data.data.jam_agenda;
 				var jamArr = jam.split('-');
 				$('#jam-mulai-edit').val(jamArr[0]);
-				$('#jam_selesai_edit').val(jamArr[1]);
+				if(jamArr[1] == 'Selesai'){
+					$('#jam_selesai_edit').val(jamArr[0]);
+				}else{
+					$('#jam_selesai_edit').val(jamArr[1]);
+				}
 				$('#tanggal_mulai_edit').val(data.data.tanggal_mulai);
 				$('#tanggal_selesai_edit').val(data.data.tanggal_selesai);
 				$('#lokasi-edit').val(data.data.lokasi);
@@ -176,7 +188,11 @@ $(document).ready(function() {
 		var lokasi = $('input[name=lokasi-edit]').val();
 		var jamMulai = $('input[name=jam_mulai_edit]').val();
 		var jamSelesai = $('input[name=jam_selesai_edit]').val();
-		var jam = jamMulai + '-' + jamSelesai;
+		if(jamMulai == jamSelesai){
+			var jam = jamMulai + '-Selesai';
+		}else{
+			var jam = jamMulai + '-' + jamSelesai;
+		}
 		var id = $('input[name=edit-id]').val();
 
 		formData.append('judul', judul);
