@@ -1,5 +1,5 @@
 @extends('layouts/adminLayout')
-@section('title', 'Dosen dan Tenaga Kerja')
+@section('title', 'Tenaga Kerja')
 
 @section('content')
 
