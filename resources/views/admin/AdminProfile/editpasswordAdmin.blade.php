@@ -1,4 +1,3 @@
-
 @extends('layouts/adminLayout')
 @section('title', 'Edit Password')
 
@@ -67,10 +66,7 @@
 </div>
 </div>
 <!-- End of Main Content -->
-
 @endsection
-
-
 
 <script>
     function readURL(input, id) {

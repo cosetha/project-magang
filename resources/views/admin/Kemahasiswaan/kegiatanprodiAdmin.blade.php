@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kegiatan Prodi</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -35,7 +34,6 @@
 </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add Kegiatan Modal-->
 <div class="modal fade" id="KegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,7 +79,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit Kegiatan Modal-->
 <div class="modal fade" id="editKegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -183,12 +180,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit" id="btn-edit-kegiatan">Submit</button>
-                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Memproses...
-                    </button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

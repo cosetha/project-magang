@@ -18,7 +18,6 @@
     <link href="{{asset('css/style-baru.css')}}" rel="stylesheet">
     <link href="{{asset('css/new_style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="{{asset('js/javascript.js')}}"></script>
 </head>
 
 <body>

@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kalender Akademik</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,7 +35,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add kalender Modal-->
 <div class="modal fade" id="KalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -48,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-kalender">
                     @csrf
@@ -73,15 +70,11 @@
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </div>
 
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit kalender Modal-->
 <div class="modal fade" id="editKalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,7 +87,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-kalender">
                     @csrf
@@ -121,7 +113,6 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
     </div>
@@ -139,7 +130,6 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-show-kalender">
                     @csrf
 
@@ -150,7 +140,6 @@
                         <label for="semester" class="mt-2">Semester</label>
                         <select class="form-control" id="list-semester-show" name="">
                             <option value="" hidden> -- Pilih Semester -- </option>
-
                             <option value=""></option>
                         </select>
                     </div>
@@ -159,7 +148,6 @@
                     <textarea type="text" class="form-control" id="deskripsi-kalender-show" name=""></textarea>
 
                 </form>
-
             </div>
         </div>
     </div>
@@ -184,8 +172,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/kalenderAkademik.js') }}"></script>
+    <script src="{{ asset('js/Akademik/kalenderAkademik.js') }}"></script>
 @endsection

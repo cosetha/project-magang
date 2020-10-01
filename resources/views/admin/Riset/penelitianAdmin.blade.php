@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Penelitian</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -37,7 +35,6 @@
     </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add Penelitian Modal-->
 <div class="modal fade" id="PenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,7 +83,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit Penelitian Modal-->
 <div class="modal fade" id="editPenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,7 +136,6 @@
     </div>
 </div>
 
-
 <!-- Show Penelitian Modal-->
 <div class="modal fade" id="showPenelitianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -151,7 +146,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-show-penelitian">
                 <div class="modal-body">
                 @csrf
 
@@ -177,15 +172,15 @@
                     <input type="hidden" name="edit-id" value="">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/datepicker.js') }}"></script>
-      <script src="{{ asset('js/Riset/penelitian.js') }}"></script>
+    <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/Riset/penelitian.js') }}"></script>
 @endsection

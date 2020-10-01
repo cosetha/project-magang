@@ -70,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit ojt Modal-->
 <div class="modal fade" id="editOjtModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -106,9 +105,8 @@
         </div>
     </div>
 </div>
-
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/Ojt.js') }}"></script>
+    <script src="{{ asset('js/Akademik/Ojt.js') }}"></script>
 @endsection

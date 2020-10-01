@@ -51,5 +51,5 @@
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/history.js') }}"></script>
+  <script src="{{ asset('js/history.js') }}"></script>
 @endsection

@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Sejarah</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -35,7 +34,6 @@
 </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add sejarah Modal-->
 <div class="modal fade" id="SejarahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit sejarah Modal-->
 <div class="modal fade" id="editSejarahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -108,9 +105,8 @@
         </div>
     </div>
 </div>
-
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Profile/Sejarah.js') }}"></script>
+    <script src="{{ asset('js/Profile/Sejarah.js') }}"></script>
 @endsection

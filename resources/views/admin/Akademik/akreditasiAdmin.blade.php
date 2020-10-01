@@ -84,7 +84,6 @@
     </div>
 </div>
 
-
 <!-- Edit Akreditasi Modal-->
 <div class="modal fade" id="editAkreditasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -137,8 +136,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-<script src="{{ asset('js/Akademik/Akreditasi.js') }}"></script>
+    <script src="{{ asset('js/Akademik/Akreditasi.js') }}"></script>
 @endsection

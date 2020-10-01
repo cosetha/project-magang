@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Jadwal Kuliah</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,7 +35,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Jadwal Modal-->
 <div class="modal fade" id="JadwalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -49,15 +47,12 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-jadwal">
                     @csrf
 
                     <label for="namajadwal" class="mt-2">Nama Jadwal</label>
                     <input type="text" class="form-control" id="" name="nama-jadwal">
 
-                    <!-- <label for="semester" class="mt-2">Semester</label>
-                    <input type="text" class="form-control" id="" name=""> -->
                     <div class="form-group">
                         <label for="semester" class="mt-2">Semester</label>
                         <select class="form-control" id="list-semester" name="">
@@ -67,13 +62,7 @@
 
                     <div class="form-group">
                         <label for="bidang-keahlian" class="mt-2">Bidang Keahlian</label>
-                        <select class="form-control" id="list-bk" name="">
-                            <!-- <option value="" hidden>  Pilih Bidang Keahlian  </option>
-                            <option value="Teknologi Informasi">Teknologi Informasi</option>
-                            <option value="Sistem Informasi">Sistem Informasi</option>
-                            <option value="Film dan Televisi">Film dan Televisi</option>
-                            <option value="Bisnis Digital dan E-Commerce">Bisnis Digital dan E-Commerce</option> -->
-                        </select>
+                        <select class="form-control" id="list-bk" name=""></select>
                     </div>
 
                     <div class="form-group mt-3">
@@ -87,15 +76,11 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input type="submit" name="" class="btn btn-primary" value="Submit">
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit jadwal Modal-->
 <div class="modal fade" id="editJadwalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,7 +93,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-jadwal">
                     @csrf
@@ -144,11 +128,8 @@
                         <input type="submit" class="btn btn-primary" name="" value="Submit">
                         <input type="hidden" name="edit-id" value="">
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -172,8 +153,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/jadwalKuliah.js') }}"></script>
+    <script src="{{ asset('js/Akademik/jadwalKuliah.js') }}"></script>
 @endsection

@@ -38,7 +38,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Sosmed Modal-->
 <div class="modal fade" id="PenggunaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -50,7 +49,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormPengguna">
                     @csrf
@@ -64,8 +62,6 @@
                     <label for="password" class="mt-2">Default Password</label>
                     <input type="text" id="password" name="password" class="form-control">
 
-
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -75,15 +71,12 @@
                     Memproses...
                 </button>
             </div>
-
             </form>
         </div>
     </div>
 </div>
-
-
-
 @endsection
+
 @section('js-ajax')
     <script type="text/javascript" src="{{asset('js/Pengguna/Pengguna.js')}}"></script>
 @endsection

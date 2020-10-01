@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Form</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,8 +35,7 @@
 </div>
 <!-- End of Main Content -->
 
-
-<!-- Add Sosmed Modal-->
+<!-- Add Form Modal-->
 <div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -48,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-form">
                     @csrf
@@ -62,8 +59,6 @@
                         <input input id="file-upload" type="file" name="file" accept="file/*" aria-describedby="inputGroupFileAddon01" >
                     </div>
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
-
-              
 
             </div>
             <div class="modal-footer">
@@ -79,8 +74,7 @@
     </div>
 </div>
 
-
-<!-- Edit Sosmed Modal-->
+<!-- Edit Form Modal-->
 <div class="modal fade" id="editFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -91,7 +85,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-form-edit">
                     @csrf
@@ -124,7 +117,7 @@
     </div>
 </div>
 
-<!-- Delete Sosmed Modal-->
+<!-- Delete Form Modal-->
 <div class="modal fade" id="deleteFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -142,8 +135,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/Form.js') }}"></script>
+    <script src="{{ asset('js/Akademik/Form.js') }}"></script>
 @endsection

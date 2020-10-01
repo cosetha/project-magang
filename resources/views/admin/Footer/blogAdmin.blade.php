@@ -15,7 +15,6 @@
         <h1 class="h3 mb-0 text-gray-800">Blog</h1>
     </div>
 
-
     <!-- Content Row -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -33,7 +32,6 @@
 </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add Blog Modal-->
 <div class="modal fade" id="BlogModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,7 +71,6 @@
     </div>
 </div>
 
-
 <!-- Edit Blog Modal-->
 <div class="modal fade" id="editBlogModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -86,7 +83,6 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditBlog">
                     @csrf
 
@@ -97,8 +93,6 @@
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="edit_link_web" name="link">
 
-
-
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -108,7 +102,6 @@
                     Memproses...
                 </button>
             </div>
-
             </form>
         </div>
     </div>
@@ -132,9 +125,8 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/Footer/Blog.js') }}"></script>
+    <script src="{{ asset('js/Footer/Blog.js') }}"></script>
 @endsection

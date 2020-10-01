@@ -12,7 +12,7 @@ $("#tahun-edit").datepicker({
     autoclose: true
 });
 
-$("#angkatan").datepicker({
+$("#tahun-angkatan").datepicker({
     format: "yyyy",
     viewMode: "years", 
     minViewMode: "years",
