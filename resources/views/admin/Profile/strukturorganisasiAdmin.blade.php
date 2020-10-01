@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Struktur Organisasi</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -37,8 +35,7 @@
 </div>
 <!-- End of Main Content -->
 
-
-<!-- Add Sosmed Modal-->
+<!-- Add Struktur Modal-->
 <div class="modal fade" id="StrukturorganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -49,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" id="FormAddSO" enctype="multipart/form-data" method="post">
                     @csrf
@@ -67,7 +63,6 @@
                     </div>
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
 
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -82,8 +77,7 @@
     </div>
 </div>
 
-
-<!-- Edit Sosmed Modal-->
+<!-- Edit Struktur Modal-->
 <div class="modal fade" id="editStrukturorganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -94,7 +88,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditSO">
                     @csrf
@@ -127,7 +120,7 @@
     </div>
 </div>
 
-<!-- Delete Sosmed Modal-->
+<!-- Delete Struktur Modal-->
 <div class="modal fade" id="deleteStrukturorganisasiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -145,9 +138,8 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/profile/StrukturOrganisasi.js') }}"></script>
+      <script src="{{ asset('js/Profile/StrukturOrganisasi.js') }}"></script>
 @endsection

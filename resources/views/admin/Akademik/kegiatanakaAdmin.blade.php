@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kegiatan Akademik</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -35,7 +34,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Kegiatan Akademik Modal-->
 <div class="modal fade" id="KegiatanakaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -48,17 +46,14 @@
             </div>
             <div class="modal-body">
 
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormAddKA">
+                @csrf
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormAddKA">
-                    @csrf
+                <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
+                <input type="text" class="form-control" id="judul" name="judul">
 
-                    <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
-                    <input type="text" class="form-control" id="judul" name="judul">
-
-                    <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
-
-
+                <label for="deskripsi" class="mt-2">Deskripsi</label>
+                <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"> </textarea>
 
             </div>
             <div class="modal-footer">
@@ -75,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit Kegiatan Akademik Modal-->
 <div class="modal fade" id="editKegiatanakaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -88,17 +82,14 @@
             </div>
             <div class="modal-body">
 
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditKA">
+                @csrf
+                <input type="hidden" id="ka-id" value="">
+                <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
+                <input type="text" class="form-control" id="edit_judul" name="edit_judul">
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditKA">
-                    @csrf
-                    <input type="hidden" id="ka-id" value="">
-                    <label for="judulkegiatanaka">Judul Kegiatan Akademik</label>
-                    <input type="text" class="form-control" id="edit_judul" name="edit_judul">
-
-                    <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="edit_deskripsi" name="edit_deskripsi"> </textarea>
-
-
+                <label for="deskripsi" class="mt-2">Deskripsi</label>
+                <textarea type="text" class="form-control" id="edit_deskripsi" name="edit_deskripsi"> </textarea>
 
             </div>
             <div class="modal-footer">
@@ -117,34 +108,33 @@
 
 <!-- Show ka Modal-->
 <div class="modal fade" id="showKaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Tugas Akhir</h5>
-              <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditTA">
-            @csrf
-
-                    <label for="judulta">Judul Tugas Akhir</label>
-                    <input type="text" class="form-control" id="show_judul" readonly>
-
-                    <label for="deskripsi" class="mt-2">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="show_deskripsi" name="show_deskripsi"> </textarea>
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
-            </div>
-            </form>
-          </div>
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detail Tugas Akhir</h5>
+          <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
+        <div class="modal-body">
+
+        <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditTA">
+        @csrf
+
+            <label for="judulta">Judul Tugas Akhir</label>
+            <input type="text" class="form-control" id="show_judul" readonly>
+
+            <label for="deskripsi" class="mt-2">Deskripsi</label>
+            <textarea type="text" class="form-control" id="show_deskripsi" name="show_deskripsi"> </textarea>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Close</button>
+        </div>
+        </form>
       </div>
+    </div>
+</div>
 
 <!-- Delete Kegiatan Akademik Modal-->
 <div class="modal fade" id="deleteKegiatanakaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -164,7 +154,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('js-ajax')

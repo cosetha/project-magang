@@ -39,7 +39,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Tenaga Kerja Modal-->
 <div class="modal fade" id="TenagaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -52,18 +51,17 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-tk">
                     @csrf
 
                     <label for="namatenaga">Nama Tenaga Kerja</label>
-                    <input type="text" class="form-control" id="" name="nama">
+                    <input type="text" class="form-control" name="nama">
 
                     <label for="alamat" class="mt-2">Alamat</label>
-                    <input type="text" class="form-control" id="" name="alamat">
+                    <input type="text" class="form-control" name="alamat">
 
                     <label for="Telepon" class="mt-2">Telepon</label>
-                    <input type="text" class="form-control" id="" name="telepon">
+                    <input type="text" class="form-control" name="telepon">
 
                     <div class="form-group">
                         <label for="jabatan" class="mt-2">Jabatan</label>
@@ -81,15 +79,11 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit Tenaga Kerja Modal-->
 <div class="modal fade" id="editTenagaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,7 +96,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-tk">
                     @csrf
@@ -139,12 +132,8 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input class="btn btn-primary" type="submit" name="submit" value="Submit">
                     </div>
-
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -220,6 +209,7 @@
 			</div>
 		</div>
 @endsection
+
 @section('js-ajax')
   <script src="{{ asset('js/Profile/tenagaKerja.js') }}"></script>
 @endsection

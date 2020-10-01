@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Lowongan</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,7 +35,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Lowongan Modal-->
 <div class="modal fade" id="LowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-lowongan">
                     @csrf
@@ -87,11 +84,7 @@
                                     }
                                     }
                     </script>
-                                
-                            <img id="blah" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
-
-
-                
+                    <img id="blah" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
 
             </div>
             <div class="modal-footer">
@@ -107,7 +100,6 @@
     </div>
 </div>
 
-
 <!-- Edit Lowongan Modal-->
 <div class="modal fade" id="editLowonganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -119,7 +111,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-lowongan-edit">
                     @csrf
@@ -144,23 +135,21 @@
                         <input input id="file-upload-edit" type="file" name="gambar" accept="image/*" onchange="readURLn(this);" aria-describedby="inputGroupFileAddon01" >
                     </div>
                     <script>
-                                function readURLn(input) {
-                                    if (input.files && input.files[0]) {
-                                        var reader = new FileReader();
-                                        
-                                        reader.onload = function(e) {
-                                        $('#blah-edit').attr('src', e.target.result);
-                                        }
-                                        
-                                        reader.readAsDataURL(input.files[0]); // convert to base64 string
-                                    }
-                                    }
-                                </script>
-                                
-                            <img id="blah-edit" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
-                            <input type="hidden" name="id-edit" id="id-edit">
+                    function readURLn(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                            $('#blah-edit').attr('src', e.target.result);
+                            }
+                            
+                            reader.readAsDataURL(input.files[0]); // convert to base64 string
+                        }
+                        }
+                    </script>
+                    <img id="blah-edit" class = "rounded mx-auto d-block" height="200px" src="#" alt="your image" />
+                    <input type="hidden" name="id-edit" id="id-edit">
                 
-
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
@@ -174,8 +163,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
 <script src="{{ asset('js/Kemahasiswaan/Lowongan.js') }}"></script>
 @endsection

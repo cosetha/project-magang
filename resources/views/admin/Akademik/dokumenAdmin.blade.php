@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dokumen</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,7 +35,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add dokumen Modal-->
 <div class="modal fade" id="DokumenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-dokumen">
                     @csrf
@@ -68,15 +65,11 @@
                         <input type="submit" name="" class="btn btn-primary" value="Submit">
                     </div>
 
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit Sosmed Modal-->
 <div class="modal fade" id="editDokumenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,7 +82,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-dokumen">
                     @csrf
@@ -115,9 +107,7 @@
                     </div>
 
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -141,8 +131,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
       <script src="{{ asset('js/Akademik/dokumen.js') }}"></script>
 @endsection

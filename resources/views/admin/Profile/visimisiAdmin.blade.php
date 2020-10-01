@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Visi dan Misi</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -36,7 +35,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add visimisi Modal-->
 <div class="modal fade" id="VisimisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -48,7 +46,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-visimisi" >
                     @csrf
@@ -63,7 +60,6 @@
                         <input type="hidden" name="menu" value="Visi dan Misi"/>
                     </div>
                
-
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -77,7 +73,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit visimisi Modal-->
 <div class="modal fade" id="editVisimisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,6 +110,7 @@
     </div>
 </div>
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Profile/Visimisi.js') }}"></script>
+    <script src="{{ asset('js/Profile/Visimisi.js') }}"></script>
 @endsection

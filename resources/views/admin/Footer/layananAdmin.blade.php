@@ -15,7 +15,6 @@
         <h1 class="h3 mb-0 text-gray-800">Layanan UB</h1>
     </div>
 
-
     <!-- Content Row -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -33,7 +32,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Layanan Modal-->
 <div class="modal fade" id="LayananModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -46,16 +44,16 @@
             </div>
             <div class="modal-body">
 
-                <form accept-charset="utf-8" id="FormAddLayanan" enctype="multipart/form-data" method="post">
-                    @csrf
+            <form accept-charset="utf-8" id="FormAddLayanan" enctype="multipart/form-data" method="post">
+                @csrf
 
-                    <label for="namaweb">Nama Web</label>
-                    <input type="text" class="form-control" id="nama_web" name="nama_web">
+                <label for="namaweb">Nama Web</label>
+                <input type="text" class="form-control" id="nama_web" name="nama_web">
 
-                    <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" id="link_Web" name="link" placeholder="https://" value="https://">
+                <label for="link_web" class="mt-2">Link Web</label>
+                <input type="text" class="form-control" id="link_Web" name="link" placeholder="https://" value="https://">
 
-                    <input type="hidden" class="form-control" id="jenis" name="menu" value="layanan">
+                <input type="hidden" class="form-control" id="jenis" name="menu" value="layanan">
 
             </div>
             <div class="modal-footer">
@@ -72,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit Layanan Modal-->
 <div class="modal fade" id="editLayananModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -85,18 +82,15 @@
             </div>
             <div class="modal-body">
 
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditLayanan">
+                @csrf
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditLayanan">
-                    @csrf
+                <input type="hidden" id="id-layanan" value="">
+                <label for="namaweb">Nama Web</label>
+                <input type="text" class="form-control" id="edit_nama_web" name="nama_web">
 
-                    <input type="hidden" id="id-layanan" value="">
-                    <label for="namaweb">Nama Web</label>
-                    <input type="text" class="form-control" id="edit_nama_web" name="nama_web">
-
-                    <label for="link_web" class="mt-2">Link Web</label>
-                    <input type="text" class="form-control" placeholder="https://" id="edit_link_web" name="link">
-
-
+                <label for="link_web" class="mt-2">Link Web</label>
+                <input type="text" class="form-control" placeholder="https://" id="edit_link_web" name="link">
 
             </div>
             <div class="modal-footer">
@@ -131,9 +125,8 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/Footer/Layanan.js') }}"></script>
+    <script src="{{ asset('js/Footer/Layanan.js') }}"></script>
 @endsection

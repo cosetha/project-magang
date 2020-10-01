@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Berita</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -42,7 +40,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Berita Modal-->
 <div class="modal fade" id="BeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -55,13 +52,11 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-berita">
                     @csrf
 
                     <label for="judulBerita">Judul Berita</label>
                     <input type="text" class="form-control" id="" name="judul">
-
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-berita" name=""> </textarea>
@@ -70,7 +65,6 @@
                         <label for="file" class="mt-2">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-
 
                 </form>
 
@@ -87,7 +81,6 @@
     </div>
 </div>
 
-
 <!-- Edit berita Modal-->
 <div class="modal fade" id="editBeritaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -99,7 +92,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" id="form-edit-berita">
                     @csrf
@@ -130,11 +122,8 @@
                                 Memproses...
                         </button>
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -244,13 +233,12 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Berita</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Berita</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                     @csrf
@@ -258,17 +246,13 @@
                     <label for="judulBerita" class="mt-2">Judul Berita</label>
                     <input type="text" class="form-control" id="judul-berita-show" disabled>
 
-
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-berita-show" disabled> </textarea>
-
 
                     <div class="form-group mt-3">
                         <img id="image-show-berita" src="" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;" >
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>
@@ -277,5 +261,5 @@
 @endsection
 
 @section('js-ajax')
-<script src="{{ asset('js/home/berita.js') }}"></script>
+<script src="{{ asset('js/Home/berita.js') }}"></script>
 @endsection
