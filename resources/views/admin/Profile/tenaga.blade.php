@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
             &nbsp;
             <button id="btn-import" type="button" class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>
             &nbsp;
@@ -198,7 +198,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-primary btn-save">Import</button>
-                            <a href="{{url('/tenaga/download-format-excel')}}" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <a href="{{url('/tenaga/download-format-excel')}}" class="btn btn-success btn-download">Download Format Excel</a>
                             <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Import Data ...

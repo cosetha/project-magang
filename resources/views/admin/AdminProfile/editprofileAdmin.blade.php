@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-profile" value="Save Changes">
                                 <span></span>
-                                <a href="{{url('dashboard')}}" class="btn btn-default">Cancel</a>
+                                <a href="{{url('dashboard')}}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </div>

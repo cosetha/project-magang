@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-kalender">+ Add Kalender Akademik</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-kalender">+ Add Kalender Akademik</a>
         </div>
 
         <div class="card-body">
