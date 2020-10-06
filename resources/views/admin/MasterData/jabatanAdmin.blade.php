@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary btn-modal-jabatan ml-2" href="#" data-toggle="modal" data-target="#TambahJabatanModal">+
+            <a class="btn btn-primary btn-modal-jabatan ml-2" href="#" data-toggle="modal" data-target="#TambahJabatanModal">+
                 Add Jabatan</a>
             </div>
             <div class="card-body">

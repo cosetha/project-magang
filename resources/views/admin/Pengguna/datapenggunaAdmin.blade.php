@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PenggunaModal">+ Add Pengguna</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PenggunaModal">+ Add Pengguna</a>
             <!-- Export Data -->
              <a href="{{url('datapengguna/export')}}" class="btn btn-success shadow-sm ml-1"><i class="fas fa-file-excel mr-2"></i>Export</a>
              <!-- Export Data -->

@@ -20,7 +20,7 @@
             <h6 class="m-0 font-weight-bold text-primary">DataTables History</h6>
         </div>
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#exportHistory"><i class="fas fa-file-export"></i> Export </a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#exportHistory"><i class="fas fa-file-export"></i> Export </a>
         </div>
         <div class="card-body">
             <div id="datatable-history"></div>

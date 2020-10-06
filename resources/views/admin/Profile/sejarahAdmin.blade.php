@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#SejarahModal">+ Add Sejarah</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#SejarahModal">+ Add Sejarah</a>
         </div>
 
         <div class="card-body">

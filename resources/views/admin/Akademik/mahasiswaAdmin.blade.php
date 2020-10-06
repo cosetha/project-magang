@@ -22,9 +22,9 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
-            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal"><i class="fas fa-file-export"></i> Export </a>
-            <a type="submit" class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal"><i class="fas fa-file-import"></i> Import </a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#MahasiswaModal">+ Add Mahasiswa</a>
+            <a class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#exportMahasiswaModal"><i class="fas fa-file-export"></i> Export </a>
+            <a class="btn btn-dark ml-2" href="#" data-toggle="modal" data-target="#importMahasiswaModal"><i class="fas fa-file-import"></i> Import </a>
         </div>
 
         <div class="card-body">

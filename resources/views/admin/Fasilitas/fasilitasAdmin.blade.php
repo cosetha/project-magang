@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#FasilitasModal">+
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#FasilitasModal">+
                 Add Fasilitas</a>
             </div>
 
