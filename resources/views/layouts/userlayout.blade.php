@@ -11,19 +11,22 @@
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/style-baru.css')}}" rel="stylesheet">
-    <link href="{{asset('css/new_style.css')}}" rel="stylesheet">
+     <link href="{{asset('css/style-baru2.css')}}" rel="stylesheet">
+    <link href="{{asset('css/font-baru.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg nav-quick text-white navbar-color">
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav quick-margin">
+    <ul class="navbar-nav quick-margin font1">
 
     <li class="nav-item">
       <a class="nav-link" href="">UB Official</span></a>
@@ -45,8 +48,8 @@
   
 <div class="container-fluid background">
   <div class="row">
-      <div class="col kotak mt-4">
-        <img src="{{ asset('img/teknologi informasi.png') }}" class="kotak">
+      <div class="col kotak1 mt-4">
+        <img class="kotak1" src="{{ asset('img/teknologi informasi.png') }}" >
       </div>
   </div>
 
@@ -60,9 +63,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarToggler">
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav mr-auto font2">
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/') }}">Home</span></a>
+            <a class="nav-link " href="{{ url('/') }}">Home</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -154,11 +157,11 @@
 
         <ul class="list-unstyled mt-3">
           <li>
-            <h5>TEKNOLOGI INFORMASI</h5>
-            <h3>PENDIDIKAN VOKASI</h3>
-            <h5>UNIVERSITAS BRAWIJAYA</h5>
-            <p>Jl. Veteran No.12-13 Malang Jawa Timur</p>
-            <p>ti.vokasi@ub.ac.id</p>
+            <h5 class="font5">TEKNOLOGI INFORMASI</h5>
+            <h3 class="font11">PENDIDIKAN VOKASI</h3>
+            <h5 class="font5">UNIVERSITAS BRAWIJAYA</h5>
+            <p class="font2">Jl. Veteran No.12-13 Malang Jawa Timur</p>
+            <p class="font2">ti.vokasi@ub.ac.id</p>
           </li>
         </ul>
         </div>
@@ -168,10 +171,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Fasilitas Kampus</h5>
+        <h5 class="font-weight-bold font8 text-uppercase mt-3">Fasilitas Kampus</h5>
         <hr >
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font2">
           <li>
             <p>BITS UB</p>
           </li>
@@ -206,10 +209,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Kemahasiswaan</h5>
+        <h5 class="font-weight-bold font8 text-uppercase mt-3">Kemahasiswaan</h5>
         <hr >
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font2">
           <li>
             <p>Email Mahasiswa</p>
           </li>
@@ -239,10 +242,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Blog</h5>
+        <h5 class="font-weight-bold font8 text-uppercase mt-3">Blog</h5>
         <hr >
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font2">
           <li>
             <p>UB Official Web</p>
           </li>
