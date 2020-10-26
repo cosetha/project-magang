@@ -1,0 +1,73 @@
+.container-margin{
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+.box-menu{
+    margin-top: 18px;
+}
+
+.box-visimisi{
+    margin-right: 40px;
+}
+
+.judul-menu{
+    background-color: #b6b8ba;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+
+.menu{
+    background-color: #d5d9de;
+    height: 300px;
+}
+
+.isi-menu{
+    font-size: 16px;
+    padding-left: 34px;
+    padding-right: 34px;
+    padding-top: 18px;
+}
+
+.hr-profile{
+    height: 0.5px;
+    background-color:black;
+    margin-top: 20px;
+}
+
+.hr-navigasi{
+    height: 0.5px;
+    background-color:black;
+}
+
+.judul-visimisi{
+    margin-top: 30px;
+}
+
+.kotak-visi{
+    margin-top: 50px;
+}
+
+.visi{
+    margin-bottom: 5px;
+}
+
+.kotak-misi{
+    margin-top: 50px;
+}
+
+.misi{
+    margin-bottom: 5px;
+}
+
+.fa-circle{
+    vertical-align: middle;
+    text-align: center;
+    font-size: 10px;
+    margin-right: 5px;
+}
