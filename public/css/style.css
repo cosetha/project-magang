@@ -23,7 +23,7 @@ body {
 }
 
 .navbar-color{
-    background-color: #565c58;
+    background-color:#919191;
 }
 
 .nav-quick{
@@ -57,7 +57,55 @@ body {
 
 
 
+/* Search bar */
+.search{
+    position: absolute;
+    right: 10%;
+    height: 50px;
+    border-radius: 40px;
+    background: #CE9C3C ;
+    padding: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
 
+
+.search:hover > .search-text {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search:hover > .search-btn {
+    background: #002F59;
+}
+
+.search-btn{
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background:  #CE9C3C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.search-text{
+    border: none;
+    background: none;
+    float: left;
+    outline: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
 
 /* Social Media Css */
 .fab {
@@ -221,8 +269,10 @@ body {
 }
 
 #navbar .nav-link {
+    z-index: 1;
     color: white;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 #navbar .navbar-nav li::before {
@@ -299,6 +349,11 @@ body {
     height: 200px;
 }
 
+.kotak {
+    max-height: 150px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
 
 .mt-card {
     margin-top: 100pt;
@@ -394,14 +449,23 @@ body {
 }
 
 .kotak-footer{
-    height: 500px;
+    height: 600px;
 }
 
-.copy-text{
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  text-align: center;
+.background-white{
+    background-color: white;
+}
+
+.copy-right{
+
+    background-color: #919191;
+    color:  #002F59;
+    height: 40px;
+    text-align: center;
+}
+
+.font-copyright{
+    padding-top: 8px;
 }
 
 .pengabdian-con {

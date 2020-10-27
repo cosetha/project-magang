@@ -144,7 +144,7 @@
 <div class="col-md-4">
 
     <div class="judul_bagian font3">
-        Pengumuman
+        Pengumuman 
     </div>
     <div class="hr"></div>
 
@@ -237,7 +237,6 @@
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -294,13 +293,13 @@
       <a href="#" style="text-decoration:none;">
         <i class="fab fa-facebook-f"> </i>
       </a>
-      <a href="#">
+      <a href="#" style="text-decoration:none;">
         <i class="fab fa-twitter"> </i>
       </a>
-      <a href="#" >
+      <a href="#" style="text-decoration:none;" >
         <i class="fab fa-google-plus-g"> </i>
       </a>
-      <a href="#">
+      <a href="#" style="text-decoration:none;">
         <i class="fab fa-instagram"> </i>
       </a>
   </div>
