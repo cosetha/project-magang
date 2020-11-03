@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-.html,
-body {
-    height: 100%;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-}
 
 .background {
     background-color: #002F59;
@@ -451,7 +445,11 @@ body {
 }
 
 .kotak-footer{
-    height: 600px;
+    height: 750px;
+}
+
+.margin-column{
+    margin-left: 20px;
 }
 
 .background-white{
@@ -467,7 +465,7 @@ body {
 }
 
 .font-copyright{
-    padding-top: 8px;
+    padding-top: 5px;
 }
 
 .pengabdian-con {

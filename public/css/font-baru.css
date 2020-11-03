@@ -24,6 +24,12 @@
 	font-weight: normal;
 }
 
+.font-roboto-16-pt{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16pt;
+	font-weight: normal;
+}
+
 .font10{
 	font-family: 'Roboto', sans-serif;
 	font-size: 18pt;
