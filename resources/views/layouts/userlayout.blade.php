@@ -50,7 +50,7 @@
   
 <div class="container-fluid background">
   <div class="row">
-      <div class="col kotak mt-4">
+      <div class="col mt-4">
         <img src="{{ asset('img/teknologi informasi.png') }}" class="kotak">
       </div>
   </div>
@@ -128,9 +128,8 @@
 
         <div class="search">
           <input class="search-text" type="text" name="" placeholder="Search">
-          <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+          <a href="#"  style="text-decoration:none;" class="search-btn"><i class="fas fa-search"></i></a>
         </div>
-
         
         </form>
   </div>
@@ -144,7 +143,6 @@
 <!-- Footer -->
 <footer class=" container-fluid pt-4 background kotak-footer text-md-left footer-text mt-5">
 
-  <!-- Footer Links -->
 
 
     <!-- Grid row -->
@@ -155,16 +153,16 @@
 
         <!-- Links -->
         <div class="mx-3">
-        <div class="background-white">
+        <div class="background-white mt-4">
           <img src="{{ asset('img/vokasi UB.png') }}">
         </div>
         <ul class="list-unstyled mt-3">
           <li>
-            <h5>TEKNOLOGI INFORMASI</h5>
-            <h3>PENDIDIKAN VOKASI</h3>
-            <h5>UNIVERSITAS BRAWIJAYA</h5>
-            <p>Jl. Veteran No.12-13 Malang Jawa Timur</p>
-            <p>ti.vokasi@ub.ac.id</p>
+            <p class="font5">TEKNOLOGI INFORMASI</p>
+            <p>PENDIDIKAN VOKASI</p>
+            <p class="font5">UNIVERSITAS BRAWIJAYA</p>
+            <p class="font-roboto-16-pt">Jl. Veteran No.12-13 Malang Jawa Timur</p>
+            <p class="font-roboto-16-pt">ti.vokasi@ub.ac.id</p>
           </li>
         </ul>
         </div>
@@ -174,10 +172,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Fasilitas Kampus</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Fasilitas Kampus</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>BITS UB</p>
           </li>
@@ -212,10 +210,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Kemahasiswaan</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Kemahasiswaan</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>Email Mahasiswa</p>
           </li>
@@ -245,10 +243,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Blog</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Blog</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>UB Official Web</p>
           </li>
@@ -272,6 +270,7 @@
       </div>
 
 
+
       
 
 
@@ -283,7 +282,7 @@
 </footer>
 
 <div class="copy-right">
-  <div class="font-copyright">Copyright 2020.Allrights Reserved. Teknologi Informasi Pendidikan Vokasi UB</div>
+  <div class="font-copyright font-roboto-16-pt">Copyright 2020.Allrights Reserved. Teknologi Informasi Pendidikan Vokasi UB</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -293,51 +292,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-<!-- <footer class="background">
-  <div class="container-fluid padding">
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-      <div class="col-md-12">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-    </div>
-
-  </div>
-</footer> -->
