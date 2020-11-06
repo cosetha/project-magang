@@ -47,7 +47,7 @@
   </div>
 </nav>
 
-  
+
 <div class="container-fluid background">
   <div class="row">
       <div class="col mt-4">
@@ -74,25 +74,25 @@
             Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/dosen">Dosen dan Tenaga Kerja</a>
-            <a class="dropdown-item" href="/prestasi">Prestasi</a>
-            <a class="dropdown-item" href="/sejarah">Sejarah</a>
-            <a class="dropdown-item" href="/struktur">Struktur</a>
-            <a class="dropdown-item" href="/visimisi">visi Misi</a>
+            <a class="dropdown-item" href="/gdosen">Dosen dan Tenaga Kerja</a>
+            <a class="dropdown-item" href="/gprestasi">Prestasi</a>
+            <a class="dropdown-item" href="/gsejarah">Sejarah</a>
+            <a class="dropdown-item" href="/gstruktur">Struktur</a>
+            <a class="dropdown-item" href="/gvisimisi">visi Misi</a>
           </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/bk">Bidang Keahlian</a>
+            <a class="nav-link" href="/gbk">Bidang Keahlian</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Akademik
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/akreditasi">Akreditasi</a>
-            <a class="dropdown-item" href="/jadwalkuliah">Jadwal Kuliah</a>
-            <a class="dropdown-item" href="/kalender">Kalender</a>
-            <a class="dropdown-item" href="/mahasiswa">Mahasiswa</a>
+            <a class="dropdown-item" href="/gakreditasi">Akreditasi</a>
+            <a class="dropdown-item" href="/gjadwalkuliah">Jadwal Kuliah</a>
+            <a class="dropdown-item" href="/gkalender">Kalender</a>
+            <a class="dropdown-item" href="/gmahasiswa">Mahasiswa</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -100,10 +100,10 @@
             Kemahasiswaan
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/alumni">Alumni</a>
-            <a class="dropdown-item" href="/kegiatan">Kegiatan</a>
-            <a class="dropdown-item" href="/loker">Lowongan Kerja</a>
-            <a class="dropdown-item" href="/organisasi">Organisasi</a>
+            <a class="dropdown-item" href="/galumni">Alumni</a>
+            <a class="dropdown-item" href="/gkegiatan">Kegiatan</a>
+            <a class="dropdown-item" href="/gloker">Lowongan Kerja</a>
+            <a class="dropdown-item" href="/gorganisasi">Organisasi</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -111,16 +111,16 @@
             Riset
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/penelitian">penelitian</a>
-            <a class="dropdown-item" href="/pengabdian">pengabdian</a>
-            <a class="dropdown-item" href="/profilepeneliti">profilepeneliti</a>
+            <a class="dropdown-item" href="/gpenelitian">penelitian</a>
+            <a class="dropdown-item" href="/gpengabdian">pengabdian</a>
+            <a class="dropdown-item" href="/gprofilepeneliti">profilepeneliti</a>
           </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/fasilitas">Fasilitas</a>
+            <a class="nav-link" href="/gfasilitas">Fasilitas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/kontak">Kontak</a>
+            <a class="nav-link" href="/gkontak">Kontak</a>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0  mr-5">
@@ -130,7 +130,7 @@
           <input class="search-text" type="text" name="" placeholder="Search">
           <a href="#"  style="text-decoration:none;" class="search-btn"><i class="fas fa-search"></i></a>
         </div>
-        
+
         </form>
   </div>
 </nav>
@@ -239,7 +239,7 @@
       </div>
       </div>
 
-      
+
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
@@ -271,14 +271,14 @@
 
 
 
-      
+
 
 
     </div>
     <!-- Grid row -->
 
-    
-  
+
+
 </footer>
 
 <div class="copy-right">
