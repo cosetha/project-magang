@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Pengabdian</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -24,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PengabdianModal">+
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#PengabdianModal">+
                 Add Pengabdian</a>
             </div>
 
@@ -37,7 +35,6 @@
     </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add Pengabdian Modal-->
 <div class="modal fade" id="PengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,7 +80,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit Pengabdian Modal-->
 <div class="modal fade" id="editPengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,7 +130,7 @@
     </div>
 </div>
 
-<!-- Show Penelitian Modal-->
+<!-- Show Pengabdian Modal-->
 <div class="modal fade" id="showPengabdianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -144,11 +140,11 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-penelitian">
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-show-penelitian">
                 <div class="modal-body">
                 @csrf
 
-                    <label for="edit-judul">Judul Penelitian</label>
+                    <label for="edit-judul">Judul Pengabdian</label>
                     <input type="text" class="form-control" id="show-judul" name="show-judul" readonly>
 
                     <label for="show-deskripsi" class="mt-2">Deskripsi</label>
@@ -167,14 +163,15 @@
                     <input type="hidden" name="edit-id" value="">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/datepicker.js') }}"></script>
-      <script src="{{ asset('js/Riset/pengabdian.js') }}"></script>
+    <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/Riset/pengabdian.js') }}"></script>
 @endsection

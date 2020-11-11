@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Jabatan</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -24,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary btn-modal-jabatan ml-2" href="#" data-toggle="modal" data-target="#TambahJabatanModal">+
+            <a class="btn btn-primary btn-modal-jabatan ml-2" href="#" data-toggle="modal" data-target="#TambahJabatanModal">+
                 Add Jabatan</a>
             </div>
             <div class="card-body">
@@ -34,7 +32,6 @@
     </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Jabatan Modal-->
 <div class="modal fade" id="TambahJabatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,13 +45,12 @@
             </div>
             <div class="modal-body">
 
-
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-jabatan">
-                    @csrf
+            @csrf
 
-                    <label for="judulJabatan">Nama Jabatan</label>
-                    <input type="text" class="form-control" name="nama_jabatan">
-                    <input type="hidden" id="jabatan-id">
+                <label for="judulJabatan">Nama Jabatan</label>
+                <input type="text" class="form-control" name="nama_jabatan">
+                <input type="hidden" id="jabatan-id">
 
             </div>
             <div class="modal-footer">
@@ -71,7 +67,6 @@
     </div>
 </div>
 
-
 <!-- Edit Jabatan Modal-->
 <div class="modal fade" id="EditJabatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -84,14 +79,11 @@
             </div>
             <div class="modal-body">
 
-
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-jabatan">
-                    @csrf
-                    <input type="hidden" value="" id="id-jabatan">
-                    <label for="judulJabatan">Nama Jabatan</label>
-                    <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit">
-
-
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-jabatan">
+            @csrf
+                <input type="hidden" value="" id="id-jabatan">
+                <label for="judulJabatan">Nama Jabatan</label>
+                <input type="text" class="form-control" id="kolom-jabatan" name="nama_jabatan_edit">
 
             </div>
             <div class="modal-footer">
@@ -126,6 +118,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-

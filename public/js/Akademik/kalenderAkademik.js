@@ -21,6 +21,7 @@ $(document).ready(function() {
                   {data: 'DT_RowIndex',name: 'DT_RowIndex',searchable: false},
                   {data: 'judul',name: 'judul'},
                   {data: 'semester',name: 'semester'},
+                  {data: 'status',name: 'status'},
                   {data: 'aksi',name: 'aksi',searchable: false,orderable: false}
               ]
           });
@@ -229,6 +230,54 @@ $(document).ready(function() {
                         tinymce.get('deskripsi-kalender-show').setMode('readonly');
                     }
                 });
+      });
+
+      //aktifkan kalender akademik
+      $('body').on('click', '#btn-aktif', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+          type: 'GET',
+          url: 'kalender/aktif/' + id,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            if(data.status == "ok") {
+              Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: 'Berhasil aktifkan Kalender Akademik!',
+                timer: 1000,
+                showConfirmButton: false
+            });
+            }
+            loadDataKalenderAkademik();
+          }
+        });
+      });
+
+      //nonaktifkan kalender akademik
+      $('body').on('click', '#btn-nonaktif', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+          type: 'GET',
+          url: 'kalender/nonaktif/' + id,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            if(data.status == "ok") {
+              Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: 'Berhasil nonaktifkan Kalender Akademik!',
+                timer: 1000,
+                showConfirmButton: false
+            });
+            loadDataKalenderAkademik();
+            }
+          }
+        });
       });
 
       //ALERT HISTORY COUNT

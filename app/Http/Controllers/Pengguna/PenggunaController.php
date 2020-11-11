@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Pengguna;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Mail\PenggunaMail;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Histori;
 use App\Exports\PenggunaExport;
@@ -44,7 +46,7 @@ class PenggunaController extends Controller
         $u = new User;
         $u->name = $request->name;
         $u->email = $request->email;
-        $u->password = bcrypt('rahasia_admin');
+        $u->password = bcrypt($request->password);
         $u->id_role = 2;
         $u->remember_token = '';
         $u->save();
@@ -54,6 +56,8 @@ class PenggunaController extends Controller
         $history->aksi = "Tambah";
         $history->keterangan = "Menambahkan Akun '".$request->email."'";
         $history->save();
+
+        Mail::to($request->email)->send(new PenggunaMail());
 
         return response([
             'message' => 'sukses',

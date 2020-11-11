@@ -22,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#OjtModal">+ Add Ojt</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#OjtModal">+ Add Ojt</a>
         </div>
 
         <div class="card-body">
@@ -70,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit ojt Modal-->
 <div class="modal fade" id="editOjtModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -106,9 +105,8 @@
         </div>
     </div>
 </div>
-
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/Ojt.js') }}"></script>
+    <script src="{{ asset('js/Akademik/Ojt.js') }}"></script>
 @endsection

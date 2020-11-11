@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kegiatan Prodi</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -23,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#KegiatanModal">+ Add Kegiatan</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#KegiatanModal">+ Add Kegiatan</a>
         </div>
 
         <div class="card-body">
@@ -36,10 +35,9 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Kegiatan Modal-->
 <div class="modal fade" id="KegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
@@ -82,10 +80,9 @@
     </div>
 </div>
 
-
 <!-- Edit Kegiatan Modal-->
 <div class="modal fade" id="editKegiatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit kegiatan</h5>
@@ -110,7 +107,7 @@
                     <textarea class="form-control" id="edit-gambar" name="edit-gambar"> </textarea>
 
                     <div class="form-group mt-3">
-                        <img id="image-edit" src="" style="width: 100%; height: 100%; border-radius: 10px;" alt="">
+                        <img id="image-edit" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                     <div class="form-group mt-3">
@@ -178,17 +175,12 @@
                     <textarea class="form-control" id="show-gambar" name="edit-gambar"> </textarea>
 
                     <div class="form-group mt-3">
-                        <img id="image-show" src="" style="width: 70%; height: 70%; border-radius: 10px;" alt="">
+                        <img id="image-show" src="" style="width: 70%; height: 70%; border-radius: 10px; display: block; margin-left: auto; margin-right: auto;" alt="">
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit" id="btn-edit-kegiatan">Submit</button>
-                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Memproses...
-                    </button>
+                    <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

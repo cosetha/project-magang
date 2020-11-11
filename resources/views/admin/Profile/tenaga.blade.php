@@ -1,5 +1,5 @@
 @extends('layouts/adminLayout')
-@section('title', 'Dosen dan Tenaga Kerja')
+@section('title', 'Tenaga Kerja')
 
 @section('content')
 
@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tenaga Kerja</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -24,11 +22,11 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-tk">+ Add Tenaga Kerja</a>
             &nbsp;
-            <button id="btn-import" type="button" class="btn btn-dark">Import</button>
+            <button id="btn-import" type="button" class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>
             &nbsp;
-            <button id="btn-export" type="button" class="btn btn-dark">Export</button>
+            <button id="btn-export" type="button" class="btn btn-dark"><i class="fas fa-file-export"></i> Export</button>
         </div>
 
         <div class="card-body">
@@ -39,10 +37,7 @@
     </div>
 </div>
 </div>
-
-
 <!-- End of Main Content -->
-
 
 <!-- Add Tenaga Kerja Modal-->
 <div class="modal fade" id="TenagaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,18 +51,17 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-tk">
                     @csrf
 
                     <label for="namatenaga">Nama Tenaga Kerja</label>
-                    <input type="text" class="form-control" id="" name="nama">
+                    <input type="text" class="form-control" name="nama">
 
                     <label for="alamat" class="mt-2">Alamat</label>
-                    <input type="text" class="form-control" id="" name="alamat">
+                    <input type="text" class="form-control" name="alamat">
 
                     <label for="Telepon" class="mt-2">Telepon</label>
-                    <input type="text" class="form-control" id="" name="telepon">
+                    <input type="text" class="form-control" name="telepon">
 
                     <div class="form-group">
                         <label for="jabatan" class="mt-2">Jabatan</label>
@@ -85,15 +79,11 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input type="submit" class="btn btn-primary" value="Submit">
                     </div>
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit Tenaga Kerja Modal-->
 <div class="modal fade" id="editTenagaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,7 +96,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-tk">
                     @csrf
@@ -143,12 +132,8 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <input class="btn btn-primary" type="submit" name="submit" value="Submit">
                     </div>
-
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -185,8 +170,8 @@
             </div>
             <div class="modal-body">Pilih Format Laporan untuk di Export</div>
             <div class="modal-footer">
-                <a href="tenaga/export-excel" class="btn btn-outline-success">Excel</a>
-                <a href="tenaga/export-pdf" class="btn btn-outline-danger">PDF</a>
+                <a href="tenaga/export-excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="tenaga/export-pdf" class="btn btn-outline-danger"><i class="fas fa-file-pdf"></i> PDF</a>
             </div>
         </div>
     </div>
@@ -213,7 +198,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-primary btn-save">Import</button>
-                            <a href="{{url('/tenaga/download-format-excel')}}" type="button" class="btn btn-success btn-download">Download Format Excel</a>
+                            <a href="{{url('/tenaga/download-format-excel')}}" class="btn btn-success btn-download">Download Format Excel</a>
                             <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Import Data ...
@@ -224,6 +209,7 @@
 			</div>
 		</div>
 @endsection
+
 @section('js-ajax')
   <script src="{{ asset('js/Profile/tenagaKerja.js') }}"></script>
 @endsection

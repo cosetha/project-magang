@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Fasilitas</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -24,10 +22,9 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#FasilitasModal">+
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" data-target="#FasilitasModal">+
                 Add Fasilitas</a>
             </div>
-
 
             <div class="card-body">
                 <div class="table-responsive">
@@ -38,7 +35,6 @@
     </div>
 </div>
 <!-- End of Main Content -->
-
 
 <!-- Add Fasilitas Modal-->
 <div class="modal fade" id="FasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,13 +48,11 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-fasilitas">
                     @csrf
 
                     <label for="nama_fasilitas">Nama Fasilitas</label>
                     <input type="text" class="form-control" id="nama_fasilitas" name="nama_fasilitas">
-
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-tambah" name="deskripsi-tambah"> </textarea>
@@ -68,9 +62,7 @@
                         <input input id="file-upload" type="file" name="gambar" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
 
-
                 </form>
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -84,7 +76,6 @@
     </div>
 </div>
 
-
 <!-- Edit Fasilitas Modal-->
 <div class="modal fade" id="editFasilitasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -97,12 +88,10 @@
             </div>
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-fasilitas">
                 <div class="modal-body">
-
                     @csrf
 
                     <label for="nama_fasilitas">Nama Fasilitas</label>
                     <input type="text" class="form-control" id="edit-nama_fasilitas" name="edit-nama_fasilitas">
-
 
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="edit-deskripsi" name=""> </textarea>
@@ -143,30 +132,25 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="">
                     @csrf
 
                     <label for="judulBerita" class="mt-2">Nama Fasilitas</label>
                     <input type="text" class="form-control" id="nama-fasilitas-show" disabled>
 
-
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea type="text" class="form-control" id="deskripsi-fasilitas-show" name="deskripsi-fasilitas-show"> </textarea>
-
 
                     <div class="form-group mt-3">
                         <img id="image-fasilitas-show" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;" >
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-    <script src="{{ asset('js/fasilitas/fasilitas.js') }}"></script>
+    <script src="{{ asset('js/Fasilitas/fasilitas.js') }}"></script>
 @endsection

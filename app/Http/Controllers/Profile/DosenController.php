@@ -18,7 +18,7 @@ class DosenController extends Controller
 {
     public function index(){
 
-      return view('admin/Profile/dosendantenagakerja');
+      return view('admin/Profile/dosen');
 
     }
 

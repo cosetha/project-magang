@@ -114,7 +114,7 @@ body::-webkit-scrollbar-thumb
   left: 50%;
   top: 100%;
   transform: translate(-50%, -8px);
-  background-color: #fff;
+  background-color: #4e73df;
 }
 .kalender .sideb table td.currentDay::before {
   display: block;
@@ -122,6 +122,12 @@ body::-webkit-scrollbar-thumb
 .kalender .sideb table td.selectable {
   color: #4e73df;
   cursor: pointer;
+}
+.kalender .sideb table td:hover:before {
+  background-color: white;
+}
+.kalender .sideb table td.active::before{
+  background-color: white;
 }
 .kalender .sideb table td.selectable:hover {
   background: #4e73df;

@@ -1,18 +1,163 @@
+/* Reivisi 1.2 Perbaikan Font halaman Home */
 
+
+
+.hr-footer{
+  margin-top: 5px;
+}
+
+.logo{
+  width: 200px;
+  height: 50px;
+}
+.boxkata{
+  color: black;
+}
+.warna{
+  color: #CE9C3C;
+}
+.margin_antara{
+  height: 10px;
+}
+.box_alumni{
+  width: 1200px;
+  height: 340px;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.gambarslide{
+  width: 1200px;
+  height: 340px
+}
+.kotak1{
+    max-height: 130px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.isi_berita{
+  color: #17202A;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 5; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+.box_pengumuman{
+  width: 100%;
+  height: 90px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.judul_pengumuman{
+  color:  #002F59;
+   padding-left: 5px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+.box {
+  position: absolute;
+  background-color: #AEB6BF;
+  font-size: 12px;
+  width: 80%;
+  height: 360px;
+  margin-left: 6.5%;
+  margin-top: -30px;
+  margin-bottom: 50px;
+}
+.margin_berita {
+  margin-top: 230px;
+}
+.margin_lihat{
+  margin-top: 320px;
+}
+
+.margin_agenda{
+  margin-top: 30px;
+   margin-bottom: 80px;
+}
+.box_agenda{
+  width: 100%;
+  height: 113px;
+  font-weight: bold;
+  margin-bottom: 13px;
+}
 .gambar_agenda {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   margin-bottom: 10px;
   margin-right: 10px;
   float: left;
 }
+.buttonlink{
+  background-color: #AEB6BF;
+  color:#002F59;
+  font-weight: bold;
+  font-size: 12px;
+  width: 70px;
+  height: 40px;
+  margin-top: 20px;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+/* Search bar */
+.search{
+    position: absolute;
+    height: 50px;
+    border-radius: 40px;
+    background: #CE9C3C ;
+    padding: 5px;
+    margin-right: -70px;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
 
 
-
-.margin_lihat{
-  margin-top: 260px;
+.search:hover > .search-text {
+    width: 240px;
+    padding: 0 6px;
 }
 
+.search:hover > .search-btn {
+    background: #002F59;
+}
+
+.search-btn{
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background:  #CE9C3C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    text-decoration: none;
+}
+
+.search-text{
+    border: none;
+    background: none;
+    float: left;
+    outline: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
 .text_lihat{
   padding: 4px;
   width: 140px;
@@ -22,13 +167,8 @@
 }
 
 
-.margin_berita {
-  margin-top: 130px;
-}
 
-.margin_agenda{
-  margin-top: 30px;
-}
+
 .bg_image {
   opacity: 1;
   display: block;
@@ -51,19 +191,7 @@
 	display: inline-block;
 
 }
-.foll_us{
-	margin-top: 40px;
-	padding: 20px;
-	width: 1200px;
-	color: #002F59;
-	font-weight: bold;
-	font-size: 12px;
-	border: 2px solid #002F59;
-    box-sizing: border-box;
-    border-radius: 2px;
-	margin-right: auto;
-  	margin-left: auto;
-}
+
 .fab {
   padding: 10px;
   width: 40px;
@@ -118,62 +246,21 @@
 	font-size: 10px;
 
 }
-.box {
-  position: absolute;
-  background-color: #AEB6BF;
-  font-size: 12px;
-  width: 80%;
-  height: 290px;
-  margin-left: 6.5%;
-  margin-top: -30px;
-  margin-bottom: 50px;
-}
 
-.box_pengumuman{
-  width: 100%;
-  height: 70px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.box_agenda{
-  width: 100%;
-  height: 100px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
+
 .tgl_pengumuman{
   color: #AEB6BF;
   font-size: 10px;
   padding-left: 5px;
 }
-.judul_pengumuman{
-  color:  #002F59;
-   padding-left: 5px;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 3; /* number of lines to show */
-   -webkit-box-orient: vertical;
-}
+
 .font{
     color:#002F59;
   font-weight: bold;
   font-size: 12px;
 }
-.buttonlink{
-  background-color: #AEB6BF;
-  color:#002F59;
-  font-weight: bold;
-  font-size: 12px;
-  width: 55px;
-  height: 30px;
-  margin-top: 20px;
-  float: right;
-  padding: 5px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-}
+
 .margin_bottom{
   margin-bottom: 200px;
 }
@@ -192,18 +279,7 @@
   padding-right: 15px;
   padding-left: 15px;
 }
-.isi_berita{
-  color: #17202A;
-  font-size: 10px;
-  padding-top: 15px;
-  padding-right: 15px;
-  padding-left: 15px;
-  overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 5; /* number of lines to show */
-   -webkit-box-orient: vertical;
-}
+
 .overflow-ellipsis {
   text-overflow: ellipsis;
 }
@@ -226,12 +302,7 @@
   margin-top: 20px;
 
 }
-.box_alumni{
-  width: 1200px;
-  margin-top: 100px;
-  margin-right: auto;
-  margin-left: auto;
-}
+
 
 .font-alumni{
   color: black;
@@ -253,9 +324,8 @@
   margin-top: 20px;
 }
 .judul_bagian{
-  font-size: 30px;
+
   color:#002F59;
-  margin-top: 20px;
 }
 .hr{
   height: 4px;

@@ -33,7 +33,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Quick Menu Modal-->
 <div class="modal fade" id="QuickMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -72,7 +71,6 @@
     </div>
 </div>
 
-
 <!-- Edit Quick Menu Modal-->
 <div class="modal fade" id="editQuickMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -85,7 +83,6 @@
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditQuickMenu">
                     @csrf
 
@@ -95,8 +92,6 @@
 
                     <label for="link_web" class="mt-2">Link Web</label>
                     <input type="text" class="form-control" id="edit_link_web_q" name="link" placeholder="https://">
-
-
 
             </div>
             <div class="modal-footer">
@@ -131,7 +126,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('js-ajax')

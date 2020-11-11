@@ -1,4 +1,3 @@
-
 @extends('layouts/adminLayout')
 @section('title', 'Edit Password')
 
@@ -58,7 +57,7 @@
                     <div class="col-md-8">
                         <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-password" value="Save Changes">
                         <span></span>
-                        <input type="reset" class="btn btn-default" value="Cancel">
+                        <a href="{{url('dashboard')}}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
             </form>
@@ -67,10 +66,7 @@
 </div>
 </div>
 <!-- End of Main Content -->
-
 @endsection
-
-
 
 <script>
     function readURL(input, id) {

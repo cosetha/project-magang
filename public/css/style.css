@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-.html,
-body {
-    height: 100%;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-}
 
 .background {
     background-color: #002F59;
@@ -23,7 +17,7 @@ body {
 }
 
 .navbar-color{
-    background-color: #565c58;
+    background-color:#919191;
 }
 
 .nav-quick{
@@ -60,7 +54,7 @@ body {
 /* Search bar */
 .search{
     position: absolute;
-    right: 10%;
+    right: 5.5%;
     height: 50px;
     border-radius: 40px;
     background: #CE9C3C ;
@@ -92,6 +86,7 @@ body {
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+    text-decoration: none;
 }
 
 .search-text{
@@ -258,7 +253,7 @@ body {
     padding: .8rem;
     margin-left: 60px;
     margin-right: 60px;
-    margin-top: 10px;
+    margin-top: 20px;
     background-color:#CE9C3C;
 }
 
@@ -351,8 +346,9 @@ body {
 
 .kotak {
     max-height: 150px;
-    margin-left: 60px;
+    margin-left:57px;
     margin-right: 60px;
+    padding: 20px   ;
 }
 
 .mt-card {
@@ -449,14 +445,27 @@ body {
 }
 
 .kotak-footer{
-    height: 500px;
+    height: 750px;
 }
 
-.copy-text{
-  padding: 10px;
-  font-size: 20px;
-  color: white;
-  text-align: center;
+.margin-column{
+    margin-left: 20px;
+}
+
+.background-white{
+    background-color: white;
+}
+
+.copy-right{
+
+    background-color: #919191;
+    color:  #002F59;
+    height: 40px;
+    text-align: center;
+}
+
+.font-copyright{
+    padding-top: 5px;
 }
 
 .pengabdian-con {

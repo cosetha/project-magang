@@ -85,14 +85,24 @@ $(document).ready(function() {
                             $('#form-tambah-berita').trigger('reset');
                             $('#BeritaModal .close').click();
                             loadDataBerita();
-                        } else if(data.status == "not_valid") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Gagal',
-                                text: 'Silahkan unggah file gambar!',
-                                timer: 1200,
-                                showConfirmButton: false
-                            });
+                        } else if(data.status == "error_validation") {
+                            if(data.message == "validation.mimes") {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal',
+                                    text: 'File harus jpg,jpeg,svg,gif,png!',
+                                    timer: 1200,
+                                    showConfirmButton: false
+                                });
+                            } else if(data.message == "validation.max.file") {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal',
+                                    text: 'File tidak boleh lebih 8 MB!',
+                                    timer: 1200,
+                                    showConfirmButton: false
+                                });
+                            }
                         } else {
                             Swal.fire({
                                 icon: 'error',

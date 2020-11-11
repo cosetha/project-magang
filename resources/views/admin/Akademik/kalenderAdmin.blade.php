@@ -13,7 +13,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kalender Akademik</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -23,7 +22,7 @@
         </div>
 
         <div class="d-sm-flex align-items-center m-3">
-            <a type="submit" class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-kalender">+ Add Kalender Akademik</a>
+            <a class="btn btn-primary ml-2" href="#" data-toggle="modal" id="btn-tambah-kalender">+ Add Kalender Akademik</a>
         </div>
 
         <div class="card-body">
@@ -36,24 +35,22 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add kalender Modal-->
 <div class="modal fade" id="KalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kalender Akademik</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
-
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-tambah-kalender">
                     @csrf
 
-                    <label for="namakegiatan">Nama Kegiatan</label>
+                    <label for="namakegiatan">Nama Kalender</label>
                     <input type="text" class="form-control" id="" name="nama-kegiatan">
 
                     <div class="form-group">
@@ -73,28 +70,23 @@
                         <input type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </div>
 
-
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Edit kalender Modal-->
 <div class="modal fade" id="editKalenderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Kalender Akademik</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-edit-kalender">
                     @csrf
@@ -121,7 +113,6 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
     </div>
@@ -132,13 +123,12 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Kalender</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" action="" id="form-show-kalender">
                     @csrf
@@ -150,7 +140,6 @@
                         <label for="semester" class="mt-2">Semester</label>
                         <select class="form-control" id="list-semester-show" name="">
                             <option value="" hidden> -- Pilih Semester -- </option>
-
                             <option value=""></option>
                         </select>
                     </div>
@@ -159,7 +148,6 @@
                     <textarea type="text" class="form-control" id="deskripsi-kalender-show" name=""></textarea>
 
                 </form>
-
             </div>
         </div>
     </div>
@@ -184,8 +172,8 @@
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('js-ajax')
-      <script src="{{ asset('js/Akademik/kalenderAkademik.js') }}"></script>
+    <script src="{{ asset('js/Akademik/kalenderAkademik.js') }}"></script>
 @endsection

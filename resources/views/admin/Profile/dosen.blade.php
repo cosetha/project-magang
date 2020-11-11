@@ -1,5 +1,5 @@
 @extends('layouts/adminLayout')
-@section('title', 'Dosen dan Tenaga Kerja')
+@section('title', 'Dosen')
 
 @section('content')
 
@@ -13,11 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dosen</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
-
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -36,7 +32,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Dosen Modal-->
 <div class="modal fade" id="DosenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -48,7 +43,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormTambahDosen">
                     @csrf
@@ -97,7 +91,6 @@
             </div>
             <div class="modal-body">
 
-
                     <label for="namadosen">Nama Dosen</label>
                     <input type="text" class="form-control" id="show-nama" name="nama" disabled>
 
@@ -110,7 +103,6 @@
                     <label for="deskripsi" class="mt-2">Deskripsi</label>
                     <textarea class="form-control" id="show-deskripsi" name="show-deskripsi" disabled></textarea>
 
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -119,7 +111,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Edit Dosen Modal-->
 <div class="modal fade" id="editDosenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -132,7 +123,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
 
                 <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="FormEditDosen">
                     @csrf
@@ -154,8 +144,6 @@
                         <label for="file-upload">Gambar</label>
                         <input input id="file-upload" type="file" name="gambar" accept="image/*" onchange="readURL(this);" aria-describedby="inputGroupFileAddon01">
                     </div>
-
-
 
             </div>
             <div class="modal-footer">
@@ -193,40 +181,39 @@
 
 <!-- Import Dosen Modal -->
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<form method="post" id="FormExcelDosen" enctype="multipart/form-data">
-					<div class="modal-content">
-						<div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                            <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-						</div>
-						<div class="modal-body">
+	<div class="modal-dialog" role="document">
+		<form method="post" id="FormExcelDosen" enctype="multipart/form-data">
+			<div class="modal-content">
+				<div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                    <button class="close btn-close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+				</div>
+				<div class="modal-body">
+					@csrf
 
-							@csrf
+					<label>Pilih file excel</label>
+					<div class="form-group">
+						<input type="file" id="file-excel" name="file" required="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    </div>
+                    <input type="hidden" name="token" value="{{ csrf_token() }}">
 
-							<label>Pilih file excel</label>
-							<div class="form-group">
-								<input type="file" id="file-excel" name="file" required="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                            </div>
-                            <input type="hidden" name="token" value="{{ csrf_token() }}">
-
-						</div>
-						<div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-import"><i class="fas fa-file-import"></i> Import</button>
-                            <a href="/download-format-excel-dosen" class="btn btn-success btn-download"><i class="fas fa-file-download"></i> Download Format</a>
-                            <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Memproses...
-                            </button>
-						</div>
-					</div>
-				</form>
+				</div>
+				<div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-import"><i class="fas fa-file-import"></i> Import</button>
+                    <a href="/download-format-excel-dosen" class="btn btn-success btn-download"><i class="fas fa-file-download"></i> Download Format</a>
+                    <button class="btn btn-primary btn-loading" type="button" style="display: none;" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Memproses...
+                    </button>
+				</div>
 			</div>
-		</div>
+		</form>
+	</div>
+</div>
 @endsection
 
 @section('js-ajax')
-      <script src="{{ asset('js/Profile/Dosen.js') }}"></script>
+    <script src="{{ asset('js/Profile/Dosen.js') }}"></script>
 @endsection

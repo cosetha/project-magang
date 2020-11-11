@@ -1,4 +1,3 @@
-
 @extends('layouts/adminLayout')
 @section('title', 'Edit Profile')
 
@@ -10,7 +9,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Profile</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
 
     <!-- Content Row -->
@@ -19,10 +17,7 @@
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
             
-
             <form class="form-horizontal" role="form">
-
-
                 <div class="form-group row mt-2" >
                     <div class="col-sm-6 mb-3 mb-sm-2" sty>
                         <div class="text-center">
@@ -55,23 +50,19 @@
                             <div class="col-md-12">
                                 <input type="button" class="btn btn-primary" data-id="{{ auth()->user()->id }}" id="btn-edit-profile" value="Save Changes">
                                 <span></span>
-                                <a href="{{url('dashboard')}}" class="btn btn-default">Cancel</a>
+                                <a href="{{url('dashboard')}}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </form>
+
         </div>
     </div>
 </div>
 </div>
 <!-- End of Main Content -->
-
 @endsection
-
-
 
 <script>
     function readURL(input, id) {

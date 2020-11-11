@@ -11,12 +11,16 @@
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('css/style-baru.css')}}" rel="stylesheet">
-    <link href="{{asset('css/new_style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/profile.css')}}" rel="stylesheet">
+     <link href="{{asset('css/style-baru2.css')}}" rel="stylesheet">
+    <link href="{{asset('css/font-baru.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="{{asset('js/javascript.js')}}"></script>
 </head>
@@ -43,10 +47,10 @@
   </div>
 </nav>
 
-  
+
 <div class="container-fluid background">
   <div class="row">
-      <div class="col kotak mt-4">
+      <div class="col mt-4">
         <img src="{{ asset('img/teknologi informasi.png') }}" class="kotak">
       </div>
   </div>
@@ -70,25 +74,25 @@
             Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/dosen">Dosen dan Tenaga Kerja</a>
-            <a class="dropdown-item" href="/prestasi">Prestasi</a>
-            <a class="dropdown-item" href="/sejarah">Sejarah</a>
-            <a class="dropdown-item" href="/struktur">Struktur</a>
-            <a class="dropdown-item" href="/visimisi">visi Misi</a>
+            <a class="dropdown-item" href="/gdosen">Dosen dan Tenaga Kerja</a>
+            <a class="dropdown-item" href="/gprestasi">Prestasi</a>
+            <a class="dropdown-item" href="/gsejarah">Sejarah</a>
+            <a class="dropdown-item" href="/gstruktur">Struktur</a>
+            <a class="dropdown-item" href="/gvisimisi">visi Misi</a>
           </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/bk">Bidang Keahlian</a>
+            <a class="nav-link" href="/gbk">Bidang Keahlian</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Akademik
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/akreditasi">Akreditasi</a>
-            <a class="dropdown-item" href="/jadwalkuliah">Jadwal Kuliah</a>
-            <a class="dropdown-item" href="/kalender">Kalender</a>
-            <a class="dropdown-item" href="/mahasiswa">Mahasiswa</a>
+            <a class="dropdown-item" href="/gakreditasi">Akreditasi</a>
+            <a class="dropdown-item" href="/gjadwalkuliah">Jadwal Kuliah</a>
+            <a class="dropdown-item" href="/gkalender">Kalender</a>
+            <a class="dropdown-item" href="/gmahasiswa">Mahasiswa</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -96,10 +100,10 @@
             Kemahasiswaan
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/alumni">Alumni</a>
-            <a class="dropdown-item" href="/kegiatan">Kegiatan</a>
-            <a class="dropdown-item" href="/loker">Lowongan Kerja</a>
-            <a class="dropdown-item" href="/organisasi">Organisasi</a>
+            <a class="dropdown-item" href="/galumni">Alumni</a>
+            <a class="dropdown-item" href="/gkegiatan">Kegiatan</a>
+            <a class="dropdown-item" href="/gloker">Lowongan Kerja</a>
+            <a class="dropdown-item" href="/gorganisasi">Organisasi</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -107,16 +111,16 @@
             Riset
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
-            <a class="dropdown-item" href="/penelitian">penelitian</a>
-            <a class="dropdown-item" href="/pengabdian">pengabdian</a>
-            <a class="dropdown-item" href="/profilepeneliti">profilepeneliti</a>
+            <a class="dropdown-item" href="/gpenelitian">penelitian</a>
+            <a class="dropdown-item" href="/gpengabdian">pengabdian</a>
+            <a class="dropdown-item" href="/gprofilepeneliti">profilepeneliti</a>
           </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/fasilitas">Fasilitas</a>
+            <a class="nav-link" href="/gfasilitas">Fasilitas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/kontak">Kontak</a>
+            <a class="nav-link" href="/gkontak">Kontak</a>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0  mr-5">
@@ -124,10 +128,9 @@
 
         <div class="search">
           <input class="search-text" type="text" name="" placeholder="Search">
-          <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+          <a href="#"  style="text-decoration:none;" class="search-btn"><i class="fas fa-search"></i></a>
         </div>
 
-        
         </form>
   </div>
 </nav>
@@ -140,7 +143,6 @@
 <!-- Footer -->
 <footer class=" container-fluid pt-4 background kotak-footer text-md-left footer-text mt-5">
 
-  <!-- Footer Links -->
 
 
     <!-- Grid row -->
@@ -151,15 +153,16 @@
 
         <!-- Links -->
         <div class="mx-3">
-        <img src="{{ asset('img/BKSI.png') }}" width=" 100%" height="100%">
-
+        <div class="background-white mt-4">
+          <img src="{{ asset('img/vokasi UB.png') }}">
+        </div>
         <ul class="list-unstyled mt-3">
           <li>
-            <h5>TEKNOLOGI INFORMASI</h5>
-            <h3>PENDIDIKAN VOKASI</h3>
-            <h5>UNIVERSITAS BRAWIJAYA</h5>
-            <p>Jl. Veteran No.12-13 Malang Jawa Timur</p>
-            <p>ti.vokasi@ub.ac.id</p>
+            <p class="font5">TEKNOLOGI INFORMASI</p>
+            <p>PENDIDIKAN VOKASI</p>
+            <p class="font5">UNIVERSITAS BRAWIJAYA</p>
+            <p class="font-roboto-16-pt">Jl. Veteran No.12-13 Malang Jawa Timur</p>
+            <p class="font-roboto-16-pt">ti.vokasi@ub.ac.id</p>
           </li>
         </ul>
         </div>
@@ -169,10 +172,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Fasilitas Kampus</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Fasilitas Kampus</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>BITS UB</p>
           </li>
@@ -207,10 +210,10 @@
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Kemahasiswaan</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Kemahasiswaan</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>Email Mahasiswa</p>
           </li>
@@ -236,14 +239,14 @@
       </div>
       </div>
 
-      
+
       <div class="col-md-3 mx-auto">
       <div class="mx-3">
         <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3">Blog</h5>
-        <hr >
+        <p class="font8 text-uppercase mt-3">Blog</p>
+        <hr class="hr-footer">
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled font-roboto-16-pt margin-column">
           <li>
             <p>UB Official Web</p>
           </li>
@@ -267,12 +270,20 @@
       </div>
 
 
+
+
+
+
     </div>
     <!-- Grid row -->
 
 
-  
+
 </footer>
+
+<div class="copy-right">
+  <div class="font-copyright font-roboto-16-pt">Copyright 2020.Allrights Reserved. Teknologi Informasi Pendidikan Vokasi UB</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -281,51 +292,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-<!-- <footer class="background">
-  <div class="container-fluid padding">
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-
-      <div class="col-md-4">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-      <div class="col-md-12">
-        <h3>Layanan UB</h3>
-        <hr class="background-sec">
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-          <p>Siam</p>
-      </div>
-    </div>
-
-  </div>
-</footer> -->

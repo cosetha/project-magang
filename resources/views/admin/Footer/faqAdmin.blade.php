@@ -15,7 +15,6 @@
         <h1 class="h3 mb-0 text-gray-800">FAQ</h1>
     </div>
 
-
     <!-- Content Row -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -35,7 +34,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- FAQ Modal-->
 <div class="modal fade" id="TambahFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -48,15 +46,14 @@
             </div>
             <div class="modal-body">
 
-
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-faq">
-                    @csrf
+                @csrf
 
-                    <label for="pertanyaan">Pertanyaan</label>
-                    <input type="text" class="form-control" id="pertanyaan" name="pertanyaan">
+                <label for="pertanyaan">Pertanyaan</label>
+                <input type="text" class="form-control" id="pertanyaan" name="pertanyaan">
 
-                    <label for="jawaban">Jawaban</label>
-                    <textarea type="text" class="form-control" id="jawaban" name="jawaban"></textarea>
+                <label for="jawaban">Jawaban</label>
+                <textarea type="text" class="form-control" id="jawaban" name="jawaban"></textarea>
 
             </div>
             <div class="modal-footer">
@@ -73,7 +70,6 @@
     </div>
 </div>
 
-
 <!-- Edit FAQ Modal-->
 <div class="modal fade" id="EditFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -86,17 +82,15 @@
             </div>
             <div class="modal-body">
 
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-faq">
+                @csrf
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-faq">
-                    @csrf
+                <input type="hidden" id="id-faq">
+                <label for="pertanyaan_edit">Pertanyaan</label>
+                <input type="text" class="form-control" id="kolom-pertanyaan" name="pertanyaan_edit">
 
-                    <input type="hidden" id="id-faq">
-                    <label for="pertanyaan_edit">Pertanyaan</label>
-                    <input type="text" class="form-control" id="kolom-pertanyaan" name="pertanyaan_edit">
-
-                    <label for="jawaban_edit">Jawaban</label>
-                    <textarea type="text" class="form-control" id="jawaban_edit" name="jawaban_edit"></textarea>
-
+                <label for="jawaban_edit">Jawaban</label>
+                <textarea type="text" class="form-control" id="jawaban_edit" name="jawaban_edit"></textarea>
 
             </div>
             <div class="modal-footer">
@@ -107,12 +101,10 @@
                     Memproses...
                 </button>
             </div>
-
             </form>
         </div>
     </div>
 </div>
-
 
 <!-- Show FAQ Modal-->
 <div class="modal fade" id="ShowFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,11 +127,10 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Close</button>
             </div>
 
         </div>
     </div>
 </div>
-
 @endsection

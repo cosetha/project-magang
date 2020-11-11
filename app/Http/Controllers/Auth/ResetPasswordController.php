@@ -61,6 +61,10 @@ class ResetPasswordController extends Controller
      */
     public function reset(Request $request)
     {
+        if ($request->password != $request->password_confirmation) {
+                Alert::toast('Password tidak sama !', 'error');
+        }
+
         $request->validate($this->rules(), $this->validationErrorMessages());
 
         // Here we will attempt to reset the user's password. If it is successful we
@@ -183,11 +187,6 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        if ($request->password != $request->password_confirmation) {
-            throw ValidationException::withMessages([
-                Alert::toast('Password tidak sama !', 'error')
-            ]);
-        }
 
         return redirect()->back()->withInput($request->only('email'));
     }

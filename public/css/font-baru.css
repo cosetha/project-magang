@@ -1,0 +1,94 @@
+/* Normal Font */
+
+.font4{
+	font-family: 'Roboto', sans-serif;
+	font-size: 12pt;
+	font-weight: normal;
+}
+
+.font-roboto-13{
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.font1{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14pt;
+	font-weight: normal;
+}
+
+.font2{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.font-roboto-16-pt{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16pt;
+	font-weight: normal;
+}
+
+.font10{
+	font-family: 'Roboto', sans-serif;
+	font-size: 18pt;
+}
+
+.font3{
+	font-family: 'Raleway', sans-serif;
+	font-size: 18pt;
+	font-weight: bolder;
+}
+
+
+/* Bold Font */
+
+.font6{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.font5{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.font11{
+	font-family: 'Roboto', sans-serif;
+	font-size: 24pt;
+	font-weight: bold;
+}
+
+.font8{
+	font-family: 'Roboto Slab', serif;
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.font8px{
+	font-family: 'Roboto Slab', serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.font9{
+	font-family: 'Roboto Slab', serif;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.font-roboslab-24{
+	font-family: 'Roboto Slab', serif;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.font-roboslab-20{
+	font-family: 'Roboto Slab', serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+

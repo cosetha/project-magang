@@ -13,9 +13,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Semester</h1>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
     </div>
-
 
     <!-- Content Row -->
     <div class="card shadow mb-4">
@@ -35,7 +33,6 @@
 </div>
 <!-- End of Main Content -->
 
-
 <!-- Add Sosmed Modal-->
 <div class="modal fade" id="TambahSemesterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,14 +45,14 @@
             </div>
             <div class="modal-body">
 
+            <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-semester">
+            @csrf
 
-                <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-tambah-semester">
-                    @csrf
+                <label for="judulSemester">Semester</label>
+                <input type="text" class="form-control" id="semester-tambah" name="semester-tambah">
 
-                    <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-tambah" name="semester-tambah">
+                <input type="hidden" name="token" value="{{ csrf_token() }}">
 
-                    <input type="hidden" name="token" value="{{ csrf_token() }}">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close" type="button" data-dismiss="modal">Cancel</button>
@@ -70,7 +67,6 @@
     </div>
 </div>
 
-
 <!-- Edit Sosmed Modal-->
 <div class="modal fade" id="editSemesterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -83,15 +79,14 @@
             </div>
             <div class="modal-body">
 
-
             <form accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form-edit-semester">
-                    @csrf
+            @csrf
 
-                    <label for="judulSemester">Semester</label>
-                    <input type="text" class="form-control" id="semester-edit" name="semester-edit">
+                <label for="judulSemester">Semester</label>
+                <input type="text" class="form-control" id="semester-edit" name="semester-edit">
 
-                    <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
-                    <input type="hidden" name="id-edit" id="id-edit" value="">
+                <input type="hidden" name="token-edit" value="{{ csrf_token() }}">
+                <input type="hidden" name="id-edit" id="id-edit" value="">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-close-edit" type="button" data-dismiss="modal">Cancel</button>
@@ -126,6 +121,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-
