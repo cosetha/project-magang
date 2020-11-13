@@ -8,7 +8,47 @@
     <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
     <h3>Pretasi</h3>
 </div>
-
+@foreach($data as $key=>$node)
+<div class="container-fluid background">
+    <div class="row mt-4">
+        <div class="col berita">
+           {{$key}}
+        </div>
+    </div>
+</div>
+<div id="demo{{$key}}" class="carousel slide" data-ride="carousel">
+<!-- The slideshow -->
+<div class="container carousel-inner no-padding text-center ">
+  <section id="team">
+@foreach($node->chunk(4) as $item)
+  <div class="carousel-item @if ($loop->first) active @endif">
+    <div class="card-deck" style="margin-top:70px;">
+      @foreach($item as $items)
+        <div class="col-lg-3 col-md-6">
+              <div class="card">
+                  <div class="card-body">
+                      <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
+                      <h5 class="card-title">Special title treatment  {{$items->nama}}</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+              </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
+  @endforeach
+</section>
+<!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo{{$key}}" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo{{$key}}" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+        
+   
+@endforeach
 
 <!-- Prestasi Bagian SI -->
 <div class="container-fluid background">
@@ -23,9 +63,13 @@
 
   <!-- The slideshow -->
   <div class="container carousel-inner no-padding text-center ">
+
     <section id="team">
+
     <div class="carousel-item active">
+    
         <div class="card-deck" style="margin-top:70px;">
+
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body">

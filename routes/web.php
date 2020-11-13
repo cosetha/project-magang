@@ -29,13 +29,9 @@ Route::group(['middleware' => 'guest'],function(){
         return view('user.Profile/dosen');
     });
 
-    Route::get('/gprestasi', function () {
-        return view('user.Profile/prestasi');
-    });
+    Route::get('/gprestasi', 'Profile\PrestasiController@getDataPrestasi');
 
-    Route::get('/gsejarah', function () {
-        return view('user.Profile/sejarah');
-    });
+    Route::get('/gsejarah','Profile\SejarahController@getDataSejarah');
 
 
     Route::get('/gvisimisi', function () {
