@@ -258,9 +258,6 @@ class FormController extends Controller
                 $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_form.'" class="btn-delete-form" style="font-size: 18pt; text-decoration: none; color:red;">
                 <i class="fas fa-trash"></i>
                 </a>';
-                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama_form.'" class="btn-show-form" style="font-size: 18pt; text-decoration: none; color:green;">
-                <i class="fas fa-eye"></i>
-                </a>';
                 return $btn;
          })
          ->rawColumns(['aksi'])
