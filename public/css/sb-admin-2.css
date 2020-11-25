@@ -6043,6 +6043,22 @@ a.close.disabled {
   transition: opacity 0.15s ease;
 }
 
+.carousel-control-prev-profile,
+.carousel-control-next-profile {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  color: #fff;
+  text-align: center;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-control-prev,
   .carousel-control-next {
