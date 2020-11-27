@@ -40,9 +40,7 @@ Route::group(['middleware' => 'guest'],function(){
 
     Route::get('/gvisimisi', 'GuestController@VisiMisi');
 
-    Route::get('/gstruktur', function () {
-        return view('user.Profile/struktur');
-    });
+    Route::get('/gstruktur', 'GuestController@StrukturOrganisasi');
 
 
     //Bidang Keahlian
