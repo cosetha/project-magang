@@ -57,7 +57,6 @@
 	width: 1200px;
 	color: #002F59;
 	font-weight: bold;
-	font-size: 12px;
 	border: 2px solid #002F59;
     box-sizing: border-box;
     border-radius: 2px;
@@ -115,13 +114,11 @@
 	padding-top:10px;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-size: 10px;
 
 }
 .box {
   position: absolute;
   background-color: #AEB6BF;
-  font-size: 12px;
   width: 80%;
   height: 290px;
   margin-left: 6.5%;
@@ -141,11 +138,8 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
-.tgl_pengumuman{
-  color: #AEB6BF;
-  font-size: 10px;
-  padding-left: 5px;
-}
+
+
 .judul_pengumuman{
   color:  #002F59;
    padding-left: 5px;
@@ -158,13 +152,11 @@
 .font{
     color:#002F59;
   font-weight: bold;
-  font-size: 12px;
 }
 .buttonlink{
   background-color: #AEB6BF;
   color:#002F59;
   font-weight: bold;
-  font-size: 12px;
   width: 55px;
   height: 30px;
   margin-top: 20px;
@@ -187,14 +179,12 @@
 .judul_berita{
   color: #17202A;
   font-weight: bold;
-  font-size: 15px;
   padding-top: 5px;
   padding-right: 15px;
   padding-left: 15px;
 }
 .isi_berita{
   color: #17202A;
-  font-size: 10px;
   padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
@@ -253,7 +243,6 @@
   margin-top: 20px;
 }
 .judul_bagian{
-  font-size: 30px;
   color:#002F59;
   margin-top: 20px;
 }
@@ -287,7 +276,6 @@
 .text {
   background-color: #002F59;
   color: white;
-  font-size: 12px;
   width: 255px;
   height: 50px;
   margin-top: 120px;
@@ -305,7 +293,6 @@
 }
 
 .judul_bk{
-  font-size: 30px;
   color:#002F59;
   text-align: center;
   margin-top: 30px;
@@ -331,7 +318,6 @@
 }
 .select-css {
   display: block;
-  font-size: 16px;
   color: #002F59;
   line-height: 1.3;
   padding: .6em 1.4em .5em .8em;
@@ -365,7 +351,6 @@
   background-color: #6c757d;
   border: none;
   border-radius: 5px;
-  font-size: 15px;
   color: #FFFFFF;
   margin-top: 30px;
   padding: auto;

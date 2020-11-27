@@ -4,479 +4,504 @@
 @section('content')
 
 
-<div class="caption">
-    <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
-    <h3>Pretasi</h3>
-</div>
 
 
-<!-- Prestasi Bagian SI -->
-<div class="container-fluid background">
-    <div class="row mt-4">
-        <div class="col berita">
-            Sistem Informasi
+    <div class="container-margin">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="box-visimisi">
+                    <div class="navigasi font-roboto-13">
+                        Home > Profil > Struktur
+                        <div class="hr-navigasi"></div>
+                    </div>
+
+                    <div class="judul-visimisi">
+                        <div class="judul_bagian font3">
+                            Prestasi SI
+                        </div>
+                        <div class="hr"></div>
+                    </div>
+
+                    
+                        <!-- Prestasi SI -->
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="container carousel-inner no-padding text-center ">
+                                <section id="team">
+                                    <div class="carousel-item active">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                
+                                    <div class="carousel-item">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </section>           
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>   
+
+
+
+                    <div class="judul-visimisi">
+                        <div class="judul_bagian font3">
+                            Prestasi TI
+                        </div>
+                        <div class="hr"></div>
+                    </div>
+
+                        <!-- Prestasi TI -->
+                        <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+                            <div class="container carousel-inner no-padding text-center ">
+                                <section id="team">
+                                    <div class="carousel-item active">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                
+                                    <div class="carousel-item">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </section>           
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div> 
+
+                    <div class="judul-visimisi">
+                        <div class="judul_bagian font3">
+                            Prestasi Bisnis
+                        </div>
+                        <div class="hr"></div>
+                    </div>
+
+                        <!-- Prestasi Bisnis -->
+                        <div id="carouselExampleControls3" class="carousel slide" data-ride="carousel">
+                            <div class="container carousel-inner no-padding text-center ">
+                                <section id="team">
+                                    <div class="carousel-item active">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                
+                                    <div class="carousel-item">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </section>           
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div> 
+
+
+                    <div class="judul-visimisi">    
+                        <div class="judul_bagian font3">
+                            Prestasi TV
+                        </div>
+                        <div class="hr"></div>
+                    </div>
+
+                        <!-- Prestasi TV -->
+                        <div id="carouselExampleControls4" class="carousel slide" data-ride="carousel">
+                            <div class="container carousel-inner no-padding text-center ">
+                                <section id="team">
+                                    <div class="carousel-item active">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                
+                                    <div class="carousel-item">
+                                        <div class="card-deck" style="margin-top:70px;">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -70px">
+                                                        <div class="font2">saya</div>
+                                                        <div class="font2">Prestasi Saya</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </section>           
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls4" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls4" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div> 
+
+                    
+
+                    </div>
+                </div>
+
+            <div class="col-sm-4">
+                <div class="box-menu">
+                    <div class="judul-menu font8px">
+                        PROFIL
+                    </div>
+                    <div class="menu font10">
+                        <!-- bold jika di click -->
+                        <div class="isi-menu">
+                            <a href="#" style="text-decoration:none;">
+                                Sejarah
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="#" style="text-decoration:none;">
+                                Visi dan Misi
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="#" style="text-decoration:none;">
+                                Struktur Organisasi
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="#" style="text-decoration:none;">
+                                Prestasi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="demo" class="carousel slide" data-ride="carousel">
-
-  <!-- The slideshow -->
-  <div class="container carousel-inner no-padding text-center ">
-    <section id="team">
-    <div class="carousel-item active">
-        <div class="card-deck" style="margin-top:70px;">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    
-    <div class="carousel-item">
-    <div class="card-deck" style="margin-top:70px;">
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-    </div> 
-    </div>
-  </section>
-  
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-<!-- Selesai Bagian SI -->
-
-
-<!-- Prestasi Bagian TI -->
-<div class="container-fluid background">
-    <div class="row mt-4">
-        <div class="col berita">
-            Teknologi Informasi & Komputer
-        </div>
-    </div>
-</div>
-
-<div id="demo2" class="carousel slide" data-ride="carousel">
-  
-  <!-- The slideshow -->
-  <div class="container carousel-inner no-padding text-center ">
-    <section id="team">
-    <div class="carousel-item active">
-        <div class="card-deck" style="margin-top:70px;">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    
-    <div class="carousel-item">
-    <div class="card-deck" style="margin-top:70px;">
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-    </div> 
-    </div>
-  </section>
-  
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo2" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo2" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-<!-- Selesai Bagian SI -->
-
-
-
-<!-- Prestasi Bagian Bisnis -->
-<div class="container-fluid background">
-    <div class="row mt-4">
-        <div class="col berita">
-            Bisnis Digital dan E-Commerce
-        </div>
-    </div>
-</div>
-
-
-<div id="demo3" class="carousel slide" data-ride="carousel">
-
-  <!-- The slideshow -->
-  <div class="container carousel-inner no-padding text-center ">
-    <section id="team">
-    <div class="carousel-item active">
-        <div class="card-deck" style="margin-top:70px;">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    
-    <div class="carousel-item">
-    <div class="card-deck" style="margin-top:70px;">
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-    </div> 
-    </div>
-  </section>
-  
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo3" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo3" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-
-<!-- Selesai Bagian Bisnis -->
-
-
-
-
-<!-- Prestasi Bagian FTV -->
-<div class="container-fluid background">
-    <div class="row mt-4">
-        <div class="col berita">
-            Film dan Televisi
-        </div>
-    </div>
-</div>
-
-
-<div id="demo4" class="carousel slide" data-ride="carousel">
-  
-  <!-- The slideshow -->
-  <div class="container carousel-inner no-padding text-center ">
-    <section id="team">
-    <div class="carousel-item active">
-        <div class="card-deck" style="margin-top:70px;">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    
-    <div class="carousel-item">
-    <div class="card-deck" style="margin-top:70px;">
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{ asset('img/profile.jpg') }}" alt="" class="img-fluid rounded-circle w-75 mb-3" style="margin: -100px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-    </div> 
-    </div>
-  </section>
-  
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo4" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo4" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
-
-<!-- Selesai Bagian FTV -->
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bidang_keahlian as BK;
 use App\Prestasi;
 use App\Histori;
+use App\Bidang_keahlian;
 use Illuminate\Support\Facades\DB;
 use DataTables, File;
 
@@ -269,5 +270,19 @@ class PrestasiController
         return true;
       }
       return false;
+    }
+
+    function getDataPrestasi(){
+      $bk = Bidang_keahlian::orderBy('nama_bk')->get();
+      $items = array();
+      foreach($bk as $bidang) {
+      $items[$bidang->nama_bk] = DB::table('prestasi')
+      ->join('bidang_keahlian as b', 'prestasi.id_bidang_keahlian', '=', 'b.id')
+      ->select('prestasi.*', 'b.nama_bk')
+      ->where('b.id',$bidang->id)
+      ->get();
+      }
+      // print_r($items);
+      return view('user.Profile/prestasi',['bk'=>$bk,'data'=>$items]);
     }
 }

@@ -3,64 +3,68 @@
 
 @section('content')
 
-<div class="caption">
-    <img src="{{ asset('img/rog.jpg') }}" class="img-full-width" />
-    <h3>My Caption Goes Here</h3>
-</div>
+
+    <div class="container-margin">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="box-visimisi">
+                    <div class="navigasi font-roboto-13">
+                        Home > Profil > Struktur
+                        <div class="hr-navigasi"></div>
+                    </div>
+
+                    <div class="judul-visimisi">
+                        <div class="judul_bagian font3">
+                            Struktur Organisasi
+                        </div>
+                        <div class="hr"></div>
+                    </div>
 
 
-<div class="container">
-        <h2>Struktur Organisasi</h2>
-  </div>
-<div class="batas"></div>
+                    <div class="kotak-struktur">
+                        @foreach($data as $d)
+                            <img class="gambar-struktur" src="{{ asset($d->gambar) }}" >
+                        @endforeach
+                    </div>
 
-<div class="container">
-    <!-- <h2>Pimpinan Prodi Teknologi Informasi</h2>
-    <p>lorem ipsum</p>
-    <br>
-
-    <h2 align="center">Pimpinan Prodi Teknologi Informasi</h2>
-    <hr> -->
-
-    @foreach($data as $d)
-        @if($loop->iteration % 2 == 0)
-
-        <div class="card mb-3 mt-5 border-0" style="max-width: 100%;">
-            <div class="row no-gutters">
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 align="center" class="card-title font-weight-bold">{{ $d->judul }}</h5>
-                    <hr>
-                    <p class="card-text">{!! $d->deskripsi !!}</p>
                 </div>
-                </div>
-                <div class="col-md-4">
-                <img src="{{ asset($d->gambar) }}" height="100%" width="150px" style="margin-left:150px;">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="box-menu">
+                    <div class="judul-menu font8px">
+                        PROFIL
+                    </div>
+                    <div class="menu font10">
+                        <!-- bold jika di click -->
+                        <div class="isi-menu">
+                            <a href="/gsejarah" style="text-decoration:none;">
+                                Sejarah
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="/gvisimisi" style="text-decoration:none;">
+                                Visi dan Misi
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="/gstruktur" style="text-decoration:none;">
+                                Struktur Organisasi
+                            </a>
+                            <div class="hr-profile"></div>
+                        </div>
+                        <div class="isi-menu">
+                            <a href="/gprestasi" style="text-decoration:none;">
+                                Prestasi
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        @else
-
-        <div class="card mb-3 mt-5 border-0" style="max-width: 100%;">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                <img src="{{ asset($d->gambar) }}" height="100%" width="150px" style="margin-left:150px;">
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 align="center" class="card-title font-weight-bold">{{ $d->judul }}</h5>
-                    <hr>
-                    <p class="card-text">{!! $d->deskripsi !!}</p>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        @endif
-
-    @endforeach
-
-</div>
 
 @endsection

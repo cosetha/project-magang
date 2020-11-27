@@ -138,11 +138,12 @@ class KerjaSamaController extends Controller
                 'link.required'=>'Field Link Perlu di Isi',
                 'gambar.mimes'=>'Field Gambar Perlu di Isi dengan Format: jpeg,jpg,png',
                 'caption.required'=>'Field Caption Perlu di Isi',
+                'gambar.max' => 'Gambar maksimal berukuran 8 Mb',
                 'perusahaan.required'=>'Field Perusahaan Perlu di Isi',
             );
             $validator = Validator::make($request->all(),[
                 'link' => 'required|string|min:1|max:255',
-                'gambar' => 'mimes:jpeg,jpg,png,gif',
+                'gambar' => 'mimes:jpeg,jpg,png,gif|max:8192',
                 "caption" => 'required|string',
                 "perusahaan" => 'required|string'],$messsages);
             if ($validator->fails()) {
