@@ -19,4 +19,12 @@ class GuestController extends Controller
 
         return view('user.Profile/struktur',compact('data'));
     }
+
+    public function dosenTenagaKerja()
+    {
+        $tenaga = \App\TenagaKependidikan::get();
+        $dosen = \App\Dosen::get();
+        return view('user.Profile.dosen', compact('dosen', 'tenaga'));
+    }
+
 }

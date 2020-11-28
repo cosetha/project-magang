@@ -38,6 +38,8 @@ Route::group(['middleware' => 'guest'],function(){
 
     Route::get('/gstruktur', 'GuestController@StrukturOrganisasi');
 
+    //Profile->Dosen dan Tenaga Kerja
+    Route::get('/gdosen', 'GuestController@dosenTenagaKerja');
 
     //Bidang Keahlian
     Route::get('/gbk', function () {

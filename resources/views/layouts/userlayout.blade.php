@@ -82,7 +82,7 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
-                                    <a class="dropdown-item" href="/dosen">Dosen dan Tenaga Kerja</a>
+                                    <a class="dropdown-item" href="/gdosen">Dosen dan Tenaga Kerja</a>
                                     <a class="dropdown-item" href="/prestasi">Prestasi</a>
                                     <a class="dropdown-item" href="/sejarah">Sejarah</a>
                                     <a class="dropdown-item" href="/struktur">Struktur</a>
