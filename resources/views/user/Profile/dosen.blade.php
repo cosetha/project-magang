@@ -34,33 +34,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <!-- <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         </section>
@@ -86,33 +59,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <!-- <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </section>
