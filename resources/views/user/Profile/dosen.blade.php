@@ -9,7 +9,7 @@
             <div class="col-sm-8">
                 <div class="box-visimisi">
                     <div class="navigasi font-roboto-13">
-                        Home > Profil > Struktur
+                        Home > Profil > Dosen dan Tenaga kerja
                         <div class="hr-navigasi"></div>
                     </div>
 
@@ -23,7 +23,18 @@
                     <section id="team2">
                         <div class=" text-center ">
                             <div class="row row-cols-1 row-cols-md-4 mt-3">
+                                @foreach($dosen as $d)
                                 <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <img src="{{asset('')}}{{$d->gambar}}" width=" 100%" height="100%" /> 
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{$d->nama}}</h5>
+                                        <p class="card-text">{!! $d->deskripsi !!} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <!-- <div class="col-lg-3 col-md-6">
                                     <div class="card">
                                         <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                                         <div class="card-body">
@@ -49,16 +60,7 @@
                                         <p class="card-text">With supporting text </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         </section>
@@ -73,7 +75,18 @@
                         <section id="team2">
                         <div class="text-center ">
                             <div class="row row-cols-1 row-cols-md-4 mt-3">
+                                @foreach($tenaga as $t)
                                 <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <img src="{{ asset('') }}{{$t->gambar}}" width=" 100%" height="100%" /> 
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{$t->nama}}</h5>
+                                        <p class="card-text">{!! $t->deskripsi !!} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <!-- <div class="col-lg-3 col-md-6">
                                     <div class="card">
                                         <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
                                         <div class="card-body">
@@ -99,16 +112,7 @@
                                         <p class="card-text">With supporting text </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <img src="{{ asset('img/profile.jpg') }}" width=" 100%" height="100%" /> 
-                                        <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </section>
