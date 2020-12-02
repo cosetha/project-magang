@@ -22,6 +22,12 @@ $(document).ready(function () {
                         name: "nama_form",
                     },
                     {
+                        data: "file",
+                        "render": function ( data, type, full, meta ) {
+                            return '<a target="_blank" href="'+data+'">Download</a>';
+                        }
+                    },
+                    {
                         data: "aksi",
                         name: "aksi",
                         searchable: false,

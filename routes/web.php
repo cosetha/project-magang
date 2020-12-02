@@ -29,23 +29,17 @@ Route::group(['middleware' => 'guest'],function(){
         return view('user.Profile/dosen');
     });
 
-    Route::get('/gprestasi', function () {
-        return view('user.Profile/prestasi');
-    });
+    Route::get('/gprestasi', 'Profile\PrestasiController@getDataPrestasi');
 
-    Route::get('/gsejarah', function () {
-        return view('user.Profile/sejarah');
-    });
+    Route::get('/gsejarah','Profile\SejarahController@getDataSejarah');
 
 
-    Route::get('/gvisimisi', function () {
-        return view('user.Profile/visimisi');
-    });
+    Route::get('/gvisimisi', 'GuestController@VisiMisi');
 
-    Route::get('/gstruktur', function () {
-        return view('user.Profile/struktur');
-    });
+    Route::get('/gstruktur', 'GuestController@StrukturOrganisasi');
 
+    //Profile->Dosen dan Tenaga Kerja
+    Route::get('/gdosen', 'GuestController@dosenTenagaKerja');
 
     //Bidang Keahlian
     Route::get('/gbk', function () {

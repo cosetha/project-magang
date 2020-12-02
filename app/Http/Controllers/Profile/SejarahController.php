@@ -200,7 +200,7 @@ class SejarahController extends Controller
         $history = new Histori;
         $history->nama = auth()->user()->name;
         $history->aksi = "Mengaktifkan";
-        $history->keterangan = "Mengaktifkan Visimisi '".$k->judul."'";
+        $history->keterangan = "Mengaktifkan Sejarah '".$k->judul."'";
         $history->save();
 
         $k->status = "aktif";
@@ -218,7 +218,7 @@ class SejarahController extends Controller
         $history = new Histori;
         $history->nama = auth()->user()->name;
         $history->aksi = "Menonaktifkan";
-        $history->keterangan = "Menonaktifkan Visimisi '".$k->judul."'";
+        $history->keterangan = "Menonaktifkan Sejarah '".$k->judul."'";
         $history->save();
 
         $k->status = "nonaktif";
@@ -254,5 +254,10 @@ class SejarahController extends Controller
          })
          ->rawColumns(['aksi'])
             ->make(true);
+    }
+
+    public function getDataSejarah(){
+        $first = Konten::where('menu','Sejarah')->where('status','aktif')->get();
+        return view('user.Profile/sejarah',['head'=>$first]);
     }
 }

@@ -3,6 +3,7 @@
     <tr>
       <th>No</th>
       <th>Nama Form</th>
+      <th>File</th>
       <th>Action</th>
     </tr>
   </thead>
