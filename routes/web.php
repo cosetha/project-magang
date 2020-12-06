@@ -20,9 +20,7 @@ Route::group(['middleware' => 'guest'],function(){
 
     Route::get('/login','PageController@LoginForm');
 
-    Route::get('/', function () {
-        return view('user.Home');
-    });
+    Route::get('/', 'GuestController@home');
 
     //Profile
     Route::get('/gdosen', function () {

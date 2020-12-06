@@ -27,4 +27,14 @@ class GuestController extends Controller
         return view('user.Profile.dosen', compact('dosen', 'tenaga'));
     }
 
+    public function home()
+    {
+        $bk = \App\Bidang_Keahlian::get();
+        $berita = \App\Berita::latest()->get();
+        $pengumuman = \App\Pengumuman::get();
+        $agenda = \App\Agenda::get();
+        $kerjaSama = \App\KerjaSama::get();
+        return view('user.Home', compact('bk', 'berita', 'pengumuman', 'agenda', 'kerjaSama'));
+    }
+
 }
