@@ -12,21 +12,22 @@
                         Home > Profil > Struktur
                         <div class="hr-navigasi"></div>
                     </div>
-
+                    @foreach($head ?? '' as $item)
                     <div class="judul-visimisi">
                         <div class="judul_bagian font3">
-                            Sejarah 
+                        <h2>{{$item['judul']}}</h2>
                         </div>
                         <div class="hr"></div>
                     </div>
 
                     <div class="container">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sunt magnam quaerat laboriosam, consequatur fugit alias nemo minima nulla aut eum rerum maiores. Id beatae vel assumenda. Quos, sed expedita. Consectetur, quasi. Recusandae, consequatur illum.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae nam perspiciatis, pariatur in qui minus aperiam autem dignissimos eos.
-                      </p>
+                        <p>{!! $item['deskripsi'] !!}</p>
                     </div>
+                      
+                    @endforeach
+                    
 
-                <div class="timeline mt-5">
+                <!-- <div class="timeline mt-5">
                   
                     <div class="container-tl left">
                         <div class="content">
@@ -65,7 +66,7 @@
                       </div>
                     </div>
 
-                </div>
+                </div> -->
 
                 </div>
             </div>
