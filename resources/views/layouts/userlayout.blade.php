@@ -83,10 +83,10 @@
                                 </a>
                                 <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
                                     <a class="dropdown-item" href="/gdosen">Dosen dan Tenaga Kerja</a>
-                                    <a class="dropdown-item" href="/prestasi">Prestasi</a>
-                                    <a class="dropdown-item" href="/sejarah">Sejarah</a>
-                                    <a class="dropdown-item" href="/struktur">Struktur</a>
-                                    <a class="dropdown-item" href="/visimisi">visi Misi</a>
+                                    <a class="dropdown-item" href="/gprestasi">Prestasi</a>
+                                    <a class="dropdown-item" href="/gsejarah">Sejarah</a>
+                                    <a class="dropdown-item" href="/gstruktur">Struktur</a>
+                                    <a class="dropdown-item" href="/gvisimisi">visi Misi</a>
                                 </div>
                             </li>
                             <li class="nav-item">

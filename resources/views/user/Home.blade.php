@@ -274,30 +274,16 @@
                         <div class="hr"></div>
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                            @foreach($kerjaSama->chunk(4) as $items)
+                                <div class="carousel-item @if ($loop->first) active @endif">
                                     <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
+                                    @foreach($items as $item)
+                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset($item['gambar']) }}" >
+                                        </div>
+                                    @endforeach
                                     </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
-                                    </div>
-                                </div>
+                            @endforeach
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
