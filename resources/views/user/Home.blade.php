@@ -49,10 +49,12 @@
             </div>
 
             <div class="row">
+            @foreach($bk as $b)
                 <div class="col-md-3">
-                    <img src="{{ asset('img/BKSI.png') }}" width=" 100%" height="100%">
+                    <img src="{{ url    ('') }}/{{$b->gambar}}" width=" 100%" height="100%">
                 </div>
-                <div class="col-md-3">
+            @endforeach
+                <!-- <div class="col-md-3">
                     <img src="{{ asset('img/BKTI.png') }}" width=" 100%" height="100%">
                 </div>
                 <div class="col-md-3">
@@ -60,7 +62,7 @@
                 </div>
                 <div class="col-md-3">
                     <img src="{{ asset('img/BKBD.png') }}" width=" 100%" height="100%">
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -74,52 +76,46 @@
             </div>
             <div class="hr"></div>
             <div class="row ">
+            @foreach($berita as $beritas)
+            <?php
+                $content = $beritas->deskripsi;
+                $deskripsiArr = explode('.', $content);
+                $deskripsi = $deskripsiArr[0].'.'.$deskripsiArr[1];
+                if(count($deskripsiArr) > 2) {
+                ?>
                 <div class="col-md-6 mb-row">
-                    <img class="bg_image" src="{{ asset('img/gambar 1.jpg') }}" width=" 100%" height="100%">
+                    <img class="bg_image" src="{{ url('') }}/{{$beritas->gambar}}" width=" 100%" height="100%">
                     <div class="box">
                         <div class="tgl_berita font6">
-                            <i class="far fa-clock mr-2"></i>12 September 2020 </div>
-                            <div class="judul_berita font8"> Berita terkini Universitas Brawijaya </div>
-                            <div class="isi_berita font2"> <p class="overflow-ellipsis"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum </p></div>
+                            <i class="far fa-clock mr-2"></i>{{date("d-F-Y", strtotime($beritas->created_at))}} </div>
+                            <div class="judul_berita font8"> {{$beritas->judul}} </div>
+                            <div class="isi_berita font2"> <p class="overflow-ellipsis"> {!!$deskripsi!!} </p></div>
                             <br>
                             <P class="isi_berita font5"><a href=""> Read More ... </a></P>
                         </div>
 
                     </div>
+                    <?php
+                           }
 
+                else { 
+                    ?>
                     <div class="col-md-6 mb-row">
-                        <img class="bg_image" src="{{ asset('img/gambar 1.jpg') }}" width=" 100%" height="100%">
-                        <div class="box">
-                            <div class="tgl_berita font6">
-                                <i class="far fa-clock mr-2"></i>12 September 2020 </div>
-                                <div class="judul_berita font8"> Berita terkini Universitas Brawijaya </div>
-                                <div class="isi_berita font2"> <p class="overflow-ellipsis"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum </p></div>
-                                <br>
-                                <P class="isi_berita font5"><a href=""> Read More ... </a></P>
-                            </div>
+                    <img class="bg_image" src="{{ url('') }}/{{$beritas->gambar}}" width=" 100%" height="100%">
+                    <div class="box">
+                        <div class="tgl_berita font6">
+                            <i class="far fa-clock mr-2"></i>{{date("d-F-Y", strtotime($beritas->created_at))}} </div>
+                            <div class="judul_berita font8"> {{$beritas->judul}} </div>
+                            <div class="isi_berita font2"> <p class="overflow-ellipsis"> {!!$beritas->deskripsi!!} </p></div>
+                            <br>
+                            <P class="isi_berita font5"><a href=""> Read More ... </a></P>
                         </div>
-                        <div class="col-md-6 mt-row margin_berita">
-                            <img class="bg_image" src="{{ asset('img/gambar 1.jpg') }}" width=" 100%" height="100%">
-                            <div class="box">
-                                <div class="tgl_berita font6">
-                                    <i class="far fa-clock mr-2"></i>12 September 2020 </div>
-                                    <div class="judul_berita font8"> Berita terkini Universitas Brawijaya </div>
-                                    <div class="isi_berita font2"> <p class="overflow-ellipsis"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum </p></div>
-                                    <br>
-                                    <P class="isi_berita font5"><a href=""> Read More ... </a></P>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-row margin_berita">
-                                <img class="bg_image" src="{{ asset('img/gambar 1.jpg') }}" width=" 100%" height="100%">
-                                <div class="box">
-                                    <div class="tgl_berita font6">
-                                        <i class="far fa-clock mr-2"></i>12 September 2020 </div>
-                                        <div class="judul_berita font8"> Berita terkini Universitas Brawijaya </div>
-                                        <div class="isi_berita font2"> <p class="overflow-ellipsis"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum </p></div>
-                                        <br>
-                                        <P class="isi_berita font5"><a href="#"> Read More ... </a></P>
-                                    </div>
-                                </div>
+
+                    </div>
+                <?php
+                }
+                ?>
+                @endforeach
 
                                 <div class="col-md-12 margin_lihat">
                                     <button type="button text_lihat text-nowrap background-sec font6" class="btn btn-dark float-right margin-button">Primary <i class="fas fa-chevron-circle-right"></i></button>
@@ -137,37 +133,14 @@
 
                             <div class="row mt-1">
                                 <div class="col-md-12">
+                                    @foreach($pengumuman as $p)
                                     <a href="#">
                                         <div class="box_pengumuman">
-                                            <div class="tgl_pengumuman font4"> 12 September 2020  </div>
-                                            <div class="judul_pengumuman font5"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
+                                            <div class="tgl_pengumuman font4"> {{date("d-F-Y", strtotime($p->created_at))}}  </div>
+                                            <div class="judul_pengumuman font5"> {!! $p->deskripsi !!}  </div>
                                         </div>
                                     </a>
-                                    <a href="#">
-                                        <div class="box_pengumuman">
-                                            <div class="tgl_pengumuman font4"> 12 September 2020  </div>
-                                            <div class="judul_pengumuman font5"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="box_pengumuman">
-                                            <div class="tgl_pengumuman font4"> 12 September 2020  </div>
-                                            <div class="judul_pengumuman font5"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="box_pengumuman">
-                                            <div class="tgl_pengumuman font4"> 12 September 2020  </div>
-                                            <div class="judul_pengumuman font5"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="#">
-                                        <div class="box_pengumuman">
-                                            <div class="tgl_pengumuman font4"> 12 September 2020  </div>
-                                            <div class="judul_pengumuman font5"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
+                                    @endforeach
 
                                     <a href=""><div class="buttonlink font6">More</div></a>
                                 </div>
@@ -181,45 +154,17 @@
 
                             <div class="row margin_agenda">
                                 <div class="col-md-12 ">
+                                    @foreach($agenda as $a)
                                     <a href="#">
                                         <div class="box_agenda">
                                             <div class="tanggal_agenda">
-                                                <div class="font-roboto-12-pt-bold mt-3"> 29 </div>
-                                                <div class="font-roboto-12-pt-bold"> October </div>
+                                                <div class="font-roboto-12-pt-bold mt-3"> {{date("d", strtotime($a->created_at))}} </div>
+                                                <div class="font-roboto-12-pt-bold"> {{date("F", strtotime($a->created_at))}} </div>
                                             </div>
-                                            <div class="judul_agenda font9"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
+                                            <div class="judul_agenda font9"> {!! $a->deskripsi !!}  </div>
                                         </div>
                                     </a>
-
-                                    <a href="#">
-                                        <div class="box_agenda">
-                                            <div class="tanggal_agenda">
-                                                <div class="font-roboto-12-pt-bold mt-3"> 29 </div>
-                                                <div class="font-roboto-12-pt-bold"> October </div>
-                                            </div>
-                                            <div class="judul_agenda font9"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="#">
-                                        <div class="box_agenda">
-                                            <div class="tanggal_agenda">
-                                                <div class="font-roboto-12-pt-bold mt-3"> 29 </div>
-                                                <div class="font-roboto-12-pt-bold"> September </div>
-                                            </div>
-                                            <div class="judul_agenda font9"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="#">
-                                        <div class="box_agenda">
-                                            <div class="tanggal_agenda">
-                                                <div class="font-roboto-12-pt-bold mt-3"> 29 </div>
-                                                <div class="font-roboto-12-pt-bold"> October </div>
-                                            </div>
-                                            <div class="judul_agenda font9"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 150 0s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  </div>
-                                        </div>
-                                    </a>
+                                    @endforeach
 
                                     <a href=""><div class="buttonlink font6">More</div></a>
                                 </div>
@@ -327,33 +272,18 @@
                         </div>
 
                         <div class="hr"></div>
-
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                            @foreach($kerjaSama->chunk(4) as $items)
+                                <div class="carousel-item @if ($loop->first) active @endif">
                                     <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
+                                    @foreach($items as $item)
+                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset($item['gambar']) }}" >
+                                        </div>
+                                    @endforeach
                                     </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row ml-5">
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (14).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (15).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (16).png') }}" ></div>
-                                        <div class="col-sm"><img class="item-kerjasama" src="{{ asset('img/pngegg (17).png') }}" ></div>
-                                    </div>
-                                </div>
+                            @endforeach
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
