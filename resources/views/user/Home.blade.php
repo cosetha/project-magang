@@ -98,7 +98,7 @@
                     <?php
                            }
 
-                else { 
+                else {
                     ?>
                     <div class="col-md-6 mb-row">
                     <img class="bg_image" src="{{ url('') }}/{{$beritas->gambar}}" width=" 100%" height="100%">
