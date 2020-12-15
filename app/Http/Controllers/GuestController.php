@@ -34,7 +34,27 @@ class GuestController extends Controller
         $pengumuman = \App\Pengumuman::get();
         $agenda = \App\Agenda::get();
         $kerjaSama = \App\KerjaSama::get();
-        return view('user.Home', compact('bk', 'berita', 'pengumuman', 'agenda', 'kerjaSama'));
+
+        $jml_alumni = count(\App\Alumni::get());
+        $jml_mahasiswa = count(\App\Mahasiswa::get());
+        $dosen = count(\App\Dosen::get());
+        $staff = count(\App\TenagaKependidikan::get());
+        $jml_dosen_staff = $dosen + $staff;
+        $jml_bk = count(\App\Bidang_keahlian::get());
+        return view('user.Home', compact('bk', 'berita', 'pengumuman', 'agenda', 'kerjaSama','jml_alumni','jml_mahasiswa','jml_dosen_staff','jml_bk'));
+    }
+
+    public function load_layout_loop(){
+
+        $fasilitas = \App\Fasilitas::get();
+        $blog = \App\Blog::get();
+        $faq = \App\Faq::get();
+
+        return response([
+            'fasilitas' => $fasilitas,
+            'blog' => $blog,
+            'faq' => $faq
+        ]);
     }
 
 }

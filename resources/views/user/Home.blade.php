@@ -187,7 +187,7 @@
                                     <div class="kotak-jumlah">
                                         <div class="isi-jumlah">
                                             <i class="fas fa-user-friends fa-5x"></i>
-                                            <div class="font4 mt-3">2000</div>
+                                            <div class="font4 mt-3">{{ $jml_mahasiswa }}</div>
                                             <div class="font2">Mahasiswa Aktif</div>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                     <div class="kotak-jumlah">
                                         <div class="isi-jumlah">
                                             <i class="fas fa-chalkboard-teacher fa-5x"></i>
-                                            <div class="font4 mt-3">34</div>
+                                            <div class="font4 mt-3">{{ $jml_dosen_staff }}</div>
                                             <div class="font2">Dosen & Staff</div>
                                         </div>
                                     </div>
@@ -205,7 +205,7 @@
                                     <div class="kotak-jumlah">
                                         <div class="isi-jumlah">
                                             <i class="fas fa-laptop-code fa-5x"></i>
-                                            <div class="font4 mt-3">4</div>
+                                            <div class="font4 mt-3">{{ $jml_bk }}</div>
                                             <div class="font2">Bidang Keahlian</div>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                     <div class="kotak-jumlah">
                                         <div class="isi-jumlah">
                                             <i class="fas fa-user-graduate fa-5x"></i>
-                                            <div class="font4 mt-3">40.000</div>
+                                            <div class="font4 mt-3">{{ $jml_alumni }}</div>
                                             <div class="font2">Alumni / Lulusan</div>
                                         </div>
                                     </div>

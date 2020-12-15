@@ -1,20 +1,46 @@
 $(document).ready(function() {
 
-    $(".owl-carousel").owlCarousel({
+    //LOAD FASILITAS KAMPUS
+    $.ajax({
+        type: "get",
+        url: "/load/layout_loop",
+        success: function(response){
+            console.log(response)
 
-        autoPlay: 3000,
-        items : 4,
-        itemsDesktop : [1199,3],
-        itemsDesktopSmall : [979,3],
-        center: true,
-        nav:true,
-        loop:true,
-        responsive: {
-            600: {
-                items: 4
-            }
+            $('#fasilitas_kampus').html('')
+            $('#blog').html('')
+            $('#faq').html('')
+            let fasilitas = response.fasilitas
+            let blog = response.blog
+            let faq = response.faq
+
+                $.each(fasilitas,function (i, data){
+                    $("#fasilitas_kampus").append(`
+                        <li>
+                            <a href="" style="text-decoration:none;"><p>`+data.nama_fasilitas+`</p></a>
+                        </li>
+                    `)
+                })
+
+                $.each(blog,function (i, data){
+                    $("#blog").append(`
+                        <li>
+                            <a href="`+data.link+`" style="text-decoration:none;"><p>`+data.nama_blog+`</p></a>
+                        </li>
+                    `)
+                })
+
+                $.each(faq,function (i, data){
+                    $("#faq").append(`
+                        <li>
+                            <a href="" style="text-decoration:none;"><p>`+data.pertanyaan+`</p></a>
+                        </li>
+                    `)
+                })
+        },
+        error: function(err){
+            console.log(err)
         }
-
-    });
+    })
 
 });

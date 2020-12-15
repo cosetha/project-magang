@@ -21,6 +21,8 @@ Route::group(['middleware' => 'guest'],function(){
     Route::get('/login','PageController@LoginForm');
 
     Route::get('/', 'GuestController@home');
+    Route::get('/load/layout_loop', 'GuestController@load_layout_loop');
+
 
     //Profile
     Route::get('/gdosen', function () {
