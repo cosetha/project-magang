@@ -26,7 +26,7 @@
                                 @foreach($dosen as $d)
                                 <div class="col-lg-3 col-md-6">
                                     <div class="card">
-                                        <img src="{{asset('')}}{{$d->gambar}}" width=" 100%" height="100%" /> 
+                                        <img src="{{asset('')}}{{$d->gambar}}" width=" 100%" height="100%" />
                                         <div class="card-body">
                                         <h5 class="card-title">{{$d->nama}}</h5>
                                         <p class="card-text">{!! $d->deskripsi !!} </p>
@@ -51,7 +51,7 @@
                                 @foreach($tenaga as $t)
                                 <div class="col-lg-3 col-md-6">
                                     <div class="card">
-                                        <img src="{{ asset('') }}{{$t->gambar}}" width=" 100%" height="100%" /> 
+                                        <img src="{{ asset('') }}{{$t->gambar}}" width=" 100%" height="100%" />
                                         <div class="card-body">
                                         <h5 class="card-title">{{$t->nama}}</h5>
                                         <p class="card-text">{!! $t->deskripsi !!} </p>
@@ -74,25 +74,25 @@
                     <div class="menu font10">
                         <!-- bold jika di click -->
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gsejarah" style="text-decoration:none;">
                                 Sejarah
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gvisimisi" style="text-decoration:none;">
                                 Visi dan Misi
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gstruktur" style="text-decoration:none;">
                                 Struktur Organisasi
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gprestasi" style="text-decoration:none;">
                                 Prestasi
                             </a>
                         </div>

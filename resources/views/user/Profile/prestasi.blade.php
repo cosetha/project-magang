@@ -51,13 +51,13 @@
                     </a>
                 </div>
             </div>
-   
+
         @endforeach
-        </div>      
+        </div>
     </div>
 
-                
-                
+
+
 
             <div class="col-sm-4">
                 <div class="box-menu">
@@ -67,25 +67,25 @@
                     <div class="menu font10">
                         <!-- bold jika di click -->
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gsejarah" style="text-decoration:none;">
                                 Sejarah
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gvisimisi" style="text-decoration:none;">
                                 Visi dan Misi
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gstruktur" style="text-decoration:none;">
                                 Struktur Organisasi
                             </a>
                             <div class="hr-profile"></div>
                         </div>
                         <div class="isi-menu">
-                            <a href="#" style="text-decoration:none;">
+                            <a href="/gprestasi" style="text-decoration:none;">
                                 Prestasi
                             </a>
                         </div>

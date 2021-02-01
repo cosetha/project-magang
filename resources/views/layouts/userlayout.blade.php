@@ -30,11 +30,11 @@
                 <ul class="navbar-nav quick-margin">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">UB Official</span></a>
+                        <a class="nav-link" href="https://selma.ub.ac.id/">UB Official</span></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">Vokasi Official</span></a>
+                        <a class="nav-link" href="https://vokasi.ub.ac.id/">Vokasi Official</span></a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -42,10 +42,10 @@
                             Quick Menu
                         </a>
                         <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
-                            <a class="dropdown-item" href="/akreditasi">Akreditasi</a>
-                            <a class="dropdown-item" href="/jadwalkuliah">Jadwal Kuliah</a>
-                            <a class="dropdown-item" href="/kalender">Kalender</a>
-                            <a class="dropdown-item" href="/mahasiswa">Mahasiswa</a>
+                            <a class="dropdown-item" href="/gakreditasi">Akreditasi</a>
+                            <a class="dropdown-item" href="/gjadwalkuliah">Jadwal Kuliah</a>
+                            <a class="dropdown-item" href="/gkalender">Kalender</a>
+                            <a class="dropdown-item" href="/gmahasiswa">Mahasiswa</a>
                         </div>
                     </li>
 
@@ -80,7 +80,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Profile
                                 </a>
-                                <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
                                     <a class="dropdown-item" href="/gdosen">Dosen dan Tenaga Kerja</a>
                                     <a class="dropdown-item" href="/gprestasi">Prestasi</a>
                                     <a class="dropdown-item" href="/gsejarah">Sejarah</a>
@@ -89,50 +89,45 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/bk">Bidang Keahlian</a>
+                                <a class="nav-link" href="/gbk">Bidang Keahlian</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Akademik
                                 </a>
-                                <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
-                                    <a class="dropdown-item" href="/akreditasi">Akreditasi</a>
-                                    <a class="dropdown-item" href="/mahasiswa">Mahasiswa</a>
-                                    <a class="dropdown-item" href="/kalender">Kalender Akademik</a>
-                                    <a class="dropdown-item" href="/jadwalkuliah">Jadwal Kuliah</a>
-                                    <a class="dropdown-item" href="/jadwalkuliah">Dokumen</a>
-                                    <a class="dropdown-item" href="/kalender">OJT</a>
-                                    <a class="dropdown-item" href="/mahasiswa">Tugas Akhir</a>
-                                    <a class="dropdown-item" href="/kalender">Kegia5tan Akademik</a>
-                                    <a class="dropdown-item" href="/mahasiswa">Form</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
+                                    <a class="dropdown-item" href="/gakreditasi">Akreditasi</a>
+                                    <a class="dropdown-item" href="/gjadwalkuliah">Jadwal Kuliah</a>
+                                    <a class="dropdown-item" href="/gkalender">Kalender</a>
+                                    <a class="dropdown-item" href="/gmahasiswa">Mahasiswa</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Kemahasiswaan
                                 </a>
-                                <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
-                                    <a class="dropdown-item" href="/alumni">Alumni</a>
-                                    <a class="dropdown-item" href="/kegiatan">Kegiatan</a>
-                                    <a class="dropdown-item" href="/loker">Lowongan Kerja</a>
-                                    <a class="dropdown-item" href="/organisasi">Organisasi</a>
-                                    <a class="dropdown-item" href="/organisasi">Info Lomba</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
+                                    <a class="dropdown-item" href="/galumni">Alumni</a>
+                                    <a class="dropdown-item" href="/gkegiatan">Kegiatan</a>
+                                    <a class="dropdown-item" href="/gloker">Lowongan Kerja</a>
+                                    <a class="dropdown-item" href="/gorganisasi">Organisasi</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Riset
                                 </a>
-                                <div class="dropdown-menu fade-up" aria-labelledby="navbarDropdown" style="width: 250px;">
-                                    <a class="dropdown-item" href="/penelitian">penelitian</a>
-                                    <a class="dropdown-item" href="/pengabdian">pengabdian</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px;">
+                                    <a class="dropdown-item" href="/gpenelitian">penelitian</a>
+                                    <a class="dropdown-item" href="/gpengabdian">pengabdian</a>
+                                    <a class="dropdown-item" href="/gprofilepeneliti">profilepeneliti</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/fasilitas">Fasilitas</a>
+                                <a class="nav-link" href="/gfasilitas">Fasilitas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/kontak">Kontak</a>
+                                <a class="nav-link" href="/gkontak">Kontak</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0  mr-5">
